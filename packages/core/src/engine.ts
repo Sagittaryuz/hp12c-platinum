@@ -115,7 +115,7 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
   if(s.error){s.error=null;s.displayLabel='PRONTO';return s;}
   if(action==='shiftF'||action==='shiftG'){s.shift=action==='shiftF'?'f':'g';s.displayLabel=s.shift;return s;}
   if(action==='program'){s.programMode=!s.programMode;s.pc=0;s.entering=false;s.programPrefix=[];s.pendingRegister=null;s.displayLabel=s.programMode?'PRGM':'RUN';return s;}
-  if(action==='clearProgram'){if(s.programMode)s.program=[];s.pc=0;s.pendingGoto=null;return s;}
+  if(action==='clearProgram'){if(s.programMode)s.program=[];s.programPrefix=[];s.pc=0;s.pendingGoto=null;return s;}
   if(s.pendingGoto!==null){if(action==='decimal'){s.gotoPosition=true;return s;}if(/^\d$/.test(action)){s.pendingGoto+=action;if(s.pendingGoto.length===3){const line=Number(s.pendingGoto);if((!s.programMode||s.gotoPosition)&&line>s.program.length){s.error='Error 4';s.pendingGoto=null;return s;}if(s.programMode&&!s.gotoPosition){s.program.splice(s.pc++,0,`goto:${line}`);}else s.pc=line;s.pendingGoto=null;s.gotoPosition=false;}return s;}s.pendingGoto=null;}
   if(action==='goto'){s.pendingGoto='';s.gotoPosition=false;return s;}
   if(s.programMode&&!executing){
@@ -222,8 +222,8 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
       case 'pause':s.paused=true;return s;
       case 'testZero':s.displayLabel=s.x===0?'VERDADEIRO':'FALSO';return s;
       case 'testLe':s.displayLabel=s.x<=s.y?'VERDADEIRO':'FALSO';return s;
-      case 'prefix':s.shift=null;s.pendingRegister=null;s.pendingGoto=null;s.displayOverride=s.x.toPrecision(10).replace('.','');return s;
-      case 'memory':s.displayOverride=`P${String(400-s.program.length).padStart(3,'0')} r20`;return s;
+      case 'prefix':s.shift=null;s.pendingRegister=null;s.pendingGoto=null;s.programPrefix=[];s.displayOverride=s.x.toPrecision(10).replace('.','');return s;
+      case 'memory':s.displayOverride=`P${String(Math.max(8,s.program.length)).padStart(3,'0')} r20`;return s;
       case 'toggleAngular':s.angular=s.angular==='DEG'?'RAD':'DEG';return s;
       default:throw new Error(`Função desconhecida: ${action}`);
     }
@@ -235,11 +235,23 @@ export function pressKey(previous:CalculatorState,id:string):CalculatorState {
 }
 export function formatDisplay(s:CalculatorState):string {
   if(!s.powered)return '';if(s.error)return s.error;if(s.displayOverride)return s.displayOverride;
-  if(s.programMode)return `${String(s.pc).padStart(3,'0')} ${s.program[s.pc-1]||''}`;
+  if(s.programMode)return `${String(s.pc).padStart(3,'0')}, ${s.pc?programCode(s.program[s.pc-1]||'goto:000'):''}`;
   if(s.entering)return s.input.replace('e',' E');
   if(!s.fixed||Math.abs(s.x)>=1e10||(s.x!==0&&Math.abs(s.x)<1e-9))return s.x.toExponential(6).replace('e+',' E+').replace('e-',' E-');
   const whole=Math.max(1,Math.floor(Math.log10(Math.abs(s.x)||1))+1),digits=Math.max(0,Math.min(s.decimals,10-whole));
   return s.x.toLocaleString('en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits,useGrouping:true});
+}
+function programCode(action:string):string {
+  if(action.startsWith('goto:'))return `43,33,${action.slice(5).padStart(3,'0')}`;
+  if(action.startsWith('sequence:'))return action.slice(9).split(',').map(programCode).join(' ');
+  if(/^\d$/.test(action))return action;
+  for(const key of Object.values(KEY_BY_ID)){
+    const code=/^\d$/.test(key.action)?key.action:`${key.row+1}${(key.col+1)%10}`;
+    if(key.action===action)return code;
+    if(key.fAction===action)return `42 ${code}`;
+    if(key.gAction===action)return `43 ${code}`;
+  }
+  return action;
 }
 export function restoreState(value:unknown):CalculatorState {
   if(!value||typeof value!=='object'||(value as CalculatorState).schemaVersion!==2)return clone(INITIAL_STATE);

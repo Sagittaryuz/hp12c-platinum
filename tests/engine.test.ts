@@ -67,6 +67,12 @@ describe('HP 12c Platinum — operações e exemplos',()=>{
     let s=start();s.program=['testZero','sequence:store,0','2','runStop'];s=number(s,'7');s=pressKey(s,'rs');expect(s.registers[0]).toBe(0);expect(s.x).toBe(2);
     s=start();s.program=['goto:099'];s=pressKey(s,'rs');expect(s.error).toBe('Error 4');
   });
+  it('visor de programa usa códigos físicos e MEM mostra linhas alocadas',()=>{
+    let s=keys(start(),'f','rs','enter');expect(formatDisplay(s)).toBe('001, 36');
+    s=keys(s,'sto','plus','0');expect(formatDisplay(s)).toBe('002, 44 40 0');
+    s=keys(s,'g','roll','0','0','0');expect(formatDisplay(s)).toBe('003, 43,33,000');
+    s=keys(s,'f','rs','g','9');expect(formatDisplay(s)).toBe('P008 r20');
+  });
   it('recupera fluxos de caixa, edita registrador e respeita n corrente',()=>{
     let s=number(start(),'100');s=keys(s,'chs','g','pv');s=number(s,'200');s=keys(s,'g','pmt');s=number(s,'3');s=keys(s,'g','fv');
     s=keys(s,'rcl','g','fv');expect(s.x).toBe(3);s=keys(s,'rcl','g','pmt');expect(s.x).toBe(200);expect(s.tvm.n).toBe(0);
