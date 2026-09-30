@@ -1,0 +1,16 @@
+{
+  "version": "0.2.1",
+  "installer": "HP.12c.Platinum_0.2.1_x64-setup.exe",
+  "sha256": "1dbe3a5f761dbbb43e438cf0f582fd1c445b999b984ee00431d05151775e7ae5",
+  "githubDigestMatched": true,
+  "installerExitCode": 0,
+  "signature": "NotSigned",
+  "installLocation": "%LOCALAPPDATA%\\HP 12c Platinum",
+  "processName": "hp12c-platinum",
+  "responding": true,
+  "windowTitle": "HP 12c Platinum",
+  "windowCreated": true,
+  "nativeControlsVisuallyInspected": false,
+  "nativeInspectionLimitation": "Native app control unavailable in this session",
+  "webOfflineReloadAndCalculationVerified": true
+}
