@@ -13,7 +13,7 @@ def centered(draw, text, xy, size, fill, bold=False):
     draw.text(xy, text, font=font(size,bold), fill=fill, anchor='mm')
 for key in json.loads((ROOT/'model/key-layout.json').read_text(encoding='utf-8')):
     im=Image.new('RGBA',(512,384),(0,0,0,0));d=ImageDraw.Draw(im)
-    fill='#203125' if key.get('tone')=='power' else '#171d20' if key['id'] in ['f','g'] else '#f4f7f3'
+    fill='#171d20' if key['id'] in ['f','g'] else '#f4f7f3'
     if key['id']=='enter':
         for idx,char in enumerate('ENTER'): centered(d,char,(256,55+idx*53),48,fill,True)
         centered(d,key['g'],(256,346),30,'#7ec6db')
@@ -43,3 +43,4 @@ d.text((45,1133),'Cálculos e memória permanecem no dispositivo.',font=font(27)
 im=Image.new('RGB',(400,1300),'#101312');d=ImageDraw.Draw(im)
 for idx,text in enumerate(['HEWLETT','PACKARD','PLATINUM','FINANCIAL','CALCULATOR','Σx → R2','Σx² → R3','Σy → R4','Σy² → R5','Σxy → R6']):centered(d,text,(200,70+idx*113),42,'#dfdecb',True)
 im.save(OUT/'back-brand.png')
+

@@ -63,7 +63,17 @@ export function App() {
   const [view, setView] = useState('front');
   const [offlineReady, setOfflineReady] = useState(false);
   const dialogRef=useRef(null);
-  useEffect(() => { if ('serviceWorker' in navigator && import.meta.env.PROD && import.meta.env.VITE_DESKTOP_BUILD !== '1') navigator.serviceWorker.ready.then(() => setOfflineReady(true)); }, []);
+  useEffect(() => {
+    if (!('serviceWorker' in navigator) || !import.meta.env.PROD || import.meta.env.VITE_DESKTOP_BUILD === '1') return;
+    let active=true;
+    const checkCache=async()=>{
+      const entries=await Promise.all(['index.html','models/hp12c-platinum.glb'].map(path=>caches.match(new URL(`${import.meta.env.BASE_URL}${path}`,location.href).href,{ignoreSearch:true})));
+      if(active)setOfflineReady(entries.every(Boolean));
+    };
+    navigator.serviceWorker.ready.then(checkCache).catch(()=>{});
+    navigator.serviceWorker.addEventListener('controllerchange',checkCache);
+    return ()=>{active=false;navigator.serviceWorker.removeEventListener('controllerchange',checkCache);};
+  }, []);
   useEffect(() => { if (state.paused && state.program.length && state.displayLabel !== 'PROGRAMA PAUSADO') { const timer=setTimeout(() => setState(s => pressAction(s, 'runStop')), 1000); return () => clearTimeout(timer); } }, [state.paused, state.program.length, state.displayLabel]);
 
   useEffect(() => { localStorage.setItem("hp12c-state", JSON.stringify(state)); }, [state]);
@@ -204,7 +214,7 @@ export function App() {
         <header className="dialog-header"><div><span className="eyebrow">GUIA RÁPIDO</span><h2 id="dialog-title">{shortcutOpen ? "Teclas e atalhos" : "Teclado acessível"}</h2></div><button className="close-dialog" aria-label="Fechar" onClick={() => { setShortcutOpen(false); setKeypadOpen(false); }}><X size={18} /></button></header>
         {shortcutOpen ? <>
           <p className="dialog-description">Consulte as funções impressas e use o teclado do computador. Toque numa função para destacá-la e acioná-la.</p>
-          <div className="shortcut-search"><MagnifyingGlass size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar tecla ou função…" autoFocus /><kbd>⌘ K</kbd></div>
+          <div className="shortcut-search"><MagnifyingGlass size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar tecla ou função…" autoFocus /><kbd>Ctrl K</kbd></div>
           <div className="filter-tabs" role="tablist" aria-label="Filtrar funções">
             {[ ["all", "Todas"], [null, "Tecla"], ["f", "f · laranja"], ["g", "g · azul"] ].map(([value, label]) => <button key={String(value)} role="tab" aria-selected={filter === value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>)}
             <button className="copy-shortcuts" onClick={copyShortcuts}>{copied ? <Check size={14} /> : <Command size={14} />}{copied ? "Copiado" : "Copiar"}</button>
