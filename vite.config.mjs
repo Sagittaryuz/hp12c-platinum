@@ -20,7 +20,7 @@ export default defineConfig({
   },
   plugins: [react(), ...(process.env.TAURI_BUILD === "1" ? [] : [VitePWA({
     registerType: "autoUpdate", injectRegister: false,
-    includeAssets: ["icons/*.png", "assets/*.png", "models/*.glb"],
+
     manifest: {
       name: "HP 12c Platinum — Calculadora Financeira", short_name: "12c Platinum", lang: "pt-BR",
       description: "Calculadora financeira independente com motor local e modelo 3D interativo.",
@@ -30,3 +30,4 @@ export default defineConfig({
     workbox: { globPatterns:["**/*.{js,css,html,png,glb,woff2,webmanifest,txt}"], maximumFileSizeToCacheInBytes:15*1024*1024, clientsClaim:true, skipWaiting:true },
   })])],
 });
+
