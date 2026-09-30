@@ -1,0 +1,15 @@
+{
+  "nominalMm": [
+    129,
+    79,
+    15
+  ],
+  "exportedBoundingBoxMm": [
+    129.02000546455383,
+    79.02000099420547,
+    15.015000011771917
+  ],
+  "toleranceMm": 0.1,
+  "scale": "metres, glTF",
+  "referenceStatus": "nominal dimensions; component sizes inferred visually"
+}
