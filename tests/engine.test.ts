@@ -57,6 +57,37 @@ describe('HP 12c Platinum — operações e exemplos',()=>{
     let s=keys(start(),'2','eex','3');expect(s.x).toBe(2000);s=keys(start(),'0','reciprocal');expect(s.error).toBe('Error 0');
     s=number(start(),'1.23456789');s=keys(s,'f','pmt');expect(s.x).toBe(1.23);
   });
+  it('programa agrupa STO/RCL e operadores em uma linha, inclusive SST',()=>{
+    let s=keys(start(),'f','rs','sto','decimal','5','2','sto','plus','decimal','5','rcl','decimal','5','rs','f','rs');
+    expect(s.program).toEqual(['sequence:store,decimal,5','2','sequence:store,plus,decimal,5','sequence:recall,decimal,5','runStop']);
+    s=number(s,'7');s=pressKey(s,'sst');expect(s.registers[15]).toBe(7);expect(s.pc).toBe(1);
+    s=pressKey(s,'rs');expect(s.x).toBe(9);expect(s.registers[15]).toBe(9);
+  });
+  it('condicionais saltam instrução completa e GTO inválido gera Error 4',()=>{
+    let s=start();s.program=['testZero','sequence:store,0','2','runStop'];s=number(s,'7');s=pressKey(s,'rs');expect(s.registers[0]).toBe(0);expect(s.x).toBe(2);
+    s=start();s.program=['goto:099'];s=pressKey(s,'rs');expect(s.error).toBe('Error 4');
+  });
+  it('recupera fluxos de caixa, edita registrador e respeita n corrente',()=>{
+    let s=number(start(),'100');s=keys(s,'chs','g','pv');s=number(s,'200');s=keys(s,'g','pmt');s=number(s,'3');s=keys(s,'g','fv');
+    s=keys(s,'rcl','g','fv');expect(s.x).toBe(3);s=keys(s,'rcl','g','pmt');expect(s.x).toBe(200);expect(s.tvm.n).toBe(0);
+    s=number(s,'150');s=keys(s,'sto','1');s.tvm.n=1;s.tvm.i=0;s=keys(s,'f','pv');expect(s.x).toBe(350);
+  });
+  it('TVM resolve juros negativos e pagamentos antecipados',()=>{
+    let s=start();s.tvm={n:12,i:0,pv:-1000,pmt:0,fv:900,begin:false};s=pressKey(s,'i');expect(s.x).toBeCloseTo((Math.pow(.9,1/12)-1)*100,7);
+    s=start();s.tvm={n:12,i:1,pv:1000,pmt:0,fv:0,begin:true};s=pressKey(s,'pmt');expect(s.x).toBeCloseTo(-1000/(1.01*(1-Math.pow(1.01,-12))/.01),6);
+  });
+  it('juros simples, SL, SOYD e funções matemáticas',()=>{
+    let s=start();s.tvm={n:60,i:7,pv:-1000,pmt:0,fv:0,begin:false};s=keys(s,'f','i');expect(s.x).toBeCloseTo(11.66666667,6);expect(s.z).toBeCloseTo(11.50684932,6);
+    s=start();s.tvm={n:5,i:0,pv:10000,pmt:0,fv:1000,begin:false};s=number(s,'2');s=keys(s,'f','pctT');expect(s.x).toBe(1800);expect(s.y).toBe(5400);
+    s=number(s,'2');s=keys(s,'f','deltaPct');expect(s.x).toBe(2400);expect(s.y).toBe(3600);
+    s=keys(start(),'5','g','3');expect(s.x).toBe(120);s=keys(start(),'9','g','pow');expect(s.x).toBe(3);
+    s=number(start(),'2');s=keys(s,'g','reciprocal','g','pctT');expect(s.x).toBeCloseTo(2,8);
+  });
+  it('ALG porcentagens, D.MY e memória após desligar',()=>{
+    let s=pressAction(start(),'modeAlg');s=number(s,'300');s=pressKey(s,'plus');s=number(s,'25');s=keys(s,'pct','enter');expect(s.x).toBe(375);
+    s=keys(start(),'g','4');s=number(s,'14.052004');s=pressKey(s,'enter');s=number(s,'120');s=keys(s,'g','chs');expect(s.x).toBe(11.092004);
+    s=keys(start(),'4','2','sto','5','f','on');expect(s.powered).toBe(false);s=pressKey(s,'on');s=keys(s,'rcl','5');expect(s.x).toBe(42);
+  });
   it('tem 39 teclas e todo comando listado possui implementação',()=>{
     expect(KEY_DEFINITIONS).toHaveLength(39);
     const actions=new Set(KEY_DEFINITIONS.flatMap(k=>[k.action,k.fAction,k.gAction]).filter(Boolean));

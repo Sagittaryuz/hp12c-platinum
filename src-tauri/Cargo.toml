@@ -1,6 +1,6 @@
 [package]
 name = "hp12c-platinum"
-version = "0.1.0"
+version = "0.1.1"
 description = "Calculadora financeira independente para Windows"
 authors = ["Sagittaryuz"]
 edition = "2021"
@@ -15,3 +15,4 @@ tauri = { version = "2", features = [] }
 codegen-units = 1
 lto = true
 strip = true
+

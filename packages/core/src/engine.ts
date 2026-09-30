@@ -8,7 +8,7 @@ export type CalculatorState = {
   financialInputReady:boolean; shift:Shift; mode:CalcMode; error:string|null; decimals:number; fixed:boolean; powered:boolean;
   registers:number[]; tvm:Tvm; cashflows:number[]; cashflowCounts:number[]; compoundOdd:boolean;
   pendingRegister:'store'|'recall'|null; registerDot:boolean; storeOp:string|null; pendingGoto:string|null; gotoPosition:boolean;
-  pendingOp:string|null; algOperands:number[]; algOperators:string[]; programMode:boolean; program:string[]; pc:number;
+  pendingOp:string|null; algOperands:number[]; algOperators:string[]; programMode:boolean; program:string[]; programPrefix:string[]; pc:number;
   paused:boolean; running:boolean; angular:'DEG'|'RAD'; dateFormat:'MDY'|'DMY'; displayLabel:string; displayOverride:string|null;
   undoState:Omit<CalculatorState,'undoState'>|null;
 };
@@ -16,7 +16,7 @@ export const INITIAL_STATE:CalculatorState = {
   schemaVersion:2,x:0,y:0,z:0,t:0,lastX:0,input:'0',entering:false,lift:false,financialInputReady:false,shift:null,mode:'RPN',
   error:null,decimals:2,fixed:true,powered:true,registers:Array(20).fill(0),tvm:{n:0,i:0,pv:0,pmt:0,fv:0,begin:false},
   cashflows:[0],cashflowCounts:[1],compoundOdd:false,pendingRegister:null,registerDot:false,storeOp:null,pendingGoto:null,
-  gotoPosition:false,pendingOp:null,algOperands:[],algOperators:[],programMode:false,program:[],pc:0,paused:false,running:false,
+  gotoPosition:false,pendingOp:null,algOperands:[],algOperators:[],programMode:false,program:[],programPrefix:[],pc:0,paused:false,running:false,
   angular:'DEG',dateFormat:'MDY',displayLabel:'PRONTO',displayOverride:null,undoState:null,
 };
 const clone = (s:CalculatorState):CalculatorState => structuredClone(s);
@@ -95,7 +95,8 @@ function finish(s:CalculatorState){s.x=precision(s.x);return s;}
 function run(s:CalculatorState,oneStep=false):CalculatorState {
   s.programMode=false;s.running=true;s.paused=false;if(s.entering){s.entering=false;s.lift=true;}let budget=10000;
   while(s.pc<s.program.length&&budget-->0){ const instruction=s.program[s.pc++];
-    if(instruction.startsWith('goto:')){const line=Number(instruction.slice(5));if(line===0){s.pc=0;s.running=false;break;}s.pc=line-1;}
+    if(instruction.startsWith('goto:')){const line=Number(instruction.slice(5));if(line>s.program.length){s.error='Error 4';s.running=false;break;}if(line===0){s.pc=0;s.running=false;break;}s.pc=line-1;}
+    else if(instruction.startsWith('sequence:')){for(const action of instruction.slice(9).split(',')){s=pressAction(s,action,true);if(s.error)break;}}
     else if(instruction==='testLe'){if(!(s.x<=s.y))s.pc++;}
     else if(instruction==='testZero'){if(s.x!==0)s.pc++;}
     else if(instruction==='runStop'){s.running=false;break;}
@@ -112,11 +113,22 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
   if(!s.powered&&action!=='on')return s;
   if(action==='undo'){if(s.undoState)return {...clone({...s.undoState,undoState:null}),undoState:null};return s;}
   if(s.error){s.error=null;s.displayLabel='PRONTO';return s;}
-  if(action==='program'){s.programMode=!s.programMode;s.pc=0;s.entering=false;s.displayLabel=s.programMode?'PRGM':'RUN';return s;}
+  if(action==='shiftF'||action==='shiftG'){s.shift=action==='shiftF'?'f':'g';s.displayLabel=s.shift;return s;}
+  if(action==='program'){s.programMode=!s.programMode;s.pc=0;s.entering=false;s.programPrefix=[];s.pendingRegister=null;s.displayLabel=s.programMode?'PRGM':'RUN';return s;}
   if(action==='clearProgram'){if(s.programMode)s.program=[];s.pc=0;s.pendingGoto=null;return s;}
   if(s.pendingGoto!==null){if(action==='decimal'){s.gotoPosition=true;return s;}if(/^\d$/.test(action)){s.pendingGoto+=action;if(s.pendingGoto.length===3){const line=Number(s.pendingGoto);if((!s.programMode||s.gotoPosition)&&line>s.program.length){s.error='Error 4';s.pendingGoto=null;return s;}if(s.programMode&&!s.gotoPosition){s.program.splice(s.pc++,0,`goto:${line}`);}else s.pc=line;s.pendingGoto=null;s.gotoPosition=false;}return s;}s.pendingGoto=null;}
   if(action==='goto'){s.pendingGoto='';s.gotoPosition=false;return s;}
-  if(s.programMode&&!executing){if(action==='step'){s.pc=Math.min(s.program.length,s.pc+1);return s;}if(action==='backStep'){s.pc=Math.max(0,s.pc-1);return s;}if(['shiftF','shiftG','prefix','memory','on','off'].includes(action)){}else{if(s.program.length>=400){s.error='Error 4';return s;}s.program.splice(s.pc++,0,action);s.displayLabel='PRGM';return s;}}
+  if(s.programMode&&!executing){
+    if(action==='step'){s.pc=Math.min(s.program.length,s.pc+1);return s;}
+    if(action==='backStep'){s.pc=Math.max(0,s.pc-1);return s;}
+    if(action==='store'||action==='recall'){s.programPrefix=[action];return s;}
+    if(s.programPrefix.length&&!['shiftF','shiftG'].includes(action)){
+      if(action==='decimal'||(s.programPrefix[0]==='store'&&['plus','minus','multiply','divide'].includes(action))){s.programPrefix.push(action);return s;}
+      if(/^\d$/.test(action)||['n','i','pv','pmt','fv','cf0','cfj','nj','eex'].includes(action)){action=`sequence:${[...s.programPrefix,action].join(',')}`;}
+      s.programPrefix=[];
+    }
+    if(['shiftF','shiftG','prefix','memory','on','off'].includes(action)){}else{if(s.program.length>=400){s.error='Error 4';return s;}s.program.splice(s.pc++,0,action);s.displayLabel='PRGM';return s;}
+  }
   if(!executing&&!['shiftF','shiftG','store','recall','prefix','undo'].includes(action)){const {undoState,...snapshot}=previous;s.undoState=structuredClone(snapshot);}
   try {
     if(s.pendingRegister) {
