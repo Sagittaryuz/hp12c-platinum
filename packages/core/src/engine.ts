@@ -184,8 +184,8 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
       case '12x':result(s,s.x*12,'n');s.tvm.n=s.x;s.financialInputReady=false;return s;
       case '12div':result(s,s.x/12,'i');s.tvm.i=s.x;s.financialInputReady=false;return s;
       case 'clearFin':s.tvm={n:0,i:0,pv:0,pmt:0,fv:0,begin:s.tvm.begin};s.financialInputReady=false;return s;
-      case 'clearStats':for(let k=1;k<=6;k++)s.registers[k]=0;s.x=s.y=s.z=s.t=0;s.lift=false;return s;
-      case 'clearReg':s.registers=Array(20).fill(0);s.cashflows=[0];s.cashflowCounts=[1];s.tvm={n:0,i:0,pv:0,pmt:0,fv:0,begin:s.tvm.begin};s.lastX=0;s.x=s.y=s.z=s.t=0;s.lift=false;return s;
+      case 'clearStats':for(let k=1;k<=6;k++)s.registers[k]=0;s.x=s.y=s.z=s.t=0;s.input="0";s.entering=false;s.financialInputReady=false;s.lift=false;return s;
+      case 'clearReg':s.registers=Array(20).fill(0);s.cashflows=[0];s.cashflowCounts=[1];s.tvm={n:0,i:0,pv:0,pmt:0,fv:0,begin:s.tvm.begin};s.lastX=0;s.x=s.y=s.z=s.t=0;s.input="0";s.entering=false;s.financialInputReady=false;s.lift=false;return s;
       case 'amortize':{const count=Math.trunc(s.x);if(count<=0||s.tvm.i<0)throw new Error('Error 5');const round=(n:number)=>Number(n.toFixed(s.decimals));let balance=round(s.tvm.pv),interest=0,principal=0;for(let k=0;k<count;k++){const it=(s.tvm.begin&&s.tvm.n===0&&k===0)?0:round(-balance*s.tvm.i/100);const pr=round(s.tvm.pmt)-it;interest+=it;principal+=pr;balance+=pr;}s.tvm.pv=precision(balance);s.tvm.n+=count;result(s,interest,'AMORT');s.y=precision(principal);s.z=count;return s;}
       case 'interest':{const i=-s.tvm.pv*s.tvm.i*s.tvm.n/36000;result(s,i,'INT 360');s.y=-s.tvm.pv;s.z=precision(-s.tvm.pv*s.tvm.i*s.tvm.n/36500);return s;}
       case 'cf0':s.cashflows=[s.x];s.cashflowCounts=[1];s.registers[0]=s.x;s.tvm.n=0;s.entering=false;s.lift=true;return s;
@@ -258,3 +258,4 @@ export function restoreState(value:unknown):CalculatorState {
   const s=value as CalculatorState;if(!Array.isArray(s.registers)||s.registers.length!==20||!Number.isFinite(s.x))return clone(INITIAL_STATE);
   return {...clone(INITIAL_STATE),...structuredClone(s),running:false,paused:false,undoState:null};
 }
+
