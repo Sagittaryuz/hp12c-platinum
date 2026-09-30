@@ -15,8 +15,9 @@ for key in json.loads((ROOT/'model/key-layout.json').read_text(encoding='utf-8')
     im=Image.new('RGBA',(512,384),(0,0,0,0));d=ImageDraw.Draw(im)
     fill='#171d20' if key['id'] in ['f','g'] else '#f4f7f3'
     if key['id']=='enter':
-        for idx,char in enumerate('ENTER'): centered(d,char,(256,55+idx*53),48,fill,True)
-        centered(d,key['g'],(256,346),30,'#7ec6db')
+        im=Image.new('RGBA',(512,1536),(0,0,0,0));d=ImageDraw.Draw(im)
+        for idx,char in enumerate('ENTER'): centered(d,char,(256,175+idx*240),190,fill,True)
+        centered(d,key['g'],(256,1440),110,'#7ec6db')
     else:
         label=key['label'].replace('ˣ','x').replace('↔','↔')
         centered(d,label,(256,150),200 if len(label)==1 else 160 if len(label)==2 else 115,fill,True)
