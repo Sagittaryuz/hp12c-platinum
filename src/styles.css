@@ -413,15 +413,15 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .brand{left:auto;right:var(--brand-inner-right,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
 }
 /* One portrait metal surface joins both vertical rails to the bottom arcs.
-   Concentric lower arcs use outer40px / inner30px radii.
+   Concentric lower arcs use outer44px / inner34px radii.
    The metal thickness stays10px through both corners.
    Decorative geometry does not participate in keyboard measurements. */
 .portrait-footer-frame{display:none;pointer-events:none}
 @media(orientation:portrait){
- .calculator{--portrait-textured-side:10px;--footer-plastic:10px;--footer-radius:40px;--footer-stroke:10px;--footer-inner-radius:30px;--footer-label-bottom:10px}
+ .calculator{--portrait-textured-side:10px;--footer-plastic:10px;--footer-radius:44px;--footer-stroke:10px;--footer-inner-radius:34px;--footer-label-bottom:10px}
  .joined-frame .keyboard-frame{display:none}
  /* Retire the old upper plate's exposed tail without changing its layout box. */
- .joined-frame .silver-panel{clip-path:inset(0 calc(var(--portrait-textured-side) - var(--frame)) max(0px,calc(100% - var(--portrait-crossbar-top,100%))) calc(var(--portrait-textured-side) - var(--frame)))}
+ .joined-frame .silver-panel{clip-path:inset(0 calc(0px - var(--frame)) max(0px,calc(100% - var(--portrait-crossbar-top,100%))) calc(0px - var(--frame)))}
  .joined-frame .keyboard-crossbar{left:var(--portrait-textured-side);right:var(--portrait-textured-side)}
  /* The continuous frame owns the black paint; its old layout panel stays
     measurable but must not leave a black sliver in the wider plastic rail. */
@@ -432,4 +432,13 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .portrait-footer-frame::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:var(--maker-cutout-width);height:var(--footer-label-bottom);background:#181818}
  .joined-frame .maker-strip{bottom:var(--footer-label-bottom)}
  .joined-frame .keyboard-lower-bridge{display:none}
+}
+
+/* Extend only the upper plate paint; retain all measured content boxes. */
+.status-bar-color>span{display:none}
+.silver-panel::before,.silver-panel::after{content:'';position:absolute;top:0;bottom:0;background:#c6c6c6 url('/assets/metal-grain-progressive.svg');background-size:160px 100%;pointer-events:none}
+.silver-panel::before{right:100%;width:max(var(--frame),env(safe-area-inset-left,0px))}
+.silver-panel::after{left:100%;width:max(var(--frame),env(safe-area-inset-right,0px))}
+@media(orientation:landscape){
+ .silver-panel::before,.silver-panel::after{bottom:21px}
 }

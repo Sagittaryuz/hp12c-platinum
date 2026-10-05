@@ -1,0 +1,4322 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      758
+    ],
+    "innerCentre": [
+      54,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      321,
+      758
+    ],
+    "innerCentre": [
+      321,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      758
+    ],
+    "innerCentre": [
+      54,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      321,
+      758
+    ],
+    "innerCentre": [
+      321,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      758
+    ],
+    "innerCentre": [
+      54,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      321,
+      758
+    ],
+    "innerCentre": [
+      321,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      878
+    ],
+    "innerCentre": [
+      54,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      376,
+      878
+    ],
+    "innerCentre": [
+      376,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      878
+    ],
+    "innerCentre": [
+      54,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      376,
+      878
+    ],
+    "innerCentre": [
+      376,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      878
+    ],
+    "innerCentre": [
+      54,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      376,
+      878
+    ],
+    "innerCentre": [
+      376,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      396
+    ],
+    "innerCentre": [
+      54,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      396
+    ],
+    "innerCentre": [
+      266,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      396
+    ],
+    "innerCentre": [
+      54,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      396
+    ],
+    "innerCentre": [
+      266,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      396
+    ],
+    "innerCentre": [
+      54,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      396
+    ],
+    "innerCentre": [
+      266,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      286
+    ],
+    "innerCentre": [
+      54,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      286
+    ],
+    "innerCentre": [
+      266,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      286
+    ],
+    "innerCentre": [
+      54,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      286
+    ],
+    "innerCentre": [
+      266,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      286
+    ],
+    "innerCentre": [
+      54,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      286
+    ],
+    "innerCentre": [
+      266,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      820
+    ],
+    "innerCentre": [
+      54,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      348,
+      820
+    ],
+    "innerCentre": [
+      348,
+      820
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      758
+    ],
+    "innerCentre": [
+      54,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      321,
+      758
+    ],
+    "innerCentre": [
+      321,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      758
+    ],
+    "innerCentre": [
+      54,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      321,
+      758
+    ],
+    "innerCentre": [
+      321,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      758
+    ],
+    "innerCentre": [
+      54,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      321,
+      758
+    ],
+    "innerCentre": [
+      321,
+      758
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      878
+    ],
+    "innerCentre": [
+      54,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      376,
+      878
+    ],
+    "innerCentre": [
+      376,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      878
+    ],
+    "innerCentre": [
+      54,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      376,
+      878
+    ],
+    "innerCentre": [
+      376,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      878
+    ],
+    "innerCentre": [
+      54,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      376,
+      878
+    ],
+    "innerCentre": [
+      376,
+      878
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      396
+    ],
+    "innerCentre": [
+      54,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      396
+    ],
+    "innerCentre": [
+      266,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      396
+    ],
+    "innerCentre": [
+      54,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      396
+    ],
+    "innerCentre": [
+      266,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      396
+    ],
+    "innerCentre": [
+      54,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      396
+    ],
+    "innerCentre": [
+      266,
+      396
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      286
+    ],
+    "innerCentre": [
+      54,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.4,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      286
+    ],
+    "innerCentre": [
+      266,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.5
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 44.5,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      286
+    ],
+    "innerCentre": [
+      54,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      286
+    ],
+    "innerCentre": [
+      266,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.2
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      54,
+      286
+    ],
+    "innerCentre": [
+      54,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 44.0,
+        "innerEffectiveRadius": 34.1
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "cssRadiusScale": 1,
+    "outerCentre": [
+      266,
+      286
+    ],
+    "innerCentre": [
+      266,
+      286
+    ],
+    "both91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 15,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 30,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 45,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 34.0
+      },
+      {
+        "angle": 60,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 75,
+        "outerEffectiveRadius": 43.8,
+        "innerEffectiveRadius": 33.9
+      },
+      {
+        "angle": 90,
+        "outerEffectiveRadius": 43.9,
+        "innerEffectiveRadius": 34.0
+      }
+    ],
+    "diagonalThickness": 9.8,
+    "straightThickness": 10,
+    "passed": true
+  }
+]
