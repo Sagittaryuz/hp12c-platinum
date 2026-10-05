@@ -22,3 +22,4 @@ qa/continuous-frame/*.png
 qa/frame-top/*.png
 qa/keyboard-spread/*.png
 qa/textured-sides/*.png
+qa/concentric-corners/*.png

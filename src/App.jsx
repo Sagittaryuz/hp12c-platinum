@@ -154,7 +154,8 @@ function useJoinedFrame() {
         // Use the new lower room once: anchor the first row and share a
         // bounded30px extension equally among the six row intervals.
         const frameRect=calculator.querySelector('.portrait-footer-frame').getBoundingClientRect();
-        const innerRadius=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-inner-radius'));
+        // Keep the approved0.2.22 responsive keyboard envelope when decorative radii change.
+        const innerRadius=40;
         const stroke=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-stroke'));
         const innerLeft=frameRect.left+stroke,innerRight=frameRect.right-stroke;
         const leftKey=Math.min(...simple.map(el=>el.getBoundingClientRect().left));

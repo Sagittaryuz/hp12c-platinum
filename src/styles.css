@@ -413,12 +413,12 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .brand{left:auto;right:var(--brand-inner-right,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
 }
 /* One portrait metal surface joins both vertical rails to the bottom arcs.
-   Both approved lower arcs have radius40px; their centres are offset10px.
-   Straight rails stay10px; corner thickness intentionally varies.
+   Concentric lower arcs use outer40px / inner30px radii.
+   The metal thickness stays10px through both corners.
    Decorative geometry does not participate in keyboard measurements. */
 .portrait-footer-frame{display:none;pointer-events:none}
 @media(orientation:portrait){
- .calculator{--portrait-textured-side:10px;--footer-plastic:10px;--footer-radius:40px;--footer-stroke:10px;--footer-inner-radius:40px;--footer-label-bottom:10px}
+ .calculator{--portrait-textured-side:10px;--footer-plastic:10px;--footer-radius:40px;--footer-stroke:10px;--footer-inner-radius:30px;--footer-label-bottom:10px}
  .joined-frame .keyboard-frame{display:none}
  /* Retire the old upper plate's exposed tail without changing its layout box. */
  .joined-frame .silver-panel{clip-path:inset(0 calc(var(--portrait-textured-side) - var(--frame)) max(0px,calc(100% - var(--portrait-crossbar-top,100%))) calc(var(--portrait-textured-side) - var(--frame)))}
