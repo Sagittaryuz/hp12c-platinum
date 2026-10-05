@@ -1,4 +1,4 @@
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useLayoutEffect,useRef,useState} from 'react';
 import {bindDisplayGestures,transferDisplay} from './display-transfer.mjs';
 export function useDisplayTransfer(display,disabled){
   const ref=useRef(null),current=useRef({display,disabled}),busy=useRef(false),alive=useRef(false),timer=useRef(null),restoreFocus=useRef(false);
@@ -24,11 +24,33 @@ export function useDisplayTransfer(display,disabled){
   return {ref,message,manual,closeManual:()=>{restoreFocus.current=true;setManual(null)}};
 }
 export function DisplayTransferFeedback({message,manual,closeManual}){
-  const dialog=useRef(null),field=useRef(null);
+  const dialog=useRef(null),field=useRef(null),success=useRef(null);
+  const copied=message.startsWith('Valor copiado.');
+  useLayoutEffect(()=>{
+    if(!copied)return;
+    const model=success.current.closest('.calculator').querySelector('.model-name');
+    const brand=success.current.closest('.calculator').querySelector('.brand');
+    const position=()=>{
+      const a=model.getBoundingClientRect(),b=brand.getBoundingClientRect();
+      const gap=Math.max(0,b.left-a.right);
+      Object.assign(success.current.style,{
+        left:`${(a.right+b.left)/2}px`,
+        top:`${(Math.min(a.top,b.top)+Math.max(a.bottom,b.bottom))/2}px`,
+        maxWidth:`${Math.max(0,gap-8)}px`,
+        paddingBlock:`${Math.min(4,Math.max(0,(Math.max(a.bottom,b.bottom)-Math.min(a.top,b.top)-14)/2))}px`
+      });
+    };
+    position();const observer=new ResizeObserver(position);observer.observe(model);observer.observe(brand);
+    window.addEventListener('resize',position);window.visualViewport?.addEventListener('resize',position);
+    window.visualViewport?.addEventListener('scroll',position);
+    return()=>{observer.disconnect();window.removeEventListener('resize',position);window.visualViewport?.removeEventListener('resize',position);window.visualViewport?.removeEventListener('scroll',position)};
+  },[copied]);
   useEffect(()=>{if(manual!==null){dialog.current.showModal();field.current.focus();field.current.select()}},[manual]);
   return <>
     <span id="lcd-transfer-help" className="lcd-readable">Toque para copiar. Segure por meio segundo e solte para copiar e compartilhar. Teclado: Enter ou espaço copia; Shift junto compartilha.</span>
-    <div role="status" aria-live="polite" aria-atomic="true" className="lcd-transfer-status">{message}</div>
+    <div role="status" aria-live="polite" aria-atomic="true" className="lcd-transfer-status">
+      {copied?<><span ref={success} className="lcd-copy-success">Valor copiado.</span>{message.slice(14).trim()&&<span className="lcd-transfer-notice">{message.slice(14)}</span>}</>:message&&<span className="lcd-transfer-notice">{message}</span>}
+    </div>
     {manual!==null&&<dialog ref={dialog} className="lcd-transfer-dialog" aria-labelledby="lcd-manual-title" onCancel={closeManual}>
       <p id="lcd-manual-title">Selecione o valor para copiar</p>
       <textarea ref={field} readOnly value={manual} aria-label="Valor mostrado no visor"/>

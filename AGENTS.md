@@ -115,3 +115,7 @@ Fabricante atualizado: faixas metálicas centradas verticalmente com a inscriç�
 05/10 02:35UTC: Marcos authorizes ONLY LCD redraw deduplication, lossless font file compression retaining perfect aesthetics, and thicker digits, testing/publication. Preserve layout/math/state/offline/updates; no lazy menus/geometry/persistence refactor/Library export. Candidate0.2.13.
 
 05/10 10:45UTC: Display tap copies exactly the shown text; hold >=500ms followed by release copies and opens native share, respecting iOS activation. Preserve perfect appearance/geometry, state, calculations and offline. Never read clipboard. GitHub synchronization authorized at11:07UTC; manual Vercel publication requires separate authorization. Preserve recovered0.2.13 snapshot provenance.
+
+05/10: Copy-success feedback belongs at the center of the header gap between the complete HP12c Platinum title and HP emblem. Preserve their geometry and LCD; overlay must be non-interactive and accessible, without a duplicate bottom success toast. Local-only revision; publication not authorized for this change.
+
+05/10 12:05UTC: User authorizes publication of copy-feedback placement revision. Portrait keeps measured center between complete model title and HP emblem; landscape uses lower safe-area case band, never covering LCD, keys or controls. Preserve calculator geometry/math/state. Release0.2.15 to main/Pages and original Vercel project.

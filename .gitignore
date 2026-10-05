@@ -14,3 +14,4 @@ model/*.blend1
 *.pem
 *.key
 qa/display-transfer/*.png
+qa/header-copy/*.png

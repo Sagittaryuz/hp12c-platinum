@@ -392,9 +392,18 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 /* Interaction/feedback only: leave the LCD canvas and geometry unchanged. */
 .lcd{pointer-events:auto;cursor:pointer;-webkit-user-select:none;user-select:none}
 .lcd:focus-visible{outline:2px solid #e6e6e6;outline-offset:4px}
-.lcd-transfer-status{position:fixed;z-index:30;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:90%;padding:6px 10px;border-radius:4px;background:#181818ed;color:#e6e6e6;font:12px Arial;pointer-events:none;text-align:center}
+.lcd-transfer-status{pointer-events:none}
+.lcd-transfer-notice{position:fixed;z-index:30;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:90%;padding:6px 10px;border-radius:4px;background:#181818ed;color:#e6e6e6;font:12px Arial;pointer-events:none;text-align:center}
 .lcd-transfer-status:empty{display:none}
 .lcd-transfer-dialog{max-width:min(90vw,400px);border:1px solid #999;border-radius:6px;background:#222;color:#eee;padding:18px;font:16px Arial}
 .lcd-transfer-dialog::backdrop{background:#0008}
 .lcd-transfer-dialog textarea{width:100%;font:18px Arial;-webkit-user-select:text;user-select:text}
 .lcd-transfer-dialog button{margin-top:12px;padding:8px 14px}
+
+/* Copy confirmation floats in the measured gap; branding retains its geometry. */
+.lcd-copy-success{position:fixed;z-index:30;transform:translate(-50%,-50%);box-sizing:border-box;padding:4px 3px;border-radius:4px;background:#181818ed;color:#e6e6e6;width:max-content;font:12px/1.15 Arial;text-align:center;pointer-events:none;overflow-wrap:anywhere}
+/* Landscape reserves the lower case band for transfer feedback, away from LCD/keys. */
+@media(orientation:landscape){
+ .lcd-transfer-status:not(:empty){position:fixed;z-index:30;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);transform:translateX(-50%);width:max-content;max-width:calc(100vw - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 24px);padding:4px 6px;border-radius:4px;background:#181818ed;color:#e6e6e6;font:12px/1.15 Arial;text-align:center;pointer-events:none}
+ .lcd-transfer-status .lcd-copy-success,.lcd-transfer-status .lcd-transfer-notice{position:static;display:inline;transform:none;width:auto;max-width:none!important;padding:0!important;background:transparent;font:inherit}
+}
