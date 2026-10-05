@@ -442,3 +442,14 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 @media(orientation:landscape){
  .silver-panel::before,.silver-panel::after{bottom:21px}
 }
+.history-board{position:fixed;inset:0;margin:0;width:100%;max-width:none;height:100dvh;max-height:none;padding:0;border:0;color:#eee;background:#13251d;font:16px/1.5 KeyCondensed,Arial,sans-serif;overflow:hidden}
+.history-board::backdrop{background:#0009}
+.history-board[open]{display:flex;flex-direction:column}
+.history-board-handle{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 16px max(16px,env(safe-area-inset-left));border-bottom:2px solid #789080;touch-action:none;flex-shrink:0}
+.history-board-handle h1{margin:0;font-size:24px}.history-board-handle p{margin:0;font-size:14px}.history-board button{border:1px solid #c6d4ca;padding:12px;border-radius:4px;background:#203d2b;color:#fff}
+.history-board-lines{overflow:auto;min-height:0;flex:1;padding:16px max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));touch-action:pan-y;overscroll-behavior:contain;user-select:text}
+.history-board ol{list-style:none;padding:0;margin:0}.history-board li{display:flex;gap:12px;justify-content:space-between;padding:8px 0;overflow-wrap:anywhere;white-space:normal;border-bottom:1px solid #ffffff18}.history-board strong{font-weight:500;text-align:right}.history-board .history-separator{align-items:center;border:0;padding:20px 0}.history-rule{height:1px;background:#eee;flex:1}.history-separator time{font-size:13px;text-align:right;white-space:nowrap}.hp-menu-header{touch-action:none}
+/* Restore the same original brushed grain used by the lower metal frame. */
+.silver-panel,.silver-panel::before,.silver-panel::after{background-image:url('/assets/metal-grain.svg');background-size:160px 160px;background-repeat:repeat}
+
+@media(orientation:portrait){.lcd{transform:translateY(var(--lcd-balance-offset,0px))}}

@@ -1,0 +1,44 @@
+[
+  {
+    "engine": "chromium",
+    "url": "http://127.0.0.1:5198/",
+    "passed": true,
+    "realTapCopy": true,
+    "holdCopyAndMockShareOnce": true,
+    "previousToastClearedBeforeShare": true,
+    "newTapRestoresFeedback": true,
+    "trustedHold": true,
+    "calls": [
+      {
+        "api": "copy",
+        "active": true
+      },
+      {
+        "api": "share",
+        "active": true,
+        "feedbackAtCall": ""
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "url": "http://127.0.0.1:5198/",
+    "passed": true,
+    "realTapCopy": true,
+    "holdCopyAndMockShareOnce": true,
+    "previousToastClearedBeforeShare": true,
+    "newTapRestoresFeedback": true,
+    "trustedHold": false,
+    "calls": [
+      {
+        "api": "copy",
+        "active": true
+      },
+      {
+        "api": "share",
+        "active": true,
+        "feedbackAtCall": ""
+      }
+    ]
+  }
+]

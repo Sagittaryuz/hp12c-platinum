@@ -1,0 +1,22 @@
+[
+  {
+    "engine": "chromium",
+    "passed": true,
+    "historyPersistence": true,
+    "rows100": true,
+    "gestureThreshold56": true,
+    "menuDownBoardUp": true,
+    "trustedTouch": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "passed": true,
+    "historyPersistence": true,
+    "rows100": true,
+    "gestureThreshold56": true,
+    "menuDownBoardUp": true,
+    "trustedTouch": false,
+    "errors": []
+  }
+]

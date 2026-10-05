@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer } from 'react';
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
-import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected} from './hp-panel-state.mjs';
+import {HistoryBoard} from './HistoryBoard';
+import {useDirectionalDrag} from './useDirectionalDrag';
+import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
 import { Lcd } from './Lcd';
 import {useHeaderAlignment} from './useHeaderAlignment';
@@ -21,6 +23,7 @@ function useJoinedFrame() {
       const signature=[calculator.clientWidth,calculator.clientHeight,fontRevision,style.getPropertyValue('--portrait-safe-bottom'),modelStyle.top,lcdStyle.top,lcdStyle.translate].join('|');
       if(signature===lastSignature)return;
       lastSignature=signature;
+      calculator.style.removeProperty('--lcd-balance-offset');
       calculator.classList.remove('joined-frame');
       // Clear only the portrait expansion from the preceding measurement pass.
       for(const panel of panels)panel.style.removeProperty('top');
@@ -152,10 +155,10 @@ function useJoinedFrame() {
         calculator.style.setProperty('--portrait-frame-top',(crossbar.getBoundingClientRect().bottom-body.top)+'px');
         calculator.style.setProperty('--portrait-crossbar-top',(crossbar.getBoundingClientRect().top-body.top)+'px');
         // Use the new lower room once: anchor the first row and share a
-        // bounded30px extension equally among the six row intervals.
+        // bounded40px extension equally among the six row intervals.
         const frameRect=calculator.querySelector('.portrait-footer-frame').getBoundingClientRect();
-        // Keep the approved0.2.22 responsive keyboard envelope when decorative radii change.
-        const innerRadius=40;
+        // New extension is bounded by the actual concentric inner contour.
+        const innerRadius=34;
         const stroke=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-stroke'));
         const innerLeft=frameRect.left+stroke,innerRight=frameRect.right-stroke;
         const leftKey=Math.min(...simple.map(el=>el.getBoundingClientRect().left));
@@ -179,23 +182,26 @@ function useJoinedFrame() {
           const rect=enter.getBoundingClientRect();prefix.style.left=(rect.left-parentRects.get(prefix.parentElement).left)+'px';prefix.style.width=rect.width+'px';
         }
         calculator.dataset.narrowKeyAdjustment=String(narrow);
-        // The real inner arc starts10px above the outer one when both radii
-        // are40. Check each key against the rounded black surface, not an
-        // unnecessarily restrictive horizontal line at the outer arc start.
-        const innerBottom=frameRect.bottom-stroke,centreY=innerBottom-innerRadius;
-        const cornerLimit=el=>{
+        // Check each key footprint against the actual rounded black surface.
+        // Retain the prior envelope only to cap the extra extent at10px.
+        const innerBottom=frameRect.bottom-stroke;
+        const cornerLimit=(el,radius=innerRadius)=>{
+          const centreY=innerBottom-radius;
           const rect=el.getBoundingClientRect();let limit=innerBottom;
-          for(const [x,cx,left]of [[rect.left-1,innerLeft+innerRadius,true],[rect.right+1,innerRight-innerRadius,false]]){
-            if(left?x<cx:x>cx){const distance=Math.abs(x-cx);limit=Math.min(limit,centreY+Math.sqrt(Math.max(0,innerRadius**2-distance**2)));}
+          for(const [x,cx,left]of [[rect.left-1,innerLeft+radius,true],[rect.right+1,innerRight-radius,false]]){
+            if(left?x<cx:x>cx){const distance=Math.abs(x-cx);limit=Math.min(limit,centreY+Math.sqrt(Math.max(0,radius**2-distance**2)));}
           }
           return limit-1;
         };
         const currentBottom=Math.max(...simple.map(el=>el.getBoundingClientRect().bottom),enter.getBoundingClientRect().bottom);
         const lowerLimit=Math.min(makerElement.getBoundingClientRect().top-10,body.bottom-safeBottom-2);
-        let available=lowerLimit-currentBottom;
-        rows.forEach((row,i)=>{if(i)for(const el of row.els)available=Math.min(available,(cornerLimit(el)-el.getBoundingClientRect().bottom)/(i/(rows.length-1)));});
+        let available=lowerLimit-currentBottom,previousAvailable=available;
+        rows.forEach((row,i)=>{if(i)for(const el of row.els){const ratio=i/(rows.length-1),bottom=el.getBoundingClientRect().bottom;available=Math.min(available,(cornerLimit(el)-bottom)/ratio);previousAvailable=Math.min(previousAvailable,(cornerLimit(el,40)-bottom)/ratio);}});
         available=Math.min(available,cornerLimit(enter)-enter.getBoundingClientRect().bottom);
-        const downwardSpread=available>=30?30:Math.max(0,Math.floor(available*64)/64);
+        previousAvailable=Math.min(previousAvailable,cornerLimit(enter,40)-enter.getBoundingClientRect().bottom);
+        const previousSpread=previousAvailable>=30?30:Math.max(0,Math.floor(previousAvailable*64)/64);
+        const desiredSpread=previousSpread+10;
+        const downwardSpread=available>=desiredSpread?desiredSpread:Math.max(0,Math.floor(available*64)/64);
         const downwardGap=downwardSpread/(rows.length-1);
         rows.forEach((row,i)=>row.els.forEach(el=>move(el,-i*downwardGap)));
         for(const [name,row] of [['bond',1],['depreciation',1],['clear',2]])move(calculator.querySelector('.'+name),-(row-.5)*downwardGap);
@@ -204,8 +210,18 @@ function useJoinedFrame() {
         move(enter,-enterOffset);move(prefix,-enterOffset);
         enter.style.height=(parseFloat(enter.style.height)+downwardGap)+'px';
         calculator.dataset.keyboardDownwardSpread=String(downwardSpread);
+        // Balance the visible LCD rim, not just its inner glass; preserve all layout boxes.
+        const visualLcd=lcd.getBoundingClientRect(),emblem=calculator.querySelector('.brand').getBoundingClientRect();
+        const rim=getComputedStyle(lcd,'::before'),outerHeight=(parseFloat(rim.height)||visualLcd.height)+(rim.boxSizing==='border-box'?0:(parseFloat(rim.borderTopWidth)||0)+(parseFloat(rim.borderBottomWidth)||0));
+        const rimTop=visualLcd.top+(visualLcd.height-outerHeight)/2;
+        const visualRimBottom=rimTop+outerHeight,crossbarTop=crossbar.getBoundingClientRect().top;
+        const desired=(crossbarTop-emblem.bottom-outerHeight)/2-(rimTop-emblem.bottom);
+        const offset=Math.max(0,Math.min(desired,crossbarTop-visualRimBottom-2));
+        calculator.style.setProperty('--lcd-balance-offset',offset+'px');
+        calculator.dataset.lcdBalanceOffset=String(offset);
+
       }else{
-        calculator.dataset.portraitExpansion='0';
+        calculator.dataset.portraitExpansion='0';calculator.dataset.lcdBalanceOffset='0';
         calculator.style.removeProperty('--portrait-frame-top');
         calculator.style.removeProperty('--portrait-crossbar-top');
         calculator.dataset.keyboardDownwardSpread='0';
@@ -231,13 +247,8 @@ function savedState() {
       localStorage.getItem('hp12c-default-display') !== DEFAULT_DISPLAY_VERSION);
   } catch { return initializeDefaults(restoreState(INITIAL_STATE),true); }
 }
-function panelReducer(current,action){
- if(action.type==='state')return {...current,state:typeof action.updater==='function'?action.updater(current.state):action.updater};
- if(action.type==='clear-history')return {...current,history:[]};
- if(action.type==='restore-history')return {...current,history:action.history};
- const state=displayDefaults(pressKey(current.state,action.id));
- const entry=historyEntry(current.state,state,resolveKeyAction(action.id,current.state.shift),{id:action.eventId,time:action.time,display:formatDisplay(state)});
- return {state,history:appendHistory(current.history,entry)};
+function panelReducer(current,event){
+ return reducePanel(current,{...event,action:event.type==='key'?resolveKeyAction(event.id,current.state.shift):event.action},{pressKey,pressAction,formatDisplay,displayDefaults,initial:INITIAL_STATE});
 }
 export function App() {
   useJoinedFrame();
@@ -248,21 +259,25 @@ export function App() {
   const latestSaved=useRef({state,history,prefs});
   useLayoutEffect(()=>{latestSaved.current={state,history,prefs}},[state,history,prefs]);
   useEffect(()=>{const flush=()=>{try{const current=latestSaved.current;localStorage.setItem('hp12c-state',JSON.stringify(current.state));localStorage.setItem(HISTORY_KEY,JSON.stringify(current.history));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(current.prefs))}catch{}};const hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
-  const audio=useRef(null),eventCounter=useRef(0);
+  const audio=useRef(null),eventCounter=useRef(0),eventSession=useRef(null);
+  if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [historyOpen,setHistoryOpen]=useState(false);
+  const openHistory=useCallback(()=>{setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
+  const headerDrag=useDirectionalDrag(1,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen);
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
   const activate=useCallback(id=>{
     if(prefs.vibration&&typeof navigator.vibrate==='function')navigator.vibrate(12);
     if(prefs.sound){try{const Context=window.AudioContext||window.webkitAudioContext;if(Context){const ctx=audio.current||(audio.current=new Context());ctx.resume().then(()=>{const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.frequency.value=880;gain.gain.setValueAtTime(.035,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.035);oscillator.connect(gain);gain.connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+.04)}).catch(()=>{})}}catch{}}
-    dispatch({type:'key',id,eventId:Date.now()+'-'+(++eventCounter.current),time:new Date().toISOString()});
+    dispatch({type:'key',id,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});
   },[prefs.sound,prefs.vibration]);
   useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[history,prefs]);
-  useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,state.powered,state.running,state.paused,setState]);
+  useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
   useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
-  useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen]);
+  useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen]);
   const openMenu=useCallback(()=>setMenuOpen(true),[]);
   useEffect(() => {
     try {
@@ -280,21 +295,21 @@ export function App() {
   }, [state]);
   useEffect(() => {
     if (!state.paused || !state.program.length || state.displayLabel === 'PROGRAMA PAUSADO') return;
-    const timer = setTimeout(() => setState(current => displayDefaults(pressAction(current, 'runStop'))), 1000);
+    const timer = setTimeout(() => dispatch({type:'action',action:'runStop',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}), 1000);
     return () => clearTimeout(timer);
   }, [state.paused, state.program.length, state.displayLabel]);
   useEffect(() => {
     const handle = event => {
       if(event.defaultPrevented||event.target?.closest?.('input,textarea,select,.lcd,.lcd-transfer-dialog,[contenteditable="true"]'))return;
-      if (menuOpen || diagnosticsOpen) {
+      if (menuOpen || historyOpen || diagnosticsOpen) {
         if(event.key==='Backspace')event.preventDefault();
-        if(event.key==='Escape'){setMenuOpen(false);setDiagnosticsOpen(false)}
+        if(event.key==='Escape'){setMenuOpen(false);setHistoryOpen(false);setDiagnosticsOpen(false)}
         return;
       }
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.target?.tagName === 'BUTTON' && [' ', 'Enter'].includes(event.key)) return;
       if (event.key === 'Backspace' || event.key === '=') {
-        event.preventDefault(); setState(current => displayDefaults(pressAction(current, event.key === '=' ? 'equals' : 'backspace'))); return;
+        event.preventDefault(); dispatch({type:'action',action:event.key==='='?'equals':'backspace',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
       }
       const shortcut = event.code === 'Space' ? 'Enter' : event.key === ',' ? '.' : event.key;
       const key = KEY_DEFINITIONS.find(key => key.shortcut.toUpperCase() === shortcut.toUpperCase());
@@ -303,7 +318,7 @@ export function App() {
     };
     window.addEventListener('keydown', handle);
     return () => window.removeEventListener('keydown', handle);
-  }, [menuOpen, diagnosticsOpen, activate]);
+  }, [menuOpen, historyOpen, diagnosticsOpen, activate]);
   useEffect(() => {
     if (state.displayLabel !== 'MANTISSA' || !state.displayOverride) return;
     const timer = setTimeout(() => setState(current => ({ ...current, displayOverride: null })), 650);
@@ -311,7 +326,7 @@ export function App() {
   }, [state.displayLabel, state.displayOverride]);
   useEffect(()=>{
     const calculator=document.querySelector('.calculator');
-    const movable=target=>target.closest?.('.menu-panel,.viewport-diagnostics,textarea');
+    const movable=target=>target.closest?.('.menu-panel,.viewport-diagnostics,.history-board-lines,textarea');
     const stopDrag=event=>{if(!movable(event.target)&&event.cancelable)event.preventDefault()};
     calculator.addEventListener('touchmove',stopDrag,{passive:false});
     calculator.addEventListener('contextmenu',stopDrag);
@@ -353,8 +368,8 @@ export function App() {
     <div className="ios-pwa-blur-sentinel" aria-hidden="true"/>
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
     <section className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
-      <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
-      <Lcd state={state} display={display} disabled={menuOpen||diagnosticsOpen}/>
+      <header className="silver-panel" {...headerDrag}><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
+      <Lcd state={state} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>
       <div className="keyboard-frame" aria-hidden="true"/>
       <div className="keyboard-lower-bridge" aria-hidden="true"/>
@@ -365,13 +380,14 @@ export function App() {
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
       {menuOpen&&<HpMenu state={state} history={history} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
-        onClearHistory={()=>dispatch({type:'clear-history'})}
-        onReset={selected=>{setState(resetSelected(state,selected,INITIAL_STATE));if(selected.settings)setPrefs({...UI_DEFAULTS});if(selected.history)dispatch({type:'clear-history'})}}
+        onBoard={openHistory} onClearHistory={()=>dispatch({type:'clear-history'})}
+        onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
         onBackup={saveBackup} onRestore={()=>backupInput.current.click()} onFullscreen={fullscreen}
         onDiagnostics={()=>{setMenuOpen(false);setDiagnosticsOpen(true)}} onAngular={()=>setState(current=>displayDefaults(pressAction(current,'toggleAngular')))}
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>} 
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
+      {historyOpen&&<HistoryBoard history={history} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
   </main>;
