@@ -123,3 +123,9 @@ Fabricante atualizado: faixas metálicas centradas verticalmente com a inscriç�
 05/10: Hold-to-share must clear previous feedback at activation and never show copy-success confirmation, including share cancellation. Simple tap keeps positioned confirmation. Preserve useful copy/share failure feedback. Local-only change over0.2.15; no publication authorization for this revision.
 
 05/10 12:32UTC: User explicitly authorizes publishing the silent hold/share feedback revision to main/Pages and the existing Vercel project, after validation. Release0.2.16; supersedes the local-only restriction for this revision.
+
+05/10: New local-only header alignment: left edge of complete model title aligns to LCD inner surface left; HP emblem right aligns to inner surface right, excluding external rim/border. Preserve sizes and vertical coordinates and other geometry; verify portrait/landscape and copy confirmation. This alignment is not authorized for publication;0.2.16 silent-share publication was completed separately. Lower rounded metal/maker change is proposal-only.
+
+Header alignment diagnosis: literal landscape horizontal alignment at preserved vertical coordinates hides title/emblem behind LCD. Local candidate therefore implements exact portrait alignment and preserves approved landscape until a separate vertical-layout decision. Never publish the obscured landscape experiment. Evidence saved in qa/header-alignment/literal-both-orientations.json and ignored screenshots.
+
+05/10: User approves initial32CSSpx lower silver corners and nominal10CSSpx textured base in portrait, with legible protected HEWLETT PACKARD, plus exact portrait-only header alignment. Explicit "faca e publique" authorizes release0.2.17 to main/Pages/original Vercel after QA. Preserve landscape and keyboard geometry.32px is a trial visual radius, not measured physical hardware. Previous JPEG materialization failed twice; never claim it was seen.

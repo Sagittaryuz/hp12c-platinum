@@ -32,7 +32,8 @@ export function DisplayTransferFeedback({message,manual,closeManual}){
   const copied=message.startsWith('Valor copiado.');
   useLayoutEffect(()=>{
     if(!copied)return;
-    const model=success.current.closest('.calculator').querySelector('.model-name');
+    const calculator=success.current.closest('.calculator');
+    const model=calculator.querySelector('.model-name');
     const brand=success.current.closest('.calculator').querySelector('.brand');
     const position=()=>{
       const a=model.getBoundingClientRect(),b=brand.getBoundingClientRect();
@@ -44,10 +45,10 @@ export function DisplayTransferFeedback({message,manual,closeManual}){
         paddingBlock:`${Math.min(4,Math.max(0,(Math.max(a.bottom,b.bottom)-Math.min(a.top,b.top)-14)/2))}px`
       });
     };
-    position();const observer=new ResizeObserver(position);observer.observe(model);observer.observe(brand);
+    position();calculator.addEventListener('hp-header-aligned',position);const observer=new ResizeObserver(position);observer.observe(model);observer.observe(brand);
     window.addEventListener('resize',position);window.visualViewport?.addEventListener('resize',position);
     window.visualViewport?.addEventListener('scroll',position);
-    return()=>{observer.disconnect();window.removeEventListener('resize',position);window.visualViewport?.removeEventListener('resize',position);window.visualViewport?.removeEventListener('scroll',position)};
+    return()=>{observer.disconnect();calculator.removeEventListener('hp-header-aligned',position);window.removeEventListener('resize',position);window.visualViewport?.removeEventListener('resize',position);window.visualViewport?.removeEventListener('scroll',position)};
   },[copied]);
   useEffect(()=>{if(manual!==null){dialog.current.showModal();field.current.focus();field.current.select()}},[manual]);
   return <>

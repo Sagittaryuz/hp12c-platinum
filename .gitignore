@@ -15,3 +15,5 @@ model/*.blend1
 *.key
 qa/display-transfer/*.png
 qa/header-copy/*.png
+qa/header-alignment/*.png
+qa/footer-curve/*.png

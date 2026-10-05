@@ -1,0 +1,152 @@
+[
+  {
+    "engine": "chromium",
+    "test": "trusted tap copies exact display once, no share",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "hold copy/share initiated once; cancellation is not error",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "tap then cancelled share clears previous copy status, repeated holds remain silent",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "successful share is silent; next tap restores confirmation and expiry",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "hold clears old message while share pending, delayed success stays silent",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "cancel drag",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "cancel cancel",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "cancel multi",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "cancel blur",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "keyboard copy and share do not calculate",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "copy failure opens selectable fallback; focus restored",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "share absent still copies and reports unavailable",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "menu disables visor interaction",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "2 ENTER 3 + =5; state survives reload",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "no JS errors",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "trusted tap copies exact display once, no share",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "hold copy/share initiated once; cancellation is not error",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "tap then cancelled share clears previous copy status, repeated holds remain silent",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "successful share is silent; next tap restores confirmation and expiry",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "hold clears old message while share pending, delayed success stays silent",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "cancel drag",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "cancel cancel",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "cancel multi",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "cancel blur",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "keyboard copy and share do not calculate",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "copy failure opens selectable fallback; focus restored",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "share absent still copies and reports unavailable",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "menu disables visor interaction",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "2 ENTER 3 + =5; state survives reload",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "no JS errors",
+    "passed": true
+  }
+]

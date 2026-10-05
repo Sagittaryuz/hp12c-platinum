@@ -4,6 +4,7 @@ import { HpMenu } from './HpMenu';
 import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
 import { Lcd } from './Lcd';
+import {useHeaderAlignment} from './useHeaderAlignment';
 import {createBackup,parseBackup,restoreBackupStorage} from './backup.mjs';
 import { ViewportDiagnostics } from './ViewportDiagnostics';
 import { displayDefaults, initializeDefaults, DEFAULT_PROGRAM_VERSION, DEFAULT_DISPLAY_VERSION } from './defaults';
@@ -177,6 +178,7 @@ function panelReducer(current,action){
 }
 export function App() {
   useJoinedFrame();
+  useHeaderAlignment();
   const [{state,history},dispatch]=useReducer(panelReducer,null,()=>({state:savedState(),history:readHistory(localStorage)}));
   const setState=useCallback(updater=>dispatch({type:'state',updater}),[]);
   const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage));
@@ -294,6 +296,7 @@ export function App() {
       <div className="keyboard-frame" aria-hidden="true"/>
       <div className="keyboard-lower-bridge" aria-hidden="true"/>
       <div className="keyboard-panel" aria-hidden="true"/>
+      <div className="portrait-footer-frame" aria-hidden="true"/>
       <Brackets/>
       <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu} keyEntry={prefs.keyEntry}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>

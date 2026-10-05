@@ -407,3 +407,18 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .lcd-transfer-status:not(:empty){position:fixed;z-index:30;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);transform:translateX(-50%);width:max-content;max-width:calc(100vw - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 24px);padding:4px 6px;border-radius:4px;background:#181818ed;color:#e6e6e6;font:12px/1.15 Arial;text-align:center;pointer-events:none}
  .lcd-transfer-status .lcd-copy-success,.lcd-transfer-status .lcd-transfer-notice{position:static;display:inline;transform:none;width:auto;max-width:none!important;padding:0!important;background:transparent;font:inherit}
 }
+/* Local header alignment follows the measured inner LCD surface, not its rim. */
+@media(orientation:portrait){
+ .model-name{left:var(--model-inner-left,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
+ .brand{left:auto;right:var(--brand-inner-right,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
+}
+/* Portrait footer drawing is independent of the approved keyboard layout. */
+.portrait-footer-frame{display:none;pointer-events:none}
+@media(orientation:portrait){
+ .calculator{--footer-plastic:10px;--footer-radius:32px;--footer-label-bottom:max(10px,calc(var(--portrait-safe-bottom) + 6px))}
+ .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--frame);right:var(--frame);top:min(calc(100% - 55px),calc(100% - var(--footer-label-bottom) - 10px));bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
+ .portrait-footer-frame::before{content:'';position:absolute;left:5px;right:5px;top:0;bottom:var(--footer-label-bottom);border-radius:0 0 27px 27px;background:#181818}
+ .portrait-footer-frame::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:var(--maker-cutout-width);height:var(--footer-label-bottom);background:#181818}
+ .joined-frame .maker-strip{bottom:var(--footer-label-bottom)}
+ .joined-frame .keyboard-lower-bridge{display:none}
+}
