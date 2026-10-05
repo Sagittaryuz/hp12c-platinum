@@ -282,7 +282,7 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 /* Portrait revision: the smooth plate continues through the maker cutout. */
 @media(orientation:portrait){
  .calculator{--frame:4px;--portrait-safe-bottom:env(safe-area-inset-bottom,0px)}
- .status-bar-color>span{width:4px}
+ .status-bar-color>span{width:10px}
  .joined-frame .keyboard-panel::after{content:'';position:absolute;top:100%;left:calc(50% - var(--maker-cutout-width)/2);width:var(--maker-cutout-width);height:var(--joined-label-height);background:#181818;pointer-events:none}
 }
 
@@ -418,11 +418,16 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
    Decorative geometry does not participate in keyboard measurements. */
 .portrait-footer-frame{display:none;pointer-events:none}
 @media(orientation:portrait){
- .calculator{--footer-plastic:10px;--footer-radius:40px;--footer-stroke:10px;--footer-inner-radius:40px;--footer-label-bottom:10px}
+ .calculator{--portrait-textured-side:10px;--footer-plastic:10px;--footer-radius:40px;--footer-stroke:10px;--footer-inner-radius:40px;--footer-label-bottom:10px}
  .joined-frame .keyboard-frame{display:none}
  /* Retire the old upper plate's exposed tail without changing its layout box. */
- .joined-frame .silver-panel{clip-path:inset(0 0 max(0px,calc(100% - var(--portrait-crossbar-top,100%))) 0)}
- .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--frame);right:var(--frame);top:var(--portrait-frame-top,calc(var(--joined-top) - 25px));bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
+ .joined-frame .silver-panel{clip-path:inset(0 calc(var(--portrait-textured-side) - var(--frame)) max(0px,calc(100% - var(--portrait-crossbar-top,100%))) calc(var(--portrait-textured-side) - var(--frame)))}
+ .joined-frame .keyboard-crossbar{left:var(--portrait-textured-side);right:var(--portrait-textured-side)}
+ /* The continuous frame owns the black paint; its old layout panel stays
+    measurable but must not leave a black sliver in the wider plastic rail. */
+ .joined-frame .keyboard-panel{background:transparent}
+ .joined-frame .keyboard-panel::after{display:none}
+ .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--portrait-textured-side);right:var(--portrait-textured-side);top:var(--portrait-frame-top,calc(var(--joined-top) - 25px));bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
  .portrait-footer-frame::before{content:'';position:absolute;left:var(--footer-stroke);right:var(--footer-stroke);top:1px;bottom:var(--footer-stroke);border-radius:0 0 var(--footer-inner-radius) var(--footer-inner-radius);background:#181818}
  .portrait-footer-frame::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:var(--maker-cutout-width);height:var(--footer-label-bottom);background:#181818}
  .joined-frame .maker-strip{bottom:var(--footer-label-bottom)}

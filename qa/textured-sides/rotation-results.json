@@ -1,0 +1,14 @@
+[
+  {
+    "engine": "chromium",
+    "rotationAndCopyFeedback": true,
+    "menuAndCalculation": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "rotationAndCopyFeedback": true,
+    "menuAndCalculation": true,
+    "passed": true
+  }
+]

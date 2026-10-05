@@ -152,12 +152,49 @@ function useJoinedFrame() {
         calculator.style.setProperty('--portrait-frame-top',(crossbar.getBoundingClientRect().bottom-body.top)+'px');
         calculator.style.setProperty('--portrait-crossbar-top',(crossbar.getBoundingClientRect().top-body.top)+'px');
         // Use the new lower room once: anchor the first row and share a
-        // bounded20px extension equally among the six row intervals.
+        // bounded30px extension equally among the six row intervals.
         const frameRect=calculator.querySelector('.portrait-footer-frame').getBoundingClientRect();
-        const radius=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-radius'));
+        const innerRadius=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-inner-radius'));
+        const stroke=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-stroke'));
+        const innerLeft=frameRect.left+stroke,innerRight=frameRect.right-stroke;
+        const leftKey=Math.min(...simple.map(el=>el.getBoundingClientRect().left));
+        const rightKey=Math.max(...simple.map(el=>el.getBoundingClientRect().right));
+        // Keep widths/fonts. Only a narrow viewport that would paint a key
+        // over metal redistributes horizontal gaps, with3px side clearance.
+        const narrow=leftKey<innerLeft||rightKey>innerRight;
+        if(narrow){
+          const leftDelta=innerLeft+3-leftKey,rightDelta=innerRight-3-rightKey;
+          const columns=[];
+          for(const x of simple.map(el=>el.getBoundingClientRect().left).sort((a,b)=>a-b))if(!columns.some(left=>Math.abs(left-x)<1))columns.push(x);
+          for(const el of [...simple,enter]){
+            const rect=el.getBoundingClientRect(),index=columns.findIndex(x=>Math.abs(x-rect.left)<1);
+            const delta=leftDelta+(rightDelta-leftDelta)*index/(columns.length-1);
+            el.style.left=(rect.left-parentRects.get(el.parentElement).left+delta)+'px';
+          }
+          for(const [name,startId,endId]of groups){
+            const el=calculator.querySelector('.'+name),a=calculator.querySelector('.key-'+startId).getBoundingClientRect(),z=calculator.querySelector('.key-'+endId).getBoundingClientRect();
+            el.style.left=(a.left-parentRects.get(el.parentElement).left)+'px';el.style.width=(z.right-a.left)+'px';
+          }
+          const rect=enter.getBoundingClientRect();prefix.style.left=(rect.left-parentRects.get(prefix.parentElement).left)+'px';prefix.style.width=rect.width+'px';
+        }
+        calculator.dataset.narrowKeyAdjustment=String(narrow);
+        // The real inner arc starts10px above the outer one when both radii
+        // are40. Check each key against the rounded black surface, not an
+        // unnecessarily restrictive horizontal line at the outer arc start.
+        const innerBottom=frameRect.bottom-stroke,centreY=innerBottom-innerRadius;
+        const cornerLimit=el=>{
+          const rect=el.getBoundingClientRect();let limit=innerBottom;
+          for(const [x,cx,left]of [[rect.left-1,innerLeft+innerRadius,true],[rect.right+1,innerRight-innerRadius,false]]){
+            if(left?x<cx:x>cx){const distance=Math.abs(x-cx);limit=Math.min(limit,centreY+Math.sqrt(Math.max(0,innerRadius**2-distance**2)));}
+          }
+          return limit-1;
+        };
         const currentBottom=Math.max(...simple.map(el=>el.getBoundingClientRect().bottom),enter.getBoundingClientRect().bottom);
-        const lowerLimit=Math.min(makerElement.getBoundingClientRect().top-10,body.bottom-safeBottom-2,frameRect.bottom-radius);
-        const downwardSpread=Math.min(20,Math.max(0,lowerLimit-currentBottom));
+        const lowerLimit=Math.min(makerElement.getBoundingClientRect().top-10,body.bottom-safeBottom-2);
+        let available=lowerLimit-currentBottom;
+        rows.forEach((row,i)=>{if(i)for(const el of row.els)available=Math.min(available,(cornerLimit(el)-el.getBoundingClientRect().bottom)/(i/(rows.length-1)));});
+        available=Math.min(available,cornerLimit(enter)-enter.getBoundingClientRect().bottom);
+        const downwardSpread=available>=30?30:Math.max(0,Math.floor(available*64)/64);
         const downwardGap=downwardSpread/(rows.length-1);
         rows.forEach((row,i)=>row.els.forEach(el=>move(el,-i*downwardGap)));
         for(const [name,row] of [['bond',1],['depreciation',1],['clear',2]])move(calculator.querySelector('.'+name),-(row-.5)*downwardGap);
@@ -171,6 +208,7 @@ function useJoinedFrame() {
         calculator.style.removeProperty('--portrait-frame-top');
         calculator.style.removeProperty('--portrait-crossbar-top');
         calculator.dataset.keyboardDownwardSpread='0';
+        calculator.dataset.narrowKeyAdjustment='false';
       }
     };
     layout();
