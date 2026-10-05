@@ -413,11 +413,12 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .brand{left:auto;right:var(--brand-inner-right,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
 }
 /* One portrait metal surface joins both vertical rails to the bottom arcs.
-   Its inner surface shares the arc centres: 10 + 34 = 44 on both axes.
+   Both approved lower arcs have radius40px; their centres are offset10px.
+   Straight rails stay10px; corner thickness intentionally varies.
    Decorative geometry does not participate in keyboard measurements. */
 .portrait-footer-frame{display:none;pointer-events:none}
 @media(orientation:portrait){
- .calculator{--footer-plastic:10px;--footer-radius:44px;--footer-stroke:10px;--footer-inner-radius:calc(var(--footer-radius) - var(--footer-stroke));--footer-label-bottom:10px}
+ .calculator{--footer-plastic:10px;--footer-radius:40px;--footer-stroke:10px;--footer-inner-radius:40px;--footer-label-bottom:10px}
  .joined-frame .keyboard-frame{display:none}
  /* Retire the old upper plate's exposed tail without changing its layout box. */
  .joined-frame .silver-panel{clip-path:inset(0 0 max(0px,calc(100% - var(--portrait-crossbar-top,100%))) 0)}

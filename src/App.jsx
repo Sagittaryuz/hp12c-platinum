@@ -151,10 +151,26 @@ function useJoinedFrame() {
         // The decorative frame must not feed back into keyboard measurements.
         calculator.style.setProperty('--portrait-frame-top',(crossbar.getBoundingClientRect().bottom-body.top)+'px');
         calculator.style.setProperty('--portrait-crossbar-top',(crossbar.getBoundingClientRect().top-body.top)+'px');
+        // Use the new lower room once: anchor the first row and share a
+        // bounded20px extension equally among the six row intervals.
+        const frameRect=calculator.querySelector('.portrait-footer-frame').getBoundingClientRect();
+        const radius=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-radius'));
+        const currentBottom=Math.max(...simple.map(el=>el.getBoundingClientRect().bottom),enter.getBoundingClientRect().bottom);
+        const lowerLimit=Math.min(makerElement.getBoundingClientRect().top-10,body.bottom-safeBottom-2,frameRect.bottom-radius);
+        const downwardSpread=Math.min(20,Math.max(0,lowerLimit-currentBottom));
+        const downwardGap=downwardSpread/(rows.length-1);
+        rows.forEach((row,i)=>row.els.forEach(el=>move(el,-i*downwardGap)));
+        for(const [name,row] of [['bond',1],['depreciation',1],['clear',2]])move(calculator.querySelector('.'+name),-(row-.5)*downwardGap);
+        // ENTER spans both final rows: grow only by the added inter-row gap.
+        const enterOffset=enterRow*downwardGap;
+        move(enter,-enterOffset);move(prefix,-enterOffset);
+        enter.style.height=(parseFloat(enter.style.height)+downwardGap)+'px';
+        calculator.dataset.keyboardDownwardSpread=String(downwardSpread);
       }else{
         calculator.dataset.portraitExpansion='0';
         calculator.style.removeProperty('--portrait-frame-top');
         calculator.style.removeProperty('--portrait-crossbar-top');
+        calculator.dataset.keyboardDownwardSpread='0';
       }
     };
     layout();

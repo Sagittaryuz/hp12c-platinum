@@ -1,0 +1,94 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "before": {
+      "top": 651.578125,
+      "bottom": 798.046875,
+      "width": 45.984375,
+      "height": 146.46875
+    },
+    "after": {
+      "top": 668.234375,
+      "bottom": 818.046875,
+      "width": 45.984375,
+      "height": 149.8125
+    },
+    "topError": 0,
+    "bottomError": 0,
+    "fontMetricsPreserved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "before": {
+      "top": 230.40625,
+      "bottom": 269.265625,
+      "width": 36.59375,
+      "height": 38.859375
+    },
+    "after": {
+      "top": 247.078125,
+      "bottom": 289.28125,
+      "width": 36.59375,
+      "height": 42.203125
+    },
+    "topError": 0,
+    "bottomError": 0,
+    "fontMetricsPreserved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "before": {
+      "top": 651.5625,
+      "bottom": 798.03125,
+      "width": 45.984375,
+      "height": 146.46875
+    },
+    "after": {
+      "top": 668.234375,
+      "bottom": 818.046875,
+      "width": 45.984375,
+      "height": 149.8125
+    },
+    "topError": 0,
+    "bottomError": 0.015625,
+    "fontMetricsPreserved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 340
+    },
+    "before": {
+      "top": 230.40625,
+      "bottom": 269.265625,
+      "width": 36.59375,
+      "height": 38.859375
+    },
+    "after": {
+      "top": 247.078125,
+      "bottom": 289.28125,
+      "width": 36.59375,
+      "height": 42.203125
+    },
+    "topError": 0,
+    "bottomError": 0,
+    "fontMetricsPreserved": true,
+    "passed": true
+  }
+]
