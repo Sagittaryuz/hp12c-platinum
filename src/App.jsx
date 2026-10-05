@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer }
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
-import {useDirectionalDrag} from './useDirectionalDrag';
+import {useSurfacePull} from './useSurfacePull';
 import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
 import { Lcd } from './Lcd';
@@ -265,7 +265,8 @@ export function App() {
   const [historyOpen,setHistoryOpen]=useState(false);
   const openHistory=useCallback(()=>{setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
-  const headerDrag=useDirectionalDrag(1,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen);
+  const calculatorSurface=useRef(null);
+  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen);
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
@@ -367,8 +368,8 @@ export function App() {
   return <main className="page">
     <div className="ios-pwa-blur-sentinel" aria-hidden="true"/>
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
-    <section className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
-      <header className="silver-panel" {...headerDrag}><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
+    <section ref={calculatorSurface} className={`calculator ${!menuOpen&&!historyOpen&&!diagnosticsOpen?'pull-enabled':''}`} data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
+      <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
       <Lcd state={state} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>
       <div className="keyboard-frame" aria-hidden="true"/>
@@ -376,7 +377,7 @@ export function App() {
       <div className="keyboard-panel" aria-hidden="true"/>
       <div className="portrait-footer-frame" aria-hidden="true"/>
       <Brackets/>
-      <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu} keyEntry={prefs.keyEntry}/>
+      <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
       {menuOpen&&<HpMenu state={state} history={history} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}

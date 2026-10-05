@@ -1,5 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
-import {useDirectionalDrag} from './useDirectionalDrag';
+import {useSurfacePull} from './useSurfacePull';
 import {KEY_DEFINITIONS} from '@sagittaryuz/hp12c-core';
 import {HpIcon} from './HpIcon';
 import {InstallationGuide} from './InstallationGuide';
@@ -7,11 +7,12 @@ import './hp-menu.css';
 import {CacheStatus} from './CacheStatus';
 const options=[['settings','settings','Configurações'],['history','rotate-ccw','Histórico de cálculos'],['memories','database','Memórias'],['shortcuts','keyboard','Atalhos úteis'],['guide','book-open','Guia do usuário'],['summary','info','Resumo do Aplicativo'],['news','sparkles','Quais as Novidades?'],['install','download','Como instalar'],['reset','rotate-ccw','Redefinir']];
 export function HpMenu({state,history,prefs,setPrefs,onClose,onRecall,onEditMemory,onReset,onClearHistory,onBoard,onBackup,onRestore,onFullscreen,onDiagnostics,onAngular,onRestoreProgram,onPower}){
- const closeDrag=useDirectionalDrag(1,onClose);
  const [route,setRoute]=useState('menu'),[error,setError]=useState(''),[selected,setSelected]=useState({values:false,program:false,settings:false,history:false});
  const [edit,setEdit]=useState(null),[draft,setDraft]=useState('');
  const [locked,setLocked]=useState(false),[isFullscreen,setFullscreen]=useState(Boolean(document.fullscreenElement));
  const heading=useRef(null),panel=useRef(null),lastFocus=useRef(document.activeElement);
+ const [bodyAtTop,setBodyAtTop]=useState(true);
+ useSurfacePull(panel,onClose,true,'.hp-menu-body');
  const capabilities={sound:Boolean(window.AudioContext||window.webkitAudioContext),vibration:typeof navigator.vibrate==='function',orientation:typeof screen.orientation?.lock==='function',fullscreen:typeof document.documentElement.requestFullscreen==='function'};
  const go=r=>{setError('');setEdit(null);setRoute(r)};
  useEffect(()=>{heading.current?.focus()},[route]);
@@ -23,8 +24,8 @@ export function HpMenu({state,history,prefs,setPrefs,onClose,onRecall,onEditMemo
  const switchControl=(key,label,supported)=> <button className={`hp-switch ${prefs[key]&&supported?'is-on':''}`} role="switch" aria-label={label} aria-checked={Boolean(prefs[key]&&supported)} disabled={!supported} onClick={()=>toggle(key,!prefs[key])}><span/></button>;
  const title=route==='menu'?'HP12C Platinum':options.find(o=>o[0]===route)?.[2]||'HP12c';
  return <div className="menu-shade hp-menu-shade"><section ref={panel} className="menu-panel hp-menu" role="dialog" aria-modal="true" aria-label="Menu da calculadora" onKeyDown={keyDown}>
-  <header {...closeDrag} className={`hp-menu-header ${route==='settings'?'hp-settings-header':''}`}><button className="hp-menu-back" aria-label={route==='menu'?'Fechar menu':'Voltar ao menu HP'} onClick={()=>route==='menu'?onClose():go('menu')}><HpIcon name={route==='menu'?'x':'chevron-left'}/></button><div><h1 ref={heading} tabIndex={-1}>{title}</h1>{route==='menu'&&<p>Calculadora financeira</p>}</div><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></header>
-  <div className="hp-menu-body">
+  <header className={`hp-menu-header ${route==='settings'?'hp-settings-header':''}`}><button className="hp-menu-back" aria-label={route==='menu'?'Fechar menu':'Voltar ao menu HP'} onClick={()=>route==='menu'?onClose():go('menu')}><HpIcon name={route==='menu'?'x':'chevron-left'}/></button><div><h1 ref={heading} tabIndex={-1}>{title}</h1>{route==='menu'&&<p>Calculadora financeira</p>}</div><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></header>
+  <div className="hp-menu-body" data-pull-at-top={bodyAtTop} onScroll={e=>setBodyAtTop(e.currentTarget.scrollTop<=1)}>
    {error&&<p className="hp-error" role="alert">{error}</p>}
    {route==='menu'&&<><h2 className="hp-group-title">OPÇÕES</h2><div className="hp-menu-group">{options.map(([id,icon,label])=><button className="hp-menu-row" key={id} onClick={()=>go(id)}><HpIcon name={icon}/><span>{label}</span><HpIcon name="chevron-right" className="hp-chevron"/></button>)}</div></>}
    {route==='settings'&&<><div className="hp-menu-group">
@@ -33,7 +34,7 @@ export function HpMenu({state,history,prefs,setPrefs,onClose,onRecall,onEditMemo
     {setting('Suspender',null,<select aria-label="Suspender" value={prefs.suspendSeconds} onChange={e=>toggle('suspendSeconds',Number(e.target.value))}><option value={0}>Nunca</option><option value={30}>30 segundos</option><option value={60}>1 minuto</option><option value={300}>5 minutos</option></select>,'Desliga só a calculadora por inatividade; não bloqueia o aparelho.')}
     {setting('Som',null,switchControl('sound','Som das teclas',capabilities.sound),capabilities.sound?'Pode depender do volume e das permissões do aparelho.':'Áudio não disponível neste navegador.')}
     {setting('Vibração',null,switchControl('vibration','Vibração das teclas',capabilities.vibration),capabilities.vibration?'Depende do dispositivo.':'Não disponível neste navegador, incluindo Safari no iPhone.')}
-    {setting('Entrada de tecla',null,<select aria-label="Entrada de tecla" value={prefs.keyEntry} onChange={e=>toggle('keyEntry',e.target.value)}><option value="press">Ao pressionar</option><option value="release">Ao soltar</option></select>,'Aplica-se ao toque/caneta; mouse e teclado mantêm o comportamento normal.')}
+    {setting('Entrada de tecla',null,<select aria-label="Entrada de tecla" value="release" disabled><option value="press">Ao pressionar</option><option value="release">Ao soltar</option></select>,'Os toques são confirmados ao soltar para permitir o arraste de histórico sem executar teclas. Atalhos de teclado permanecem imediatos.')}
     {setting('Bloqueio paisagem',null,<button className={`hp-switch ${locked?'is-on':''}`} role="switch" aria-label="Bloqueio paisagem" aria-checked={locked} disabled={!capabilities.orientation} onClick={toggleLandscape}><span/></button>,capabilities.orientation?'Pode exigir tela cheia. Só indica ativo após confirmação da API.':'O navegador não oferece bloqueio de orientação; use o sistema.')}
     {setting('Layout retrato','Moderno',null,'O layout atual é preservado; não há um layout alternativo nesta versão.')}
     {setting('Separador decimal','Vírgula',null,'Mantido conforme o padrão definido para esta calculadora.')}

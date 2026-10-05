@@ -1,4 +1,4 @@
-import React, {memo, useRef} from 'react';
+import React, {memo, useRef, useEffect} from 'react';
 import { KEY_DEFINITIONS } from '@sagittaryuz/hp12c-core';
 
 // Coordinates measured from the supplied landscape and portrait references.
@@ -61,16 +61,20 @@ export function Legend({value}) {
     default:return value;
   }
 }
-export const FaceKeys = memo(function FaceKeys({activate, heldKeys, menu, keyEntry='press'}) {
-  const immediateTouches=useRef(new Set());
+export const FaceKeys = memo(function FaceKeys({activate, heldKeys, menu}) {
+  const pointers=useRef(new Map());
+  useEffect(()=>{const cancelOther=e=>{for(const [id,p]of pointers.current)if(id!==e.pointerId)p.cancelled=true};const cancel=()=>{pointers.current.clear();heldKeys.current.clear()};window.addEventListener('pointerdown',cancelOther,true);window.addEventListener('blur',cancel);window.addEventListener('pagehide',cancel);window.addEventListener('resize',cancel);const hidden=()=>{if(document.hidden)cancel()};document.addEventListener('visibilitychange',hidden);return()=>{cancel();window.removeEventListener('pointerdown',cancelOther,true);window.removeEventListener('blur',cancel);window.removeEventListener('pagehide',cancel);window.removeEventListener('resize',cancel);document.removeEventListener('visibilitychange',hidden)}},[heldKeys]);
+  const cancelKey=e=>{pointers.current.delete(e.pointerId);heldKeys.current.clear()};
   const keys = [...KEY_DEFINITIONS.filter(key => key.id !== 'on'),{id:'menu',label:'MENU',f:'',g:'',row:3,col:0}];
   return <div className="keys" role="group" aria-label="Teclas da calculadora">
     {keys.map(key => {
       const f = key.printF === false ? '' : (labelsF[key.id] ?? key.f);
       return <button key={key.id} className={`key key-${key.id} ${key.tone || ''}`} style={keyPosition(key)}
-        onPointerDown={event => {if(key.id==='menu')return;immediateTouches.current.delete(key.id);heldKeys.current.add(key.id);if(keyEntry==='press'&&(event.pointerType==='touch'||event.pointerType==='pen')){immediateTouches.current.add(key.id);activate(key.id);}}} onPointerUp={event => {const held=heldKeys.current.delete(key.id);if(key.id!=='menu'&&held&&keyEntry==='release'&&(event.pointerType==='touch'||event.pointerType==='pen')){immediateTouches.current.add(key.id);activate(key.id)}}}
-        onPointerCancel={() => {heldKeys.current.delete(key.id);immediateTouches.current.delete(key.id)}} onPointerLeave={() => heldKeys.current.delete(key.id)}
-        onClick={event => {if(event.detail!==0 && immediateTouches.current.delete(key.id))return;key.id==='menu'?menu():activate(key.id)}}
+        onPointerDown={event=>{if(event.button!==0||event.isPrimary===false)return;pointers.current.set(event.pointerId,{key:key.id,x:event.clientX,y:event.clientY,cancelled:false});heldKeys.current.add(key.id);try{event.currentTarget.setPointerCapture(event.pointerId)}catch{}}}
+        onPointerMove={event=>{const p=pointers.current.get(event.pointerId);if(p&&Math.hypot(event.clientX-p.x,event.clientY-p.y)>12)p.cancelled=true}}
+        onPointerUp={event=>{const p=pointers.current.get(event.pointerId);cancelKey(event);if(!p||p.cancelled||p.key!==key.id||Math.hypot(event.clientX-p.x,event.clientY-p.y)>12)return;const r=event.currentTarget.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)return;key.id==='menu'?menu():activate(key.id)}}
+        onPointerCancel={cancelKey} onLostPointerCapture={cancelKey}
+        onClick={event=>{if(event.detail!==0)return;key.id==='menu'?menu():activate(key.id)}}
         aria-label={key.id === 'menu' ? 'MENU' : `${key.label}; f: ${key.f || '—'}; g: ${key.g || '—'}`}
         title={key.id === 'menu' ? 'Menu da calculadora' : `${key.label} · atalho ${key.shortcut}`}>
         {f && <span className="legend-f">{f}</span>}
