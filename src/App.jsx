@@ -296,7 +296,7 @@ export function App() {
       <div className="keyboard-frame" aria-hidden="true"/>
       <div className="keyboard-lower-bridge" aria-hidden="true"/>
       <div className="keyboard-panel" aria-hidden="true"/>
-      <div className="portrait-footer-frame" aria-hidden="true"/>
+      <div className="portrait-footer-frame" aria-hidden="true"><span className="footer-corner-transition"/></div>
       <Brackets/>
       <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu} keyEntry={prefs.keyEntry}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>

@@ -1,0 +1,134 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 0,
+    "phase": "before",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 0,
+    "phase": "after",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 34,
+    "phase": "before",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 34,
+    "phase": "after",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safe": 0,
+    "phase": "before",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safe": 0,
+    "phase": "after",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 0,
+    "phase": "before",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 0,
+    "phase": "after",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 34,
+    "phase": "before",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safe": 34,
+    "phase": "after",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safe": 0,
+    "phase": "before",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safe": 0,
+    "phase": "after",
+    "inkPhysicalRows": 29,
+    "inkCSSHeight": 9.666666666666666
+  }
+]
