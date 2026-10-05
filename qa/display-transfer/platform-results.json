@@ -1,0 +1,31 @@
+[
+  {
+    "engine": "chromium",
+    "test": "real clipboard write from trusted tap (no read)",
+    "message": "Valor copiado.",
+    "copied": true
+  },
+  {
+    "engine": "chromium",
+    "test": "trusted CDP touch hold: activation active, exactly one copy/share",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "cached build reload/calculate/transfer while offline, state preserved",
+    "passed": true,
+    "feedback": "Valor copiado."
+  },
+  {
+    "engine": "webkit",
+    "test": "real clipboard write from trusted tap (no read)",
+    "message": "Valor copiado.",
+    "copied": true
+  },
+  {
+    "engine": "webkit",
+    "test": "cached build reload/calculate/transfer while offline, state preserved",
+    "passed": true,
+    "feedback": "Valor copiado."
+  }
+]

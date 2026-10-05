@@ -388,3 +388,13 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .joined-frame .keyboard-frame{top:calc(var(--joined-top) - 11px)}
  .joined-frame .keyboard-panel{top:calc(var(--joined-top) - 10px)}
 }
+
+/* Interaction/feedback only: leave the LCD canvas and geometry unchanged. */
+.lcd{pointer-events:auto;cursor:pointer;-webkit-user-select:none;user-select:none}
+.lcd:focus-visible{outline:2px solid #e6e6e6;outline-offset:4px}
+.lcd-transfer-status{position:fixed;z-index:30;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:90%;padding:6px 10px;border-radius:4px;background:#181818ed;color:#e6e6e6;font:12px Arial;pointer-events:none;text-align:center}
+.lcd-transfer-status:empty{display:none}
+.lcd-transfer-dialog{max-width:min(90vw,400px);border:1px solid #999;border-radius:6px;background:#222;color:#eee;padding:18px;font:16px Arial}
+.lcd-transfer-dialog::backdrop{background:#0008}
+.lcd-transfer-dialog textarea{width:100%;font:18px Arial;-webkit-user-select:text;user-select:text}
+.lcd-transfer-dialog button{margin-top:12px;padding:8px 14px}

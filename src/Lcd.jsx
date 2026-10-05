@@ -1,12 +1,14 @@
 import {useLayoutEffect, useRef} from 'react';
 import {lcdCells,lcdIndicators} from './lcd-layout.mjs';
+import {useDisplayTransfer,DisplayTransferFeedback} from './useDisplayTransfer';
 import {lcdGlyphs} from './lcd-glyphs.mjs';
 let paths;
 let commaPath,undoPath;
 function segmentPaths(){
   return paths ||= Object.fromEntries(Object.entries(lcdGlyphs).map(([id,path])=>[id,new Path2D(path)]));
 }
-export function Lcd({state,display}){
+export function Lcd({state,display,disabled=false}){
+  const transfer=useDisplayTransfer(display,disabled);
   const canvasRef=useRef(null);
   const drawingRef=useRef(null);
   const drawRef=useRef(null);
@@ -70,8 +72,8 @@ export function Lcd({state,display}){
   },[]);
   // Discrete key events redraw before paint; resizing uses the same measured buffer.
   useLayoutEffect(()=>{drawRef.current?.()},[display,state.powered,state.undoState,state.mode,state.shift,state.tvm.begin,state.dateFormat,state.compoundOdd,state.programMode,state.algOperators]);
-  return <div className="lcd" role="status" aria-live="polite" aria-label={`Visor: ${display}`}>
-    <output className="lcd-readable">{display}</output>
+  return <><div ref={transfer.ref} className="lcd" role="button" tabIndex={disabled?-1:0} aria-disabled={disabled} aria-label={`Copiar valor do visor: ${display}`} aria-describedby="lcd-transfer-help">
+    <output className="lcd-readable" aria-live="polite">{display}</output>
     <canvas ref={canvasRef} className="lcd-face" aria-hidden="true"/>
-  </div>;
+  </div><DisplayTransferFeedback {...transfer}/></>;
 }

@@ -113,3 +113,5 @@ Fabricante atualizado: faixas metálicas centradas verticalmente com a inscriç�
 05/10 aesthetic constraint: Marcos considers existing key aesthetics perfect. Any future font optimization means reducing file bytes, never visual font size, weight, glyph design, metrics, spacing or geometry. Reject a conversion if appearance changes. Optimization implementation and LCD publication remain unapproved.
 
 05/10 02:35UTC: Marcos authorizes ONLY LCD redraw deduplication, lossless font file compression retaining perfect aesthetics, and thicker digits, testing/publication. Preserve layout/math/state/offline/updates; no lazy menus/geometry/persistence refactor/Library export. Candidate0.2.13.
+
+05/10 10:45UTC: Display tap copies exactly the shown text; hold >=500ms followed by release copies and opens native share, respecting iOS activation. Preserve perfect appearance/geometry, state, calculations and offline. Never read clipboard. GitHub synchronization authorized at11:07UTC; manual Vercel publication requires separate authorization. Preserve recovered0.2.13 snapshot provenance.

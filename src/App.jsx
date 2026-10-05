@@ -220,7 +220,7 @@ export function App() {
   }, [state.paused, state.program.length, state.displayLabel]);
   useEffect(() => {
     const handle = event => {
-      if(event.target?.closest?.('input,textarea,select,[contenteditable="true"]'))return;
+      if(event.defaultPrevented||event.target?.closest?.('input,textarea,select,.lcd,.lcd-transfer-dialog,[contenteditable="true"]'))return;
       if (menuOpen || diagnosticsOpen) {
         if(event.key==='Backspace')event.preventDefault();
         if(event.key==='Escape'){setMenuOpen(false);setDiagnosticsOpen(false)}
@@ -289,7 +289,7 @@ export function App() {
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
     <section className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
       <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
-      <Lcd state={state} display={display}/>
+      <Lcd state={state} display={display} disabled={menuOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>
       <div className="keyboard-frame" aria-hidden="true"/>
       <div className="keyboard-lower-bridge" aria-hidden="true"/>

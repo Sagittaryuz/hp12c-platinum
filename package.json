@@ -1,6 +1,6 @@
 {
   "name": "hp12c-platinum",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "test:engine": "vitest run",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "test:display": "node --test tests/display-transfer.test.mjs tests/lcd-layout.test.mjs"
   },
   "dependencies": {
     "@fontsource/dseg7-classic": "^5.3.0",

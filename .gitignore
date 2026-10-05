@@ -6,3 +6,11 @@ src-tauri/target/
 work/
 model/*.blend1
 /windows/
+
+.env
+.env.*
+!.env.example
+.vercel/
+*.pem
+*.key
+qa/display-transfer/*.png
