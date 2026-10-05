@@ -1,20 +1,20 @@
 import {createDirectionalDrag} from './directional-drag.mjs';
 // Track only pointers that start inside this surface. Other global listeners
 // merely finish/cancel that gesture; scrollable content keeps native scrolling.
-export function attachSurfacePull(root,{onPull,enabled=()=>true,scrollSelector}){
+export function attachSurfacePull(root,{onPull,enabled=()=>true,scrollSelector,onProgress=()=>{}}){
  const win=root.ownerDocument.defaultView,tracker=createDirectionalDrag(1);
  const host=root.closest('.calculator')||root;let start=null;
- const clear=()=>{tracker.cancel();start=null;touch=null};
+ const clear=()=>{tracker.cancel();start=null;touch=null;onProgress(0)};
  const block=()=>{host.dataset.swipeClickBlocked='1'};
  const down=e=>{
   if(root.contains(e.target))host.dataset.swipeClickBlocked='0';
-  if(start&&start.id!==e.pointerId){tracker.cancel();start.moved=true;return}
+  if(start&&start.id!==e.pointerId){tracker.cancel();onProgress(0);start.moved=true;return}
   if(!enabled()||!root.contains(e.target)||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
   if(scrollSelector){const scroller=e.target.closest(scrollSelector);if(scroller&&scroller.scrollTop>1)return}
   if(tracker.down(e))start={id:e.pointerId,x:e.clientX,y:e.clientY,moved:false};
  };
- const move=e=>{if(start?.id!==e.pointerId)return;start.moved ||= Math.hypot(e.clientX-start.x,e.clientY-start.y)>12;tracker.move(e)};
- const up=e=>{if(start?.id!==e.pointerId)return;move(e);const accepted=enabled()&&tracker.up(e),moved=start.moved;clear();if(moved||accepted)block();if(accepted)onPull()};
+ const move=e=>{if(start?.id!==e.pointerId)return;start.moved ||= Math.hypot(e.clientX-start.x,e.clientY-start.y)>12;tracker.move(e);onProgress(tracker.active()&&tracker.distance()>12?tracker.distance():0)};
+ const up=e=>{if(start?.id!==e.pointerId)return;move(e);const distance=Math.max(0,e.clientY-start.y),accepted=enabled()&&tracker.up(e),moved=start.moved;clear();if(moved||accepted)block();if(accepted)onPull({distance})};
  const click=e=>{if(e.detail!==0&&host.dataset.swipeClickBlocked==='1'){host.dataset.swipeClickBlocked='0';e.preventDefault();e.stopImmediatePropagation()}};
  // Safari may reserve native panning before pointerup. At the menu's
  // scroll boundary reserve only the downward finger movement, never body scrolling.

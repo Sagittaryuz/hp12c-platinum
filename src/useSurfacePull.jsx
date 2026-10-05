@@ -1,6 +1,6 @@
 import {useEffect,useRef} from 'react';
 import {attachSurfacePull} from './surface-pull.mjs';
-export function useSurfacePull(surface,onPull,enabled=true,scrollSelector){
- const latest=useRef({onPull,enabled});latest.current={onPull,enabled};
- useEffect(()=>attachSurfacePull(surface.current,{onPull:()=>latest.current.onPull(),enabled:()=>latest.current.enabled,scrollSelector}),[surface,scrollSelector]);
+export function useSurfacePull(surface,onPull,enabled=true,scrollSelector,onProgress){
+ const latest=useRef({onPull,enabled,onProgress});latest.current={onPull,enabled,onProgress};
+ useEffect(()=>attachSurfacePull(surface.current,{onPull:gesture=>latest.current.onPull(gesture),enabled:()=>latest.current.enabled,scrollSelector,onProgress:d=>latest.current.onProgress?.(d)}),[surface,scrollSelector]);
 }

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer }
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
+import {animatePanel} from './panel-motion.mjs';
 import {useSurfacePull} from './useSurfacePull';
 import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
@@ -24,6 +25,7 @@ function useJoinedFrame() {
       if(signature===lastSignature)return;
       lastSignature=signature;
       calculator.style.removeProperty('--lcd-balance-offset');
+      calculator.style.removeProperty('--smooth-frame-left');calculator.style.removeProperty('--smooth-frame-right');
       calculator.classList.remove('joined-frame');
       // Clear only the portrait expansion from the preceding measurement pass.
       for(const panel of panels)panel.style.removeProperty('top');
@@ -221,6 +223,21 @@ function useJoinedFrame() {
         const offset=Math.max(0,Math.min(desired,crossbarTop-visualRimBottom-2));
         calculator.style.setProperty('--lcd-balance-offset',offset+'px');
         calculator.dataset.lcdBalanceOffset=String(offset);
+        // The portrait smooth surface ends at the established inner LCD edges.
+        // Apply this AFTER vertical clearance calculations so their approved
+        // envelope and every row's vertical position remain unchanged.
+        const glass=calculator.querySelector('.lcd-face').getBoundingClientRect();
+        const margin=6,plateLeft=glass.left,plateRight=glass.right;
+        calculator.style.setProperty('--smooth-frame-left',(plateLeft-body.left-stroke)+'px');
+        calculator.style.setProperty('--smooth-frame-right',(body.right-plateRight-stroke)+'px');
+        const columns=[];for(const x of simple.map(el=>el.getBoundingClientRect().left).sort((a,b)=>a-b))if(!columns.some(v=>Math.abs(v-x)<1))columns.push(x);
+        const width=simple[0].getBoundingClientRect().width;
+        const horizontalPitch=(plateRight-plateLeft-2*margin-width)/(columns.length-1);
+        for(const el of [...simple,enter]){const r=el.getBoundingClientRect(),index=columns.findIndex(x=>Math.abs(x-r.left)<1);el.style.left=(plateLeft+margin+index*horizontalPitch-parentRects.get(el.parentElement).left)+'px'}
+        for(const [name,startId,endId]of groups){const el=calculator.querySelector('.'+name),a=calculator.querySelector('.key-'+startId).getBoundingClientRect(),z=calculator.querySelector('.key-'+endId).getBoundingClientRect();el.style.left=(a.left-parentRects.get(el.parentElement).left)+'px';el.style.width=(z.right-a.left)+'px'}
+        const er=enter.getBoundingClientRect();prefix.style.left=(er.left-parentRects.get(prefix.parentElement).left)+'px';prefix.style.width=er.width+'px';
+        calculator.dataset.smoothMargin=String(margin);
+
 
       }else{
         calculator.dataset.portraitExpansion='0';calculator.dataset.lcdBalanceOffset='0';
@@ -268,10 +285,11 @@ export function App() {
   if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen,setHistoryOpen]=useState(false);
-  const openHistory=useCallback(()=>{setMenuOpen(false);setHistoryOpen(true)},[]);
+  const historyReveal=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null);
+  const openHistory=useCallback(gesture=>{historyReveal.current=Math.min(180,gesture?.distance||0);setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
   const calculatorSurface=useRef(null);
-  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen);
+  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,d=>{const el=pullPreview.current;if(!el)return;previewAnimation.current?.cancel();const previous=parseFloat(el.style.height)||0;if(!d&&previous){const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140);previewAnimation.current=a;a.finished.then(()=>{el.style.height='0px';a.cancel()}).catch(()=>{})}else el.style.height=Math.min(d,180)+'px'});
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
@@ -393,8 +411,9 @@ export function App() {
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>} 
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
-      {historyOpen&&<HistoryBoard history={history} onClose={()=>setHistoryOpen(false)}/>}
+      {historyOpen&&<HistoryBoard revealStart={historyReveal.current} history={history} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
+    <div ref={pullPreview} className="pull-preview" aria-hidden="true"><strong>Quadro negro</strong><span/></div>
   </main>;
 }

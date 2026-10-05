@@ -460,3 +460,9 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 
 @font-face{font-family:HistoryChalk;src:url("/assets/cabin-sketch.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 .history-board strong{font-weight:400}
+.panel-reveal-bar{position:absolute;z-index:5;top:0;left:0;right:0;height:3px;background:#ddd;pointer-events:none;will-change:transform}.panel-reveal-bar[hidden]{display:none}
+.pull-preview{position:fixed;z-index:90;inset:0 0 auto;height:0;overflow:hidden;background:#000;color:#eee;pointer-events:none;font:24px HistoryChalk,Arial,sans-serif}.pull-preview strong{display:block;margin:16px}.pull-preview>span{position:absolute;left:0;right:0;bottom:0;height:3px;background:#ddd}
+.hp-menu-shade{background:transparent}
+@media(orientation:portrait){.joined-frame .portrait-footer-frame{left:var(--smooth-frame-left,var(--portrait-textured-side));right:var(--smooth-frame-right,var(--portrait-textured-side))}}
+.history-board::backdrop{transition:background 260ms ease}.history-board[data-closing="true"]::backdrop{background:transparent}
+@media(prefers-reduced-motion:reduce){.history-board::backdrop{transition:none}}

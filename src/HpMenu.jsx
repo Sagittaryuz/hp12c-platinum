@@ -1,4 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
+import {usePanelMotion} from './usePanelMotion';
 import {useSurfacePull} from './useSurfacePull';
 import {KEY_DEFINITIONS} from '@sagittaryuz/hp12c-core';
 import {HpIcon} from './HpIcon';
@@ -12,19 +13,20 @@ export function HpMenu({state,history,prefs,setPrefs,onClose,onRecall,onEditMemo
  const [locked,setLocked]=useState(false),[isFullscreen,setFullscreen]=useState(Boolean(document.fullscreenElement));
  const heading=useRef(null),panel=useRef(null),lastFocus=useRef(document.activeElement);
  const [bodyAtTop,setBodyAtTop]=useState(true);
- useSurfacePull(panel,onClose,true,'.hp-menu-body');
+ const motion=usePanelMotion(panel,1,onClose);
+ useSurfacePull(panel,motion.close,true,'.hp-menu-body',motion.progress);
  const capabilities={sound:Boolean(window.AudioContext||window.webkitAudioContext),vibration:typeof navigator.vibrate==='function',orientation:typeof screen.orientation?.lock==='function',fullscreen:typeof document.documentElement.requestFullscreen==='function'};
  const go=r=>{setError('');setEdit(null);setRoute(r)};
  useEffect(()=>{heading.current?.focus({preventScroll:true})},[route]);
  useEffect(()=>{const initial=lastFocus.current;const fullscreen=()=>setFullscreen(Boolean(document.fullscreenElement));document.addEventListener('fullscreenchange',fullscreen);return()=>{document.removeEventListener('fullscreenchange',fullscreen);queueMicrotask(()=>initial?.focus?.({preventScroll:true}))}},[]);
- const keyDown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();route==='menu'?onClose():go('menu')}if(e.key==='Tab'){const els=[...panel.current.querySelectorAll('button,input,select,[tabindex="0"]')].filter(el=>!el.disabled&&el.getClientRects().length);const first=els[0],last=els.at(-1);if(e.shiftKey&&(document.activeElement===first||document.activeElement===heading.current)){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}};
+ const keyDown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();route==='menu'?motion.close():go('menu')}if(e.key==='Tab'){const els=[...panel.current.querySelectorAll('button,input,select,[tabindex="0"]')].filter(el=>!el.disabled&&el.getClientRects().length);const first=els[0],last=els.at(-1);if(e.shiftKey&&(document.activeElement===first||document.activeElement===heading.current)){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}};
  const toggleLandscape=async()=>{try{if(locked){screen.orientation.unlock();setLocked(false)}else{await screen.orientation.lock('landscape');setLocked(true)}}catch{setError('Este navegador não permitiu bloquear a orientação. No iPhone, use o controle de orientação do sistema.')}};
  const toggle=(key,value)=>setPrefs(p=>({...p,[key]:value}));
  const setting=(label,value,control,detail)=> <div className="hp-setting"><div><span>{label}</span>{detail&&<small>{detail}</small>}</div>{control||<span className="hp-setting-value">{value}</span>}</div>;
  const switchControl=(key,label,supported)=> <button className={`hp-switch ${prefs[key]&&supported?'is-on':''}`} role="switch" aria-label={label} aria-checked={Boolean(prefs[key]&&supported)} disabled={!supported} onClick={()=>toggle(key,!prefs[key])}><span/></button>;
  const title=route==='menu'?'HP12C Platinum':options.find(o=>o[0]===route)?.[2]||'HP12c';
- return <div className="menu-shade hp-menu-shade"><section ref={panel} className="menu-panel hp-menu" role="dialog" aria-modal="true" aria-label="Menu da calculadora" onKeyDown={keyDown}>
-  <header className={`hp-menu-header ${route==='settings'?'hp-settings-header':''}`}><button className="hp-menu-back" aria-label={route==='menu'?'Fechar menu':'Voltar ao menu HP'} onClick={()=>route==='menu'?onClose():go('menu')}><HpIcon name={route==='menu'?'x':'chevron-left'}/></button><div><h1 ref={heading} tabIndex={-1}>{title}</h1>{route==='menu'&&<p>Calculadora financeira</p>}</div><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></header>
+ return <div className="menu-shade hp-menu-shade"><section ref={panel} className="menu-panel hp-menu" role="dialog" aria-modal="true" aria-label="Menu da calculadora" onKeyDown={keyDown}><span className="panel-reveal-bar" aria-hidden="true"/>
+  <header className={`hp-menu-header ${route==='settings'?'hp-settings-header':''}`}><button className="hp-menu-back" aria-label={route==='menu'?'Fechar menu':'Voltar ao menu HP'} onClick={()=>route==='menu'?motion.close():go('menu')}><HpIcon name={route==='menu'?'x':'chevron-left'}/></button><div><h1 ref={heading} tabIndex={-1}>{title}</h1>{route==='menu'&&<p>Calculadora financeira</p>}</div><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></header>
   <div className="hp-menu-body" data-pull-at-top={bodyAtTop} onScroll={e=>setBodyAtTop(e.currentTarget.scrollTop<=1)}>
    {error&&<p className="hp-error" role="alert">{error}</p>}
    {route==='menu'&&<><h2 className="hp-group-title">OPÇÕES</h2><div className="hp-menu-group">{options.map(([id,icon,label])=><button className="hp-menu-row" key={id} onClick={()=>go(id)}><HpIcon name={icon}/><span>{label}</span><HpIcon name="chevron-right" className="hp-chevron"/></button>)}</div></>}
