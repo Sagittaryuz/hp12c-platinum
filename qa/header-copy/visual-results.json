@@ -1561,7 +1561,7 @@
   },
   {
     "engine": "chromium",
-    "test": "share error retains lower copy confirmation; copy error uses manual dialog without success",
+    "test": "share error retains useful warning without copy confirmation; copy error uses manual dialog without success",
     "passed": true
   },
   {
@@ -3126,7 +3126,7 @@
   },
   {
     "engine": "webkit",
-    "test": "share error retains lower copy confirmation; copy error uses manual dialog without success",
+    "test": "share error retains useful warning without copy confirmation; copy error uses manual dialog without success",
     "passed": true
   }
 ]

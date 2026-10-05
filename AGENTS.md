@@ -119,3 +119,7 @@ Fabricante atualizado: faixas metálicas centradas verticalmente com a inscriç�
 05/10: Copy-success feedback belongs at the center of the header gap between the complete HP12c Platinum title and HP emblem. Preserve their geometry and LCD; overlay must be non-interactive and accessible, without a duplicate bottom success toast. Local-only revision; publication not authorized for this change.
 
 05/10 12:05UTC: User authorizes publication of copy-feedback placement revision. Portrait keeps measured center between complete model title and HP emblem; landscape uses lower safe-area case band, never covering LCD, keys or controls. Preserve calculator geometry/math/state. Release0.2.15 to main/Pages and original Vercel project.
+
+05/10: Hold-to-share must clear previous feedback at activation and never show copy-success confirmation, including share cancellation. Simple tap keeps positioned confirmation. Preserve useful copy/share failure feedback. Local-only change over0.2.15; no publication authorization for this revision.
+
+05/10 12:32UTC: User explicitly authorizes publishing the silent hold/share feedback revision to main/Pages and the existing Vercel project, after validation. Release0.2.16; supersedes the local-only restriction for this revision.

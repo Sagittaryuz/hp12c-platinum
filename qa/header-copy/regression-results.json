@@ -26,6 +26,21 @@
   },
   {
     "engine": "chromium",
+    "test": "tap then cancelled share clears previous copy status, repeated holds remain silent",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "successful share is silent; next tap restores confirmation and expiry",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "test": "hold clears old message while share pending, delayed success stays silent",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
     "test": "cancel drag",
     "passed": true
   },
@@ -97,6 +112,21 @@
   {
     "engine": "webkit",
     "test": "hold copy/share initiated once; cancellation is not error",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "tap then cancelled share clears previous copy status, repeated holds remain silent",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "successful share is silent; next tap restores confirmation and expiry",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "test": "hold clears old message while share pending, delayed success stays silent",
     "passed": true
   },
   {

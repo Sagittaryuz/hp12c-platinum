@@ -1,4 +1,5 @@
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {flushSync} from 'react-dom';
 import {bindDisplayGestures,transferDisplay} from './display-transfer.mjs';
 export function useDisplayTransfer(display,disabled){
   const ref=useRef(null),current=useRef({display,disabled}),busy=useRef(false),alive=useRef(false),timer=useRef(null),restoreFocus=useRef(false);
@@ -9,14 +10,17 @@ export function useDisplayTransfer(display,disabled){
     if(manual===null&&restoreFocus.current){restoreFocus.current=false;ref.current?.focus({preventScroll:true})}
     const detach=bindDisplayGestures(ref.current,share=>{
       if(current.current.disabled||busy.current||manual!==null)return;
-      busy.current=true;clearTimeout(timer.current);setMessage('');
+      busy.current=true;clearTimeout(timer.current);
+      // Clear the visible toast before the native sheet captures its background.
+      // Synchronous rendering preserves the gesture's transient activation.
+      if(share)flushSync(()=>setMessage(''));else setMessage('');
       transferDisplay(current.current.display,share).then(result=>{
         if(!alive.current)return;
         if(!result.copied)setManual(result.text);
-        let text=result.copied?'Valor copiado.':'Cópia automática indisponível. Selecione o valor para copiar.';
+        let text=result.copied?(share?'':'Valor copiado.'):'Cópia automática indisponível. Selecione o valor para copiar.';
         if(result.shared==='unavailable')text+=' Compartilhamento indisponível neste navegador.';
         if(result.shared==='failed')text+=' Não foi possível abrir o compartilhamento.';
-        setMessage(text);timer.current=setTimeout(()=>setMessage(''),4000);
+        setMessage(text.trim());if(text.trim())timer.current=setTimeout(()=>setMessage(''),4000);
       }).finally(()=>{busy.current=false});
     });
     return()=>{alive.current=false;detach();clearTimeout(timer.current)};
