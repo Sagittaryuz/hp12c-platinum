@@ -1,0 +1,452 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 34,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 34,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 34,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 144.765625,
+    "crossbarBottom": 144.765625,
+    "previousFrameTop": 164.765625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 144.765625,
+    "crossbarBottom": 144.765625,
+    "previousFrameTop": 164.765625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 144.765625,
+    "crossbarBottom": 144.765625,
+    "previousFrameTop": 164.765625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 168.6875,
+    "crossbarBottom": 168.6875,
+    "previousFrameTop": 188.6875,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 168.6875,
+    "crossbarBottom": 168.6875,
+    "previousFrameTop": 188.6875,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 168.6875,
+    "crossbarBottom": 168.6875,
+    "previousFrameTop": 188.6875,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 96.9375,
+    "crossbarBottom": 96.9375,
+    "previousFrameTop": 116.9375,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 96.9375,
+    "crossbarBottom": 96.9375,
+    "previousFrameTop": 116.9375,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 96.9375,
+    "crossbarBottom": 96.9375,
+    "previousFrameTop": 116.9375,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 34,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 34,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 34,
+    "frameTop": 155.640625,
+    "crossbarBottom": 155.640625,
+    "previousFrameTop": 175.640625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 144.765625,
+    "crossbarBottom": 144.765625,
+    "previousFrameTop": 164.765625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 144.765625,
+    "crossbarBottom": 144.765625,
+    "previousFrameTop": 164.765625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 144.765625,
+    "crossbarBottom": 144.765625,
+    "previousFrameTop": 164.765625,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 168.6875,
+    "crossbarBottom": 168.6875,
+    "previousFrameTop": 188.6875,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 168.6875,
+    "crossbarBottom": 168.6875,
+    "previousFrameTop": 188.6875,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 168.6875,
+    "crossbarBottom": 168.6875,
+    "previousFrameTop": 188.6875,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "dpr": 1,
+    "safeAreaSimulation": 0,
+    "frameTop": 96.9375,
+    "crossbarBottom": 96.9375,
+    "previousFrameTop": 116.9375,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "dpr": 2,
+    "safeAreaSimulation": 0,
+    "frameTop": 96.9375,
+    "crossbarBottom": 96.9375,
+    "previousFrameTop": 116.9375,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "dpr": 3,
+    "safeAreaSimulation": 0,
+    "frameTop": 96.9375,
+    "crossbarBottom": 96.9375,
+    "previousFrameTop": 116.9375,
+    "removedExposedHeight": 20.0,
+    "legacyLineRemoved": true,
+    "passed": true
+  }
+]

@@ -419,7 +419,9 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 @media(orientation:portrait){
  .calculator{--footer-plastic:10px;--footer-radius:44px;--footer-stroke:10px;--footer-inner-radius:calc(var(--footer-radius) - var(--footer-stroke));--footer-label-bottom:10px}
  .joined-frame .keyboard-frame{display:none}
- .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--frame);right:var(--frame);top:calc(var(--joined-top) - 25px);bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
+ /* Retire the old upper plate's exposed tail without changing its layout box. */
+ .joined-frame .silver-panel{clip-path:inset(0 0 max(0px,calc(100% - var(--portrait-crossbar-top,100%))) 0)}
+ .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--frame);right:var(--frame);top:var(--portrait-frame-top,calc(var(--joined-top) - 25px));bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
  .portrait-footer-frame::before{content:'';position:absolute;left:var(--footer-stroke);right:var(--footer-stroke);top:1px;bottom:var(--footer-stroke);border-radius:0 0 var(--footer-inner-radius) var(--footer-inner-radius);background:#181818}
  .portrait-footer-frame::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:var(--maker-cutout-width);height:var(--footer-label-bottom);background:#181818}
  .joined-frame .maker-strip{bottom:var(--footer-label-bottom)}

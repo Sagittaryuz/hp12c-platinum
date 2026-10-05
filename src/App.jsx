@@ -147,7 +147,15 @@ function useJoinedFrame() {
           el.style.top=(el.getBoundingClientRect().top-parent.top-expansion)+'px';
         }
         calculator.dataset.portraitExpansion=String(expansion);
-      }else calculator.dataset.portraitExpansion='0';
+        // Follow the actual crossbar after compact-height clamping/expansion.
+        // The decorative frame must not feed back into keyboard measurements.
+        calculator.style.setProperty('--portrait-frame-top',(crossbar.getBoundingClientRect().bottom-body.top)+'px');
+        calculator.style.setProperty('--portrait-crossbar-top',(crossbar.getBoundingClientRect().top-body.top)+'px');
+      }else{
+        calculator.dataset.portraitExpansion='0';
+        calculator.style.removeProperty('--portrait-frame-top');
+        calculator.style.removeProperty('--portrait-crossbar-top');
+      }
     };
     layout();
     let frame=0;
