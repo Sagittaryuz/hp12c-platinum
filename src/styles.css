@@ -412,21 +412,16 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .model-name{left:var(--model-inner-left,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
  .brand{left:auto;right:var(--brand-inner-right,calc((100cqw - min(370px,calc(100cqw - 16px)))/2 - 4px))}
 }
-/* Portrait footer drawing is independent of the approved keyboard layout. */
+/* One portrait metal surface joins both vertical rails to the bottom arcs.
+   Its inner surface shares the arc centres: 10 + 34 = 44 on both axes.
+   Decorative geometry does not participate in keyboard measurements. */
 .portrait-footer-frame{display:none;pointer-events:none}
 @media(orientation:portrait){
- .calculator{--footer-plastic:10px;--footer-radius:32px;--footer-label-bottom:10px}
- .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--frame);right:var(--frame);top:min(calc(100% - 55px),calc(100% - var(--footer-label-bottom) - 10px));bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
- .portrait-footer-frame::before{content:'';position:absolute;left:10px;right:10px;top:0;bottom:10px;border-radius:0 0 22px 22px;background:#181818}
+ .calculator{--footer-plastic:10px;--footer-radius:44px;--footer-stroke:10px;--footer-inner-radius:calc(var(--footer-radius) - var(--footer-stroke));--footer-label-bottom:10px}
+ .joined-frame .keyboard-frame{display:none}
+ .joined-frame .portrait-footer-frame{display:block;position:absolute;left:var(--frame);right:var(--frame);top:calc(var(--joined-top) - 25px);bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius);background:#c6c6c6 url('/assets/metal-grain.svg');overflow:hidden}
+ .portrait-footer-frame::before{content:'';position:absolute;left:var(--footer-stroke);right:var(--footer-stroke);top:1px;bottom:var(--footer-stroke);border-radius:0 0 var(--footer-inner-radius) var(--footer-inner-radius);background:#181818}
  .portrait-footer-frame::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:var(--maker-cutout-width);height:var(--footer-label-bottom);background:#181818}
  .joined-frame .maker-strip{bottom:var(--footer-label-bottom)}
  .joined-frame .keyboard-lower-bridge{display:none}
-}
-
-/* Blend the existing5px vertical rail into the10px corner stroke before the arc. */
-@media(orientation:portrait){
- .footer-corner-transition{position:absolute;inset:0;pointer-events:none}
- .footer-corner-transition::before,.footer-corner-transition::after{content:'';position:absolute;top:0;width:5px;height:13px;background:#181818}
- .footer-corner-transition::before{left:5px;clip-path:polygon(0 0,100% 0,100% 100%)}
- .footer-corner-transition::after{right:5px;clip-path:polygon(0 0,100% 0,0 100%)}
 }

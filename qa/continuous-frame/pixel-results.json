@@ -1,0 +1,3362 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.4,
+        "sampledThickness": 9.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.4,
+        "sampledThickness": 9.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 44.1,
+        "sampledThickness": 10.2
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.4,
+        "sampledThickness": 9.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 44.1,
+        "sampledThickness": 10.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.4,
+        "sampledThickness": 9.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.4,
+        "sampledThickness": 9.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "safeAreaSimulation": 34,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.4,
+        "sampledThickness": 9.2
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 1,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.5,
+        "outerEdge": 43.8,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 44.5,
+        "sampledThickness": 10.3
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 2,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 30,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 75,
+        "innerEdge": 34.2,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.7
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "left",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.1,
+        "outerEdge": 44.0,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 450
+    },
+    "safeAreaSimulation": 0,
+    "dpr": 3,
+    "side": "right",
+    "all91AnglesContinuous": true,
+    "sections": [
+      {
+        "angle": 0,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 15,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 30,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 45,
+        "innerEdge": 34.0,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.8
+      },
+      {
+        "angle": 60,
+        "innerEdge": 33.9,
+        "outerEdge": 43.9,
+        "sampledThickness": 10.0
+      },
+      {
+        "angle": 75,
+        "innerEdge": 33.9,
+        "outerEdge": 43.8,
+        "sampledThickness": 9.9
+      },
+      {
+        "angle": 90,
+        "innerEdge": 34.0,
+        "outerEdge": 43.9,
+        "sampledThickness": 9.9
+      }
+    ],
+    "passed": true
+  }
+]
