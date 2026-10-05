@@ -1,58 +1,53 @@
-# HP 12c Platinum para Windows e Web
+# Calculadora HP 12c Platinum — acabamento da Foto 1
 
-Aplicativo independente em português do Brasil, com motor TypeScript local, modelo 3D original criado no Blender e guia pesquisável de teclas e atalhos.
+Aplicação React/Vite, com motor TypeScript compartilhado. Interface própria em controles HTML/CSS; texturas SVG leves, sem sobreposição de botões transparentes sobre uma fotografia completa.
 
-- [Abrir calculadora](https://sagittaryuz.github.io/hp12c-platinum/)
-- [Baixar instalador Windows](https://github.com/Sagittaryuz/hp12c-platinum/releases/latest)
-
-## Uso
-
-Clique nas teclas do modelo, use o teclado do PC ou abra **Teclado** para os controles acessíveis. **Atalhos** mostra as 39 teclas físicas, funções primárias e funções `f`/`g`, incluindo o comando do computador para cada operação. `F1` ativa `f`; `F2` ativa `g`; `Enter` ou espaço aciona ENTER; `Backspace` apaga um dígito; `Delete` limpa X; `?` abre o guia. Ao selecionar uma função no guia, a tecla correspondente é destacada e acionada.
-
-Em RPN, digite `2`, ENTER, `3`, `+` para obter 5. Nos registros financeiros, digite um valor e pressione n/i/PV/PMT/FV para armazenar; pressione o registro desconhecido sem nova entrada para calcular. Fluxos usam `g PV` (CF₀), `g PMT` (CFⱼ) e `g FV` (Nⱼ). As datas usam M.DY ou D.MY, conforme a configuração do aparelho.
-
-O app web pode ser instalado pelo menu de aplicativos do Edge. Depois que aparecer **OFFLINE PRONTO**, os recursos já estão armazenados para uso sem rede. A versão Tauri para Windows contém os arquivos localmente e dispensa conexão desde o primeiro uso. O instalador inicial não tem assinatura de código.
-
-## Arquitetura
-
-- `packages/core/src/engine.ts`: pacote TypeScript independente com estado serializável e funções puras, sem interface ou rede. `pressKey(state, id)` é compartilhado por modelo, teclado e controles acessíveis.
-- `packages/core/src/keys.ts`: catálogo único das teclas, funções e atalhos.
-- `src/calculator/CalculatorModel.jsx`: Three.js/glTF, raycasting, animação das teclas e textura dinâmica do LCD.
-- `model/hp12c-platinum.blend`: fonte editável do modelo. `public/models/hp12c-platinum.glb`: modelo distribuído no app, com nomes e metadados das teclas.
-- `src-tauri`: pacote Windows com conteúdo local. Sem backend, telemetria ou conta de usuário.
-- Memória, programas e preferências são mantidos em `localStorage` no dispositivo. Web e desktop têm memórias separadas.
-
-O motor inclui RPN/ALG, precedência e parênteses em ALG, porcentagens, TVM e períodos fracionários, amortização, juros simples, CF₀/CFⱼ/Nⱼ, NPV/IRR, títulos semestrais real/real, SL/SOYD/DB, estatísticas e regressão, calendário, funções matemáticas, registradores, programação e memória contínua. A suíte confere exemplos e invariantes; esta implementação independente ainda não equivale a uma certificação de todas as sequências possíveis do hardware.
-
-## Modelo e referências
-
-As seis vistas fornecidas fixam dimensões externas **nominais** de 129 × 79 × 15 mm. O arquivo exportado mede aproximadamente 129,020 × 79,020 × 15,015 mm; o relatório está em `model/measurements.json`. As proporções da tela, moldura e teclas foram inferidas visualmente. A traseira inclui um guia próprio legível no lugar das inscrições ilegíveis da prancha. A réplica física 1:1 completa exige fotos reais nítidas e medidas individuais desses componentes; não é afirmada nesta versão.
-
-O [manual oficial HP](https://h10032.www1.hp.com/ctg/Manual/bpia5184.pdf) é a especificação funcional de referência; o PDF e o firmware da HP não estão incluídos. O carregamento usa o [fluxo glTF do Three.js](https://threejs.org/manual/en/load-gltf.html).
-
-## Desenvolvimento e verificação
-
-Node 24 ou mais recente:
-
-```sh
+## Executar
+Requisitos: Node.js 22 ou superior e npm.
+```
 npm ci
-npm run dev
+npm run dev -- --host 127.0.0.1
+```
+## Validar e compilar
+```
 npm run test:engine
+npm run test:sites
 npx tsc --noEmit
 npm run build
 ```
+A compilação estática fica em `dist/client`. `vercel.json` configura a hospedagem.
 
-No Windows com Rust e os requisitos oficiais do Tauri instalados:
+## Uso
+Clique no logotipo HP para abrir o menu: tela cheia, ligar/desligar, graus/radianos e restauração do programa de taxas. SIN, COS e TAN operam sobre X e preservam os outros níveis da pilha. O padrão é DEG (graus). TAN em 90° e seus equivalentes apresenta Error 0; CLx limpa o erro. Atalhos: F7 SIN, F8 COS, F9 TAN.
+O visor usa vírgula e inicia com sete casas decimais. Durante a digitação, mostra exatamente a entrada, sem completar zeros. ENTER ou uma operação conclui a entrada e aplica o formato. `f` + um dígito de 0 a 9 escolhe as casas decimais; `f` + ponto seleciona notação científica. A escolha é preservada nas reaberturas. Como na HP 12c, o formato padrão respeita o limite de dez algarismos do visor: para números inteiros maiores, a quantidade de casas visíveis pode diminuir. FIX não muda a precisão interna; RND (`f` + PMT) arredonda explicitamente o número.
+Os atalhos de formatação e entrada foram conferidos no manual oficial HP: https://h10032.www1.hp.com/ctg/Manual/bpia5184.pdf (pp. 21 e 87–89).
+Programa inicial de taxas equivalentes: taxa → i; período de origem → n; período de destino → R/S. O programa salvo pelo usuário é preservado nas reaberturas. Use o menu para restaurar o programa inicial explicitamente.
+No iPhone, Compartilhar → Adicionar à Tela de Início permite abrir como aplicativo. Tela cheia física no iPhone ainda não foi verificada.
 
-```sh
-npx tauri dev
-npx tauri build --bundles nsis
-```
+## Design
+A Foto 1 define o corpo e o teclado: moldura prata escovada, laterais de plástico preto texturizado, LCD oliva, painel preto fosco, teclas cinza com legendas vermelhas e azuis, f laranja, g azul, faixa HEWLETT • PACKARD inferior. O retrato tem seis colunas; o horizontal adapta a ordem original para onze colunas com as novas teclas. Nenhuma tecla 15 foi acrescentada.
+Atualização de 01/10/2026: a calculadora ocupa todo o viewport disponível, acompanhando redimensionamentos e rotação. O metal alcança o topo; as bordas de plástico permanecem somente nas laterais e embaixo, com a mesma espessura reduzida. O painel central tem aro metálico fino. As teclas foram ampliadas e SIN/COS/TAN usam a mesma construção e fonte das demais. R↓ tem seta vetorial, sem emoji. O visor começa à esquerda. O cabeçalho não usa blur nem translucidez, e a configuração da barra do iOS passou a `default`.
+As cores base correspondem aos valores RGB indicados; sombras e texturas alteram naturalmente os pixels renderizados. Trata-se de uma reconstrução responsiva, não de medição física calibrada ou equivalência de firmware HP. A apresentação da barra do sistema e o fullscreen em iPhone físico ainda precisam ser conferidos no aparelho.
 
-Para regenerar o modelo: exporte o catálogo com Node, gere as texturas com `scripts/create-model-textures.py` (Pillow e fontes Arial), depois execute Blender com `scripts/build-model.py -- CAMINHO_DO_PROJETO`. O script usa metros e verifica os limites da malha em milímetros.
+## Publicação
+Produção existente: https://hp12c-platinum-one.vercel.app/
+O pacote de fontes não inclui tokens, arquivos .env, node_modules ou a vinculação privada .vercel. Faça login na sua conta Vercel para publicar outro projeto.
 
-Atualizações de `main` publicam GitHub Pages. Tags `v*` geram o instalador NSIS em GitHub Releases. O relatório visual é mantido em `design-qa.md`.
+## Ajuste de posição e moldura — 01/10/2026
+O visor foi elevado (no retrato, de 7,4% para 6,3% da altura), e o início do painel passou de 19,5% para 22,5%, deslocando o teclado para baixo. A moldura rugosa passou de 1,2% para 2,5% da largura, limitada entre 6 e 18 px, igualmente nas laterais e na base. A inscrição Hewlett Packard foi reduzida e permanece junto à base. O topo continua exclusivamente metálico.
+Verificação desta atualização: build de produção e quatro testes de entrega aprovados. Conferência visual em 320×568, 393×852 e 852×393, com 41 teclas e nenhuma tecla ou legenda fora da tela. O motor de cálculo não sofreu alterações nesta atualização.
 
-## Direitos
+Teclado ancorado na base: a última fileira mantém 3–5 px de respiro acima da faixa inferior, com as demais fileiras distribuídas para cima. ENTER termina na mesma linha. Conferido em 320×568, 393×852 e 852×393, sem teclas fora da tela; build e quatro testes de entrega aprovados.
 
-Projeto público sem concessão de licença aberta para o trabalho original. Consulte `COPYRIGHT.md`. As dependências mantêm suas licenças em `public/legal/third-party-notices.txt`. Projeto independente, sem vínculo com a HP.
+Correção da faixa inferior no iPhone: o corpo usa 100dvh, sem redução pela visualViewport. A área segura inferior não aumenta a faixa Hewlett Packard; o teclado se estende até a pequena faixa e a moldura da base. Verificação física no iPhone permanece pendente.
+
+## Ajuste local em revisão — 01/10/2026
+O visor usa dez posições SVG com pontuação acoplada e indicadores fixos. A altura usa inset nativo, sem 100dvh explícito nem compensação fixa. Áreas seguras preservam as teclas. Veja LOCAL-CHANGE.md para evidência, testes, screenshots e limites. A implementação permanece local, sem deploy; a validação no iPhone físico está pendente.
+
+## Toque e visor — 01/10/2026
+Fluxo B/viewport cover preservado. Toque/pen aciona no pointerdown e não duplica no click; mouse e teclado mantêm acionamento normal. Arraste por toque do corpo bloqueado; menu e diagnóstico continuam roláveis. Visor Canvas com buffer DPR redimensionado e redesenho antes do paint, preservando lcdCells/indicadores/motor e saída acessível. ENTER usa letras empilhadas, evitando métricas verticais defeituosas no WebKit.
+Em retrato alto: visor/logotipos +10px, base do painel/Hewlett -10px, primeira fileira -40px; vãos aumentam5px mantendo tamanho das teclas. Em telas baixas a ampliação é proporcional; paisagem com ampliação proporcional à altura (cerca de12px distribuídos em402px, até30px em telas altas), primeira fileira sobe de forma proporcional para evitar colisão com visor/legendas. Áreas seguras mantidas. Testado em Edge e WebKit26.5 isolados, não Safari27.2 beta físico.92 testes motor/visor/entrega, TS/build e QA multiviewport/touch/DPR. Atualização publicada somente após verificação pública.
+
+## Barra do sistema e backup — 01/10/2026
+Mantido apple-mobile-web-app-status-bar-style default e incluído elemento DOM real fixed top0/height1px/background-color #c6c6c6 para a cor da barra. Técnica baseada no relato https://www.reddit.com/r/PWA/comments/1w5mqj1/ios_27_beta_blurs_the_top_edge_of_installed_pwas/; não prova remoção do desfoque em aparelho físico. Sem pseudo-elemento, transparência, prefers-color-scheme ou deslocamento extra da raiz. Meta de uma instalação antiga não pode ser lida/atualizada peloDOM. Se blur persistir, salvar backup antes de remover/re-adicionar ícone.
+Menu HP: Salvar backup gera JSON local completo das chaves HP; Restaurar backup valida arquivo e restaura programas, registradores, formato e marcadores de migração. Nenhuma transmissão. Importação inválida preserva estado; falha de storage reverte chaves anteriores. Testes Node e UI roundtrip Edge/WebKit passaram; instalação no Safari beta físico pendente.

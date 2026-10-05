@@ -1,0 +1,3 @@
+import {useEffect,useState} from 'react';
+import {cacheStatus,inspectWaitingUpdate} from './cache-lifecycle.mjs';
+export function CacheStatus(){const [status,setStatus]=useState({...cacheStatus});useEffect(()=>{const update=e=>setStatus(e.detail);window.addEventListener('hp-cache-status',update);inspectWaitingUpdate();return()=>window.removeEventListener('hp-cache-status',update)},[]);return status.waiting?<p className="hp-update-status" role="status">Nova versão pronta. Para atualizar sem interromper cálculos, feche todas as janelas deste app e abra novamente. Seus dados salvos serão mantidos; salve um backup por segurança.</p>:null}

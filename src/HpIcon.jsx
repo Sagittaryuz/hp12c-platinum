@@ -1,0 +1,1 @@
+export function HpIcon({name,className=''}){return <span className={`hp-icon ${className}`} aria-hidden="true" style={{maskImage:`url('${import.meta.env.BASE_URL}assets/menu-icons/${name}.svg')`,WebkitMaskImage:`url('${import.meta.env.BASE_URL}assets/menu-icons/${name}.svg')`}}/>}

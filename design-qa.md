@@ -1,37 +1,34 @@
-# Conferência visual e funcional
+# QA — tela inteira, entrada e atalhos HP 12c
 
-Data: 30/09/2026. Versão do código: 0.2.1.
+final result: passed
 
-**final result: passed** — interface web e modelo com dimensões nominais, dentro do escopo descrito abaixo. Este resultado não certifica a réplica física 1:1 nem todas as sequências possíveis do hardware.
+## Escopo e fonte
+A imagem colada 1 mostra a versão anterior com blur superior, bordas grandes, emoji em R↓ e área vazia abaixo do corpo. As instruções textuais de 01/10/2026 definem as mudanças desejadas e prevalecem sobre a reprodução literal dessa captura. Comparação lado a lado: `comparacao-tela-inteira.png`, com o antes à esquerda e a versão ajustada à direita, no mesmo tamanho 393×852 e com X=0. A quantidade de casas mudou de doze para sete conforme o pedido atual; relógio/bateria são elementos do iOS e não são imitados pela interface.
 
-## Evidências
+## Verificação visual e de layout
+- Corpo ocupa toda a área disponível, sem margem externa e sem recorte por proporção fixa. O tamanho acompanha o viewport visual ao redimensionar/rotacionar.
+- Não há faixa de plástico superior: metal até o topo. Plástico somente nas laterais/embaixo, espessura igual (4,7 px em 393 px de largura), menor que na versão anterior. Aro cinza fino em volta do painel do teclado.
+- Cabeçalho com filter:none e backdrop-filter:none. Configuração iOS alterada de black-translucent para default; tema de abertura metálico.
+- Teclas regulares ampliadas: aproximadamente 57×63 px em 393×852; cerca de 21% mais largas e 22% mais altas que na versão anterior. ENTER continua vertical e ocupa duas linhas.
+- SIN/COS/TAN e 7 têm exatamente o mesmo tamanho, fonte, altura da face principal e construção do acabamento. R↓ contém uma seta SVG branca, sem caractere emoji.
+- LCD alinhado à esquerda, com tamanho dos algarismos ajustado para acomodar a entrada completa.
 
-- Comparação conjunta da fotografia frontal fornecida e da captura do aplicativo. Conferidas disposição das 39 teclas, ENTER vertical, funções f/g, corpo preto, placa metálica e LCD. Ajustados posição/largura do LCD, cor da tecla ON e proporção da legenda ENTER.
-- Modelo editável criado no Blender e exportado como glTF binário. Seis câmeras conferidas: frente, traseira, laterais, topo e base. Capturas em `qa/screenshots/`.
-- Limites exportados: 129,020 × 79,020 × 15,015 mm, dentro da tolerância de 0,1 mm em relação às dimensões nominais. Relatório: `model/measurements.json`.
-- Navegador: Edge no site real do GitHub Pages. Modelo, fontes e visor carregaram. Clique numa tecla 3D alterou X de 5 para 2. Entrada pelo teclado e pelos botões acessíveis utiliza o mesmo motor.
-- Guia **Atalhos** pesquisável: busca NPV mostrou PV, f NPV, g CF₀ e respectivos atalhos V, F1 V e F2 V. Botões acessíveis expõem as 39 teclas e suas funções. Modais mantêm foco e permitem fechar por Escape.
-- Layout conferido em desktop e 390 × 844 px. Largura do documento no teste compacto: 375 px, sem transbordamento horizontal. Modelo inteiro visível; visor/pilha aparecem abaixo dele.
-- PWA: corrigido conflito entre entradas duplicadas de precache. No Edge, a página foi recarregada com a rede desativada por CDP e abriu com o modelo; botões acessíveis calcularam `2 ENTER 3 +` = 5. Rede restaurada ao fim do teste. Evidência: `published-offline.png`.
-- Teclado do PC: financiamento de 250000, 300 períodos e 5,25% anual retornou PMT = −1498,12. Evidência: `financial-keyboard.png`.
-- ALG: expressão nova `2 + 3 × 4 =` retornou 14, preservado após recarregar a página. Evidência: `alg-persistence.png`.
-- 22 testes do motor passaram, cobrindo RPN, ALG, registradores, TVM, amortização, juros simples, fluxos/NPV/IRR, títulos, depreciação, estatística, calendário, matemática, erros, memória e programação. TypeScript sem erros. Quatro testes do empacotamento Sites também passaram.
-- GitHub Pages publicou com Actions. Instalador NSIS gerado nos Releases; sem assinatura de código, conforme o plano.
+Tamanhos locais testados: 393×852, 375×812, 320×568, 852×393 e 2048×942. Em todos, o retângulo da calculadora coincide com o viewport, 41 teclas ficam dentro da tela, nenhuma face de tecla tem texto cortado e não há rolagem.
 
-## Correções realizadas na revisão
+## Comportamento
+85 testes do motor aprovados. Incluem todos os dez atalhos f + 0–9, entrada crua, ENTER, SCI, persistência do FIX/SCI escolhido, migração do padrão anterior sem alterar programas/registradores, CHS e apagar preservando os dígitos/zeros de entrada, RND/LAST X, STO/RCL, R↓, g n/g i, BEG/END, datas, ALG/RPN, trigonometria e os exemplos financeiros já existentes.
 
-Resolvidos carregamento do LCD, orientação dos rótulos traseiros, exceção de carregamento 3D em StrictMode, enquadramento em telas estreitas, cache offline, prefixos em recuperação de fluxos, agrupamento de STO/RCL em uma linha de programa, códigos físicos do visor de programação e limpeza de entradas numéricas incompletas.
+Observado no navegador: entrada 1 → 12,30, ENTER → 12,3000000, f + 2 → 12,30, reabertura → 12,30. Teclado físico com vírgula → 1,2; f + ponto → 1,200000 00. Console sem erros.
 
-Nenhum bloqueio visual P0/P1/P2 permanece no escopo funcional e nominal descrito acima.
+Referência oficial para f/g, término de entrada e formato: https://h10032.www1.hp.com/ctg/Manual/bpia5184.pdf (pp. 21 e 87–89). O formato não altera a precisão interna; RND altera explicitamente o valor. FIX segue o limite HP de dez algarismos totais e a seleção persiste. Não se afirma equivalência integral de firmware.
 
-## Limites e critérios ainda não certificados
+## Limites
+O preenchimento, o topo sem filtro e as interações foram verificados em navegador. O efeito visual da barra do sistema e a tela cheia física no iPhone não foram observados em um aparelho; o iOS controla essa barra. As configurações de status bar/PWA e safe areas foram ajustadas, mas essa parte precisa ser conferida no dispositivo.
 
-- A prancha fornecida apresenta medidas externas nominais e ilustrações. Não contém medidas individuais do LCD, moldura e teclas nem fotografias reais nítidas de todas as faces. Essas proporções foram inferidas; a validação física 1:1 permanece pendente das referências combinadas com o usuário.
-- A traseira contém um guia próprio legível, pois as inscrições da prancha não permitem transcrição confiável. Acabamento, tipografia e detalhes de fabricação são aproximações.
-- A suíte compara exemplos e invariantes, incluindo exemplos do manual. Não constitui certificação exaustiva de comportamento idêntico ao firmware HP em qualquer sequência.
-- A inspeção visual foi feita no navegador. A verificação Windows registra instalação, versão instalada, inicialização e janela respondendo; os controles internos da janela nativa não foram inspecionados visualmente, pois controle de aplicativos nativos está indisponível nesta sessão.
+## Publicação e verificação final
+Deployment dpl_C2kgoAztiYE5BkS9irgfE2vfQRtP, Vercel READY, alias https://hp12c-platinum-one.vercel.app/. Build concluído, quatro testes de hospedagem aprovados e TypeScript sem erros: total de 89 testes aprovados.
+No navegador de produção, após atualizar o cache antigo do aplicativo, foram confirmados: migração para sete casas; entrada 12,3 sem completar zeros; ENTER 12,3000000; f + 2 12,30; reabertura 12,30. O programa de taxas foi preservado e gerou 0,9488793 para taxa 12%, período de origem 12, destino 1. No layout 393×852, a calculadora coincide com a tela, 41 teclas estão disponíveis, nenhuma face tem texto cortado, SIN e 7 têm o mesmo estilo de fonte, o filtro do cabeçalho é none e o aro do teclado é RGB 198/198/198. Capturas finais de produção: tela-inteira-mobile.jpg e tela-inteira-horizontal.jpg. Console sem erros.
 
-## Windows
-
-Instalação e atualização para 0.2.1 concluídas com código de saída zero. Versão 0.2.1 confirmada no registro de desinstalação; processo hp12c-platinum respondendo, com janela HP 12c Platinum e atalho no Menu Iniciar. Hash do arquivo baixado coincide com o digest do GitHub. Resultado completo em `qa/windows-verification.json`.
-
+## Ajuste de posição e moldura — 01/10/2026
+O visor foi elevado (no retrato, de 7,4% para 6,3% da altura), e o início do painel passou de 19,5% para 22,5%, deslocando o teclado para baixo. A moldura rugosa passou de 1,2% para 2,5% da largura, limitada entre 6 e 18 px, igualmente nas laterais e na base. A inscrição Hewlett Packard foi reduzida e permanece junto à base. O topo continua exclusivamente metálico.
+Verificação desta atualização: build de produção e quatro testes de entrega aprovados. Conferência visual em 320×568, 393×852 e 852×393, com 41 teclas e nenhuma tecla ou legenda fora da tela. O motor de cálculo não sofreu alterações nesta atualização.

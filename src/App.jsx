@@ -1,250 +1,313 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  ArrowCounterClockwise, CaretDown, Check, Command, GithubLogo, Keyboard, MagnifyingGlass,
-  SlidersHorizontal, Sparkle, X,
-} from "@phosphor-icons/react";
-import { CalculatorModel } from "./calculator/CalculatorModel.jsx";
-import { INITIAL_STATE, formatDisplay, pressAction, pressKey, restoreState, KEY_DEFINITIONS } from "@sagittaryuz/hp12c-core";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer } from 'react';
+import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
+import { HpMenu } from './HpMenu';
+import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected} from './hp-panel-state.mjs';
+import { FaceKeys, Brackets } from './face';
+import { Lcd } from './Lcd';
+import {createBackup,parseBackup,restoreBackupStorage} from './backup.mjs';
+import { ViewportDiagnostics } from './ViewportDiagnostics';
+import { displayDefaults, initializeDefaults, DEFAULT_PROGRAM_VERSION, DEFAULT_DISPLAY_VERSION } from './defaults';
 
-const descriptions = {
-  n: "Períodos do cálculo financeiro", i: "Taxa de juros por período", pv: "Valor presente", pmt: "Pagamento periódico", fv: "Valor futuro",
-  amortize: "Amortização: juros e principal acumulados", interest: "Juros acumulados", npv: "Valor presente líquido", irr: "Taxa interna de retorno",
-  begin: "Pagamentos no início do período", end: "Pagamentos no fim do período", sigmaPlus: "Adiciona um par x/y às estatísticas",
-  sigmaMinus: "Remove o último par das estatísticas", meanX: "Média de x", meanY: "Média de y", stddev: "Desvio padrão de x",
-  sumX: "Número de observações", sumX2: "Desvio padrão amostral de x", sumY: "Desvio padrão amostral de y",
-  pct: "Porcentagem do valor base", pctT: "Percentual de x em relação a y", deltaPct: "Variação percentual entre x e y",
-  reciprocal: "Inverso de x", pow: "Potência y elevado a x", program: "Programa: grava sequência de teclas", runStop: "Executa ou pausa o programa",
-  roll: "Desloca a pilha RPN", swap: "Troca x e y", clx: "Apaga o visor x", eex: "Expoente de dez", chs: "Troca o sinal",
-  modeRpn: "Seleciona entrada RPN", finance: "Funções financeiras", registers: "Registradores de memória", prefix: "Indicador de prefixo",
-  clearFin: "Limpa registros financeiros", clearReg: "Limpa registradores e estatística", date: "Soma dias a uma data MM.DDYYYY",
-  simple: "Juros simples", bond: "Cálculos de títulos", depr: "Depreciação linear", prime: "Teste de primalidade simplificado",
-  "12x": "Multiplica o valor por 12", "12div": "Divide o valor por 12", memory: "Estado dos registradores locais",
-  round: "Arredonda o valor interno conforme o visor",
-  cf0: "Guarda o investimento inicial; reinicia os fluxos",
-  cfj: "Adiciona um fluxo e incrementa n", nj: "Número de repetições do último fluxo (1–99)",
-  bondPrice: "Preço de título com cupons semestrais, base real/real", bondYield: "Rendimento até o vencimento de título",
-  deprSL: "Depreciação linear no ano informado", deprSOYD: "Depreciação pela soma dos dígitos dos anos", deprDB: "Depreciação por saldo decrescente",
-  mean: "Médias de x e y retornadas em X e Y", weightedMean: "Média ponderada: X é o peso e Y é o item",
-  estimateX: "Estima x a partir de y; correlação em Y", estimateY: "Estima y a partir de x; correlação em Y",
-  sqrt: "Raiz quadrada de X", exp: "Exponencial natural e elevado a X", ln: "Logaritmo natural de X",
-  square: "Quadrado de X", frac: "Parte fracionária de X", intg: "Parte inteira de X", factorial: "Fatorial de X inteiro, de 0 a 69",
-  mdy: "Datas em mês.diaano", dmy: "Datas em dia.mêsano", date: "Data em Y mais os dias em X; exibe dia da semana",
-  days: "Dias entre Y e X; base real em X e 30/360 em Y", modeAlg: "Modo algébrico com precedência e parênteses",
-  clearStats: "Limpa R1–R6 e a pilha estatística", clearProgram: "Reinicia o programa; no modo P/R apaga instruções",
-  testLe: "No programa, pula a próxima linha se X for maior que Y", testZero: "No programa, pula a próxima linha se X não for zero",
-  step: "Executa a próxima linha do programa", backStep: "Volta uma linha no programa", goto: "GTO seguido de três dígitos; . e três dígitos posicionam a linha",
-  pause: "Pausa o programa por um segundo", undo: "Restaura o estado anterior", backspace: "Apaga o último dígito; fora da entrada limpa X",
-  parenOpen: "Abre parêntese em ALG", parenClose: "Fecha parêntese em ALG", equals: "Conclui a expressão em ALG",
-  scientific: "Mostra notação científica", on: "Liga ou desliga; a memória é preservada", off: "Desliga mantendo a memória",
-  store: "Guarda em 0–9, .0–.9 ou registro financeiro", recall: "Recupera 0–9, .0–.9 ou registro financeiro",
-  enter: "Duplica X na pilha RPN; conclui expressão em ALG", decimal: "Separador decimal da entrada",
-};
-for(let i=0;i<=9;i++){descriptions[String(i)]='Entrada de dígito';descriptions[`fixed${i}`]=`Exibe ${i} casas decimais; preserva a precisão interna`;}
-Object.assign(descriptions,{interest:'Juros simples: bases 360 (X) e 365 (Z)',amortize:'Juros em X, principal em Y; atualiza PV e n','12x':'Multiplica X por 12 e guarda n','12div':'Divide X por 12 e guarda i',memory:'Capacidade de programa e registradores',prefix:'Cancela prefixos e mostra a mantissa de X',stddev:'Desvios padrão amostrais em X e Y',sigmaMinus:'Subtrai o par X/Y das estatísticas'});
-
-function shortcutLabel(shift, shortcut) {
-  const shown = shortcut === "Space" ? "Espaço" : shortcut === "ArrowRight" ? "→" : shortcut === "ArrowDown" ? "↓" : shortcut;
-  return shift ? `${shift === "f" ? "F1" : "F2"}  ${shown}` : shown;
+function useJoinedFrame() {
+  useLayoutEffect(() => {
+    const calculator=document.querySelector('.calculator');
+    let alive=true,lastSignature=null,fontRevision=0;
+    const panels=[...calculator.querySelectorAll(".keyboard-panel,.keyboard-frame,.keyboard-crossbar")];
+    const controls=[...calculator.querySelectorAll(".key,.bracket")];
+    const layout=()=>{
+      if(!alive)return;
+      const style=getComputedStyle(calculator),modelStyle=getComputedStyle(calculator.querySelector('.model-name')),lcdStyle=getComputedStyle(calculator.querySelector('.lcd'));
+      const signature=[calculator.clientWidth,calculator.clientHeight,fontRevision,style.getPropertyValue('--portrait-safe-bottom'),modelStyle.top,lcdStyle.top,lcdStyle.translate].join('|');
+      if(signature===lastSignature)return;
+      lastSignature=signature;
+      calculator.classList.remove('joined-frame');
+      // Clear only the portrait expansion from the preceding measurement pass.
+      for(const panel of panels)panel.style.removeProperty('top');
+      for(const control of controls)for(const prop of ['top','bottom','height','left','width'])control.style.removeProperty(prop);
+      const visible=controls.filter(el=>getComputedStyle(el).display!=='none');
+      const rects=visible.map(el=>({el,rect:el.getBoundingClientRect()}));
+      const ink=[...calculator.querySelectorAll('.key,.legend-f,.bracket,.bracket span')].filter(el=>getComputedStyle(el).display!=='none').map(el=>el.getBoundingClientRect());
+      const body=calculator.getBoundingClientRect(),panel=calculator.querySelector('.keyboard-panel').getBoundingClientRect();
+      const portrait=body.height>=body.width;
+      const makerElement=calculator.querySelector('.maker-name'),lettering=calculator.querySelector('.maker-lettering');
+      calculator.style.removeProperty('--maker-label-width');
+      lettering.style.removeProperty('transform');
+      if(portrait){
+        const natural=lettering.getBoundingClientRect().width;
+        const fitted=Math.min(natural,Math.max(1,body.width-36));
+        calculator.style.setProperty('--maker-label-width',fitted+'px');
+        lettering.style.transform='scaleX('+fitted/natural+') translateY(var(--maker-ink-offset,0px))';
+      }
+      const maker=makerElement.getBoundingClientRect();
+      const min=Math.min(...ink.map(r=>r.top)),max=Math.max(...ink.map(r=>r.bottom));
+      const base=body.bottom-maker.bottom;
+      const rise=portrait?20:0;
+      calculator.style.setProperty('--joined-base','45px');
+      // Portrait maker rails: 10 CSS px; landscape uses its existing height.
+      calculator.style.setProperty('--joined-label-height',(portrait?10:maker.height)+'px');
+      calculator.style.setProperty('--maker-cutout-width',(maker.width+(portrait?20:0))+'px');
+      const shift=Math.min(50,Math.max(0,(maker.top-panel.top)*.22));
+      calculator.style.setProperty('--joined-top',(panel.top-body.top+shift)+'px');
+      calculator.classList.add('joined-frame');
+      const newPanel=calculator.querySelector('.keyboard-panel').getBoundingClientRect();
+      const top=Math.max(min+shift-rise,newPanel.top+8),bottom=portrait?Math.min(maker.top-10-rise,newPanel.bottom-8):maker.top-10;
+      const scale=Math.min(1,Math.max(.2,(bottom-top)/(max-min)));
+      const previousFrame=Math.min(10,Math.max(4,body.width*.012));
+      const previousTop=newPanel.top-(8-previousFrame)/2;
+      const safeBottom=parseFloat(getComputedStyle(calculator).getPropertyValue('--portrait-safe-bottom'))||0;
+      const previousBase=Math.max(previousFrame,safeBottom);
+      const heightScale=portrait?Math.min(1,Math.max(.2,(bottom+base-previousBase-Math.max(min+shift-rise,previousTop+8))/(max-min))):scale;
+      calculator.style.setProperty('--joined-scale',String(heightScale));
+      const span=(max-min)*scale;
+      const start=Math.max(top,newPanel.top+(newPanel.height-span)/2);
+      const parentRects=new Map([...new Set(rects.map(({el})=>el.parentElement))].map(el=>[el,el.getBoundingClientRect()]));
+      for(const {el,rect} of rects){
+        const parent=parentRects.get(el.parentElement);
+        el.style.top=(start+(rect.top-min)*scale-parent.top)+'px';
+        el.style.bottom='auto';
+        el.style.height=(rect.height*heightScale)+'px';
+      }
+      if(portrait){
+        const enter=calculator.querySelector('.key-enter');
+        const last=Math.max(...visible.filter(el=>el.matches('.key:not(.key-enter)')).map(el=>el.getBoundingClientRect().bottom));
+        enter.style.height=(last-enter.getBoundingClientRect().top)+'px';
+      }
+      const bounds=[...calculator.querySelectorAll('.key,.legend-f,.bracket,.bracket span')].map(el=>el.getBoundingClientRect()).filter(r=>r.width>0);
+      const left=Math.min(...bounds.map(r=>r.left)),right=Math.max(...bounds.map(r=>r.right));
+      const actualTop=Math.min(...bounds.map(r=>r.top)),actualBottom=Math.max(...bounds.map(r=>r.bottom));
+      const dx=(newPanel.left+newPanel.right-left-right)/2;
+      const centeredDy=(newPanel.top+newPanel.bottom-actualTop-actualBottom)/2;
+      const dy=portrait?Math.min(centeredDy,body.bottom-safeBottom-2-actualBottom):centeredDy;
+      for(const {el,rect} of rects){
+        const parent=parentRects.get(el.parentElement);
+        el.style.left=(rect.left-parent.left+dx)+'px';
+        el.style.top=(parseFloat(el.style.top)+dy)+'px';
+      }
+      calculator.dataset.keyboardShift=String(shift);
+      calculator.dataset.keyboardScale=String(scale);
+      // Final shared layout: uniform rows, identical label gaps and group tiers.
+      // Measurements stay relative to the real smooth plate, not screen pixels.
+      const referenceLegend=calculator.querySelector('.key-n .legend-f');
+      const font=parseFloat(getComputedStyle(referenceLegend).fontSize);
+      const gap=referenceLegend.parentElement.getBoundingClientRect().top-referenceLegend.getBoundingClientRect().bottom;
+      const padding=8;
+      const simple=visible.filter(el=>el.matches('.key:not(.key-enter)'));
+      const rows=[];
+      const simpleRects=simple.map(el=>({el,rect:el.getBoundingClientRect()}));
+      for(const {el,rect} of simpleRects.sort((a,b)=>a.rect.top-b.rect.top)){
+        const y=rect.top;
+        let row=rows.find(r=>Math.abs(r.y-y)<1);
+        if(!row){row={y,els:[]};rows.push(row)}row.els.push(el);
+      }
+      const bottomLimit=Math.min(newPanel.bottom-padding,body.bottom-safeBottom-2);
+      const tier=font+gap;
+      const firstY=newPanel.top+padding+2*tier;
+      const oldHeight=Math.min(...simpleRects.map(({rect})=>rect.height));
+      const keyHeight=Math.min(oldHeight,(bottomLimit-firstY-(rows.length-1)*2*tier)/rows.length);
+      const pitch=(bottomLimit-firstY-keyHeight)/(rows.length-1);
+      const put=(el,y,h)=>{el.style.top=(y-parentRects.get(el.parentElement).top)+'px';el.style.bottom='auto';el.style.height=h+'px'};
+      rows.forEach((row,i)=>row.els.forEach(el=>put(el,firstY+i*pitch,keyHeight)));
+      const enter=calculator.querySelector('.key-enter');
+      const enterRow=portrait?5:2;
+      put(enter,firstY+enterRow*pitch,bottomLimit-(firstY+enterRow*pitch));
+      const groups=[['bond','pow','reciprocal'],['depreciation','pctT','pct'],['clear','sst','clx']];
+      for(const [name,startId,endId] of groups){
+        const el=calculator.querySelector('.'+name),a=calculator.querySelector('.key-'+startId).getBoundingClientRect(),z=calculator.querySelector('.key-'+endId).getBoundingClientRect();
+        el.style.left=(a.left-el.parentElement.getBoundingClientRect().left)+'px';el.style.width=(z.right-a.left)+'px';
+        put(el,a.top-gap-font-gap-font/2,font/2);
+      }
+      const prefix=calculator.querySelector('.prefix'),er=enter.getBoundingClientRect();
+      prefix.style.left=(er.left-prefix.parentElement.getBoundingClientRect().left)+'px';prefix.style.width=er.width+'px';put(prefix,er.top-gap-font,font);
+      const all=[...calculator.querySelectorAll('.key,.legend-f,.bracket,.bracket span')].filter(el=>getComputedStyle(el).display!=='none').map(el=>el.getBoundingClientRect()).filter(r=>r.width>0);
+      const adjustment=(newPanel.top+bottomLimit-Math.min(...all.map(r=>r.top))-Math.max(...all.map(r=>r.bottom)))/2;
+      for(const el of visible)el.style.top=(parseFloat(el.style.top)+adjustment)+'px';
+      if(portrait){
+        // Expand upward after the approved layout is measured, retaining normal
+        // key sizes and the last row. No change to the header, LCD or base.
+        const lcd=calculator.querySelector('.lcd'),lr=lcd.getBoundingClientRect();
+        const rimHeight=parseFloat(getComputedStyle(lcd,'::before').height)||lr.height;
+        // Keep the approved keyboard expansion referenced to the 0.2.10 LCD
+        // position; extra header movement must not expand a compact keyboard.
+        const lcdTranslateY=parseFloat(getComputedStyle(lcd).translate.split(/\s+/)[1])||0;
+        const extraHeaderRise=Math.max(0,-15-lcdTranslateY);
+        const rimBottom=lr.top+lr.height/2+rimHeight/2+extraHeaderRise;
+        const crossbar=calculator.querySelector('.keyboard-crossbar');
+        const expansion=Math.min(20,Math.max(0,crossbar.getBoundingClientRect().top-rimBottom-8));
+        const gain=expansion/(rows.length-1);
+        const move=(el,amount)=>{el.style.top=(parseFloat(el.style.top)-amount)+'px'};
+        rows.forEach((row,i)=>row.els.forEach(el=>move(el,expansion-i*gain)));
+        move(enter,gain);enter.style.height=(parseFloat(enter.style.height)+gain)+'px';
+        // Group tiers gain space on both sides; ordinary legends remain attached
+        // to their own key. PREFIX follows ENTER and retains its key clearance.
+        for(const [name,row] of [['bond',1],['depreciation',1],['clear',2]])move(calculator.querySelector('.'+name),expansion-row*gain+gain/2);
+        move(prefix,gain);
+        for(const selector of ['.keyboard-panel','.keyboard-frame','.keyboard-crossbar']){
+          const el=calculator.querySelector(selector),parent=el.parentElement.getBoundingClientRect();
+          el.style.top=(el.getBoundingClientRect().top-parent.top-expansion)+'px';
+        }
+        calculator.dataset.portraitExpansion=String(expansion);
+      }else calculator.dataset.portraitExpansion='0';
+    };
+    layout();
+    let frame=0;
+    const schedule=()=>{if(!alive||frame)return;frame=requestAnimationFrame(()=>{frame=0;layout()})};
+    const fontChanged=()=>{fontRevision++;schedule()};
+    const observer=new ResizeObserver(schedule);observer.observe(calculator);
+    document.fonts.ready.then(fontChanged);
+    document.fonts.addEventListener('loadingdone',fontChanged);
+    window.addEventListener('pageshow',schedule);window.addEventListener('resize',schedule);window.addEventListener('orientationchange',schedule);
+    return()=>{alive=false;observer.disconnect();cancelAnimationFrame(frame);document.fonts.removeEventListener('loadingdone',fontChanged);window.removeEventListener('pageshow',schedule);window.removeEventListener('resize',schedule);window.removeEventListener('orientationchange',schedule)};
+  },[]);
 }
 
-function readSaved() {
-  try { return restoreState(JSON.parse(localStorage.getItem("hp12c-state") || "null")); }
-  catch { return restoreState(INITIAL_STATE); }
+function savedState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('hp12c-state') || 'null');
+    return initializeDefaults(restoreState(saved),localStorage.getItem('hp12c-default-program') !== DEFAULT_PROGRAM_VERSION,
+      localStorage.getItem('hp12c-default-display') !== DEFAULT_DISPLAY_VERSION);
+  } catch { return initializeDefaults(restoreState(INITIAL_STATE),true); }
 }
-
+function panelReducer(current,action){
+ if(action.type==='state')return {...current,state:typeof action.updater==='function'?action.updater(current.state):action.updater};
+ if(action.type==='clear-history')return {...current,history:[]};
+ if(action.type==='restore-history')return {...current,history:action.history};
+ const state=displayDefaults(pressKey(current.state,action.id));
+ const entry=historyEntry(current.state,state,resolveKeyAction(action.id,current.state.shift),{id:action.eventId,time:action.time,display:formatDisplay(state)});
+ return {state,history:appendHistory(current.history,entry)};
+}
 export function App() {
-  const [state, setState] = useState(readSaved);
-  const [selectedKey, setSelectedKey] = useState("0");
-  const [shortcutOpen, setShortcutOpen] = useState(false);
-  const [keypadOpen, setKeypadOpen] = useState(false);
-  const [filter, setFilter] = useState("all");
-  const [query, setQuery] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [view, setView] = useState('front');
-  const [offlineReady, setOfflineReady] = useState(false);
-  const dialogRef=useRef(null);
+  useJoinedFrame();
+  const [{state,history},dispatch]=useReducer(panelReducer,null,()=>({state:savedState(),history:readHistory(localStorage)}));
+  const setState=useCallback(updater=>dispatch({type:'state',updater}),[]);
+  const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage));
+  const latestSaved=useRef({state,history,prefs});
+  useLayoutEffect(()=>{latestSaved.current={state,history,prefs}},[state,history,prefs]);
+  useEffect(()=>{const flush=()=>{try{const current=latestSaved.current;localStorage.setItem('hp12c-state',JSON.stringify(current.state));localStorage.setItem(HISTORY_KEY,JSON.stringify(current.history));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(current.prefs))}catch{}};const hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
+  const audio=useRef(null),eventCounter=useRef(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
+  const [notice, setNotice] = useState('');
+  const heldKeys = useRef(new Set());
+  const backupInput=useRef(null);
+  const activate=useCallback(id=>{
+    if(prefs.vibration&&typeof navigator.vibrate==='function')navigator.vibrate(12);
+    if(prefs.sound){try{const Context=window.AudioContext||window.webkitAudioContext;if(Context){const ctx=audio.current||(audio.current=new Context());ctx.resume().then(()=>{const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.frequency.value=880;gain.gain.setValueAtTime(.035,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.035);oscillator.connect(gain);gain.connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+.04)}).catch(()=>{})}}catch{}}
+    dispatch({type:'key',id,eventId:Date.now()+'-'+(++eventCounter.current),time:new Date().toISOString()});
+  },[prefs.sound,prefs.vibration]);
+  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[history,prefs]);
+  useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,state.powered,state.running,state.paused,setState]);
+  useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
+  useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen]);
+  const openMenu=useCallback(()=>setMenuOpen(true),[]);
   useEffect(() => {
-    if (!('serviceWorker' in navigator) || !import.meta.env.PROD || import.meta.env.VITE_DESKTOP_BUILD === '1') return;
-    let active=true;
-    const checkCache=async()=>{
-      const entries=await Promise.all(['index.html','models/hp12c-platinum.glb'].map(path=>caches.match(new URL(`${import.meta.env.BASE_URL}${path}`,location.href).href,{ignoreSearch:true})));
-      if(active)setOfflineReady(entries.every(Boolean));
-    };
-    navigator.serviceWorker.ready.then(checkCache).catch(()=>{});
-    navigator.serviceWorker.addEventListener('controllerchange',checkCache);
-    return ()=>{active=false;navigator.serviceWorker.removeEventListener('controllerchange',checkCache);};
+    try {
+      localStorage.setItem('hp12c-default-display',DEFAULT_DISPLAY_VERSION);
+      if (localStorage.getItem('hp12c-default-program') !== DEFAULT_PROGRAM_VERSION) {
+        const previous = JSON.parse(localStorage.getItem('hp12c-state') || 'null');
+        if (previous?.program?.length) localStorage.setItem('hp12c-program-before-default',JSON.stringify(previous.program));
+        localStorage.setItem('hp12c-default-program',DEFAULT_PROGRAM_VERSION);
+      }
+    } catch {}
   }, []);
-  useEffect(() => { if (state.paused && state.program.length && state.displayLabel !== 'PROGRAMA PAUSADO') { const timer=setTimeout(() => setState(s => pressAction(s, 'runStop')), 1000); return () => clearTimeout(timer); } }, [state.paused, state.program.length, state.displayLabel]);
-
-  useEffect(() => { localStorage.setItem("hp12c-state", JSON.stringify(state)); }, [state]);
-  useEffect(()=>{if(!shortcutOpen&&!keypadOpen)return;const prior=document.activeElement;const dialog=dialogRef.current;const nodes=()=>[...dialog.querySelectorAll('button,input,select,a[href]')].filter(n=>!n.disabled);const first=dialog.querySelector('input')||nodes()[0];first?.focus();const trap=event=>{if(event.key!=='Tab')return;const list=nodes(),first=list[0],last=list.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}};dialog.addEventListener('keydown',trap);return()=>{dialog.removeEventListener('keydown',trap);prior?.focus();};},[shortcutOpen,keypadOpen]);
-
-  const activate = (id) => {
-    setSelectedKey(id);
-    setState((current) => pressKey(current, id));
-  };
-
-  const activateFunction = (id, shift) => {
-    setSelectedKey(id);
-    setState((current) => {
-      const prefixed = shift ? pressKey(current, shift) : current;
-      return pressKey(prefixed, id);
-    });
-  };
-
   useEffect(() => {
-    const onKeyDown = (event) => {
-      if(event.key==='Escape'&&(shortcutOpen||keypadOpen)){event.preventDefault();setShortcutOpen(false);setKeypadOpen(false);return;}
-      if (event.target instanceof HTMLElement && (event.target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName))) return;
-      if(event.key==='?'||((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k')){event.preventDefault();setShortcutOpen(true);return;}
-      if(event.ctrlKey||event.metaKey||event.altKey)return;
-      if(event.key==='Tab'&&(shortcutOpen||keypadOpen))return;
-      if(event.target?.tagName==='BUTTON'&&['Enter',' '].includes(event.key))return;
-      if(event.key==='Backspace'){event.preventDefault();setState(s=>pressAction(s,'backspace'));setSelectedKey('divide');return;}
-      if(event.key==='='){event.preventDefault();setState(s=>pressAction(s,'equals'));setSelectedKey('enter');return;}
-      const shortcut = event.code === "Space" ? "Enter" : event.key.length === 1 ? event.key.toUpperCase() : event.key;
-      const key = KEY_DEFINITIONS.find((definition) => definition.shortcut.toUpperCase() === shortcut.toUpperCase());
-      if (!key) return;
-      event.preventDefault();
-      activate(key.id);
+    const timer = setTimeout(() => { try { localStorage.setItem('hp12c-state', JSON.stringify(state)); } catch {} }, 150);
+    return () => clearTimeout(timer);
+  }, [state]);
+  useEffect(() => {
+    if (!state.paused || !state.program.length || state.displayLabel === 'PROGRAMA PAUSADO') return;
+    const timer = setTimeout(() => setState(current => displayDefaults(pressAction(current, 'runStop'))), 1000);
+    return () => clearTimeout(timer);
+  }, [state.paused, state.program.length, state.displayLabel]);
+  useEffect(() => {
+    const handle = event => {
+      if(event.target?.closest?.('input,textarea,select,[contenteditable="true"]'))return;
+      if (menuOpen || diagnosticsOpen) {
+        if(event.key==='Backspace')event.preventDefault();
+        if(event.key==='Escape'){setMenuOpen(false);setDiagnosticsOpen(false)}
+        return;
+      }
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.target?.tagName === 'BUTTON' && [' ', 'Enter'].includes(event.key)) return;
+      if (event.key === 'Backspace' || event.key === '=') {
+        event.preventDefault(); setState(current => displayDefaults(pressAction(current, event.key === '=' ? 'equals' : 'backspace'))); return;
+      }
+      const shortcut = event.code === 'Space' ? 'Enter' : event.key === ',' ? '.' : event.key;
+      const key = KEY_DEFINITIONS.find(key => key.shortcut.toUpperCase() === shortcut.toUpperCase());
+      if (!key || event.key === 'Tab') return;
+      event.preventDefault(); activate(key.id);
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [shortcutOpen, keypadOpen]);
-
-  const functionRows = useMemo(() => {
-    const rows = KEY_DEFINITIONS.filter((key) => key.tone !== "shift-f" && key.tone !== "shift-g");
-    const needle = query.trim().toLowerCase();
-    return rows.filter((key) => {
-      const entries = [
-        { shift: null, name: key.label, action: key.action },
-        { shift: "f", name: key.f, action: key.fAction },
-        { shift: "g", name: key.g, action: key.gAction },
-      ];
-      const available = entries.filter((entry) => entry.name && entry.action && (filter === "all" || entry.shift === filter));
-      return available.some((entry) => `${key.id} ${key.label} ${key.f} ${key.g} ${entry.name} ${descriptions[entry.action] || ""} ${key.shortcut}`.toLowerCase().includes(needle));
-    });
-  }, [filter, query]);
-
-  const copyShortcuts = async () => {
-    const table = KEY_DEFINITIONS.map((key) => `${key.label}\t${key.f || "—"}\t${key.g || "—"}\t${key.shortcut}`).join("\n");
-    try { await navigator.clipboard.writeText(`Tecla\tf\tg\tAtalho\n${table}`); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { setCopied(false); }
+    window.addEventListener('keydown', handle);
+    return () => window.removeEventListener('keydown', handle);
+  }, [menuOpen, diagnosticsOpen, activate]);
+  useEffect(() => {
+    if (state.displayLabel !== 'MANTISSA' || !state.displayOverride) return;
+    const timer = setTimeout(() => setState(current => ({ ...current, displayOverride: null })), 650);
+    return () => clearTimeout(timer);
+  }, [state.displayLabel, state.displayOverride]);
+  useEffect(()=>{
+    const calculator=document.querySelector('.calculator');
+    const movable=target=>target.closest?.('.menu-panel,.viewport-diagnostics,textarea');
+    const stopDrag=event=>{if(!movable(event.target)&&event.cancelable)event.preventDefault()};
+    calculator.addEventListener('touchmove',stopDrag,{passive:false});
+    calculator.addEventListener('contextmenu',stopDrag);
+    return()=>{calculator.removeEventListener('touchmove',stopDrag);calculator.removeEventListener('contextmenu',stopDrag)};
+  },[]);
+  const saveBackup=()=>{
+    try{
+      const backup=createBackup(localStorage,state);
+      backup.entries[HISTORY_KEY]=JSON.stringify(history);
+      backup.entries[UI_SETTINGS_KEY]=JSON.stringify(prefs);
+      const url=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
+      const link=document.createElement('a');link.href=url;link.download='hp12c-backup-'+new Date().toISOString().slice(0,10)+'.json';
+      document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+      setNotice('Backup gerado. Confirme que o arquivo foi salvo antes de remover o app.');
+    }catch{setNotice('Não foi possível gerar o backup. Nenhum dado foi alterado.');}
   };
-
+  const importBackup=async event=>{
+    const file=event.target.files?.[0];event.target.value='';if(!file)return;
+    try{
+      if(file.size>1024*1024)throw new Error();
+      const backup=parseBackup(await file.text());
+      const restored=restoreState(backup.state);
+      restoreBackupStorage(localStorage,backup.entries);
+      dispatch({type:'restore-history',history:readHistory(localStorage)});
+      setPrefs(readUiSettings(localStorage));
+      setState(restored);setMenuOpen(false);setNotice('Backup restaurado: programas, registradores e configurações.');
+    }catch{setNotice('Não foi possível restaurar este arquivo. Os dados atuais foram mantidos.');}
+  };
   const display = formatDisplay(state);
-  const showOverlay = shortcutOpen || keypadOpen;
-
-  return <main className="app-shell">
-    <header className="topbar">
-      <a className="brand-lockup" href="#inicio" aria-label="HP 12c Platinum — início">
-        <span className="brand-mark">12<span>c</span></span>
-        <span className="brand-copy"><strong>PLATINUM</strong><small>CALCULADORA FINANCEIRA</small></span>
-      </a>
-      <nav className="top-nav" aria-label="Navegação principal">
-        <span className="nav-item nav-active">Calculadora</span>
-        <button className="nav-item" onClick={() => setShortcutOpen(true)}>Funções</button>
-        <a className="nav-item" href="https://github.com/Sagittaryuz/hp12c-platinum/releases/latest" target="_blank" rel="noreferrer">Baixar Windows</a>
-      </nav>
-      <div className="top-actions">
-        <button className="header-button" onClick={() => setKeypadOpen(true)}><Keyboard size={17} weight="bold" /> <span>Teclado</span></button>
-        <button className="header-button shortcut-launch" onClick={() => setShortcutOpen(true)}><Command size={16} weight="bold" /> <span>Atalhos</span><kbd>?</kbd></button>
-      </div>
-    </header>
-
-    <section className="intro-strip" id="inicio">
-      <div><span className="eyebrow"><span className="status-dot" /> MOTOR DE CÁLCULO LOCAL</span>
-        <h1>HP 12c Platinum</h1>
-        <p>Calculadora financeira · RPN e ALG · memória contínua local.</p>
-      </div>
-      <div className="intro-meta"><span className="version-chip"><span className="live-dot" /> {offlineReady ? 'OFFLINE PRONTO' : 'MOTOR LOCAL'}</span><small>Suas contas permanecem neste dispositivo.</small></div>
+  const fullscreen = async () => {
+    setMenuOpen(false);
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+      else setNotice('No iPhone: Compartilhar → Adicionar à Tela de Início → Abrir como app.');
+    } catch { setNotice('Para abrir sem as barras do navegador, adicione a calculadora à Tela de Início.'); }
+  };
+  return <main className="page">
+    <div className="ios-pwa-blur-sentinel" aria-hidden="true"/>
+    <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
+    <section className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
+      <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
+      <Lcd state={state} display={display}/>
+      <div className="keyboard-crossbar" aria-hidden="true"/>
+      <div className="keyboard-frame" aria-hidden="true"/>
+      <div className="keyboard-lower-bridge" aria-hidden="true"/>
+      <div className="keyboard-panel" aria-hidden="true"/>
+      <Brackets/>
+      <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu} keyEntry={prefs.keyEntry}/>
+      <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
+      {menuOpen&&<HpMenu state={state} history={history} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
+        onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
+        onClearHistory={()=>dispatch({type:'clear-history'})}
+        onReset={selected=>{setState(resetSelected(state,selected,INITIAL_STATE));if(selected.settings)setPrefs({...UI_DEFAULTS});if(selected.history)dispatch({type:'clear-history'})}}
+        onBackup={saveBackup} onRestore={()=>backupInput.current.click()} onFullscreen={fullscreen}
+        onDiagnostics={()=>{setMenuOpen(false);setDiagnosticsOpen(true)}} onAngular={()=>setState(current=>displayDefaults(pressAction(current,'toggleAngular')))}
+        onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>} 
+      {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
+      <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
+      {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
-
-    <section className="workspace" aria-label="Calculadora HP 12c Platinum">
-      <div className="model-column">
-        <div className="model-toolbar">
-          <div className="model-caption"><span className="caption-icon"><Sparkle size={15} weight="fill" /></span><span><strong>MODELO INTERATIVO</strong><small>Arraste para girar · role para aproximar</small></span></div>
-          <div className="mode-switch" role="group" aria-label="Modo de cálculo">
-            <button className={state.mode === "RPN" ? "selected" : ""} onClick={() => setState((s) => pressAction(s, "modeRpn"))}>RPN</button>
-            <button className={state.mode === "ALG" ? "selected" : ""} onClick={() => setState((s) => pressAction(s, "modeAlg"))}>ALG</button>
-          </div>
-        </div>
-        <div className="device-stage">
-          <div className="stage-grid" />
-          <div className="view-chip"><span className="live-dot" /><select aria-label="Vista do modelo 3D" value={view} onChange={event=>setView(event.target.value)}>{[['front','Frente'],['back','Traseira'],['left','Lado esquerdo'],['right','Lado direito'],['top','Topo'],['bottom','Base']].map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></div>
-          <div className="model-size"><span>129 × 79 × 15 mm</span><small>dimensões nominais</small></div>
-          <CalculatorModel display={display} status={`${state.mode}${state.tvm.begin?' · BEG':''} · ${state.displayLabel}`} selectedId={selectedKey} onPress={activate} view={view} />
-          <button className="touch-hint" onClick={() => setKeypadOpen(true)}><Keyboard size={14} /> Clique em uma tecla para calcular</button>
-        </div>
-        <div className="model-footnote"><span className="footnote-mark">i</span><span>Modelo baseado nas seis vistas e dimensões nominais enviadas. Os detalhes das teclas seguem o manual oficial.</span></div>
-      </div>
-
-      <aside className="status-panel" aria-label="Estado da calculadora">
-        <div className="panel-head"><div><span className="eyebrow">VISOR E PILHA</span><h2>Em execução</h2></div><span className="online-indicator"><i /> LOCAL</span></div>
-        <div className="readout-card">
-          <div className="readout-heading"><span>REGISTRO X</span><span className={state.error ? "display-error" : ""}>{state.error || state.displayLabel}</span></div>
-          <strong>{display}</strong>
-          <small>{state.mode} <span>·</span> {state.dateFormat==='MDY'?'M.DY':'D.MY'} {state.tvm.begin?' · BEG':''}</small>
-        </div>
-        <div className="stack-heading"><span>PILHA RPN</span><span>ÚLTIMO X <b>{state.lastX.toFixed(2)}</b></span></div>
-        <div className="stack-list" aria-live="polite">
-          <div><span>T</span><b>{state.t.toFixed(2)}</b></div>
-          <div><span>Z</span><b>{state.z.toFixed(2)}</b></div>
-          <div><span>Y</span><b>{state.y.toFixed(2)}</b></div>
-          <div className="stack-x"><span>X</span><b>{state.x.toFixed(2)}</b></div>
-        </div>
-        <div className="panel-divider" />
-        <div className="finance-head"><span>REGISTROS FINANCEIROS</span><button aria-label="Limpar registros financeiros" onClick={() => setState((s) => pressAction(s, "clearFin"))}><ArrowCounterClockwise size={15} /></button></div>
-        <div className="finance-grid">
-          {[["n", state.tvm.n], ["i", state.tvm.i], ["PV", state.tvm.pv], ["PMT", state.tvm.pmt], ["FV", state.tvm.fv]].map(([label, value]) => <div key={label}><span>{label}</span><b>{Number(value).toFixed(2)}</b></div>)}
-        </div>
-        <div className="panel-actions">
-          <button className="action-secondary" onClick={() => setState((s) => pressAction(s, `fixed${(s.decimals+1)%10}`))}><SlidersHorizontal size={15} /> Casas: {state.decimals}</button>
-          <button className="action-secondary" onClick={() => setState((s) => pressAction(s, "clx"))}>Limpar X <kbd>⌫</kbd></button>
-        </div>
-        <div className="panel-hint"><span className="hint-icon"><Check size={12} weight="bold" /></span><span>Motor e memória executam localmente. Nenhuma conta é enviada.</span></div>
-        <details className="memory-detail"><summary>Programa <span>{state.program.length}/400 · linha {String(state.pc).padStart(3,'0')}</span></summary><div className="panel-actions"><button className="action-secondary" onClick={()=>activateFunction('rs','f')}>{state.programMode?'Sair de P/R':'Gravar P/R'}</button><button className="action-secondary" onClick={()=>activate('rs')}>R/S</button><button className="action-secondary" onClick={()=>activate('sst')}>SST</button></div><ol>{state.program.map((instruction,index)=><li key={index}>{String(index+1).padStart(3,'0')} · {instruction}</li>)}</ol></details>
-        <details className="memory-detail"><summary>Fluxos de caixa <span>{state.cashflows.length-1}/80</span></summary><ol>{state.cashflows.map((value,index)=><li key={index}>CF{index} · {value.toFixed(2)} × {state.cashflowCounts[index]}</li>)}</ol></details>
-      </aside>
-    </section>
-
-    <footer className="page-footer"><span>PROJETO INDEPENDENTE · SEM VÍNCULO COM A HP</span><a href="https://github.com/Sagittaryuz/hp12c-platinum" target="_blank" rel="noreferrer"><GithubLogo size={16} weight="fill" /> Código no GitHub <CaretDown size={13} className="external-mark" /></a></footer>
-
-    {showOverlay && <div className="overlay-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) { setShortcutOpen(false); setKeypadOpen(false); } }}>
-      <section ref={dialogRef} className={`dialog ${shortcutOpen ? "shortcuts-dialog" : "keypad-dialog"}`} role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-        <header className="dialog-header"><div><span className="eyebrow">GUIA RÁPIDO</span><h2 id="dialog-title">{shortcutOpen ? "Teclas e atalhos" : "Teclado acessível"}</h2></div><button className="close-dialog" aria-label="Fechar" onClick={() => { setShortcutOpen(false); setKeypadOpen(false); }}><X size={18} /></button></header>
-        {shortcutOpen ? <>
-          <p className="dialog-description">Consulte as funções impressas e use o teclado do computador. Toque numa função para destacá-la e acioná-la.</p>
-          <div className="shortcut-search"><MagnifyingGlass size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar tecla ou função…" autoFocus /><kbd>Ctrl K</kbd></div>
-          <div className="filter-tabs" role="tablist" aria-label="Filtrar funções">
-            {[ ["all", "Todas"], [null, "Tecla"], ["f", "f · laranja"], ["g", "g · azul"] ].map(([value, label]) => <button key={String(value)} role="tab" aria-selected={filter === value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>)}
-            <button className="copy-shortcuts" onClick={copyShortcuts}>{copied ? <Check size={14} /> : <Command size={14} />}{copied ? "Copiado" : "Copiar"}</button>
-          </div>
-          <div className="shortcut-list">
-            {functionRows.map((key) => {
-              const entries = [
-                { shift: null, name: key.label, action: key.action }, { shift: "f", name: key.f, action: key.fAction }, { shift: "g", name: key.g, action: key.gAction },
-              ].filter((entry) => entry.name && entry.action && (filter === "all" || entry.shift === filter));
-              return <article className={`shortcut-row ${selectedKey === key.id ? "is-highlighted" : ""}`} key={key.id}>
-                <div className="shortcut-key"><strong>{key.label}</strong><span>{key.id.toUpperCase()}</span></div>
-                <div className="shortcut-functions">{entries.map((entry) => <button key={`${key.id}-${entry.shift || "base"}`} className={`function-choice ${entry.shift || "base"}`} onClick={() => activateFunction(key.id, entry.shift)} title={descriptions[entry.action] || entry.name}>
-                  {entry.shift && <span className="function-prefix">{entry.shift}</span>}<span className="function-title">{entry.name} <kbd>{shortcutLabel(entry.shift,key.shortcut)}</kbd></span><small>{descriptions[entry.action] || "Função da tecla"}</small>
-                </button>)}</div>
-                <div className="shortcut-keycap"><kbd>{shortcutLabel(null, key.shortcut)}</kbd><small>atalho</small></div>
-              </article>;
-            })}
-            {functionRows.length === 0 && <div className="empty-search">Nenhuma tecla corresponde a “{query}”.</div>}
-          </div>
-          <div className="dialog-footer"><span><b>F1</b> ativa f · <b>F2</b> ativa g · depois pressione o atalho da tecla</span><span>39 teclas físicas</span></div>
-        </> : <>
-          <p className="dialog-description">Cada botão envia o mesmo comando do modelo 3D e do teclado físico.</p>
-          <div className="accessible-keypad" role="group" aria-label="Teclas físicas da calculadora">
-            {KEY_DEFINITIONS.map((key) => <button key={key.id} style={{ gridColumn: `${key.col + 1}`, gridRow: key.id==='enter'?'3 / span 2':`${key.row + 1}` }} className={`accessible-key ${key.tone || ""} ${selectedKey === key.id ? "selected" : ""}`} onClick={() => activate(key.id)} aria-label={`${key.label}; f: ${key.f || "sem função"}; g: ${key.g || "sem função"}; atalho ${shortcutLabel(null, key.shortcut)}`}>
-              {key.f && <small className="mini-f">{key.f}</small>}<strong>{key.label}</strong>{key.g && <small className="mini-g">{key.g}</small>}
-            </button>)}
-          </div>
-          <div className="dialog-footer"><span><b>F1</b> / <b>F2</b> prefixos · <kbd>Espaço</kbd> Enter</span><span>Atalhos indicados em cada tecla</span></div>
-        </>}
-      </section>
-    </div>}
   </main>;
 }
+

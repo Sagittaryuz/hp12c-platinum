@@ -2,6 +2,9 @@ export type Shift = "f" | "g" | null;
 export type KeyDefinition = { id: string; label: string; f: string; g: string; shortcut: string; action: string; fAction: string; gAction: string; tone?: string; row: number; col: number; printF?: boolean; help?: string };
 const key = (id:string,label:string,f:string,g:string,shortcut:string,action:string,fAction:string,gAction:string,row:number,col:number,extra:Partial<KeyDefinition> = {}):KeyDefinition => ({id,label,f,g,shortcut,action,fAction,gAction,row,col,...extra});
 export const KEY_DEFINITIONS: KeyDefinition[] = [
+  key('sin','SIN','','','F7','sin','','',0,-1),
+  key('cos','COS','','','F8','cos','','',1,-1),
+  key('tan','TAN','','','F9','tan','','',2,-1),
   key('n','n','AMORT','12×','N','n','amortize','12x',0,0),
   key('i','i','INT','12÷','I','i','interest','12div',0,1),
   key('pv','PV','NPV','CF₀','V','pv','npv','cf0',0,2),

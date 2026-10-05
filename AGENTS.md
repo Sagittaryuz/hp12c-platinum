@@ -1,5 +1,55 @@
 # Prototype Instructions
 
+03/10 13:39:17 UTC: Marcos authorizes header/title/logo and LCD ONLY upward an additional10 CSS px relative to0.2.10, test and publish. Preserve native safe area/opaque11 clamping; report actual exceptions, do not move lower elements. Keep existing keyboard expansion referenced to old LCD coordinate where compact clamp applies. Version0.2.11. Rollback exact0.2.10 dpl_BuE2WJM7napSbpX81UThjo8mQqRG; preserve earlier history. User physically confirms0.2.9 without blur;0.2.10 approved. No physical blur guarantee, Git push or other project edits.
+
+03/10 13:10:43 UTC: Marcos explicitly authorizes portrait smooth plate/top metal/textured members upward20 CSS px, seven rows with six equal gaps gaining20/6; normal key dimensions/horizontal layout fixed, last row/base anchored. ENTER grows one gap. Recenter group tiers in gained space; preserve normal legend clearance. Preserve0.2.9 header/LCD/opaque11/state and landscape. Limit expansion only if LCD rim clearance would fall below8 CSS px. Version0.2.10; publish after QA. Preserve rollback0.2.9 dpl_7cee5fcyG6wgkVhoEK63ky99w4e2 and previous0.2.8. User physically confirms0.2.9 without blur. No other projects or Git push.
+
+03/10 12:47:54 UTC: Marcos explicitly authorizes moving ONLY complete header (model and logo) and LCD upward30 CSS px relative to0.2.8, testing and publishing. Preserve opaque11 strip and all lower geometry/data/menu. Bound shared displacement where it otherwise intersects native safe area or opaque11; report exceptions explicitly. Preserve exact0.2.8 immutable deployment dpl_4jZtSsZj5MZJdfNirMhzbjH89GqR for rollback if physical blur returns. Version0.2.9. No other projects or Git push.
+
+03/10 02:54 UTC: Marcos explicitly authorizes comparing both blur references, implementation/testing/publication. Parent materialized/read Safari26 Status Bar Tinting PDF (Library libfile_49051bf646b48191ac0d8cc8050040ba), visually inspected pages2/7: fixed/sticky top<=4px width>=80%, opaque height>=5, recommend11+. User iOS27 article recommends6+. Replace empty background-clip:text sentinel with actual opaque11px top0/full-width #c6c6c6 element, z3 pointer-eventsnone, active browser/standalone/fullscreen. Preserve all0.2.7 geometry/data/modal blur. PDF empirical, not hardware/build17Pro/iOS27 proof; no claim physical cure. Do not copy unrelated hook or change permissions. Version0.2.8. No other projects/Git push.
+
+02/10 14:45:54 UTC: Marcos requests display ONLY down5, header fixed, distinct smooth5px band below metal before textured40px base. Raise lower plates5px and redistribute keys; metal sides5/crossbar10/textures/data preserved. Explicit "quando fizer, publique" authorizes0.2.7. Metal/maker bottom45, new bridge bottom40 height5; texture remains40, not45. HP project only, no Git push.
+
+02/10 14:29:15/26 UTC: Marcos requests ONLY header/model/HP down5 CSS, LCD fixed, and explicitly authorizes publication. Version0.2.6; relative to0.2.5 model/brand translate15 (was10), LCD stays10. All lower geometry/base40/texture/cache/math/data unchanged. Only HP project; no Git push.
+
+Short portrait <=650 CSS height: preserve exact additional5 position and fixed LCD, fit title font and emblem height to available pre-LCD space. 320x450 otherwise overlaps existing LCD rim; normal402x874 and landscape dimensions unchanged. No changes to lower geometry.
+
+02/10 13:56:08 UTC: Marcos authorized base40 and progressive upper metal texture, including direct publication (Sentinel_efa54cd7548081918a157d56ad10ce07). Header/model/HP/LCD locked to published 0.2.4 geometry; lower components raised10 CSS, base40, metallic sides5 and crossbar10 preserved. Existing horizontal texture is derived into coarse-to-fine smoothly blended frequencies; original palette unchanged. Version0.2.5; only HP project, no Git push.
+
+02/10 13:42:56 UTC: Marcos explicitly approved publishing this tested metal5/additional-header5 revision (Sentinel_619fb79a875081918420042ecee74cc4: "Sim, pode publicar"). Version 0.2.4. Supersedes local-only restriction below for this batch; HP project only, no Git push or unrelated changes.
+
+02/10 new LOCAL-only revision relative to published 0.2.3: metallic side rails 5 CSS px (was 10); model/HP/LCD descend an additional 5 CSS px (total translate 10). Preserve textured crossbar 10, portrait bottom 30, all cache/menu/state/math behavior. No deployment authorization for this batch. Preserve responsive key/legend spacing and measure overlap before handoff.
+
+02/10 12:13:39UTC: Marcos explicitly authorized publishing this revision after completion/tests. Supersedes prior no-publish restriction for this0.2.3 revision only. Parent inspected Library screenshot942x2048 pixels: it shows0.2.2 MENU, not calculator/frame/digits; use code and new measurements for geometry. Name exact HP12C Platinum, silver HP in HP menu/settings, credits Marcos Rodrigues Pires,2026.
+
+02/10 next LOCAL revision: header/model/HP/LCD descend5CSS from published0.2.2, glyph strokes slightly thicker without format/alignment changes, textured crossbar10CSS, metal side rails10CSS (textured sides unchanged). Credits Marcos Rodrigues Pires,2026 below menu; configuration first row HP12C Platinum and silver HP. Uniform controls recentered within inset smooth plate. Cache improvements must preserve live state and avoid automatic reload/skipWaiting. Await specific permission before any deployment. Latest Library screenshot could not materialize in Windows; parent supplies visual inspection.
+
+02/10 04:23:50 UTC: Marcos explicitly approved publication of the complete tested HP revision. This supersedes prior local-only restrictions for this revision only. Preserve the published experimental blur sentinel; deploy only the HP project. Reference menu/settings/install images were inspected by parent and confirmed specs used locally. Version 0.2.2 is the actual release package version. No unrelated projects or Git push.
+
+02/10 local-only pending review: shared row geometry and legend/group gaps, PREFIX plain, CLEAR excludes R/S and FIN over swap both orientations. Header/model/HP/LCD rise10px with safe top clamp in short landscape to avoid clipping. Existing frame/maker/engine preserved. Do not deploy this stage: blur-only publication authorization belongs exclusively to separate deploy/hp12c-blur-only. Menu/settings reference bytes unavailable; no inferred visual implementation. See portrait-spacing-local-qa/RESULTADO.md and measured before/after evidence.
+
+02/10 latest local-only request: PREFIX above ENTER is plain red text, no bracket arms in either orientation. Preserve geometry using transparent bracket borders, not border removal that shifts its text. Keep published base30/maker10, functions and HP menu unchanged. No deployment or new HP features without specific authorization.
+
+02/10 latest authorized revision: portrait bottom textured crosspiece30CSS (was10). Translate all lower components20CSS upward, including textured crossbar, metal frame/smooth plate/keys/red ink/maker; header/model/HP/LCD remain fixed. Rail and visible glyph heights10CSS retained, all other widths/materials/functions unchanged, landscape preserved. User explicitly requests change and publish.
+
+New explicit publication authorization: user now requested "faca o deploy e publique" for completed maker10 revision. Deploy of this tested revision is authorized; prior local-only restriction is superseded for publication of these calculator changes. No push or unrelated changes.
+
+02/10 local maker10 calibration completed: nominalfont13.4CSS, rails10CSS, actual ink30physicalpx atDPR3 in Edge/WebKit. Text stroke0.04CSS and inkbaseline offset-1/3CSS; WebKit feature query prefixedbackdrop-filter changes stroke0.09CSS and offset-1CSS. No actual backdrop-filter/blur, clipping or UA sniffing. Dot counter-offset retains centre of rails. Criterion allRGB>100 on padded maker-only crop, not boundingbox/font metrics; target physicaliPhone still unverified. Do not publish/upload until new specific authorization.
+
+02/10 new local-only revision: portrait maker rails10CSS and visible lettering10CSS. Nominal font-size must be measured separately. Preserve bottom texture10CSS, metal sides4CSS, header/LCD/smooth-top fixed, min10CSS horizontal gaps, landscape/functions/data. No deploy, push, upload or external publication until new specific authorization; earlier publication permission does not cover this stage.
+
+01/10 latest maker decision: keep current lettering/font-size27.95 and proportions; lower portrait rails to recorded visible glyph height62/3CSS (20.67), not font-size. Keep10px horizontal gaps, bottom texture10px, metal sides4px, header/LCD/smooth top fixed, CLEAR excludes R/S, landscape unchanged. This supersedes earlier nominal27.95 rail height.
+
+02/10 portrait base10: keep header/LCD and smooth-plate top fixed. Textured bottom10px, textured sides/crossbar4px unchanged. Metal side members4px; top metal member1px unchanged. CLEAR starts at Sigma column, excluding R/S, retains FIN label over swap. Maker font-size/line-height27.95CSS and box same height as rails;10px horizontal gap each side. Font ink height is not CSS font-size; measure and report actual ink. On narrow portrait, horizontal lettering fit only (no height/font-size change). Recenter keys in reduced smooth plate, protect interactive safe-area. Landscape and engine unchanged. Prior explicit publish authorization applies.
+
+02/10 portrait bottom-rails: lower metal rails27.95px CSS measured from actual metal-frame bottom(height-4px), not safe-area boundary. Maker vertically centered in rails. Smooth plate keeps top fixed and grows down to rail top. Recenter all keys and red ink in enlarged usable plate, retain safe boundary for interactive controls. Maker is decorative, not interactive; OS Home indicator placement is not DOM-controllable. Landscape, LCD/header and engine preserved. Prior explicit publication authorization remains applicable.
+
+02/10 revision portrait4: textured sides4px, transverse4px unchanged, header/oliveLCD+5px, centered LCD rim370x70CSS at402x874 (responsive clamp on smaller screens). Align model left and HP plate right to rim edges. CLEAR spans P/R/Sigma/PRGM/FIN/REG; FIN over swap. Portrait glyph contours receive0.35 logical stroke, no font/motor/format changes. Metal frame and smooth central extension end4px above viewport bottom; maker and interactive keys retain safe-bottom reserve separately. Smooth usable panel top fixed. Landscape unchanged. Publication authorized by prior user request "ja pode fazer e publicar as mudancas diretamente".
+
+02/10, revisão apenas retrato: moldura texturizada lateral8px CSS e travessa superior4px CSS. Placa lisa #181818 estende-se no recorte central atrás de HEWLETT • PACKARD; remover textura nessa região. Aro metálico1px e faixas preservados; redução concentrada nos vãos, com alturas das teclas comuns mantidas na referência. Reserva de área segura inferior não é espessura nominal da moldura. Paisagem idêntica à versão anterior. Autorização persistente: usuário disse “já pode fazer e publicar as mudanças diretamente”.
+
+Atualização01/10: unir estrutura em moldura texturizada contínua, travessa superior com metade da espessura lateral, aro metálico contínuo e placa lisa contida nele. Maker-strip acompanha o limite inferior da placa lisa; faixas laterais têm altura da inscrição, texto e ponto #c6c6c6, fundo transparente e corte intrínseco. Teclado desce50px nominalmente e é redistribuído/centralizado dentro da placa em alturas limitadas, sem sobrepor fabricante, metal ou textura. Visor e cabeçalho conservam suas coordenadas.
+
 Run the local server yourself and open the preview in the browser available to this environment. Do not give the user server-start instructions when you can run it.
 
 Before making substantial visual changes, use the Product Design plugin's `get-context` skill when the visual source is unclear or no longer matches the current goal. When the user gives durable prototype-specific design feedback, preferences, or decisions, record them in `AGENTS.md`.
@@ -7,3 +57,59 @@ Before making substantial visual changes, use the Product Design plugin's `get-c
 When implementing from a selected generated mock, treat that image as the source of truth for layout, component anatomy, density, spacing, color, typography, visible content, and hierarchy.
 
 Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact so the same local prototype can be handed to Sites. Before a Sites handoff, run `npm run build` and `npm run test:sites`; the build must leave `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
+
+## Durable user preferences
+- Use a single frontal 2D calculator on a minimal page, with realistic shading built into the drawing. No 3D, WebGL, rotations or animated model.
+- Prioritize lightweight assets and immediate key response. Preserve the calculation engine.
+- Updated September 30, 2026: the older vectors are dimensional references, not the final UI. Rebuild the face as independent, scalable controls, using the two user-supplied landscape/portrait screenshots as the visual target. Do not use a complete calculator screenshot with transparent buttons over it.
+- Current portrait face has six columns with SIN/COS/TAN in the first three cells of the left column; RCL, STO, g and f follow below. ENTER spans the final two rows of column 2. Omit the earlier reference's upper-left 15 key. Landscape keeps the original financial key order with a left trigonometric column. The HP logo opens the menu.
+- Nominal physical case reference: 129 x 79 x 15 mm. Responsive fullscreen faces use screen coordinates measured from screenshots; they do not establish calibrated physical millimetres on a monitor.
+- Current display defaults: seven fixed decimal places initially and comma decimal separator. Show raw digits during entry; format on ENTER or an operation. Respect f + 0–9 for FIX and f + decimal for SCI; preserve the selected format on reopen. Preload the equivalent-rate program demonstrated in YouTube 8xxCpFUCkPA: rate in i, source period in n, target period in X, then R/S. Back up any existing saved program on first migration. Preserve subsequent explicit program edits; the menu can restore the factory rate program without resetting FIX.
+- Validate functional behavior against the user-provided hp12cplatinum-ug-pt.pdf (2005 Portuguese Platinum manual). ALG is left-to-right, not mathematical operator precedence. Document tested coverage without claiming firmware equivalence.
+
+## Nova referência de materiais e trigonometria — 30/09/2026
+A foto 1 substitui a orientação anterior de preservar as cores e o corpo: aplicar acabamento metálico escovado superior RGB 198/198/198, plástico externo 34/34/34, painel 24/24/24, teclas 70/70/70, visor 132/137/116, inscrições vermelhas 220/0/0, secundárias azuis 0/170/255, primárias 230/230/230, f 255/128/0 e g 0/170/255. Os materiais são texturas SVG leves sobre os controles vetoriais. Não usar a foto inteira como interface.
+Layout retrato: SIN/n/i/PV/PMT/FV; COS/Y^x/1/x/%T/Δ%/%; TAN/R-S/SST/R↓/x↔y/CLx; RCL/CHS/7/8/9/÷; STO/EEX/4/5/6/×; g/ENTER/1/2/3/−; f/ENTER/0/decimal/Σ+/+. No horizontal, preservar a ordem original acrescentando SIN/COS/TAN na coluna esquerda, usando o mesmo acabamento. O logotipo HP abre o menu. Trigonometria usa graus por padrão; o menu alterna DEG/RAD. Manter programa financeiro e dados persistidos; seguir a regra atual de FIX descrita acima.
+
+## Tela inteira e formatação — 01/10/2026
+- Preencher toda a área disponível da tela, respondendo a redimensionamentos/rotação. Sem margem externa nem faixa de plástico no topo; somente metal até a borda superior.
+- Plástico rugoso apenas à direita, esquerda e embaixo, com espessura igual. Atualização de 01/10/2026: ampliar essa borda, subir o visor, descer o teclado e deixar a inscrição Hewlett Packard pequena junto à base. Aro metálico cinza fino ao redor da placa preta do teclado.
+- Teclas maiores e distribuídas dentro do painel. SIN/COS/TAN idênticas às demais na fonte, tamanho e divisão do acabamento. R↓ deve usar seta vetorial, sem emoji.
+- Cabeçalho sem blur ou backdrop-filter; não usar barra iOS translúcida. Preservar áreas seguras do sistema sem reproduzir relógio, bateria ou indicadores do iPhone.
+- Algarismos partem da esquerda do LCD. Digitação mantém a entrada, incluindo vírgula e zeros explicitamente digitados, sem acrescentar casas até concluí-la. A versão antiga que forçava doze casas foi substituída pelo padrão sete, com FIX/SCI escolhidos pelo usuário. Migrar o formato uma única vez, sem sobrescrever programas ou registradores.
+
+- Ajuste de 01/10/2026: ancorar a última fileira junto à base e distribuir as demais para cima, preservando a ordem das teclas. ENTER termina alinhado à última fileira em ambas as orientações.
+
+- Correção da foto de 01/10/2026: não limitar o corpo pela altura de visualViewport nem transformar safe-area-inset-bottom em faixa vazia abaixo do teclado. Usar a altura dinâmica CSS de toda a janela e manter apenas a moldura e a faixa pequena do fabricante na base.
+
+## Visor e viewport — ajuste local de 01/10/2026
+Preservar o teclado e o motor existentes. Visor 4,8:1, dez posições numéricas de sete segmentos; pontuação não consome posição. Sinal negativo e undo na coluna esquerda. Linha fixa RPN, ALG, ( ), f, g, BEGIN, D.MY, C, PRGM, exibindo somente estados reais. Não inventar leitura de bateria. Preencher o viewport nativo com inset fixo, sem compensação de altura fixa ou promessa de pixels fora do DOM. Preservar áreas seguras e as sete casas padrão existentes. Ver LOCAL-CHANGE.md para os testes e limites de verificação no iOS físico.
+
+## Ajustes autorizados em 01/10/2026
+Preservar fluxo B/cover que o usuário validou. Bloquear arraste do corpo por toque sem overflow hidden/fixed na raiz; permitir rolagem em menu/diagnóstico. Visor e marcas descem10px; base do painel/Hewlett sobe10px. Primeira fileira sobe40px em retrato alto (10px da base e30px distribuídos), aumentando vãos sem reduzir teclas. Reduzir ampliação em telas baixas para não sobrepor visor/legendas. Resposta touch/pen no início do toque, sem duplicação no click, mouse/teclado preservados. Canvas medido em pixels reais/DPR para visor, sem alterar valores ou preferências.
+
+Status bar: manter default explícito e elemento DOM real fixo1px na cor #c6c6c6, sem depender de tema do SO ou pseudo-elemento. A configuração retida na instalação não é consultável peloDOM; não prometer remoção do blur sem teste físico. Backup local exporta/restaura somente chaves HP, preservando estado e marcadores de migração antes de eventual remoção/reinstalação.
+
+Atualização autorizada de 01/10: visor e marcas descem mais10px (total20); faixa metálica do fabricante sobe mais10px, com recorte central na metade da altura. Moldura texturizada fina em U com espessura uniforme; painel das teclas liso até a borda inferior. Metal contínuo no topo e elemento DOM opaco real cobrindo safe-area-top, sem prometer controle do blur do SO. Logotipo HP em PNG512 derivado do SVG oficial da HP, placa clara com ranhuras verticais. Contornos DSEG7 Classic400 originais em canvas/DPR, sem polígonos aproximados ou dependência de carregamento de fonte no visor.
+
+Preferência de espaçamento: manter o retângulo do LCD na posição e dimensões aprovadas. Algarismos mais separados; teclado menor contido entre as bordas laterais do LCD em ambas as orientações, com vãos horizontais maiores. Legendagem vermelha inteiramente no painel preto liso, sem invadir visor/metal. Modelo e HP menores e alinhados. HEWLETT PACKARD grande, maiúsculo e pesado na base. Preservar motor, dados e comportamento touch.
+
+Paisagem: usar referência1 enviada em01/10 para geometria e manter materiais atuais da referência2. Medidas aproximadas na imagem exibida2048×942 (original2622×1206): teclas132×104, pitch172, linhas232/416/600/770, ENTER132×274, LCDexterno355/20/1055/148. Preservar colunaSIN/COS/TAN à esquerda e incluirMENU embaixo da primeira coluna financeira. Aplicar somente em landscape; retrato permanece idêntico. Molduras seguem acabamento atual enquanto usuário edita o desenho externo.
+
+Retrato: marcas acima do LCD descem mais5px, mantendo visor aprovado. HEWLETT PACKARD na base da área segura acessível; todas teclas/legendas vermelhas ficam no painel liso. Nome exato do app: HP 12c Platinum. Ícone solicitado: imagem preta com emblema HP12C prateado e texto HP12c; aguarda bytes do anexo, não substituir por desenho aproximado.
+
+Ícone confirmado via ZIP recebido: PNG1254x1254 com emblema HP12C preto/prata, sem texto externo. Usar imagem integral nos tamanhos32/180/192/512, caminhos versionadosv2. Nome HP12c Platinum preservado conforme metadados atuais.
+
+Visor: referência atual é app HP12c da Moravia (AppStore503641946). Algarismos mais estreitos, inclinados, menores dentro do LCD e com vãos maiores; ponto redondo na linha de base e vírgula com cauda curva abaixo. Arquivo de fonte original da Moravia não foi identificado publicamente; implementação usa contornos DSEG7ClassicItalic400 ajustados às proporções observadas, sem afirmar identidade da fonte. Preservar molduras, teclado, ícone, estados e regras matemáticas.
+
+Fabricante: fundo de maker-name transparente. Recorte central da faixa metálica coincide exatamente com largura intrínseca da inscrição HEWLETT + ponto circular preto centralizado + PACKARD; sem caixa preta artificial atrás. Preservar tipografia, posição na base, teclado e visor.
+
+Fabricante atualizado: faixas metálicas centradas verticalmente com a inscrição, recorte horizontal intrínseco preservado. Ponto circular prata #c6c6c6, mesma cor-base do silver-panel. Emulação Edge usa dimensões CSS: captura1206x2622 com DPR3 corresponde a402x874 CSS, sem substituir áreas seguras reais ou motor WebKit do iOS.
+
+04/10 18:23 UTC: authorized startup optimization and publication only. Preserve exact0.2.11 geometry, math, state, offline and safe updates. No other projects or Git push.
+
+05/10: Marcos requests planning further optimization only; do not implement plan. Locally thicken LCD digits slightly, keep geometry/state, compare/test. No deployment authorization.
+
+05/10 aesthetic constraint: Marcos considers existing key aesthetics perfect. Any future font optimization means reducing file bytes, never visual font size, weight, glyph design, metrics, spacing or geometry. Reject a conversion if appearance changes. Optimization implementation and LCD publication remain unapproved.
+
+05/10 02:35UTC: Marcos authorizes ONLY LCD redraw deduplication, lossless font file compression retaining perfect aesthetics, and thicker digits, testing/publication. Preserve layout/math/state/offline/updates; no lazy menus/geometry/persistence refactor/Library export. Candidate0.2.13.

@@ -1,0 +1,10 @@
+import {it,expect} from 'vitest';
+import {INITIAL_STATE,pressAction,pressKey} from '@sagittaryuz/hp12c-core';
+import {editMemory,recallResult,resetSelected,parseMemoryValue,appendHistory,readUiSettings,readHistory,historyEntry} from '../src/hp-panel-state.mjs';
+const fresh=()=>structuredClone(INITIAL_STATE);
+it('edita uma memória sem modificar pilha, programa ou formato',()=>{const s=fresh(),n=editMemory(s,3,'12,5');expect(n.registers[3]).toBe(12.5);expect(s.registers[3]).toBe(0);expect(n.x).toBe(s.x);expect(n.program).toEqual(s.program);expect(n.decimals).toBe(s.decimals)});
+it('rejeita memória inválida e edição durante programa',()=>{expect(()=>editMemory(fresh(),20,'2')).toThrow();expect(()=>editMemory({...fresh(),running:true},0,'2')).toThrow();expect(()=>parseMemoryValue('1,2,3')).toThrow();expect(()=>parseMemoryValue('1e101')).toThrow()});
+it('reutiliza resultado preservando lastX e registradores',()=>{const s=fresh(),n=recallResult(s,42,pressAction);expect(n.x).toBe(42);expect(n.lastX).toBe(s.lastX);expect(n.registers).toEqual(s.registers);expect(n.undoState.x).toBe(s.x)});
+it('reset selecionado preserva grupos não selecionados',()=>{const s={...fresh(),x:25,decimals:4,registers:Array(20).fill(7)};expect(resetSelected(s,{history:true},INITIAL_STATE)).toEqual(s);expect(resetSelected(s,{values:true},INITIAL_STATE).decimals).toBe(4);expect(resetSelected(s,{settings:true},INITIAL_STATE).x).toBe(25)});
+it('histórico só registra resultado e limita cem itens',()=>{const s=['2','enter','3'].reduce(pressKey,fresh()),n=pressKey(s,'plus'),e=historyEntry(s,n,'plus',{id:'1',time:'now',display:'5'});expect(e.value).toBe(5);expect(historyEntry(s,s,'3',{id:'2',time:'now',display:'3'})).toBeNull();const all=Array.from({length:100},(_,i)=>({...e,id:String(i)}));expect(appendHistory(all,{...e,id:'101'})).toHaveLength(100);expect(appendHistory(all,all[0])).toBe(all)});
+it('configurações e histórico corrompidos têm fallback seguro',()=>{const storage={getItem:()=>'{bad'};expect(readHistory(storage)).toEqual([]);expect(readUiSettings(storage)).toEqual({suspendSeconds:0,sound:false,vibration:false,keyEntry:'press'})});
