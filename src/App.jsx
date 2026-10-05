@@ -52,6 +52,8 @@ function useJoinedFrame() {
       calculator.style.setProperty('--maker-cutout-width',(maker.width+(portrait?20:0))+'px');
       const shift=Math.min(50,Math.max(0,(maker.top-panel.top)*.22));
       calculator.style.setProperty('--joined-top',(panel.top-body.top+shift)+'px');
+      // This measured class is owned by the layout hook. React must not replace
+      // the calculator className when opening/closing overlays.
       calculator.classList.add('joined-frame');
       const newPanel=calculator.querySelector('.keyboard-panel').getBoundingClientRect();
       const top=Math.max(min+shift-rise,newPanel.top+8),bottom=portrait?Math.min(maker.top-10-rise,newPanel.bottom-8):maker.top-10;
@@ -229,14 +231,17 @@ function useJoinedFrame() {
       }
     };
     layout();
-    let frame=0;
-    const schedule=()=>{if(!alive||frame)return;frame=requestAnimationFrame(()=>{frame=0;layout()})};
+    let frame=0,fallback=0;
+    const flush=()=>{cancelAnimationFrame(frame);clearTimeout(fallback);frame=0;fallback=0;layout()};
+    // WebKit may pause animation frames around viewport/focus transitions.
+    // Keep one bounded fallback; unchanged measurements remain a no-op.
+    const schedule=()=>{if(!alive||frame||fallback)return;frame=requestAnimationFrame(flush);fallback=setTimeout(flush,100)};
     const fontChanged=()=>{fontRevision++;schedule()};
     const observer=new ResizeObserver(schedule);observer.observe(calculator);
     document.fonts.ready.then(fontChanged);
     document.fonts.addEventListener('loadingdone',fontChanged);
     window.addEventListener('pageshow',schedule);window.addEventListener('resize',schedule);window.addEventListener('orientationchange',schedule);
-    return()=>{alive=false;observer.disconnect();cancelAnimationFrame(frame);document.fonts.removeEventListener('loadingdone',fontChanged);window.removeEventListener('pageshow',schedule);window.removeEventListener('resize',schedule);window.removeEventListener('orientationchange',schedule)};
+    return()=>{alive=false;observer.disconnect();cancelAnimationFrame(frame);clearTimeout(fallback);document.fonts.removeEventListener('loadingdone',fontChanged);window.removeEventListener('pageshow',schedule);window.removeEventListener('resize',schedule);window.removeEventListener('orientationchange',schedule)};
   },[]);
 }
 
@@ -368,7 +373,7 @@ export function App() {
   return <main className="page">
     <div className="ios-pwa-blur-sentinel" aria-hidden="true"/>
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
-    <section ref={calculatorSurface} className={`calculator ${!menuOpen&&!historyOpen&&!diagnosticsOpen?'pull-enabled':''}`} data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
+    <section ref={calculatorSurface} className="calculator" data-pull-enabled={!menuOpen&&!historyOpen&&!diagnosticsOpen} data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
       <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
       <Lcd state={state} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>

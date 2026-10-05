@@ -4,8 +4,9 @@ export function readUiSettings(storage){try{const s=JSON.parse(storage.getItem(U
 export function readHistory(storage){try{const list=JSON.parse(storage.getItem(HISTORY_KEY)||'[]');return Array.isArray(list)?list.filter(e=>typeof e?.id==='string'&&typeof e.time==='string'&&typeof e.operation==='string'&&typeof e.display==='string'&&(e.kind==='separator'?Number.isFinite(Date.parse(e.time)):e.kind==='error'?e.value===null:Number.isFinite(e.value))).slice(-100):[]}catch{return []}}
 const results=new Set(['plus','minus','multiply','divide','pow','reciprocal','pctT','deltaPct','pct','sqrt','exp','ln','square','factorial','sin','cos','tan','mean','stddev','weightedMean','estimateX','estimateY','amortize','interest','npv','irr','bondPrice','bondYield','deprSL','deprSOYD','deprDB','days','date','round','12x','12div','sigmaPlus','sigmaMinus','runStop','equals']);
 export function historyEntry(before,after,action,{id,time,display}){
- if(before.error||!before.powered||before.pendingRegister||before.pendingGoto!==null||before.programMode)return null;
- if(['clearReg','clearFin','clearStats'].includes(action)&&!after.error)return historySeparator({id,time},action);
+ if(!before.powered||before.pendingRegister||before.pendingGoto!==null||before.programMode)return null;
+ if(action==='clx')return historySeparator({id,time},'CLX');
+ if(before.error)return null;
  const symbols={plus:'+',minus:'−',multiply:'×',divide:'÷',pow:'^'};
  const algEquals=before.mode==='ALG'&&['equals','enter'].includes(action)&&before.algOperators.length;
  if(!results.has(action)&&!algEquals&&!(['n','i','pv','pmt','fv'].includes(action)&&!before.financialInputReady))return null;
@@ -60,9 +61,15 @@ export function reducePanel(current,event,{pressKey,pressAction,formatDisplay,di
  if(event.type==='restore-history')return {...current,history:event.history};
  if(event.type==='reset'){
   const history=event.selected.history?[]:current.history;
-  return {state:resetSelected(current.state,event.selected,initial),history:event.selected.values?appendHistory(history,historySeparator({id:event.eventId,time:event.time})):history};
+  return {state:resetSelected(current.state,event.selected,initial),history};
  }
  const state=displayDefaults(event.type==='action'?pressAction(current.state,event.action):pressKey(current.state,event.id));
  const operation=event.action;
- return {state,history:appendHistory(current.history,historyEntry(current.state,state,operation,{id:event.eventId,time:event.time,display:formatDisplay(state)}))};
+ let item=historyEntry(current.state,state,operation,{id:event.eventId,time:event.time,display:formatDisplay(state)});
+ // A zero/empty CLX with no new entry/result since the last boundary is a no-op.
+ if(operation==='clx'&&!current.state.error&&current.state.x===0&&(!current.state.entering||current.state.input==='0')&&(current.state.displayLabel==='CLX'||!current.state.algOperators.length)&&(!current.history.length||current.history.at(-1).kind==='separator'))item=null;
+ return {state,history:appendHistory(current.history,item)};
 }
+
+// Persistence remains chronological, compatible with all existing backups.
+export const historyNewestFirst=history=>[...history].reverse();

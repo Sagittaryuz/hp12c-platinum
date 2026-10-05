@@ -15,8 +15,8 @@ export function HpMenu({state,history,prefs,setPrefs,onClose,onRecall,onEditMemo
  useSurfacePull(panel,onClose,true,'.hp-menu-body');
  const capabilities={sound:Boolean(window.AudioContext||window.webkitAudioContext),vibration:typeof navigator.vibrate==='function',orientation:typeof screen.orientation?.lock==='function',fullscreen:typeof document.documentElement.requestFullscreen==='function'};
  const go=r=>{setError('');setEdit(null);setRoute(r)};
- useEffect(()=>{heading.current?.focus()},[route]);
- useEffect(()=>{const initial=lastFocus.current;const fullscreen=()=>setFullscreen(Boolean(document.fullscreenElement));document.addEventListener('fullscreenchange',fullscreen);return()=>{document.removeEventListener('fullscreenchange',fullscreen);queueMicrotask(()=>initial?.focus?.())}},[]);
+ useEffect(()=>{heading.current?.focus({preventScroll:true})},[route]);
+ useEffect(()=>{const initial=lastFocus.current;const fullscreen=()=>setFullscreen(Boolean(document.fullscreenElement));document.addEventListener('fullscreenchange',fullscreen);return()=>{document.removeEventListener('fullscreenchange',fullscreen);queueMicrotask(()=>initial?.focus?.({preventScroll:true}))}},[]);
  const keyDown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();route==='menu'?onClose():go('menu')}if(e.key==='Tab'){const els=[...panel.current.querySelectorAll('button,input,select,[tabindex="0"]')].filter(el=>!el.disabled&&el.getClientRects().length);const first=els[0],last=els.at(-1);if(e.shiftKey&&(document.activeElement===first||document.activeElement===heading.current)){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}};
  const toggleLandscape=async()=>{try{if(locked){screen.orientation.unlock();setLocked(false)}else{await screen.orientation.lock('landscape');setLocked(true)}}catch{setError('Este navegador não permitiu bloquear a orientação. No iPhone, use o controle de orientação do sistema.')}};
  const toggle=(key,value)=>setPrefs(p=>({...p,[key]:value}));

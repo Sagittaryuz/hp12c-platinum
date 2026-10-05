@@ -30,6 +30,6 @@ export default defineConfig({
       start_url: "./", scope: "./", display: "fullscreen", display_override:["fullscreen","standalone"], background_color: "#c6c6c6", theme_color: "#c6c6c6",
       icons: [{src:"icons/hp12c-platinum-v2-192.png",sizes:"192x192",type:"image/png",purpose:"any"},{src:"icons/hp12c-platinum-v2-512.png",sizes:"512x512",type:"image/png",purpose:"any"}],
     },
-    workbox: { globIgnores:["**/legal/**"], globPatterns:["**/*.{js,css,html}","assets/*-grain*.svg","assets/hp-emblem-hd.png","assets/menu-icons/*.svg","assets/roboto-condensed.woff2","icons/hp12c-platinum-v2-{180,32}.png"], dontCacheBustURLsMatching:/^assets\/index-[A-Za-z0-9_-]+\.(?:js|css)$/, maximumFileSizeToCacheInBytes:2*1024*1024, clientsClaim:true, skipWaiting:false, cleanupOutdatedCaches:true },
+    workbox: { globIgnores:["**/legal/**"], globPatterns:["**/*.{js,css,html}","assets/*-grain*.svg","assets/hp-emblem-hd.png","assets/menu-icons/*.svg","assets/roboto-condensed.woff2","assets/cabin-sketch.woff2","icons/hp12c-platinum-v2-{180,32}.png"], dontCacheBustURLsMatching:/^assets\/index-[A-Za-z0-9_-]+\.(?:js|css)$/, maximumFileSizeToCacheInBytes:2*1024*1024, clientsClaim:true, skipWaiting:false, cleanupOutdatedCaches:true },
   })])],
 });
