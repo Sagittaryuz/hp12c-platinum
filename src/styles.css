@@ -467,7 +467,8 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .history-board::backdrop{transition:background 260ms ease}.history-board[data-closing="true"]::backdrop{background:transparent}
 @media(prefers-reduced-motion:reduce){.history-board::backdrop{transition:none}}
 /*0.2.29: change side paint only; retain vertical geometry and bottom rails. */
-.silver-panel,.silver-panel::before,.silver-panel::after,.joined-frame .keyboard-frame,.joined-frame .portrait-footer-frame{background-color:#c6c6c6;background-image:url('/assets/metal-grain-progressive.svg'),linear-gradient(180deg,#d4d4d4 0%,#b7b7b7 42%,#cecece 70%,#bdbdbd 100%);background-size:160px 100%,100% 100%;background-repeat:repeat-x,no-repeat}
+/* Opaque top sampler and safe-area paint share the plate finish; geometry stays fixed. */
+.ios-pwa-blur-sentinel,.status-bar-color,.silver-panel,.silver-panel::before,.silver-panel::after,.joined-frame .keyboard-frame,.joined-frame .portrait-footer-frame{background-color:#c6c6c6;background-image:url('/assets/metal-grain-progressive.svg'),linear-gradient(180deg,#d4d4d4 0%,#b7b7b7 42%,#cecece 70%,#bdbdbd 100%);background-size:160px 100%,100% 100%;background-repeat:repeat-x,no-repeat}
 .joined-frame .keyboard-frame{left:5px;right:5px}.joined-frame .keyboard-panel{left:10px;right:10px}.joined-frame .keyboard-crossbar{left:5px;right:5px}
 @media(orientation:portrait){.calculator{--portrait-textured-side:5px}.joined-frame .portrait-footer-frame{left:5px;right:5px}.portrait-footer-frame::before{left:5px;right:5px}}
 .history-board,.pull-preview{background-color:#123b30;background-image:repeating-linear-gradient(0deg,#ffffff04 0 1px,transparent 1px 4px),repeating-linear-gradient(93deg,#00000005 0 1px,transparent 1px 7px);color:#f2f4e9}
