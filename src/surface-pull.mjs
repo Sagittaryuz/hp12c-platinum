@@ -20,7 +20,10 @@ export function attachSurfacePull(root,{onPull,enabled=()=>true,scrollSelector,i
  const touchEnd=()=>{touch=null};
  root.addEventListener('touchstart',touchDown,{passive:true});root.addEventListener('touchmove',touchMove,{passive:false});root.addEventListener('touchend',touchEnd);root.addEventListener('touchcancel',touchEnd);
  const hidden=()=>{if(root.ownerDocument.hidden)clear()},resize=()=>{if(width!==win.innerWidth||height!==win.innerHeight){width=win.innerWidth;height=win.innerHeight;clear()}};
- const events=[['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',clear],['lostpointercapture',e=>{if(start?.id===e.pointerId)clear()}],['blur',clear],['resize',resize],['pagehide',clear],['click',click]];
+ // Capture observes descendant focus blur too. Focusing the calculator after
+ // returning from a panel must not cancel the pointerdown that caused it.
+ const blur=e=>{if(e.target===win)clear()};
+ const events=[['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',clear],['lostpointercapture',e=>{if(start?.id===e.pointerId)clear()}],['blur',blur],['resize',resize],['pagehide',clear],['click',click]];
  for(const [name,fn]of events)win.addEventListener(name,fn,true);root.ownerDocument.addEventListener('visibilitychange',hidden);
  return()=>{clear();root.removeEventListener('touchstart',touchDown);root.removeEventListener('touchmove',touchMove);root.removeEventListener('touchend',touchEnd);root.removeEventListener('touchcancel',touchEnd);for(const [name,fn]of events)win.removeEventListener(name,fn,true);root.ownerDocument.removeEventListener('visibilitychange',hidden)};
 }

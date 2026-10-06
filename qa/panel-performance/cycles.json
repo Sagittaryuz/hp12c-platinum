@@ -1,0 +1,116 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "mouse",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "touch",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "mouse",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "touch",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "mouse",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "mouse",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  }
+]
