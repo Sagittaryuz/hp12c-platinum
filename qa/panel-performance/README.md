@@ -1,6 +1,6 @@
 # Local panel performance study
 
-Base: 0.2.36, c268fbc. Isolated branch: perf/local-panel-frame-budget.
+Base: 0.2.36, c268fbc. Isolated branch: perf/local-panel-frame-budget. Subsequent explicit publication authorization covers release0.2.37 from tested eb38c39, excluding the unavailable new wallpaper; release/version commit changes metadata only.
 
 The panels already use compositor-eligible transform WAAPI animation and imperative gesture writes, without React updates per frame. The avoidable cost found was reading computed transform and clientHeight after filter writes in every animation frame. The memory preview additionally read computed height on every pointer event.
 
@@ -42,4 +42,4 @@ Narrow Downloads check: no original filename match and no PNG last modified on20
 
 Next: transfer actual image, add precache exact asset, inspect DOM top/photo/contrast. Then profile production build on actual120Hz hardware/Safari and installed PWA, compare rAF distribution and browser paint/compositing traces while both drawers and100rows are exercised. Only then decide whether filter raster cost or preview height dominates enough to justify further changes.
 
-Run measure.mjs with PLAYWRIGHT_MODULE/BROWSER_PATH to override the local temporary tool paths; TEST_ENGINE=webkit selects WebKit. Test tooling remains outside app dependencies. No release version bump or publication.
+Run measure.mjs with PLAYWRIGHT_MODULE/BROWSER_PATH to override the local temporary tool paths; TEST_ENGINE=webkit selects WebKit. Test tooling remains outside app dependencies. The initial study was local-only; subsequent0.2.37 publication authorization supersedes that restriction for this batch.
