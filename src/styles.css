@@ -523,3 +523,29 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .ios-pwa-blur-sentinel,.status-bar-color,.silver-panel,.silver-panel::before,.silver-panel::after{
  background-image:url('/assets/metal-grain-progressive.svg'),linear-gradient(180deg,#c6c6c6 0%,#b7b7b7 42%,#cecece 70%,#bdbdbd 100%);
 }
+
+/* Memória only: opaque theme tone fades into the unchanged original photograph.
+  Both layers keep viewport coordinates while the drawer follows the finger. */
+.history-board,.pull-preview{
+ background-image:linear-gradient(180deg,#c6c6c6 0px,#c6c6c6 max(11px,env(safe-area-inset-top,0px)),#c6c6c600 calc(max(11px,env(safe-area-inset-top,0px)) + 64px)),url('/assets/memory-board-photo.jpeg');
+ background-size:100vw 100dvh,max(100vw,125dvh) max(80vw,100dvh);
+ background-position:0 0,center calc((100dvh - max(80vw,100dvh))/2);
+ background-repeat:no-repeat;
+}
+.history-board-heading{padding-top:calc(max(12px,env(safe-area-inset-top,0px)) + 64px)}
+.pull-preview strong{padding-top:calc(max(12px,env(safe-area-inset-top,0px)) + 64px)}
+.history-board li.history-calculation-row{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:start;gap:4px;padding:10px 0}
+:is(.history-board,.hp-menu-body) .history-calculation{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:baseline;gap:8px;width:100%;min-height:44px;padding:4px;border:0;border-radius:4px;background:transparent;color:inherit;font:inherit;text-align:right;cursor:pointer;touch-action:pan-y;text-shadow:inherit}
+.history-calculation>span{font-weight:400}.history-calculation>strong{font-weight:700}
+.history-calculation time{flex-basis:100%;font:700 13px/1.4 Arial;text-align:right}
+.history-calculation .history-note-text{flex-basis:100%;font:15px/1.5 Arial;white-space:pre-wrap;overflow-wrap:anywhere;color:#f2f4e9;text-align:right}
+:is(.history-board,.hp-menu-body) .history-share-button{width:44px;height:44px;border:0;border-radius:6px;background:#1118;color:#f2f4e9;cursor:pointer;touch-action:pan-y;padding:10px}
+.history-share-button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.history-calculation:focus-visible,.history-share-button:focus-visible{outline:2px solid #68bdff;outline-offset:1px}
+.hp-history-calculation{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:4px}.hp-history-calculation .history-calculation{text-align:left;justify-content:flex-start}.hp-history-calculation .history-calculation time,.hp-history-calculation .history-note-text{text-align:left}
+.hp-menu-body .history-share-button{width:44px!important;height:44px;padding:10px!important;margin:0!important}
+.hp-menu-body .history-calculation{background:transparent!important;margin:0!important;padding:4px!important}
+.history-dialog{position:fixed;top:var(--history-dialog-top,0px);left:0;right:0;margin:max(12px,env(safe-area-inset-top,0px)) auto 0;width:min(460px,calc(100vw - 24px));max-height:calc(var(--history-dialog-height,100dvh) - max(12px,env(safe-area-inset-top,0px)) - max(12px,env(safe-area-inset-bottom,0px)));border:1px solid #777;border-radius:12px;padding:16px;background:#171717;color:#f2f4e9;overflow:auto;overscroll-behavior:contain;font:16px/1.4 Arial;box-sizing:border-box}
+.history-dialog::backdrop{background:#0009}.history-dialog h2{font-size:21px;margin:0 0 12px}.history-dialog p{margin:10px 0;overflow-wrap:anywhere}.history-dialog-calculation strong{display:block}.history-dialog label{display:block}.history-dialog textarea{display:block;width:100%;margin:8px 0;min-height:100px;max-height:30vh;resize:vertical;padding:10px;border:1px solid #999;border-radius:4px;background:#101010;color:#fff;font:16px/1.5 Arial;user-select:text;touch-action:pan-y}.history-dialog small{color:#bbb}.history-dialog footer,.history-share-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.history-dialog button{min-height:44px;padding:10px 14px;border:1px solid #777;border-radius:6px;color:#fff;background:#303030;font:16px Arial;touch-action:manipulation}.history-dialog button:disabled{opacity:.5}.history-dialog button:focus-visible,.history-dialog textarea:focus-visible,.history-dialog input:focus-visible{outline:2px solid #68bdff;outline-offset:2px}.history-share-note{margin:10px 0}.history-share-note input{width:20px;height:20px;vertical-align:middle;margin-right:6px}.history-share-preview{display:block;max-width:100%;max-height:180px;margin:12px auto;object-fit:contain}.history-dialog [role=alert]{color:#ffbcb4}
+.lcd-copy-success{opacity:0;will-change:opacity,scale}
+@media(prefers-reduced-motion:reduce){.lcd-copy-success{opacity:1}}

@@ -2,34 +2,47 @@ import {useEffect,useLayoutEffect,useRef,useState} from 'react';
 import {flushSync} from 'react-dom';
 import {bindDisplayGestures,transferDisplay} from './display-transfer.mjs';
 export function useDisplayTransfer(display,disabled){
-  const ref=useRef(null),current=useRef({display,disabled}),busy=useRef(false),alive=useRef(false),timer=useRef(null),restoreFocus=useRef(false);
+  const ref=useRef(null),current=useRef({display,disabled}),busy=useRef(false),alive=useRef(false),timer=useRef(null),restoreFocus=useRef(false),generation=useRef(0);
   current.current={display,disabled};
-  const [message,setMessage]=useState(''),[manual,setManual]=useState(null);
+  const [message,setMessage]=useState(''),[manual,setManual]=useState(null),[copyCycle,setCopyCycle]=useState(0);
+  useLayoutEffect(()=>{if(disabled){clearTimeout(timer.current);setMessage('')}},[disabled]);
   useEffect(()=>{
-    alive.current=true;
+    alive.current=true;const epoch=++generation.current;
     if(manual===null&&restoreFocus.current){restoreFocus.current=false;ref.current?.focus({preventScroll:true})}
     const detach=bindDisplayGestures(ref.current,share=>{
       if(current.current.disabled||busy.current||manual!==null)return;
-      busy.current=true;clearTimeout(timer.current);
+      busy.current=true;
       // Clear the visible toast before the native sheet captures its background.
       // Synchronous rendering preserves the gesture's transient activation.
-      if(share)flushSync(()=>setMessage(''));else setMessage('');
+      if(share){clearTimeout(timer.current);flushSync(()=>setMessage(''))}
       transferDisplay(current.current.display,share).then(result=>{
-        if(!alive.current)return;
+        if(!alive.current||generation.current!==epoch||current.current.disabled)return;
         if(!result.copied)setManual(result.text);
         let text=result.copied?(share?'':'Valor copiado.'):'Cópia automática indisponível. Selecione o valor para copiar.';
         if(result.shared==='unavailable')text+=' Compartilhamento indisponível neste navegador.';
         if(result.shared==='failed')text+=' Não foi possível abrir o compartilhamento.';
-        setMessage(text.trim());if(text.trim())timer.current=setTimeout(()=>setMessage(''),4000);
-      }).finally(()=>{busy.current=false});
+        clearTimeout(timer.current);setMessage(text.trim());
+        if(result.copied&&!share)setCopyCycle(value=>value+1);
+        if(text.trim())timer.current=setTimeout(()=>{if(alive.current&&generation.current===epoch)setMessage('')},result.copied&&!share?2000:4000);
+      }).finally(()=>{if(generation.current===epoch)busy.current=false});
     });
-    return()=>{alive.current=false;detach();clearTimeout(timer.current)};
+    return()=>{alive.current=false;generation.current++;busy.current=false;detach();clearTimeout(timer.current)};
   },[manual,disabled]);
-  return {ref,message,manual,closeManual:()=>{restoreFocus.current=true;setManual(null)}};
+  return {ref,message,copyCycle,manual,closeManual:()=>{restoreFocus.current=true;setManual(null)}};
 }
-export function DisplayTransferFeedback({message,manual,closeManual}){
+export function DisplayTransferFeedback({message,copyCycle,manual,closeManual}){
   const dialog=useRef(null),field=useRef(null),success=useRef(null);
   const copied=message.startsWith('Valor copiado.');
+  const lastOpacity=useRef(null);
+  useLayoutEffect(()=>{
+    if(!copied){lastOpacity.current=null;return}
+    const el=success.current,media=window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(media.matches||!el.animate){el.style.opacity='1';return()=>el.style.removeProperty('opacity')}
+    const opacity=lastOpacity.current??0;
+    const animation=el.animate([{opacity,scale:'1',offset:0},{opacity:1,scale:'1',offset:.18},{opacity:.94,scale:'1.012',offset:.48},{opacity:1,scale:'1',offset:.68},{opacity:0,scale:'.99',offset:1}],{duration:2000,easing:'ease-in-out',fill:'both'});
+    const preference=()=>{if(media.matches){animation.cancel();el.style.opacity='1'}};media.addEventListener('change',preference);
+    return()=>{lastOpacity.current=Number(getComputedStyle(el).opacity);animation.cancel();media.removeEventListener('change',preference);el.style.removeProperty('opacity')};
+  },[copied,copyCycle]);
   useLayoutEffect(()=>{
     if(!copied)return;
     const calculator=success.current.closest('.calculator');

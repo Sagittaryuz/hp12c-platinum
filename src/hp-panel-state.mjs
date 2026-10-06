@@ -1,8 +1,9 @@
+import {setHistoryNote,sanitizeHistoryNote} from './history-notes.mjs';
 export const HISTORY_ACTIVITY_KEY='hp12c-history-activity-v1';
 export const HISTORY_KEY='hp12c-history-v1', UI_SETTINGS_KEY='hp12c-ui-settings-v1';
 export const UI_DEFAULTS=Object.freeze({suspendSeconds:0,sound:false,vibration:false,keyEntry:'press'});
 export function readUiSettings(storage){try{const s=JSON.parse(storage.getItem(UI_SETTINGS_KEY)||'null');return{suspendSeconds:[0,30,60,300].includes(s?.suspendSeconds)?s.suspendSeconds:0,sound:s?.sound===true,vibration:s?.vibration===true,keyEntry:s?.keyEntry==='release'?'release':'press'}}catch{return {...UI_DEFAULTS}}}
-export function readHistory(storage){try{const list=JSON.parse(storage.getItem(HISTORY_KEY)||'[]');return Array.isArray(list)?list.filter(e=>typeof e?.id==='string'&&typeof e.time==='string'&&typeof e.operation==='string'&&typeof e.display==='string'&&(e.kind==='separator'?Number.isFinite(Date.parse(e.time)):e.kind==='error'?e.value===null:Number.isFinite(e.value))).slice(-100):[]}catch{return []}}
+export function readHistory(storage){try{const list=JSON.parse(storage.getItem(HISTORY_KEY)||'[]');return Array.isArray(list)?list.filter(e=>typeof e?.id==='string'&&typeof e.time==='string'&&typeof e.operation==='string'&&typeof e.display==='string'&&(e.kind==='separator'?Number.isFinite(Date.parse(e.time)):e.kind==='error'?e.value===null:Number.isFinite(e.value))).slice(-100).map(sanitizeHistoryNote):[]}catch{return []}}
 const results=new Set(['plus','minus','multiply','divide','pow','reciprocal','pctT','deltaPct','pct','sqrt','exp','ln','square','factorial','sin','cos','tan','mean','stddev','weightedMean','estimateX','estimateY','amortize','interest','npv','irr','bondPrice','bondYield','deprSL','deprSOYD','deprDB','days','date','round','12x','12div','sigmaPlus','sigmaMinus','runStop','equals']);
 export function historyEntry(before,after,action,{id,time,display}){
  if(!before.powered||before.pendingRegister||before.pendingGoto!==null||before.programMode)return null;
@@ -62,6 +63,7 @@ export function historyActivity(state,history,saved){
 }
 export function reducePanel(current,event,{pressKey,pressAction,formatDisplay,displayDefaults,initial}){
  if(event.type==='state')return {...current,state:typeof event.updater==='function'?event.updater(current.state):event.updater};
+ if(event.type==='history-note')return {...current,history:setHistoryNote(current.history,event.id,event.text)};
  if(event.type==='clear-history')return {...current,history:[],historyActive:false};
  if(event.type==='restore-history'){const state=event.state||current.state;return {...current,state,history:event.history,historyActive:historyActivity(state,event.history,event.activity)}};
  if(event.type==='reset'){

@@ -1,3 +1,6 @@
+import {HistoryNoteEditor} from './HistoryNoteEditor';
+import {HistoryShareDialog} from './HistoryShareDialog';
+import {setHistoryNote} from './history-notes.mjs';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer } from 'react';
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
@@ -296,6 +299,15 @@ export function App() {
   if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen,setHistoryOpen]=useState(false);
+  const [historyModal,setHistoryModal]=useState(null);
+  const modalItem=historyModal?history.find(row=>row.id===historyModal.id&&row.kind!=='separator'):null;
+  const onHistoryAction=useCallback((kind,id)=>setHistoryModal({kind,id}),[]);
+  const saveHistoryNote=text=>{
+    const next=setHistoryNote(history,historyModal.id,text);
+    try{localStorage.setItem(HISTORY_KEY,JSON.stringify(next))}catch{throw new Error('Não foi possível salvar neste aparelho. A nota continua aberta para você copiar.')}
+    dispatch({type:'history-note',id:historyModal.id,text});
+  };
+  useEffect(()=>{if(historyModal&&!modalItem)setHistoryModal(null)},[historyModal,modalItem]);
   const historyReveal=useRef(0),pullStart=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null);
   const openHistory=useCallback(gesture=>{historyReveal.current=Math.min(window.innerHeight,gesture?.distance||0);setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
@@ -418,7 +430,7 @@ export function App() {
       <Brackets/>
       <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
-      {menuOpen&&<HpMenu state={state} history={history} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
+      {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} history={history} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
         onBoard={openHistory} onClearHistory={()=>dispatch({type:'clear-history'})}
         onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
@@ -427,9 +439,11 @@ export function App() {
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>}
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
-      {historyOpen&&<HistoryBoard revealStart={historyReveal.current} history={history} onClose={()=>setHistoryOpen(false)}/>}
+      {historyOpen&&<HistoryBoard onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} revealStart={historyReveal.current} history={history} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
+    {modalItem&&historyModal.kind==='note'&&<HistoryNoteEditor key={modalItem.id} item={modalItem} onSave={saveHistoryNote} onClose={()=>setHistoryModal(null)}/>}
+    {modalItem&&historyModal.kind==='share'&&<HistoryShareDialog key={modalItem.id} item={modalItem} onClose={()=>setHistoryModal(null)}/>}
     <div ref={pullPreview} className="pull-preview" aria-hidden="true"><strong>Memória</strong><span/></div>
   </main>;
 }
