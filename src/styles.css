@@ -501,3 +501,19 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .joined-frame .keyboard-panel{left:15px;right:15px}
 .joined-frame .keyboard-crossbar{left:10px;right:10px}
 @media(orientation:portrait){.calculator{--portrait-textured-side:10px}.joined-frame .portrait-footer-frame{left:10px;right:10px}}
+
+/* User's original740x592 photo; cover without stretching or tinting.
+  Preview clips the same viewport-sized photograph throughout a pull. */
+.history-board,.pull-preview{
+ background-color:#121212;
+ background-image:url('/assets/memory-board-photo.jpeg');
+ background-size:max(100vw,125dvh) max(80vw,100dvh);
+ background-position:center calc((100dvh - max(80vw,100dvh))/2);
+ background-repeat:no-repeat;
+}
+.history-board-handle{background:transparent;border-top-color:#aaa}
+.history-board-handle button{background:#171717;color:#f6f8ee}
+.panel-reveal-bar{background:#d2d2d2}
+
+.history-board,.pull-preview{text-shadow:0 0 1px #000,0 1px 2px #000}
+.history-board-heading h1,.pull-preview strong{text-shadow:1px 1px 0 #fff,0 0 2px #000,0 1px 3px #000}
