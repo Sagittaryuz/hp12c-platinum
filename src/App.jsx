@@ -58,6 +58,14 @@ function useJoinedFrame() {
       // This measured class is owned by the layout hook. React must not replace
       // the calculator className when opening/closing overlays.
       calculator.classList.add('joined-frame');
+      // All upper metal clips sample one plate-sized image in page coordinates.
+      // A short safe-area/sampler box must never resize or restart that image.
+      const upperPlate=calculator.querySelector('.silver-panel').getBoundingClientRect();
+      const page=calculator.closest('.page');
+      page.style.setProperty('--upper-metal-height',upperPlate.height+'px');
+      page.style.setProperty('--upper-metal-origin-x',upperPlate.left+'px');
+      page.style.setProperty('--upper-metal-tail-x',(-upperPlate.width)+'px');
+
       const newPanel=calculator.querySelector('.keyboard-panel').getBoundingClientRect();
       const top=Math.max(min+shift-rise,newPanel.top+8),bottom=portrait?Math.min(maker.top-10-rise,newPanel.bottom-8):maker.top-10;
       const scale=Math.min(1,Math.max(.2,(bottom-top)/(max-min)));

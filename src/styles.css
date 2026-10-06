@@ -484,3 +484,20 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 @font-face{font-family:MemoryScript;src:url('/assets/caveat-memory-bold.woff2') format('woff2');font-weight:700;font-display:swap}.history-board-heading h1{font-family:MemoryScript,HistoryChalk,cursive;font-size:clamp(36px,9vw,48px)}
 
 .pull-preview strong{font-family:MemoryScript,HistoryChalk,cursive;font-size:clamp(36px,9vw,48px);font-weight:700;line-height:1.2;text-align:center;margin:0;padding-top:max(12px,env(safe-area-inset-top));text-underline-offset:7px}
+
+/*0.2.31: one virtual upper-metal surface, clipped by existing boxes.
+  Preserve the plate's original texture origin/height; extend that same image
+  through the safe area and11px sampler instead of rescaling it per strip. */
+.ios-pwa-blur-sentinel,.status-bar-color,.silver-panel,.silver-panel::before,.silver-panel::after{
+ background-size:160px var(--upper-metal-height,22.5vh),100% var(--upper-metal-height,22.5vh);
+ background-position:var(--upper-metal-origin-x,0px) 0,0 0;
+ background-origin:border-box;
+}
+.silver-panel{background-position:0 0,0 0}
+.silver-panel::after{background-position:var(--upper-metal-tail-x,0px) 0,0 0}
+
+/* User correction: exterior rough plastic sides10px; inner metal remains5px. */
+.joined-frame .keyboard-frame{left:10px;right:10px}
+.joined-frame .keyboard-panel{left:15px;right:15px}
+.joined-frame .keyboard-crossbar{left:10px;right:10px}
+@media(orientation:portrait){.calculator{--portrait-textured-side:10px}.joined-frame .portrait-footer-frame{left:10px;right:10px}}
