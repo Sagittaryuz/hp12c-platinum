@@ -524,10 +524,10 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  background-image:url('/assets/metal-grain-progressive.svg'),linear-gradient(180deg,#c6c6c6 0%,#b7b7b7 42%,#cecece 70%,#bdbdbd 100%);
 }
 
-/* Memória only: opaque theme tone fades into the unchanged original photograph.
+/* Memória only: opaque black top fades into the original photograph.
   Both layers keep viewport coordinates while the drawer follows the finger. */
 .history-board,.pull-preview{
- background-image:linear-gradient(180deg,#c6c6c6 0px,#c6c6c6 max(11px,env(safe-area-inset-top,0px)),#c6c6c600 calc(max(11px,env(safe-area-inset-top,0px)) + 64px)),url('/assets/memory-board-photo.jpeg');
+ background-image:linear-gradient(180deg,#000 0px,#000 max(11px,env(safe-area-inset-top,0px)),#0000 calc(max(11px,env(safe-area-inset-top,0px)) + 64px)),url('/assets/memory-board-photo.jpeg');
  background-size:100vw 100dvh,max(100vw,125dvh) max(80vw,100dvh);
  background-position:0 0,center calc((100dvh - max(80vw,100dvh))/2);
  background-repeat:no-repeat;

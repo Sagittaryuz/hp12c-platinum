@@ -1,0 +1,36 @@
+[
+  {
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "reads": 84,
+    "heights": 156,
+    "frameCount": 176,
+    "medianFrameMs": 39,
+    "p95FrameMs": 451,
+    "over8_33ms": 151,
+    "geometryPreserved": true,
+    "rows100": true,
+    "gestures": true,
+    "reducedMotion": true,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "reads": 84,
+    "heights": 156,
+    "frameCount": 155,
+    "medianFrameMs": 30,
+    "p95FrameMs": 353,
+    "over8_33ms": 126,
+    "geometryPreserved": true,
+    "rows100": true,
+    "gestures": true,
+    "reducedMotion": true,
+    "errors": []
+  }
+]

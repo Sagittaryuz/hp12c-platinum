@@ -308,23 +308,23 @@ export function App() {
     dispatch({type:'history-note',id:historyModal.id,text});
   };
   useEffect(()=>{if(historyModal&&!modalItem)setHistoryModal(null)},[historyModal,modalItem]);
-  const historyReveal=useRef(0),pullStart=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null);
+  const historyReveal=useRef(0),pullStart=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null),previewHeight=useRef(0);
   const openHistory=useCallback(gesture=>{previewAnimation.current?.cancel();previewAnimation.current=null;historyReveal.current=Math.min(window.innerHeight,gesture?.distance||0);setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
   const calculatorSurface=useRef(null);
   useSurfacePull(calculatorSurface,g=>openHistory({...g,distance:pullStart.current+g.distance}),!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,(d,phase)=>{
     const el=pullPreview.current;if(!el)return;
-    const previous=parseFloat(getComputedStyle(el).height)||0;
+    const previous=previewHeight.current;
     previewAnimation.current?.cancel();previewAnimation.current=null;
     if(!d&&previous&&!phase?.active){
       el.style.height='0px';
-      const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140,{onFrame:()=>setRevealBlur((parseFloat(getComputedStyle(el).height)||0)/window.innerHeight)});
+      const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140,{onFrame:p=>{previewHeight.current=previous*(1-p);setRevealBlur(previewHeight.current/window.innerHeight)}});
       previewAnimation.current=a;a.finished.then(()=>a.cancel()).catch(()=>{});
     }else{
       const height=d||phase?.active?Math.max(0,Math.min(pullStart.current+d,window.innerHeight)):0;
-      el.style.height=height+'px';setRevealBlur(height/window.innerHeight);
+      previewHeight.current=height;el.style.height=height+'px';setRevealBlur(height/window.innerHeight);
     }
-  },{onStart:()=>{const el=pullPreview.current;if(!el)return;pullStart.current=parseFloat(getComputedStyle(el).height)||0;previewAnimation.current?.cancel();previewAnimation.current=null;el.style.height=pullStart.current+'px';setRevealBlur(pullStart.current/window.innerHeight)}});
+  },{onStart:()=>{const el=pullPreview.current;if(!el)return;pullStart.current=parseFloat(getComputedStyle(el).height)||0;previewHeight.current=pullStart.current;previewAnimation.current?.cancel();previewAnimation.current=null;el.style.height=pullStart.current+'px';setRevealBlur(pullStart.current/window.innerHeight)}});
   useEffect(()=>()=>{previewAnimation.current?.cancel();setRevealBlur(0)},[]);
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
