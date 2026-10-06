@@ -19,10 +19,14 @@ export function copyHistoryImage(blob,{nav=globalThis.navigator,Item=globalThis.
 export function wrapCanvasText(ctx,text,width){
  const lines=[];for(const paragraph of String(text).split('\n')){let line='';for(const char of Array.from(paragraph)){if(line&&ctx.measureText(line+char).width>width){lines.push(line);line=''}line+=char}lines.push(line)}return lines;
 }
-export async function createHistoryPng(item,includeNote=false,{doc=document,imageUrl}={}){
+function checkAbort(signal){if(signal?.aborted)throw signal.reason||new DOMException('Exportação cancelada.','AbortError')}
+export async function createHistoryPng(item,includeNote=false,{doc=document,imageUrl,signal}={}){
+ checkAbort(signal);
  const image=new Image();image.src=imageUrl;
  await Promise.all([new Promise((resolve,reject)=>{if(image.complete&&image.naturalWidth)resolve();else{image.onload=resolve;image.onerror=()=>reject(new Error('A foto do quadro não está disponível. Compartilhe o texto.'))}}),doc.fonts?.ready,doc.fonts?.load?.('700 48px MemoryScript')]);
+ checkAbort(signal);
  const canvas=doc.createElement('canvas'),ctx=canvas.getContext('2d');if(!ctx)throw new Error('Imagem indisponível. Compartilhe o texto.');
+ try{
  const width=1000,padding=48,area=width-2*padding;
  ctx.font='32px Arial';const operation=wrapCanvasText(ctx,item.operation,area);
  ctx.font='bold 44px Arial';const result=wrapCanvasText(ctx,'= '+item.display,area);
@@ -37,5 +41,6 @@ export async function createHistoryPng(item,includeNote=false,{doc=document,imag
  const draw=(lines,font,lineHeight,color)=>{ctx.font=font;ctx.fillStyle=color;for(const line of lines){ctx.fillText(line,padding,y);y+=lineHeight}};
  draw(operation,'32px Arial',44,'#f2f4e9');draw(result,'bold 44px Arial',58,'#f2f4e9');y+=12;draw(dates,'28px Arial',40,'#f2f4e9');
  if(notes.length){y+=24;draw(['Anotação'],'bold 30px Arial',42,'#f2f4e9');draw(notes,'30px Arial',42,'#f2f4e9')}
- return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Não foi possível criar a imagem. Compartilhe o texto.')),'image/png'));
+ return await new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Não foi possível criar a imagem. Compartilhe o texto.')),'image/png')).then(blob=>{checkAbort(signal);return blob});
+ }finally{canvas.width=0;canvas.height=0}
 }

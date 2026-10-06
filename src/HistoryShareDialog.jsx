@@ -7,9 +7,9 @@ export function HistoryShareDialog({item,onClose}){
  const readyImage=image&&image.includeNote===includeNote;
  const text=historyShareText(item,includeNote),textRef=useRef(null),busyRef=useRef(false),alive=useRef(true);
  useEffect(()=>{alive.current=true;return()=>{alive.current=false}},[]);
- useEffect(()=>{let active=true,url;setImage(null);setImageError('');
-  createHistoryPng(item,includeNote,{imageUrl:new URL(`${import.meta.env.BASE_URL}assets/memory-board-photo.jpeg`,location.href).href}).then(blob=>{if(!active)return;url=URL.createObjectURL(blob);setImage({blob,url,includeNote,file:new File([blob],'hp12c-calculo.png',{type:'image/png'})})}).catch(e=>{if(active)setImageError(e.message)});
-  return()=>{active=false;if(url)URL.revokeObjectURL(url)};
+ useEffect(()=>{let active=true,url;const controller=new AbortController();setImage(null);setImageError('');
+  createHistoryPng(item,includeNote,{signal:controller.signal,imageUrl:new URL(`${import.meta.env.BASE_URL}assets/memory-board-photo.jpeg`,location.href).href}).then(blob=>{if(!active)return;url=URL.createObjectURL(blob);setImage({blob,url,includeNote,file:new File([blob],'hp12c-calculo.png',{type:'image/png'})})}).catch(e=>{if(active)setImageError(e.message)});
+  return()=>{active=false;controller.abort();if(url)URL.revokeObjectURL(url)};
  },[item,includeNote]);
  const report=value=>{if(alive.current)setStatus(value)};
  const copy=()=>transferDisplay(text,false).then(r=>{report(r.copied?'Texto copiado.':'Selecione o texto para copiar.');if(!r.copied&&alive.current){textRef.current.focus();textRef.current.select()}});

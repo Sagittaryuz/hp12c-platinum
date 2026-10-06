@@ -9,8 +9,11 @@ export function animatePanel(el,keyframes,duration=260){
  const finished=animation.finished.finally(()=>win.clearTimeout(timer));
  return {finished,cancel(){win.clearTimeout(timer);animation.cancel()}};
 }
+const pullBlurValues=new WeakMap();
 export function setPullBlur(distance){
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  const value=reduce||!distance?'':`blur(${Math.min(3,distance/12)}px)`;
- for(const el of document.querySelectorAll('.calculator > :is(.silver-panel,.lcd,.keyboard-crossbar,.keyboard-frame,.keyboard-panel,.portrait-footer-frame,.keys,.brackets,.maker-strip)'))el.style.filter=value;
+ const root=document.querySelector('.calculator');if(!root||pullBlurValues.get(root)===value)return;
+  pullBlurValues.set(root,value);
+  for(const el of root.querySelectorAll(':scope > :is(.silver-panel,.lcd,.keyboard-crossbar,.keyboard-frame,.keyboard-panel,.portrait-footer-frame,.keys,.brackets,.maker-strip)'))el.style.filter=value;
 }

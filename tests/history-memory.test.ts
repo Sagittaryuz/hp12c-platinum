@@ -2,7 +2,7 @@ import {it,expect,vi} from 'vitest';
 import {setHistoryNote,NOTE_LIMIT} from '../src/history-notes.mjs';
 import {readHistory,appendHistory,reducePanel} from '../src/hp-panel-state.mjs';
 import {historyDateLabel,nextLocalMidnight,localDayNumber} from '../src/history-dates.mjs';
-import {historyShareText,shareHistory,canHistoryShare,copyHistoryImage,wrapCanvasText} from '../src/history-sharing.mjs';
+import {historyShareText,shareHistory,canHistoryShare,copyHistoryImage,wrapCanvasText,createHistoryPng} from '../src/history-sharing.mjs';
 import {createBackup,parseBackup,restoreBackupStorage} from '../src/backup.mjs';
 import {INITIAL_STATE} from '@sagittaryuz/hp12c-core';
 import {attachHistoryActions} from '../src/history-actions.mjs';
@@ -67,4 +67,28 @@ it('toque delegado rejeita arraste, scroll, multitoque, cancelamento e click dup
  tap();expect(action).toHaveBeenCalledTimes(1);send('click',{},root);expect(action).toHaveBeenCalledTimes(1);
  for(const interrupt of [()=>send('pointermove',{clientY:50}),()=>send('scroll',{},root),()=>send('pointerdown',{pointerId:2,isPrimary:false}),()=>send('pointercancel'),()=>send('resize'),()=>send('blur',{target:win})]){send('pointerdown');interrupt();send('pointerup');send('pointerup',{pointerId:2});send('click',{},root)}
  expect(action).toHaveBeenCalledTimes(1);send('pointerdown');send('pointerup');send('blur');send('click',{},root);expect(action).toHaveBeenCalledTimes(2);send('click',{detail:0},root);expect(action).toHaveBeenCalledTimes(3);detach();tap();expect(action).toHaveBeenCalledTimes(3);
+});
+
+it('formatadores reutilizados mantêm exatamente os rótulos locais em fusos/DST/anos distintos',()=>{
+ const legacy=(time:string,now:Date)=>{const date=new Date(time),days=localDayNumber(now)-localDayNumber(date);const label=days===0?'Hoje':days===1?'Ontem':days===2?'Anteontem':date.toLocaleDateString('pt-BR',{weekday:'long'});return `${label} · ${date.toLocaleDateString('pt-BR')} às ${date.toLocaleTimeString('pt-BR')}`};
+ for(const zone of ['America/Sao_Paulo','America/New_York','Pacific/Auckland','Asia/Kolkata'])timezone(zone,()=>{
+  for(const time of ['2026-03-08T06:59:59Z','2026-03-08T07:00:00Z','2026-11-01T05:59:59Z','2026-11-01T06:00:00Z','2026-12-31T23:59:59Z','2000-02-29T00:00:00Z','0099-02-28T12:00:00Z']){
+   const now=new Date('2026-11-02T14:00:00Z');expect(historyDateLabel(time,now)).toBe(legacy(time,now));
+  }
+ });
+});
+it('exportação cancelada antes/durante carregamento não aloca canvas nem prossegue',async()=>{
+ const controller=new AbortController(),doc={createElement:vi.fn()};controller.abort();await expect(createHistoryPng(item,false,{doc,signal:controller.signal})).rejects.toMatchObject({name:'AbortError'});expect(doc.createElement).not.toHaveBeenCalled();
+ vi.stubGlobal('Image',class{complete=true;naturalWidth=740;naturalHeight=592;src=''});
+ try{let resolve:()=>void;const fonts={ready:new Promise<void>(r=>resolve=r)};const active=new AbortController();const promise=createHistoryPng(item,false,{doc:{...doc,fonts},signal:active.signal});active.abort();resolve!();await expect(promise).rejects.toMatchObject({name:'AbortError'});expect(doc.createElement).not.toHaveBeenCalled()}finally{vi.unstubAllGlobals()}
+});
+it('scratch canvas libera pixels após PNG, falha de encoder e limite de nota, sem alterar o Blob',async()=>{
+ vi.stubGlobal('Image',class{complete=true;naturalWidth=740;naturalHeight=592;src=''});
+ try{for(const scenario of ['success','encoder-failure','oversize']){
+  const blob=new Blob(['png'],{type:'image/png'}),ctx={measureText:(s:string)=>({width:s.length*8}),drawImage(){},fillText(){}};
+  const canvas={width:300,height:150,getContext:()=>ctx,toBlob:vi.fn((callback:any)=>queueMicrotask(()=>callback(scenario==='encoder-failure'?null:blob)))};
+  const doc={createElement:()=>canvas};const pending=createHistoryPng({...item,...(scenario==='oversize'?{note:'\n'.repeat(1000)}:{})},scenario==='oversize',{doc});
+  if(scenario==='success')expect(await pending).toBe(blob);else await expect(pending).rejects.toThrow();
+  expect(canvas.width).toBe(0);expect(canvas.height).toBe(0);if(scenario==='oversize')expect(canvas.toBlob).not.toHaveBeenCalled();
+ }}finally{vi.unstubAllGlobals()}
 });
