@@ -517,3 +517,9 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 
 .history-board,.pull-preview{text-shadow:0 0 1px #000,0 1px 2px #000}
 .history-board-heading h1,.pull-preview strong{text-shadow:1px 1px 0 #fff,0 0 2px #000,0 1px 3px #000}
+
+/* Restore the historical theme/base tone at the native/page boundary.
+  Keep the current texture/gradient below it and default opaque status style. */
+.ios-pwa-blur-sentinel,.status-bar-color,.silver-panel,.silver-panel::before,.silver-panel::after{
+ background-image:url('/assets/metal-grain-progressive.svg'),linear-gradient(180deg,#c6c6c6 0%,#b7b7b7 42%,#cecece 70%,#bdbdbd 100%);
+}
