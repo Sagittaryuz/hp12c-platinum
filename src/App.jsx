@@ -1,7 +1,8 @@
 import {HistoryNoteEditor} from './HistoryNoteEditor';
 import {HistoryShareDialog} from './HistoryShareDialog';
 import {setHistoryNote} from './history-notes.mjs';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer, useMemo } from 'react';
+import {historySessions} from './history-sessions.mjs';
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
@@ -300,7 +301,8 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen,setHistoryOpen]=useState(false);
   const [historyModal,setHistoryModal]=useState(null);
-  const modalItem=historyModal?history.find(row=>row.id===historyModal.id&&row.kind!=='separator'):null;
+  const sessions=useMemo(()=>historySessions(history),[history]);
+  const modalItem=historyModal?(historyModal.kind==='share'?sessions.find(session=>session.id===historyModal.id):history.find(row=>row.id===historyModal.id&&row.kind!=='separator')):null;
   const onHistoryAction=useCallback((kind,id)=>setHistoryModal({kind,id}),[]);
   const saveHistoryNote=text=>{
     const next=setHistoryNote(history,historyModal.id,text);
@@ -438,7 +440,7 @@ export function App() {
       <Brackets/>
       <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
-      {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} history={history} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
+      {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} history={history} sessions={sessions} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
         onBoard={openHistory} onClearHistory={()=>dispatch({type:'clear-history'})}
         onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
@@ -447,7 +449,7 @@ export function App() {
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>}
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
-      {historyOpen&&<HistoryBoard onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} revealStart={historyReveal.current} history={history} onClose={()=>setHistoryOpen(false)}/>}
+      {historyOpen&&<HistoryBoard onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} revealStart={historyReveal.current} history={history} sessions={sessions} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
     {modalItem&&historyModal.kind==='note'&&<HistoryNoteEditor key={modalItem.id} item={modalItem} onSave={saveHistoryNote} onClose={()=>setHistoryModal(null)}/>}

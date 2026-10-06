@@ -1,0 +1,9 @@
+# Calculation block sharing — 0.2.38
+
+Groups are a derived view of the existing chronological history. Stored row IDs, notes, backup schema, CLx/RPN engine behavior and the 100-row limit are unchanged. Existing separators close groups; adjacent separators produce no empty groups. The first group is conservatively labeled partial if the 100-row retained history has no opening separator. The newest block remains first on the board; exports read oldest operation first and include notes by default and the last recorded output. An open block is labeled as such.
+
+One share control per block on Memória and the menu history. PNG exports use 1000px-wide pages with a bounded height, preserving long text across pages. Native sharing receives all PNG files at once from a fresh click; unsupported sharing falls back to complete text copy or explicit per-page download. Native cancellation triggers no fallback. URLs and canvases are released when the dialog closes or changes.
+
+Local evidence: 154 Vitest + 25 display + 4 Sites tests; TypeScript and production build. verify.mjs checks Chromium/WebKit at 402×874 and 1280×800 with real mouse/keyboard input, old history and notes, chronological text, PNG download and native API success/cancel/failure stubs. long.mjs checks Chromium touch input and reduced motion with 100 retained operations, partial labeling, four bounded PNG pages, clipboard fallback, financial state and repeated CLx. cycles.mjs exercises both panels on plate/key/LCD, short/reversed/cancelled drags and 100 operations, using Chromium mouse/touch and WebKit mouse. JSON results accompany scripts. Generated PNGs are ignored; exported PNG and mobile dialog were visually inspected.
+
+Native OS share sheets and physical iPhone refresh are not validated by headless browsers. Original memory-board photo remains unchanged; replacement wallpaper is outside this release.

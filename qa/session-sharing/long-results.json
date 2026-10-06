@@ -1,0 +1,29 @@
+{
+  "rows100": true,
+  "partial": true,
+  "touch": true,
+  "reducedMotion": true,
+  "pages": 4,
+  "dimensions": [
+    {
+      "width": 1000,
+      "height": 3744
+    },
+    {
+      "width": 1000,
+      "height": 3744
+    },
+    {
+      "width": 1000,
+      "height": 3744
+    },
+    {
+      "width": 1000,
+      "height": 3084
+    }
+  ],
+  "clipboardComplete": true,
+  "noNativeShareFallback": true,
+  "repeatedClxNoNewSeparator": true,
+  "financialStatePreserved": true
+}

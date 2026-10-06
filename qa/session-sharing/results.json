@@ -1,0 +1,74 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "groups": 2,
+    "noEmptyGroups": true,
+    "keyboard": true,
+    "textChronological": true,
+    "notesDefault": true,
+    "nativeShareStub": true,
+    "cancelNoFallback": true,
+    "failureExplicit": true,
+    "pngDownload": true,
+    "historyPreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "groups": 2,
+    "noEmptyGroups": true,
+    "keyboard": true,
+    "textChronological": true,
+    "notesDefault": true,
+    "nativeShareStub": true,
+    "cancelNoFallback": true,
+    "failureExplicit": true,
+    "pngDownload": true,
+    "historyPreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "groups": 2,
+    "noEmptyGroups": true,
+    "keyboard": true,
+    "textChronological": true,
+    "notesDefault": true,
+    "nativeShareStub": true,
+    "cancelNoFallback": true,
+    "failureExplicit": true,
+    "pngDownload": true,
+    "historyPreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "groups": 2,
+    "noEmptyGroups": true,
+    "keyboard": true,
+    "textChronological": true,
+    "notesDefault": true,
+    "nativeShareStub": true,
+    "cancelNoFallback": true,
+    "failureExplicit": true,
+    "pngDownload": true,
+    "historyPreserved": true,
+    "errors": []
+  }
+]

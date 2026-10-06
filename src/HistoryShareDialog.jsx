@@ -1,37 +1,34 @@
 import {useEffect,useRef,useState} from 'react';
 import {HistoryDialog} from './HistoryDialog';
-import {historyShareText,createHistoryPng,shareHistory,canHistoryShare,copyHistoryImage} from './history-sharing.mjs';
+import {historySessionText,createHistoryPngPages,shareHistory,canHistoryShare,copyHistoryImage} from './history-sharing.mjs';
+import {sessionHasNotes} from './history-sessions.mjs';
 import {transferDisplay} from './display-transfer.mjs';
 export function HistoryShareDialog({item,onClose}){
- const [includeNote,setIncludeNote]=useState(false),[image,setImage]=useState(null),[imageError,setImageError]=useState(''),[status,setStatus]=useState(''),[busy,setBusy]=useState(false);
+ const [includeNote,setIncludeNote]=useState(true),[image,setImage]=useState(null),[imageError,setImageError]=useState(''),[status,setStatus]=useState(''),[busy,setBusy]=useState(false);
  const readyImage=image&&image.includeNote===includeNote;
- const text=historyShareText(item,includeNote),textRef=useRef(null),busyRef=useRef(false),alive=useRef(true);
+ const text=historySessionText(item,includeNote),textRef=useRef(null),busyRef=useRef(false),alive=useRef(true);
  useEffect(()=>{alive.current=true;return()=>{alive.current=false}},[]);
- useEffect(()=>{let active=true,url;const controller=new AbortController();setImage(null);setImageError('');
-  createHistoryPng(item,includeNote,{signal:controller.signal,imageUrl:new URL(`${import.meta.env.BASE_URL}assets/memory-board-photo.jpeg`,location.href).href}).then(blob=>{if(!active)return;url=URL.createObjectURL(blob);setImage({blob,url,includeNote,file:new File([blob],'hp12c-calculo.png',{type:'image/png'})})}).catch(e=>{if(active)setImageError(e.message)});
-  return()=>{active=false;controller.abort();if(url)URL.revokeObjectURL(url)};
+ useEffect(()=>{let active=true;const urls=[],controller=new AbortController();setImage(null);setImageError('');
+  createHistoryPngPages(item,includeNote,{signal:controller.signal,imageUrl:new URL(`${import.meta.env.BASE_URL}assets/memory-board-photo.jpeg`,location.href).href}).then(blobs=>{if(!active)return;const pages=blobs.map((blob,index)=>{const url=URL.createObjectURL(blob);urls.push(url);return {blob,url,file:new File([blob],`hp12c-bloco-${index+1}.png`,{type:'image/png'})}});setImage({pages,includeNote})}).catch(e=>{if(active)setImageError(e.message)});
+  return()=>{active=false;controller.abort();urls.forEach(url=>URL.revokeObjectURL(url))};
  },[item,includeNote]);
  const report=value=>{if(alive.current)setStatus(value)};
  const copy=()=>transferDisplay(text,false).then(r=>{report(r.copied?'Texto copiado.':'Selecione o texto para copiar.');if(!r.copied&&alive.current){textRef.current.focus();textRef.current.select()}});
- const download=()=>{if(!readyImage)return;const a=document.createElement('a');a.href=image.url;a.download='hp12c-calculo.png';document.body.append(a);a.click();a.remove();report('Download da imagem solicitado.')};
+ const download=page=>{const a=document.createElement('a');a.href=page.url;a.download=page.file.name;document.body.append(a);a.click();a.remove();report('Download da página solicitado.')};
+ const fallback=kind=>{if(kind==='text')copy();else if(image.pages.length===1)download(image.pages[0]);else report('Baixe cada página pelos botões abaixo ou compartilhe o texto completo.')};
  const share=kind=>{if(busyRef.current||kind==='image'&&!readyImage)return;
-  const data=kind==='image'?{files:[image.file],title:'Cálculo HP12C'}:{text,title:'Cálculo HP12C'};
-  if(!canHistoryShare(data)){kind==='image'?download():copy();return}
+  const data=kind==='image'?{files:image.pages.map(page=>page.file),title:'Bloco HP12C'}:{text,title:'Bloco HP12C'};
+  if(!canHistoryShare(data)){fallback(kind);return}
   busyRef.current=true;setBusy(true);setStatus('');
-  const result=shareHistory(data);
-  // Fallbacks keep their own explicit button available if activation has expired.
-  result.then(value=>{if(!alive.current)return;if(value==='unavailable'){kind==='image'?download():copy()}else if(value==='failed')report('Não foi possível compartilhar. Use copiar ou baixar.');else if(value==='shared')report('Compartilhamento concluído.');}).finally(()=>{busyRef.current=false;if(alive.current)setBusy(false)});
+  shareHistory(data).then(value=>{if(!alive.current)return;if(value==='unavailable')fallback(kind);else if(value==='failed')report('Não foi possível compartilhar. Use copiar ou baixar.');else if(value==='shared')report('Compartilhamento concluído.')}).finally(()=>{busyRef.current=false;if(alive.current)setBusy(false)});
  };
- return <HistoryDialog label="Compartilhar cálculo" onClose={onClose}>
-  <h2>Compartilhar cálculo</h2><p>Escolha texto ou imagem.</p>
-  {item.note&&<label className="history-share-note"><input type="checkbox" checked={includeNote} onChange={e=>setIncludeNote(e.target.checked)} disabled={busy}/> Incluir anotação</label>}
-  <textarea ref={textRef} className="history-share-text" aria-label="Texto do cálculo para compartilhar" readOnly value={text} rows={5}/>
-  <div className="history-share-actions"><button data-initial-focus disabled={busy} onClick={()=>share('text')}>Compartilhar texto</button><button disabled={busy} onClick={copy}>Copiar texto</button>
-   <button disabled={busy||!readyImage} onClick={()=>share('image')}>Compartilhar imagem</button>
-   {navigator.clipboard?.write&&globalThis.ClipboardItem&&<button disabled={busy||!readyImage} onClick={()=>copyHistoryImage(image.blob).then(ok=>report(ok?'Imagem copiada.':'Não foi possível copiar a imagem. Use baixar.'))}>Copiar imagem</button>}
-   <button disabled={busy||!readyImage} onClick={download}>Baixar PNG</button></div>
-  {!readyImage&&!imageError&&<p role="status">Preparando imagem…</p>}{imageError&&<p role="alert">{imageError}</p>}
-  {readyImage&&<img className="history-share-preview" src={image.url} alt="Prévia da imagem deste cálculo"/>}
+ return <HistoryDialog label="Compartilhar bloco" onClose={onClose}>
+  <h2>Compartilhar bloco</h2><p>Operações entre CLx, em ordem cronológica. Blocos longos geram várias páginas PNG.</p>
+  {sessionHasNotes(item)&&<label className="history-share-note"><input type="checkbox" checked={includeNote} onChange={e=>setIncludeNote(e.target.checked)} disabled={busy}/> Incluir anotações</label>}
+  <textarea ref={textRef} className="history-share-text" aria-label="Texto do bloco para compartilhar" readOnly value={text} rows={8}/>
+  <div className="history-share-actions"><button data-initial-focus disabled={busy} onClick={()=>share('text')}>Compartilhar texto</button><button disabled={busy} onClick={copy}>Copiar texto</button><button disabled={busy||!readyImage} onClick={()=>share('image')}>Compartilhar imagem</button></div>
+  {!readyImage&&!imageError&&<p role="status">Preparando imagem.</p>}{imageError&&<p role="alert">{imageError}</p>}
+  {readyImage&&<div className="history-share-pages">{image.pages.map((page,index)=><figure key={page.url}><figcaption>Página {index+1} de {image.pages.length}</figcaption><img className="history-share-preview" src={page.url} alt={`Bloco de cálculo, página ${index+1}`}/><button disabled={busy} onClick={()=>download(page)}>Baixar PNG {image.pages.length>1?index+1:''}</button>{navigator.clipboard?.write&&globalThis.ClipboardItem&&<button disabled={busy} onClick={()=>copyHistoryImage(page.blob).then(ok=>report(ok?'Imagem copiada.':'Não foi possível copiar. Use baixar.'))}>Copiar imagem {image.pages.length>1?index+1:''}</button>}</figure>)}</div>}
   <p role="status" aria-live="polite">{status}</p><footer><button onClick={onClose}>Fechar</button></footer>
  </HistoryDialog>;
 }

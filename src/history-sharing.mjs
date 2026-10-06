@@ -1,6 +1,40 @@
 export function historyShareText(item,includeNote=false){
+ if(item.entries)return historySessionText(item,includeNote);
  const date=new Date(item.time),stamp=Number.isFinite(date.getTime())?date.toLocaleString('pt-BR'):'Data indisponível';
  return `HP12C Platinum\n${item.operation}\n= ${item.display}\n${stamp}${includeNote&&item.note?'\n\nAnotação:\n'+item.note:''}`;
+}
+export function historySessionText(session,includeNotes=true){
+ const stamp=value=>new Date(value).toLocaleString('pt-BR');
+ const parts=['HP12C Platinum','Bloco de cálculo',`Início: ${stamp(session.start)}`,session.closed?`Encerrado por CLx: ${stamp(session.end)}`:'Bloco em andamento'];
+ if(session.partial)parts.push('Início não confirmado: histórico limitado a 100 linhas.');
+ session.entries.forEach((item,index)=>{parts.push(`\n${index+1}. ${item.operation}\n= ${item.display}`);if(includeNotes&&item.note)parts.push(`Anotação:\n${item.note}`)});
+ const last=session.entries.at(-1);if(last)parts.push(`\nÚltima saída: ${last.display}`);
+ return parts.join('\n');
+}
+export function historyPngLayout(ctx,text,width=904,maxHeight=3600){
+ const pages=[[]];let height=0;
+ for(const line of wrapCanvasText(ctx,text,width)){
+  if(height+44>maxHeight){pages.push([]);height=0}
+  pages.at(-1).push(line);height+=44;
+ }
+ return pages;
+}
+export async function createHistoryPngPages(session,includeNotes=true,{doc=document,imageUrl,signal}={}){
+ checkAbort(signal);const image=new Image();image.src=imageUrl;
+ await Promise.all([new Promise((resolve,reject)=>{if(image.complete&&image.naturalWidth)resolve();else{image.onload=resolve;image.onerror=()=>reject(new Error('Foto indisponível. Compartilhe o texto.'))}}),doc.fonts?.ready]);checkAbort(signal);
+ const canvas=doc.createElement('canvas'),ctx=canvas.getContext('2d');if(!ctx)throw new Error('Imagem indisponível. Compartilhe o texto.');
+ try{
+  ctx.font='32px Arial';const pages=historyPngLayout(ctx,historySessionText(session,includeNotes));const blobs=[];
+  for(let index=0;index<pages.length;index++){
+   checkAbort(signal);canvas.width=1000;canvas.height=180+pages[index].length*44;
+   const scale=Math.max(canvas.width/image.naturalWidth,canvas.height/image.naturalHeight);
+   ctx.drawImage(image,0,0,image.naturalWidth*scale,image.naturalHeight*scale);ctx.fillStyle='rgba(0,0,0,.55)';ctx.fillRect(0,0,canvas.width,canvas.height);
+   ctx.textBaseline='top';ctx.font='bold 36px Arial';ctx.fillStyle='#68bdff';ctx.fillText(`HP12C · Página ${index+1}/${pages.length}`,48,40);
+   ctx.font='32px Arial';ctx.fillStyle='#f2f4e9';pages[index].forEach((line,row)=>ctx.fillText(line,48,110+row*44));
+   blobs.push(await new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Não foi possível criar a imagem. Compartilhe o texto.')),'image/png')));checkAbort(signal);
+  }
+  return blobs;
+ }finally{canvas.width=0;canvas.height=0}
 }
 export function canHistoryShare(data,nav=globalThis.navigator){
  try{return typeof nav.share==='function'&&(data.files?typeof nav.canShare==='function'&&nav.canShare({files:data.files}):!nav.canShare||nav.canShare(data))}catch{return false}

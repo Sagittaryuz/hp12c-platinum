@@ -549,3 +549,12 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .history-dialog::backdrop{background:#0009}.history-dialog h2{font-size:21px;margin:0 0 12px}.history-dialog p{margin:10px 0;overflow-wrap:anywhere}.history-dialog-calculation strong{display:block}.history-dialog label{display:block}.history-dialog textarea{display:block;width:100%;margin:8px 0;min-height:100px;max-height:30vh;resize:vertical;padding:10px;border:1px solid #999;border-radius:4px;background:#101010;color:#fff;font:16px/1.5 Arial;user-select:text;touch-action:pan-y}.history-dialog small{color:#bbb}.history-dialog footer,.history-share-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.history-dialog button{min-height:44px;padding:10px 14px;border:1px solid #777;border-radius:6px;color:#fff;background:#303030;font:16px Arial;touch-action:manipulation}.history-dialog button:disabled{opacity:.5}.history-dialog button:focus-visible,.history-dialog textarea:focus-visible,.history-dialog input:focus-visible{outline:2px solid #68bdff;outline-offset:2px}.history-share-note{margin:10px 0}.history-share-note input{width:20px;height:20px;vertical-align:middle;margin-right:6px}.history-share-preview{display:block;max-width:100%;max-height:180px;margin:12px auto;object-fit:contain}.history-dialog [role=alert]{color:#ffbcb4}
 .lcd-copy-success{opacity:0;will-change:opacity,scale}
 @media(prefers-reduced-motion:reduce){.lcd-copy-success{opacity:1}}
+.history-board li.history-calculation-row{grid-template-columns:minmax(0,1fr)}
+.hp-history-calculation{grid-template-columns:minmax(0,1fr)}
+.history-session-label{min-width:0;text-align:center;flex:0 1 auto}
+.history-session-label small{display:block;font:13px/1.4 Arial;color:#f2f4e9;margin-top:4px}
+.history-session-share{flex:0 0 44px}
+.hp-history-session{margin-bottom:18px}
+.hp-history-session-header{display:flex;align-items:center;gap:10px;padding:12px 8px}
+.hp-history-session-header time{font:700 14px/1.4 Arial}
+.history-share-pages figure{margin:12px 0}.history-share-pages figcaption{font:14px Arial;margin:4px 0}
