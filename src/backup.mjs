@@ -1,5 +1,5 @@
 // Portable, local-only backup. Read/write only this calculator's own keys.
-export const BACKUP_KEYS=['hp12c-state','hp12c-default-display','hp12c-default-program','hp12c-program-before-default','hp12c-history-v1','hp12c-ui-settings-v1'];
+export const BACKUP_KEYS=['hp12c-state','hp12c-default-display','hp12c-default-program','hp12c-program-before-default','hp12c-history-v1','hp12c-ui-settings-v1','hp12c-history-activity-v1'];
 export function createBackup(storage,state){
  const entries={};for(const key of BACKUP_KEYS){const value=storage.getItem(key);if(value!==null)entries[key]=value;}
  entries['hp12c-state']=JSON.stringify(state);
@@ -11,6 +11,7 @@ export function parseBackup(text){
  if(data?.format!=='hp12c-platinum-backup'||data.version!==1||!data.entries||typeof data.entries!=='object'||Array.isArray(data.entries))throw new Error('Este arquivo não é um backup da calculadora.');
  for(const [key,value]of Object.entries(data.entries)){if(!BACKUP_KEYS.includes(key)||typeof value!=='string')throw new Error('Backup inválido.');}
  if(typeof data.entries['hp12c-default-display']!=='string'||typeof data.entries['hp12c-default-program']!=='string')throw new Error('Backup sem configurações de migração.');
+ if(Object.hasOwn(data.entries,'hp12c-history-activity-v1')&&!['true','false'].includes(data.entries['hp12c-history-activity-v1']))throw new Error('Backup inválido.');
  const state=JSON.parse(data.entries['hp12c-state']||'null');
  if(!state||state.schemaVersion!==2||!Array.isArray(state.program)||!Array.isArray(state.registers)||!Number.isFinite(state.x))throw new Error('Estado da calculadora inválido.');
  return{entries:data.entries,state};

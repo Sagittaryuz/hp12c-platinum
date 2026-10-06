@@ -14,7 +14,7 @@ export function HpMenu({state,history,prefs,setPrefs,onClose,onRecall,onEditMemo
  const heading=useRef(null),panel=useRef(null),lastFocus=useRef(document.activeElement);
  const [bodyAtTop,setBodyAtTop]=useState(true);
  const motion=usePanelMotion(panel,1,onClose);
- useSurfacePull(panel,motion.close,true,'.hp-menu-body',motion.progress);
+ useSurfacePull(panel,motion.close,true,'.hp-menu-body',motion.progress,{freeMotion:true,onStart:motion.begin});
  const capabilities={sound:Boolean(window.AudioContext||window.webkitAudioContext),vibration:typeof navigator.vibrate==='function',orientation:typeof screen.orientation?.lock==='function',fullscreen:typeof document.documentElement.requestFullscreen==='function'};
  const go=r=>{setError('');setEdit(null);setRoute(r)};
  useEffect(()=>{heading.current?.focus({preventScroll:true})},[route]);

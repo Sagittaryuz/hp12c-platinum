@@ -40,3 +40,4 @@ test('legacy copy only writes, cleans up and restores focus and selection',()=>{
  assert.equal(legacyCopy('9,00',doc),true);assert.deepEqual(log,['focusTemp','select','remove','restoreFocus','clearSelection','restoreRange']);
 });
 test('missing copy APIs gives manual fallback result',async()=>{const doc={createElement:()=>({style:{},setAttribute(){},focus(){},select(){},remove(){}}),body:{append(){}}};assert.equal((await transferDisplay('Error',false,{nav:{},doc})).copied,false)});
+test('viewport real cancela cópia/hold; resize espúrio mantém tap',()=>{const h=harness();h.fire('pointerdown');h.fire('resize');h.fire('pointerup');assert.deepEqual(h.calls,[false]);h.fire('pointerdown');h.advance(650);h.win.innerHeight=400;h.fire('resize');h.fire('pointerup');assert.deepEqual(h.calls,[false]);h.cleanup()});

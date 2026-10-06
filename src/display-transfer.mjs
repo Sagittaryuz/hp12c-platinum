@@ -26,7 +26,7 @@ export function legacyCopy(text,doc) {
   finally {field.remove();focused?.focus?.({preventScroll:true});if(selection){selection.removeAllRanges();ranges.forEach(r=>selection.addRange(r));}if(caret)focused.setSelectionRange?.(...caret);}
 }
 // Hold is classified at release, not a timer: touch pointerup supplies fresh iOS activation.
-export function bindDisplayGestures(el,activate,{win=window,doc=document,now=()=>performance.now(),holdMs=500,slop=10}={}) {
+export function bindDisplayGestures(el,activate,{win=window,doc=document,now=()=>performance.now(),holdMs=500,slop=8}={}) {
   let gesture=null, contacts=new Set(),blockedClick=false;
   const inside=e=>{const r=el.getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom};
   const cancel=()=>{gesture=null;};
@@ -46,6 +46,8 @@ export function bindDisplayGestures(el,activate,{win=window,doc=document,now=()=
   };
   const aborted=e=>{contacts.delete(e.pointerId);cancel();};
   const reset=()=>{cancel();contacts.clear();};
+  let width=win.innerWidth,height=win.innerHeight;
+  const resized=()=>{if(width!==win.innerWidth||height!==win.innerHeight){width=win.innerWidth;height=win.innerHeight;reset()}};
   const visibility=()=>{if(doc.hidden)reset();};
   const click=e=>{e.preventDefault();e.stopPropagation();if(blockedClick&&(e.detail!==0||e.pointerType))return;activate(false);};
   const key=e=>{
@@ -53,7 +55,7 @@ export function bindDisplayGestures(el,activate,{win=window,doc=document,now=()=
     if(['Enter',' '].includes(e.key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();e.stopPropagation();if(!e.repeat)activate(Boolean(e.shiftKey));}
   };
   const context=e=>e.preventDefault();
-  const bindings=[[win,'pointerdown',down,true],[win,'pointermove',move,true],[win,'pointerup',up,true],[win,'pointercancel',aborted,true],[win,'blur',reset],[win,'pagehide',reset],[doc,'visibilitychange',visibility],[el,'lostpointercapture',cancel],[el,'click',click],[el,'keydown',key],[el,'contextmenu',context]];
+  const bindings=[[win,'pointerdown',down,true],[win,'pointermove',move,true],[win,'pointerup',up,true],[win,'pointercancel',aborted,true],[win,'blur',reset],[win,'pagehide',reset],[win,'resize',resized],[doc,'visibilitychange',visibility],[el,'lostpointercapture',cancel],[el,'click',click],[el,'keydown',key],[el,'contextmenu',context]];
   bindings.forEach(([target,type,handler,capture])=>target.addEventListener(type,handler,{capture:Boolean(capture)}));
   return()=>bindings.forEach(([target,type,handler,capture])=>target.removeEventListener(type,handler,{capture:Boolean(capture)}));
 }

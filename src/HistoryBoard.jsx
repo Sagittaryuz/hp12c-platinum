@@ -1,7 +1,7 @@
 import {Component,useLayoutEffect,useRef} from 'react';
 import {historyNewestFirst} from './hp-panel-state.mjs';
 import {usePanelMotion} from './usePanelMotion';
-import {useDirectionalDrag} from './useDirectionalDrag';
+import {useSurfacePull} from './useSurfacePull';
 // Read the anchor before React changes the rows, independently of delayed native
 // scroll events. Updating the list must not move a reader inspecting older rows.
 class HistoryLines extends Component{
@@ -17,16 +17,18 @@ class HistoryLines extends Component{
  }
  render(){const {history,surface}=this.props;return <div ref={surface} className="history-board-lines" tabIndex={0} aria-label="Histórico de operações, até 100 linhas">
   {!history.length&&<p>Nenhuma operação registrada.</p>}
-  <ol>{historyNewestFirst(history).map(item=><li key={item.id} data-history-id={item.id} className={item.kind==='separator'?'history-separator':''}>{item.kind==='separator'?<><span className="history-rule" aria-label={item.operation}/><time dateTime={item.time}>{new Date(item.time).toLocaleString('pt-BR')}</time></>:<><span>{item.operation}</span><strong>= {item.display}</strong></>}</li>)}</ol>
+  <ol>{historyNewestFirst(history).map(item=><li key={item.id} data-history-id={item.id} className={item.kind==='separator'?'history-separator':''}>{item.kind==='separator'?<><span className="history-rule" aria-label={item.operation}/><time dateTime={item.time}>{new Date(item.time).toLocaleString('pt-BR')}</time><span className="history-rule" aria-hidden="true"/></>:<><span>{item.operation}</span><strong>= {item.display}</strong></>}</li>)}</ol>
  </div>}
 }
 export function HistoryBoard({history,onClose,revealStart=0}){
  const dialog=useRef(null),close=useRef(null),lines=useRef(null),lastFocus=useRef(document.activeElement);
- const motion=usePanelMotion(dialog,-1,onClose,revealStart),drag=useDirectionalDrag(-1,motion.close,true,motion.progress);
+ const motion=usePanelMotion(dialog,-1,onClose,revealStart);
+ useSurfacePull(dialog,motion.close,true,undefined,motion.progress,{direction:-1,freeMotion:true,ignoreSelector:'.history-board-lines',onStart:motion.begin});
  useLayoutEffect(()=>{const previous=lastFocus.current;if(!dialog.current.open)dialog.current.showModal();close.current.focus({preventScroll:true});lines.current.scrollTop=0;return()=>{dialog.current?.close();queueMicrotask(()=>{const target=previous?.isConnected?previous:document.querySelector('.brand');target?.focus?.({preventScroll:true})})}},[]);
  return <dialog ref={dialog} className="history-board" aria-labelledby="history-board-title" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();motion.close()}}} onCancel={e=>{e.preventDefault();motion.close()}}>
   <span className="panel-reveal-bar" aria-hidden="true"/>
-  <header className="history-board-handle" {...drag}><div><h1 id="history-board-title">Quadro negro</h1><p>Puxe esta faixa para cima para voltar</p></div><button ref={close} onClick={motion.close}>Voltar à calculadora</button></header>
+  <header className="history-board-heading"><h1 id="history-board-title">Memória</h1></header>
   <HistoryLines history={history} surface={lines}/>
+  <footer className="history-board-handle"><button ref={close} onClick={motion.close} aria-label="Voltar à calculadora"><span aria-hidden="true">⌃</span> Puxe para cima para voltar</button></footer>
  </dialog>;
 }

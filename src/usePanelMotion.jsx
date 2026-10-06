@@ -1,11 +1,30 @@
 import {useLayoutEffect,useRef} from 'react';
-import {animatePanel} from './panel-motion.mjs';
+import {animatePanel,setPullBlur} from './panel-motion.mjs';
 export function usePanelMotion(surface,direction,onClosed,start=0){
- const state=useRef({alive:true,closing:false,y:0,entry:[],movement:null}),latest=useRef(onClosed);latest.current=onClosed;
- const cancelEntry=()=>{for(const a of state.current.entry)a.cancel();state.current.entry=[]};
- const cancelMovement=()=>{state.current.movement?.cancel();state.current.movement=null};
- const progress=distance=>{const s=state.current,el=surface.current;if(!el||s.closing)return;cancelMovement();const previous=s.y,y=direction*Math.max(0,distance);s.y=y;el.style.transform=`translate3d(0,${y}px,0)`;if(!distance&&previous){const a=animatePanel(el,[{transform:`translate3d(0,${previous}px,0)`},{transform:'translate3d(0,0,0)'}],160);s.movement=a;a.finished.then(()=>{if(s.alive&&!s.closing)a.cancel()}).catch(()=>{})}};
- const close=()=>{const s=state.current,el=surface.current;if(!el||s.closing)return;s.closing=true;el.dataset.closing='true';const from=getComputedStyle(el).transform;el.style.clipPath=getComputedStyle(el).clipPath;cancelEntry();cancelMovement();const a=animatePanel(el,[{transform:from==='none'?`translate3d(0,${s.y}px,0)`:from},{transform:`translate3d(0,${direction*el.getBoundingClientRect().height}px,0)`}]);s.movement=a;a.finished.then(()=>{if(s.alive)latest.current()}).catch(()=>{})};
- useLayoutEffect(()=>{const s=state.current,el=surface.current;s.alive=true;if(el.tagName==='DIALOG'&&!el.open)el.showModal();const h=el.getBoundingClientRect().height,bar=el.querySelector('.panel-reveal-bar'),from=Math.min(Math.max(0,start),h);const a=animatePanel(el,[{clipPath:`inset(0 0 ${h-from}px 0)`},{clipPath:'inset(0 0 0px 0)'}]);s.entry=[a];if(bar){bar.hidden=false;s.entry.push(animatePanel(bar,[{transform:`translate3d(0,${Math.max(0,from-3)}px,0)`},{transform:`translate3d(0,${h-3}px,0)`}]))}a.finished.then(()=>{if(s.alive&&!s.closing){cancelEntry();el.style.clipPath='';if(bar)bar.hidden=true}}).catch(()=>{});let lastWidth=el.clientWidth,lastHeight=el.clientHeight;const resize=()=>{if(el.clientWidth===lastWidth&&el.clientHeight===lastHeight)return;lastWidth=el.clientWidth;lastHeight=el.clientHeight;cancelEntry();cancelMovement();if(s.closing)latest.current();else{s.y=0;el.style.transform='';el.style.clipPath='';if(bar)bar.hidden=true}};const media=window.matchMedia('(prefers-reduced-motion: reduce)'),preference=()=>{if(media.matches){cancelEntry();cancelMovement();if(s.closing)latest.current();else{s.y=0;el.style.transform='';el.style.clipPath='';if(bar)bar.hidden=true}}};media.addEventListener('change',preference);window.addEventListener('resize',resize);return()=>{s.alive=false;cancelEntry();cancelMovement();window.removeEventListener('resize',resize);media.removeEventListener('change',preference)}},[surface]);
- return {close,progress};
+ const state=useRef({alive:true,closing:false,dragging:false,base:0,y:0,animation:null,generation:0});
+ const latest=useRef(onClosed);latest.current=onClosed;
+ const stop=()=>{state.current.generation++;state.current.animation?.cancel();state.current.animation=null};
+ const visual=el=>{const value=getComputedStyle(el).transform;return value==='none'?0:new DOMMatrixReadOnly(value).m42};
+ const settle=(target,closing,duration=260)=>{
+  const s=state.current,el=surface.current;if(!el)return;const from=visual(el);stop();s.closing=closing;s.dragging=false;s.base=0;s.y=target;
+  el.dataset.closing=String(closing);el.style.transform=`translate3d(0,${target}px,0)`;
+  const generation=s.generation,a=animatePanel(el,[{transform:`translate3d(0,${from}px,0)`},{transform:`translate3d(0,${target}px,0)`}],duration);s.animation=a;
+  a.finished.then(()=>{if(!s.alive||generation!==s.generation)return;stop();setPullBlur(0);if(closing)latest.current();else el.style.transform=''}).catch(()=>{});
+ };
+ const begin=()=>{const s=state.current,el=surface.current;if(!el)return;const from=visual(el);stop();s.closing=false;s.dragging=true;s.base=from;s.y=from;el.dataset.closing='false';el.style.transform=`translate3d(0,${from}px,0)`};
+ const progress=(distance,phase)=>{const s=state.current,el=surface.current;if(!el)return;if(!distance&&!phase?.active){if(s.dragging){s.dragging=false;settle(0,false,160)}return}if(!s.dragging)begin();const raw=s.base+direction*distance,y=direction<0?Math.max(-el.clientHeight,Math.min(0,raw)):Math.min(el.clientHeight,Math.max(0,raw));s.y=y;el.style.transform=`translate3d(0,${y}px,0)`;setPullBlur(Math.abs(distance))};
+ const close=()=>{const el=surface.current;if(el&&!state.current.closing)settle(direction*el.clientHeight,true)};
+ useLayoutEffect(()=>{
+  const s=state.current,el=surface.current;s.alive=true;s.closing=false;s.dragging=false;
+  if(el.tagName==='DIALOG'&&!el.open)el.showModal();
+  const height=el.clientHeight,from=direction*Math.max(0,height-Math.min(height,start));
+  el.style.transform=`translate3d(0,${from}px,0)`;settle(0,false);
+  let width=el.clientWidth,h=el.clientHeight;
+  const reset=()=>{stop();if(s.closing){setPullBlur(0);latest.current()}else{s.dragging=false;s.base=0;s.y=0;el.style.transform='';setPullBlur(0)}};
+  const resize=()=>{if(width!==el.clientWidth||h!==el.clientHeight){width=el.clientWidth;h=el.clientHeight;reset()}};
+  const media=window.matchMedia('(prefers-reduced-motion: reduce)'),preference=()=>{if(media.matches)reset()};
+  window.addEventListener('resize',resize);media.addEventListener('change',preference);
+  return()=>{s.alive=false;stop();setPullBlur(0);window.removeEventListener('resize',resize);media.removeEventListener('change',preference)};
+ },[surface]);
+ return {close,progress,begin};
 }

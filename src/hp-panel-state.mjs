@@ -1,3 +1,4 @@
+export const HISTORY_ACTIVITY_KEY='hp12c-history-activity-v1';
 export const HISTORY_KEY='hp12c-history-v1', UI_SETTINGS_KEY='hp12c-ui-settings-v1';
 export const UI_DEFAULTS=Object.freeze({suspendSeconds:0,sound:false,vibration:false,keyEntry:'press'});
 export function readUiSettings(storage){try{const s=JSON.parse(storage.getItem(UI_SETTINGS_KEY)||'null');return{suspendSeconds:[0,30,60,300].includes(s?.suspendSeconds)?s.suspendSeconds:0,sound:s?.sound===true,vibration:s?.vibration===true,keyEntry:s?.keyEntry==='release'?'release':'press'}}catch{return {...UI_DEFAULTS}}}
@@ -55,20 +56,26 @@ export function historySeparator({id,time},operation='Memória reiniciada'){
  if(!Number.isFinite(Date.parse(time)))return null;
  return {id,time,kind:'separator',operation:({clearReg:'Registradores e memória reiniciados',clearFin:'Memória financeira limpa',clearStats:'Memória estatística limpa'})[operation]||operation,display:'',value:null};
 }
+export function historyActivity(state,history,saved){
+ if(saved==='true'||saved==='false')return saved==='true';
+ return Boolean(history.length&&history.at(-1).kind!=='separator')||Boolean(state.error||state.entering&&state.input!=='0'||state.x!==0);
+}
 export function reducePanel(current,event,{pressKey,pressAction,formatDisplay,displayDefaults,initial}){
  if(event.type==='state')return {...current,state:typeof event.updater==='function'?event.updater(current.state):event.updater};
- if(event.type==='clear-history')return {...current,history:[]};
- if(event.type==='restore-history')return {...current,history:event.history};
+ if(event.type==='clear-history')return {...current,history:[],historyActive:false};
+ if(event.type==='restore-history'){const state=event.state||current.state;return {...current,state,history:event.history,historyActive:historyActivity(state,event.history,event.activity)}};
  if(event.type==='reset'){
   const history=event.selected.history?[]:current.history;
-  return {state:resetSelected(current.state,event.selected,initial),history};
+  return {...current,state:resetSelected(current.state,event.selected,initial),history,historyActive:event.selected.history?false:current.historyActive};
  }
  const state=displayDefaults(event.type==='action'?pressAction(current.state,event.action):pressKey(current.state,event.id));
  const operation=event.action;
  let item=historyEntry(current.state,state,operation,{id:event.eventId,time:event.time,display:formatDisplay(state)});
- // A zero/empty CLX with no new entry/result since the last boundary is a no-op.
- if(operation==='clx'&&!current.state.error&&current.state.x===0&&(!current.state.entering||current.state.input==='0')&&(current.state.displayLabel==='CLX'||!current.state.algOperators.length)&&(!current.history.length||current.history.at(-1).kind==='separator'))item=null;
- return {state,history:appendHistory(current.history,item)};
+ const active=current.historyActive??historyActivity(current.state,current.history);
+ if(operation==='clx'&&!active)item=null;
+ // A confirmed key counts even when X remains zero; repeated clear never does.
+ const historyActive=operation==='clx'?false:active||event.type==='key'||event.physical===true||Boolean(item);
+ return {...current,state,history:appendHistory(current.history,item),historyActive};
 }
 
 // Persistence remains chronological, compatible with all existing backups.

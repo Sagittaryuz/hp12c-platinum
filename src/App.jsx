@@ -2,9 +2,10 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer }
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
+import {setPullBlur} from './panel-motion.mjs';
 import {animatePanel} from './panel-motion.mjs';
 import {useSurfacePull} from './useSurfacePull';
-import {HISTORY_KEY,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
+import {HISTORY_KEY,HISTORY_ACTIVITY_KEY,historyActivity,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
 import { Lcd } from './Lcd';
 import {useHeaderAlignment} from './useHeaderAlignment';
@@ -160,7 +161,9 @@ function useJoinedFrame() {
         calculator.style.setProperty('--portrait-crossbar-top',(crossbar.getBoundingClientRect().top-body.top)+'px');
         // Use the new lower room once: anchor the first row and share a
         // bounded40px extension equally among the six row intervals.
-        const frameRect=calculator.querySelector('.portrait-footer-frame').getBoundingClientRect();
+        const paintedFrame=calculator.querySelector('.portrait-footer-frame').getBoundingClientRect();
+        // Keep0.2.28's clearance envelope independent of the new5px side paint.
+        const frameRect={...paintedFrame,left:body.left+10,right:body.right-10,bottom:paintedFrame.bottom};
         // New extension is bounded by the actual concentric inner contour.
         const innerRadius=34;
         const stroke=parseFloat(getComputedStyle(calculator).getPropertyValue('--footer-stroke'));
@@ -223,13 +226,13 @@ function useJoinedFrame() {
         const offset=Math.max(0,Math.min(desired,crossbarTop-visualRimBottom-2));
         calculator.style.setProperty('--lcd-balance-offset',offset+'px');
         calculator.dataset.lcdBalanceOffset=String(offset);
-        // The portrait smooth surface ends at the established inner LCD edges.
+        // Preserve0.2.28's key grid at the established inner LCD edges.
         // Apply this AFTER vertical clearance calculations so their approved
         // envelope and every row's vertical position remain unchanged.
         const glass=calculator.querySelector('.lcd-face').getBoundingClientRect();
         const margin=6,plateLeft=glass.left,plateRight=glass.right;
-        calculator.style.setProperty('--smooth-frame-left',(plateLeft-body.left-stroke)+'px');
-        calculator.style.setProperty('--smooth-frame-right',(body.right-plateRight-stroke)+'px');
+
+
         const columns=[];for(const x of simple.map(el=>el.getBoundingClientRect().left).sort((a,b)=>a-b))if(!columns.some(v=>Math.abs(v-x)<1))columns.push(x);
         const width=simple[0].getBoundingClientRect().width;
         const horizontalPitch=(plateRight-plateLeft-2*margin-width)/(columns.length-1);
@@ -275,21 +278,26 @@ function panelReducer(current,event){
 export function App() {
   useJoinedFrame();
   useHeaderAlignment();
-  const [{state,history},dispatch]=useReducer(panelReducer,null,()=>({state:savedState(),history:readHistory(localStorage)}));
+  const [{state,history,historyActive},dispatch]=useReducer(panelReducer,null,()=>{const state=savedState(),history=readHistory(localStorage);return{state,history,historyActive:historyActivity(state,history,(()=>{try{return localStorage.getItem(HISTORY_ACTIVITY_KEY)}catch{return null}})())}});
   const setState=useCallback(updater=>dispatch({type:'state',updater}),[]);
   const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage));
-  const latestSaved=useRef({state,history,prefs});
-  useLayoutEffect(()=>{latestSaved.current={state,history,prefs}},[state,history,prefs]);
-  useEffect(()=>{const flush=()=>{try{const current=latestSaved.current;localStorage.setItem('hp12c-state',JSON.stringify(current.state));localStorage.setItem(HISTORY_KEY,JSON.stringify(current.history));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(current.prefs))}catch{}};const hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
+  const latestSaved=useRef({state,history,historyActive,prefs});
+  useLayoutEffect(()=>{latestSaved.current={state,history,historyActive,prefs}},[state,history,historyActive,prefs]);
+  useEffect(()=>{const flush=()=>{try{const current=latestSaved.current;localStorage.setItem('hp12c-state',JSON.stringify(current.state));localStorage.setItem(HISTORY_KEY,JSON.stringify(current.history));localStorage.setItem(HISTORY_ACTIVITY_KEY,String(current.historyActive));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(current.prefs))}catch{}};const hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
   const audio=useRef(null),eventCounter=useRef(0),eventSession=useRef(null);
   if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen,setHistoryOpen]=useState(false);
-  const historyReveal=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null);
-  const openHistory=useCallback(gesture=>{historyReveal.current=Math.min(180,gesture?.distance||0);setMenuOpen(false);setHistoryOpen(true)},[]);
+  const historyReveal=useRef(0),pullStart=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null);
+  const openHistory=useCallback(gesture=>{historyReveal.current=Math.min(window.innerHeight,gesture?.distance||0);setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
   const calculatorSurface=useRef(null);
-  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,d=>{const el=pullPreview.current;if(!el)return;previewAnimation.current?.cancel();const previous=parseFloat(el.style.height)||0;if(!d&&previous){const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140);previewAnimation.current=a;a.finished.then(()=>{el.style.height='0px';a.cancel()}).catch(()=>{})}else el.style.height=Math.min(d,180)+'px'});
+  useSurfacePull(calculatorSurface,g=>openHistory({...g,distance:pullStart.current+g.distance}),!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,(d,phase)=>{
+    const el=pullPreview.current;if(!el)return;setPullBlur(d);previewAnimation.current?.cancel();
+    const previous=parseFloat(getComputedStyle(el).height)||0;
+    if(!d&&previous&&!phase?.active){const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140);previewAnimation.current=a;el.style.height='0px';a.finished.then(()=>a.cancel()).catch(()=>{})}
+    else el.style.height=d||phase?.active?Math.max(0,Math.min(pullStart.current+d,window.innerHeight))+'px':'0px';
+  },{onStart:()=>{const el=pullPreview.current;if(!el)return;pullStart.current=parseFloat(getComputedStyle(el).height)||0;previewAnimation.current?.cancel();el.style.height=pullStart.current+'px'}});
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
@@ -298,7 +306,7 @@ export function App() {
     if(prefs.sound){try{const Context=window.AudioContext||window.webkitAudioContext;if(Context){const ctx=audio.current||(audio.current=new Context());ctx.resume().then(()=>{const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.frequency.value=880;gain.gain.setValueAtTime(.035,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.035);oscillator.connect(gain);gain.connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+.04)}).catch(()=>{})}}catch{}}
     dispatch({type:'key',id,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});
   },[prefs.sound,prefs.vibration]);
-  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[history,prefs]);
+  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history));localStorage.setItem(HISTORY_ACTIVITY_KEY,String(historyActive));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[history,historyActive,prefs]);
   useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
   useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
   useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen]);
@@ -333,7 +341,7 @@ export function App() {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.target?.tagName === 'BUTTON' && [' ', 'Enter'].includes(event.key)) return;
       if (event.key === 'Backspace' || event.key === '=') {
-        event.preventDefault(); dispatch({type:'action',action:event.key==='='?'equals':'backspace',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
+        event.preventDefault(); dispatch({type:'action',physical:true,action:event.key==='='?'equals':'backspace',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
       }
       const shortcut = event.code === 'Space' ? 'Enter' : event.key === ',' ? '.' : event.key;
       const key = KEY_DEFINITIONS.find(key => key.shortcut.toUpperCase() === shortcut.toUpperCase());
@@ -359,7 +367,7 @@ export function App() {
   const saveBackup=()=>{
     try{
       const backup=createBackup(localStorage,state);
-      backup.entries[HISTORY_KEY]=JSON.stringify(history);
+      backup.entries[HISTORY_KEY]=JSON.stringify(history);backup.entries[HISTORY_ACTIVITY_KEY]=String(historyActive);
       backup.entries[UI_SETTINGS_KEY]=JSON.stringify(prefs);
       const url=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
       const link=document.createElement('a');link.href=url;link.download='hp12c-backup-'+new Date().toISOString().slice(0,10)+'.json';
@@ -374,9 +382,9 @@ export function App() {
       const backup=parseBackup(await file.text());
       const restored=restoreState(backup.state);
       restoreBackupStorage(localStorage,backup.entries);
-      dispatch({type:'restore-history',history:readHistory(localStorage)});
+      dispatch({type:'restore-history',history:readHistory(localStorage),activity:localStorage.getItem(HISTORY_ACTIVITY_KEY),state:restored});
       setPrefs(readUiSettings(localStorage));
-      setState(restored);setMenuOpen(false);setNotice('Backup restaurado: programas, registradores e configurações.');
+      setMenuOpen(false);setNotice('Backup restaurado: programas, registradores e configurações.');
     }catch{setNotice('Não foi possível restaurar este arquivo. Os dados atuais foram mantidos.');}
   };
   const display = formatDisplay(state);
@@ -408,12 +416,12 @@ export function App() {
         onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
         onBackup={saveBackup} onRestore={()=>backupInput.current.click()} onFullscreen={fullscreen}
         onDiagnostics={()=>{setMenuOpen(false);setDiagnosticsOpen(true)}} onAngular={()=>setState(current=>displayDefaults(pressAction(current,'toggleAngular')))}
-        onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>} 
+        onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>}
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
       {historyOpen&&<HistoryBoard revealStart={historyReveal.current} history={history} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
-    <div ref={pullPreview} className="pull-preview" aria-hidden="true"><strong>Quadro negro</strong><span/></div>
+    <div ref={pullPreview} className="pull-preview" aria-hidden="true"><strong>Memória</strong><span/></div>
   </main>;
 }
