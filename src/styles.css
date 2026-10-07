@@ -572,7 +572,9 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 @media(prefers-reduced-motion:reduce){.history-copied{animation:none}}
 .memory-registers{padding:8px 0 20px;border-bottom:1px solid #555;margin-bottom:12px;font:16px Arial;text-align:left}
 .memory-registers h2{font-size:20px;margin:0 0 8px}.memory-registers p{font-size:13px;line-height:1.4;color:#bbb}
-.memory-register-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-.memory-register-grid button{display:flex;flex-direction:column;align-items:flex-start;gap:4px;overflow-wrap:anywhere;min-width:0;font-size:14px}
+.memory-register-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px}
+.memory-register-grid button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;min-height:44px;padding:6px 1px;font-size:10px}
+.memory-register-grid strong{font-size:clamp(10px,2.6vw,12px);text-align:center;white-space:nowrap}
+.memory-register-grid span{display:block;width:100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
 .memory-registers form{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}.memory-registers label{width:100%}.memory-registers input{display:block;width:100%;user-select:text}.memory-registers [role=alert]{color:#ffbcb4}
 :root[data-panel-open] .ios-pwa-blur-sentinel,:root[data-panel-open] .status-bar-color{background:#090909!important;background-image:none!important;filter:none!important}
