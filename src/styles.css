@@ -578,3 +578,8 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .memory-register-grid span{display:block;width:100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
 .memory-registers form{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}.memory-registers label{width:100%}.memory-registers input{display:block;width:100%;user-select:text}.memory-registers [role=alert]{color:#ffbcb4}
 :root[data-panel-open] .ios-pwa-blur-sentinel,:root[data-panel-open] .status-bar-color{background:#090909!important;background-image:none!important;filter:none!important}
+.history-board-heading{position:relative;display:flex;align-items:center;justify-content:center}
+.history-board-close{position:absolute;top:max(8px,env(safe-area-inset-top,0px));display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0!important;border:1px solid #777!important;border-radius:50%!important;background:#171717!important;color:#f6f8ee!important;cursor:pointer;touch-action:manipulation}
+.history-board-close{right:max(12px,env(safe-area-inset-right,0px))}
+.history-board-close .hp-icon{width:22px;height:22px}
+.history-board-close:focus-visible{outline:2px solid #68bdff;outline-offset:2px}

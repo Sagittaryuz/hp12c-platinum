@@ -1,6 +1,6 @@
 import {Component,useLayoutEffect,useRef,useState,useEffect} from 'react';
 import {usePanelMotion} from './usePanelMotion';
-import {useSurfacePull} from './useSurfacePull';
+import {HpIcon} from './HpIcon';
 import {useHistoryActions} from './useHistoryActions';
 import {HistoryCalculation} from './HistoryCalculation';
 import {useLocalNow} from './useLocalNow';
@@ -29,18 +29,16 @@ class HistoryLines extends Component{
   ])}</ol>
  </div>}
 }
-export function HistoryBoard({state,onEditMemory,history,sessions,onClose,onHistoryAction,noteModalOpen=false,revealStart=0}){
+export function HistoryBoard({state,onEditMemory,history,sessions,onClose,onHistoryAction}){
  const dialog=useRef(null),close=useRef(null),lines=useRef(null),lastFocus=useRef(document.activeElement);
- const motion=usePanelMotion(dialog,-1,onClose,revealStart);
+ const motion=usePanelMotion(dialog,-1,onClose);
   const now=useLocalNow(),[copyState,setCopyState]=useState(null),copyLifetime=useRef({alive:true,busy:false,timer:null});
  useEffect(()=>{const s=copyLifetime.current;s.alive=true;return()=>{s.alive=false;clearTimeout(s.timer)}},[]);
  useHistoryActions(dialog,(kind,id)=>{if(kind!=='copy'){onHistoryAction(kind,id);return}const s=copyLifetime.current,session=sessions.find(session=>session.id===id);if(!session||s.busy)return;s.busy=true;transferDisplay(historySessionText(session,true),false).then(result=>{if(!s.alive)return;clearTimeout(s.timer);setCopyState({id,copied:result.copied,failed:!result.copied,nonce:performance.now()});s.timer=setTimeout(()=>setCopyState(null),1600)}).finally(()=>{s.busy=false})});
- useSurfacePull(dialog,motion.close,!noteModalOpen,undefined,motion.progress,{direction:-1,freeMotion:true,ignoreSelector:'.history-board-lines',onStart:motion.begin});
  useLayoutEffect(()=>{const previous=lastFocus.current;if(!dialog.current.open)dialog.current.showModal();close.current.focus({preventScroll:true});lines.current.scrollTop=0;return()=>{dialog.current?.close();queueMicrotask(()=>{const target=previous?.isConnected?previous:document.querySelector('.brand');target?.focus?.({preventScroll:true})})}},[]);
  return <dialog ref={dialog} className="history-board" aria-labelledby="history-board-title" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();motion.close()}}} onCancel={e=>{e.preventDefault();motion.close()}}>
   <span className="panel-reveal-bar" aria-hidden="true"/>
-  <header className="history-board-heading"><h1 id="history-board-title">Memória</h1></header>
+  <header className="history-board-heading"><h1 id="history-board-title">Memória</h1><button ref={close} className="history-board-close" onClick={motion.close} aria-label="Fechar memória"><HpIcon name="x"/></button></header>
   <HistoryLines history={history} sessions={sessions} surface={lines} now={now} state={state} onEditMemory={onEditMemory} copyState={copyState}/>
-  <footer className="history-board-handle"><button ref={close} onClick={motion.close} aria-label="Voltar à calculadora"><span aria-hidden="true">⌃</span> Puxe para cima para voltar</button></footer>
  </dialog>;
 }

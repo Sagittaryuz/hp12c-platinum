@@ -6,9 +6,6 @@ import {presentHistoryItem,presentHistorySession} from './history-presentation.m
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
-import {setRevealBlur} from './panel-motion.mjs';
-import {animatePanel} from './panel-motion.mjs';
-import {useSurfacePull} from './useSurfacePull';
 import {HISTORY_KEY,HISTORY_ACTIVITY_KEY,historyActivity,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
 import { Lcd } from './Lcd';
@@ -317,24 +314,8 @@ export function App() {
     dispatch({type:'history-note',id:historyModal.id,text});
   };
   useEffect(()=>{if(historyModal&&!modalItem)setHistoryModal(null)},[historyModal,modalItem]);
-  const historyReveal=useRef(0),pullStart=useRef(0),pullPreview=useRef(null),previewAnimation=useRef(null),previewHeight=useRef(0);
-  const openHistory=useCallback(gesture=>{previewAnimation.current?.cancel();previewAnimation.current=null;historyReveal.current=Math.min(window.innerHeight,gesture?.distance||0);setMenuOpen(false);setHistoryOpen(true)},[]);
+  const openHistory=useCallback(()=>{setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
-  const calculatorSurface=useRef(null);
-  useSurfacePull(calculatorSurface,g=>openHistory({...g,distance:pullStart.current+g.distance}),!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,(d,phase)=>{
-    const el=pullPreview.current;if(!el)return;
-    const previous=previewHeight.current;
-    previewAnimation.current?.cancel();previewAnimation.current=null;
-    if(!d&&previous&&!phase?.active){
-      el.style.height='0px';
-      const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140);
-      previewHeight.current=0;previewAnimation.current=a;a.finished.then(()=>a.cancel()).catch(()=>{});
-    }else{
-      const height=d||phase?.active?Math.max(0,Math.min(pullStart.current+d,window.innerHeight)):0;
-      previewHeight.current=height;el.style.height=height+'px';setRevealBlur(height/window.innerHeight);
-    }
-  },{onStart:()=>{const el=pullPreview.current;if(!el)return;pullStart.current=parseFloat(getComputedStyle(el).height)||0;previewHeight.current=pullStart.current;previewAnimation.current?.cancel();previewAnimation.current=null;el.style.height=pullStart.current+'px';setRevealBlur(pullStart.current/window.innerHeight)}});
-  useEffect(()=>()=>{previewAnimation.current?.cancel();setRevealBlur(0)},[]);
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
@@ -442,8 +423,8 @@ export function App() {
   return <main className="page">
     <div className="ios-pwa-blur-sentinel" aria-hidden="true"/>
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
-    <section ref={calculatorSurface} className="calculator" data-pull-enabled={!menuOpen&&!historyOpen&&!diagnosticsOpen} data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
-      <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
+    <section className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
+      <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Abrir memória" title="Abrir memória" onClick={openHistory}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
       <Lcd state={displayState} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>
       <div className="keyboard-frame" aria-hidden="true"/>
@@ -455,17 +436,16 @@ export function App() {
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
       {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} prefs={prefs} onDisplaySettings={settings=>setState(current=>({...current,...settings}))} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
-        onBoard={openHistory} onClearHistory={()=>dispatch({type:'clear-history'})}
+        onClearHistory={()=>dispatch({type:'clear-history'})}
         onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
         onBackup={saveBackup} onRestore={()=>backupInput.current.click()} onFullscreen={fullscreen}
         onDiagnostics={()=>{setMenuOpen(false);setDiagnosticsOpen(true)}} onAngular={()=>setState(current=>displayDefaults(pressAction(current,'toggleAngular')))}
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>}
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
-      {historyOpen&&<HistoryBoard state={state} onEditMemory={(index,value)=>setState(editMemory(state,index,value))} onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} revealStart={historyReveal.current} history={history} sessions={sessions} onClose={()=>setHistoryOpen(false)}/>}
+      {historyOpen&&<HistoryBoard state={state} onEditMemory={(index,value)=>setState(editMemory(state,index,value))} onHistoryAction={onHistoryAction} history={history} sessions={sessions} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
     {modalItem&&historyModal.kind==='note'&&<HistoryNoteEditor key={modalItem.id} item={presentHistoryItem(modalItem,state.decimalComma)} onSave={saveHistoryNote} onClose={()=>setHistoryModal(null)}/>}
-    <div ref={pullPreview} className="pull-preview" aria-hidden="true"><strong>Memória</strong><span/></div>
   </main>;
 }
