@@ -28,11 +28,5 @@ export function blurForCoverage(coverage){
  const t=(Math.min(p,1-p)-.05)/.45;
  return 3*t*t*(3-2*t);
 }
-const pullBlurValues=new WeakMap();
-export function setRevealBlur(coverage){
- const amount=window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:blurForCoverage(coverage);
- const rounded=Number(amount.toFixed(3)),value=rounded?`blur(${rounded}px)`:'';
- const root=document.querySelector('.calculator');if(!root||pullBlurValues.get(root)===value)return;
- pullBlurValues.set(root,value);
- for(const el of root.querySelectorAll(':scope > :is(.silver-panel,.lcd,.keyboard-crossbar,.keyboard-frame,.keyboard-panel,.portrait-footer-frame,.keys,.brackets,.maker-strip)'))el.style.filter=value;
-}
+// Native transform animation owns timing; no per-frame filter work on the calculator.
+export function setRevealBlur(){}

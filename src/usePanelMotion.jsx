@@ -10,7 +10,7 @@ export function usePanelMotion(surface,direction,onClosed,start=0){
   el.dataset.closing=String(closing);el.style.transform=`translate3d(0,${target}px,0)`;
   const height=el.clientHeight;
   setRevealBlur(panelCoverage(from,height));
-  const generation=s.generation,a=animatePanel(el,[{transform:`translate3d(0,${from}px,0)`},{transform:`translate3d(0,${target}px,0)`}],duration,{onFrame:p=>setRevealBlur(panelCoverage(from+(target-from)*p,height))});s.animation=a;
+  const generation=s.generation,a=animatePanel(el,[{transform:`translate3d(0,${from}px,0)`},{transform:`translate3d(0,${target}px,0)`}],duration);s.animation=a;
   a.finished.then(()=>{if(!s.alive||generation!==s.generation)return;stop();setRevealBlur(0);if(closing)latest.current();else el.style.transform=''}).catch(()=>{});
  };
  const begin=()=>{const s=state.current,el=surface.current;if(!el)return;const from=visual(el);stop();s.closing=false;s.dragging=true;s.base=from;s.y=from;el.dataset.closing='false';el.style.transform=`translate3d(0,${from}px,0)`;setRevealBlur(panelCoverage(from,el.clientHeight))};

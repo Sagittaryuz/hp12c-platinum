@@ -1,0 +1,19 @@
+[
+  {
+    "url": "http://127.0.0.1:5199/",
+    "version": "0.2.39",
+    "html": 200,
+    "bundle": "http://127.0.0.1:5199/assets/index-rCC6ypxt.js",
+    "css": 200,
+    "sw": 200,
+    "swCacheControl": "no-cache",
+    "manifest": 200,
+    "photoBytes": 59140,
+    "blackMemoryTop": true,
+    "menuThenMemoryGesture": true,
+    "rows100": true,
+    "notesAndFinancialStatePreserved": true,
+    "offlineReload": true,
+    "errors": []
+  }
+]

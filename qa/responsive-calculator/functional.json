@@ -1,0 +1,118 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "version": "0.2.39",
+    "previewBeforeRelease": true,
+    "commitOnce": true,
+    "storeCancelPreserved": true,
+    "smallEdgeExitCancelled": true,
+    "cancelMoveOutsideBlur": true,
+    "keyboardInvalidatesPreview": true,
+    "multitouch": true,
+    "keyPullStatePreserved": true,
+    "rows100": true,
+    "registers20": true,
+    "precisionAndCashflows": true,
+    "copyEntireBlockWithNotes": true,
+    "copyFailureNoFalseSuccess": true,
+    "solidBackground": {
+      "image": "none",
+      "color": "rgb(9, 9, 9)",
+      "filter": "none"
+    },
+    "formatPersisted": true,
+    "noPhotoRequests": true,
+    "errors": []
+  },
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "version": "0.2.39",
+    "previewBeforeRelease": true,
+    "commitOnce": true,
+    "storeCancelPreserved": true,
+    "smallEdgeExitCancelled": true,
+    "cancelMoveOutsideBlur": true,
+    "keyboardInvalidatesPreview": true,
+    "multitouch": true,
+    "keyPullStatePreserved": true,
+    "rows100": true,
+    "registers20": true,
+    "precisionAndCashflows": true,
+    "copyEntireBlockWithNotes": true,
+    "copyFailureNoFalseSuccess": true,
+    "solidBackground": {
+      "image": "none",
+      "color": "rgb(9, 9, 9)",
+      "filter": "none"
+    },
+    "formatPersisted": true,
+    "noPhotoRequests": true,
+    "errors": []
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "version": "0.2.39",
+    "previewBeforeRelease": true,
+    "commitOnce": true,
+    "storeCancelPreserved": true,
+    "smallEdgeExitCancelled": true,
+    "cancelMoveOutsideBlur": true,
+    "keyboardInvalidatesPreview": true,
+    "multitouch": false,
+    "keyPullStatePreserved": true,
+    "rows100": true,
+    "registers20": true,
+    "precisionAndCashflows": true,
+    "copyEntireBlockWithNotes": true,
+    "copyFailureNoFalseSuccess": true,
+    "solidBackground": {
+      "image": "none",
+      "color": "rgb(9, 9, 9)",
+      "filter": "none"
+    },
+    "formatPersisted": true,
+    "noPhotoRequests": true,
+    "errors": []
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "version": "0.2.39",
+    "previewBeforeRelease": true,
+    "commitOnce": true,
+    "storeCancelPreserved": true,
+    "smallEdgeExitCancelled": true,
+    "cancelMoveOutsideBlur": true,
+    "keyboardInvalidatesPreview": true,
+    "multitouch": false,
+    "keyPullStatePreserved": true,
+    "rows100": true,
+    "registers20": true,
+    "precisionAndCashflows": true,
+    "copyEntireBlockWithNotes": true,
+    "copyFailureNoFalseSuccess": true,
+    "solidBackground": {
+      "image": "none",
+      "color": "rgb(9, 9, 9)",
+      "filter": "none"
+    },
+    "formatPersisted": true,
+    "noPhotoRequests": true,
+    "errors": []
+  }
+]

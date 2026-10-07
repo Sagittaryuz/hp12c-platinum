@@ -32,3 +32,5 @@ it('conclusão/reduced-motion/fallback amostram alvo e não deixam frame pendent
  const {el,native}=surface();const queued=new Map<number,()=>void>();const win=el.ownerDocument.defaultView;win.requestAnimationFrame=(fn:()=>void)=>{queued.set(1,fn);return 1};win.cancelAnimationFrame=(id:number)=>queued.delete(id);const frame=vi.fn();const a=animatePanel(el,[{},{}],PANEL_DURATION,{onFrame:frame});native.finish();await a.finished;expect(frame).toHaveBeenCalledTimes(2);expect(queued.size).toBe(0);
  for(const reduced of [true,false]){const {el}=surface(reduced);if(!reduced)delete el.animate;const frame=vi.fn(()=>expect(el.style.transform).toBe('translateY(0)'));await animatePanel(el,[{transform:'translateY(-20px)'},{transform:'translateY(0)'}],PANEL_DURATION,{onFrame:frame}).finished;expect(frame).toHaveBeenCalledTimes(1)}
 });
+
+it('animação nativa sem callback não agenda loop JavaScript por quadro',async()=>{const {el,native}=surface();const raf=vi.fn();el.ownerDocument.defaultView.requestAnimationFrame=raf;const animation=animatePanel(el,[{},{}]);expect(raf).not.toHaveBeenCalled();native.finish();await animation.finished;expect(raf).not.toHaveBeenCalled()});

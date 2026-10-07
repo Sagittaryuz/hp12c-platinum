@@ -22,7 +22,7 @@ export function historyEntry(before,after,action,{id,time,display}){
   :action==='runStop'?'Programa':unary.has(action)?`${action} (${before.x})`:(after.displayLabel&&!['RESULTADO','ALG OP','PRONTO'].includes(after.displayLabel)?after.displayLabel:action);
  if(after.error)return {id,time,kind:'error',operation,display,value:null};
  if(after.entering||!Number.isFinite(after.x)||!after.powered)return null;
- return{id,time,operation,display,value:after.x};
+ return{id,time,operation,display,value:after.x,decimalComma:after.decimalComma};
 }
 export function appendHistory(history,item){return item&&!history.some(e=>e.id===item.id)?[...history,item].slice(-100):history}
 export function parseMemoryValue(text){
@@ -49,7 +49,7 @@ export function resetSelected(state,selected,initial){
  let next=structuredClone(state);
  if(selected.values){const keep={program:next.program,decimals:next.decimals,fixed:next.fixed,decimalComma:next.decimalComma,angular:next.angular,mode:next.mode,dateFormat:next.dateFormat};next={...structuredClone(initial),...keep};}
  if(selected.program)next={...next,program:[],pc:0,programPrefix:[],programMode:false,pendingGoto:null,gotoPosition:false,running:false,paused:false};
- if(selected.settings)next={...next,decimals:7,fixed:true,decimalComma:true,angular:'DEG',mode:'RPN',dateFormat:'MDY',algOperands:[],algOperators:[],pendingOp:null,shift:null};
+ if(selected.settings)next={...next,decimals:initial.decimals,fixed:initial.fixed,decimalComma:initial.decimalComma,angular:'DEG',mode:'RPN',dateFormat:'MDY',algOperands:[],algOperators:[],pendingOp:null,shift:null};
  return next;
 }
 

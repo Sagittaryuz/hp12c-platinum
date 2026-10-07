@@ -1,0 +1,242 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "mouse",
+    "reducedMotion": "no-preference",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "mouse",
+    "reducedMotion": "reduce",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "touch",
+    "reducedMotion": "reduce",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "mouse",
+    "reducedMotion": "no-preference",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "mouse",
+    "reducedMotion": "reduce",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "touch",
+    "reducedMotion": "reduce",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "mouse",
+    "reducedMotion": "no-preference",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "input": "mouse",
+    "reducedMotion": "reduce",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "mouse",
+    "reducedMotion": "no-preference",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "input": "mouse",
+    "reducedMotion": "reduce",
+    "cycles": 3,
+    "surfaces": [
+      "plate",
+      "key",
+      "lcd"
+    ],
+    "bothDirections": true,
+    "shortReverseCancel": true,
+    "rows100": true,
+    "financialStatePreserved": true,
+    "errors": []
+  }
+]

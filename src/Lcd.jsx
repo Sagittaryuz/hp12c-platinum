@@ -15,10 +15,10 @@ export function Lcd({state,display,disabled=false}){
   drawingRef.current={display,powered:state.powered,undo:Boolean(state.undoState),indicators:lcdIndicators(state)};
   useLayoutEffect(()=>{
     const canvas=canvasRef.current;
-    let lastDrawing=null;
+    let lastDrawing=null,measured=canvas.getBoundingClientRect();
     const draw=()=>{
       const started=performance.now();
-      const {width,height}=canvas.getBoundingClientRect();
+      const {width,height}=measured;
       if(!width||!height)return;
       const ratio=window.devicePixelRatio||1;
       const pixelWidth=Math.max(1,Math.round(width*ratio)),pixelHeight=Math.max(1,Math.round(height*ratio));
@@ -64,11 +64,12 @@ export function Lcd({state,display,disabled=false}){
       lastDrawing=signature;
     };
     drawRef.current=draw;
-    draw();const observer=new ResizeObserver(draw);observer.observe(canvas);
-    window.addEventListener('resize',draw);window.addEventListener('pageshow',draw);
+    const measure=()=>{measured=canvas.getBoundingClientRect();draw()};
+    draw();const observer=new ResizeObserver(measure);observer.observe(canvas);
+    window.addEventListener('resize',measure);window.addEventListener('pageshow',measure);
     const invalidate=()=>{lastDrawing=null};
     canvas.addEventListener('contextlost',invalidate);canvas.addEventListener('contextrestored',draw);
-    return()=>{observer.disconnect();window.removeEventListener('resize',draw);window.removeEventListener('pageshow',draw);canvas.removeEventListener('contextlost',invalidate);canvas.removeEventListener('contextrestored',draw)};
+    return()=>{observer.disconnect();window.removeEventListener('resize',measure);window.removeEventListener('pageshow',measure);canvas.removeEventListener('contextlost',invalidate);canvas.removeEventListener('contextrestored',draw)};
   },[]);
   // Discrete key events redraw before paint; resizing uses the same measured buffer.
   useLayoutEffect(()=>{drawRef.current?.()},[display,state.powered,state.undoState,state.mode,state.shift,state.tvm.begin,state.dateFormat,state.compoundOdd,state.programMode,state.algOperators]);

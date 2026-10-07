@@ -1,8 +1,8 @@
 import {HistoryNoteEditor} from './HistoryNoteEditor';
-import {HistoryShareDialog} from './HistoryShareDialog';
 import {setHistoryNote} from './history-notes.mjs';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer, useMemo } from 'react';
 import {historySessions} from './history-sessions.mjs';
+import {presentHistoryItem,presentHistorySession} from './history-presentation.mjs';
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
@@ -248,7 +248,8 @@ function useJoinedFrame() {
         const columns=[];for(const x of simple.map(el=>el.getBoundingClientRect().left).sort((a,b)=>a-b))if(!columns.some(v=>Math.abs(v-x)<1))columns.push(x);
         const width=simple[0].getBoundingClientRect().width;
         const horizontalPitch=(plateRight-plateLeft-2*margin-width)/(columns.length-1);
-        for(const el of [...simple,enter]){const r=el.getBoundingClientRect(),index=columns.findIndex(x=>Math.abs(x-r.left)<1);el.style.left=(plateLeft+margin+index*horizontalPitch-parentRects.get(el.parentElement).left)+'px'}
+        const horizontalRects=[...simple,enter].map(el=>({el,rect:el.getBoundingClientRect()}));
+        for(const {el,rect} of horizontalRects){const index=columns.findIndex(x=>Math.abs(x-rect.left)<1);el.style.left=(plateLeft+margin+index*horizontalPitch-parentRects.get(el.parentElement).left)+'px'}
         for(const [name,startId,endId]of groups){const el=calculator.querySelector('.'+name),a=calculator.querySelector('.key-'+startId).getBoundingClientRect(),z=calculator.querySelector('.key-'+endId).getBoundingClientRect();el.style.left=(a.left-parentRects.get(el.parentElement).left)+'px';el.style.width=(z.right-a.left)+'px'}
         const er=enter.getBoundingClientRect();prefix.style.left=(er.left-parentRects.get(prefix.parentElement).left)+'px';prefix.style.width=er.width+'px';
         calculator.dataset.smoothMargin=String(margin);
@@ -280,17 +281,22 @@ function useJoinedFrame() {
 function savedState() {
   try {
     const saved = JSON.parse(localStorage.getItem('hp12c-state') || 'null');
-    return initializeDefaults(restoreState(saved),localStorage.getItem('hp12c-default-program') !== DEFAULT_PROGRAM_VERSION,
+    return initializeDefaults(restoreState(saved||{...INITIAL_STATE,decimalComma:true}),localStorage.getItem('hp12c-default-program') !== DEFAULT_PROGRAM_VERSION,
       localStorage.getItem('hp12c-default-display') !== DEFAULT_DISPLAY_VERSION);
   } catch { return initializeDefaults(restoreState(INITIAL_STATE),true); }
 }
 function panelReducer(current,event){
+ if(event.type==='prepared')return current===event.base?event.next:panelReducer(current,event.original);
  return reducePanel(current,{...event,action:event.type==='key'?resolveKeyAction(event.id,current.state.shift):event.action},{pressKey,pressAction,formatDisplay,displayDefaults,initial:INITIAL_STATE});
 }
 export function App() {
   useJoinedFrame();
   useHeaderAlignment();
-  const [{state,history,historyActive},dispatch]=useReducer(panelReducer,null,()=>{const state=savedState(),history=readHistory(localStorage);return{state,history,historyActive:historyActivity(state,history,(()=>{try{return localStorage.getItem(HISTORY_ACTIVITY_KEY)}catch{return null}})())}});
+  const [panel,dispatch]=useReducer(panelReducer,null,()=>{const state=savedState(),history=readHistory(localStorage);return{state,history,historyActive:historyActivity(state,history,(()=>{try{return localStorage.getItem(HISTORY_ACTIVITY_KEY)}catch{return null}})())}});
+  const {state,history,historyActive}=panel;
+  const currentPanel=useRef(panel);currentPanel.current=panel;
+  const preparedKey=useRef(null),[preview,setPreview]=useState(null);
+  const cancelPreview=useCallback(()=>{preparedKey.current=null;setPreview(null)},[]);
   const setState=useCallback(updater=>dispatch({type:'state',updater}),[]);
   const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage));
   const latestSaved=useRef({state,history,historyActive,prefs});
@@ -300,9 +306,10 @@ export function App() {
   if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen,setHistoryOpen]=useState(false);
+  useLayoutEffect(()=>{const meta=document.querySelector('meta[name="theme-color"]'),old=meta?.content;document.documentElement.toggleAttribute('data-panel-open',historyOpen||menuOpen);if(meta&&(historyOpen||menuOpen))meta.content='#090909';return()=>{document.documentElement.removeAttribute('data-panel-open');if(meta&&old)meta.content=old}},[historyOpen,menuOpen]);
   const [historyModal,setHistoryModal]=useState(null);
-  const sessions=useMemo(()=>historySessions(history),[history]);
-  const modalItem=historyModal?(historyModal.kind==='share'?sessions.find(session=>session.id===historyModal.id):history.find(row=>row.id===historyModal.id&&row.kind!=='separator')):null;
+  const sessions=useMemo(()=>historyOpen?historySessions(history).map(session=>presentHistorySession(session,state.decimalComma)):[],[history,historyOpen,state.decimalComma]);
+  const modalItem=historyModal?history.find(row=>row.id===historyModal.id&&row.kind!=='separator'):null;
   const onHistoryAction=useCallback((kind,id)=>setHistoryModal({kind,id}),[]);
   const saveHistoryNote=text=>{
     const next=setHistoryNote(history,historyModal.id,text);
@@ -320,8 +327,8 @@ export function App() {
     previewAnimation.current?.cancel();previewAnimation.current=null;
     if(!d&&previous&&!phase?.active){
       el.style.height='0px';
-      const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140,{onFrame:p=>{previewHeight.current=previous*(1-p);setRevealBlur(previewHeight.current/window.innerHeight)}});
-      previewAnimation.current=a;a.finished.then(()=>a.cancel()).catch(()=>{});
+      const a=animatePanel(el,[{height:previous+'px'},{height:'0px'}],140);
+      previewHeight.current=0;previewAnimation.current=a;a.finished.then(()=>a.cancel()).catch(()=>{});
     }else{
       const height=d||phase?.active?Math.max(0,Math.min(pullStart.current+d,window.innerHeight)):0;
       previewHeight.current=height;el.style.height=height+'px';setRevealBlur(height/window.innerHeight);
@@ -331,12 +338,17 @@ export function App() {
   const [notice, setNotice] = useState('');
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
-  const activate=useCallback(id=>{
+  const feedback=useCallback(()=>{
     if(prefs.vibration&&typeof navigator.vibrate==='function')navigator.vibrate(12);
     if(prefs.sound){try{const Context=window.AudioContext||window.webkitAudioContext;if(Context){const ctx=audio.current||(audio.current=new Context());ctx.resume().then(()=>{const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.frequency.value=880;gain.gain.setValueAtTime(.035,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.035);oscillator.connect(gain);gain.connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+.04)}).catch(()=>{})}}catch{}}
-    dispatch({type:'key',id,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});
   },[prefs.sound,prefs.vibration]);
-  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history));localStorage.setItem(HISTORY_ACTIVITY_KEY,String(historyActive));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[history,historyActive,prefs]);
+  const keyEvent=id=>({type:'key',id,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});
+  const activate=useCallback(id=>{cancelPreview();feedback();dispatch(keyEvent(id))},[feedback,cancelPreview]);
+  const beginKey=useCallback(id=>{const base=currentPanel.current,original=keyEvent(id),next=panelReducer(base,original);preparedKey.current={id,base,original,next};setPreview(next.state)},[]);
+  const finishKey=useCallback(id=>{const prepared=preparedKey.current;cancelPreview();if(prepared?.id===id){feedback();dispatch({type:'prepared',...prepared})}},[feedback,activate,cancelPreview]);
+  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch{}},150);return()=>clearTimeout(timer)},[history]);
+  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_ACTIVITY_KEY,String(historyActive))}catch{}},150);return()=>clearTimeout(timer)},[historyActive]);
+  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[prefs]);
   useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
   useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
   useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen]);
@@ -360,7 +372,7 @@ export function App() {
     const timer = setTimeout(() => dispatch({type:'action',action:'runStop',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}), 1000);
     return () => clearTimeout(timer);
   }, [state.paused, state.program.length, state.displayLabel]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handle = event => {
       if(event.defaultPrevented||event.target?.closest?.('input,textarea,select,.lcd,.lcd-transfer-dialog,[contenteditable="true"]'))return;
       if (menuOpen || historyOpen || diagnosticsOpen) {
@@ -417,7 +429,8 @@ export function App() {
       setMenuOpen(false);setNotice('Backup restaurado: programas, registradores e configurações.');
     }catch{setNotice('Não foi possível restaurar este arquivo. Os dados atuais foram mantidos.');}
   };
-  const display = formatDisplay(state);
+  const displayState=preview||state;
+  const display = formatDisplay(displayState);
   const fullscreen = async () => {
     setMenuOpen(false);
     try {
@@ -431,16 +444,16 @@ export function App() {
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
     <section ref={calculatorSurface} className="calculator" data-pull-enabled={!menuOpen&&!historyOpen&&!diagnosticsOpen} data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
       <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Menu da calculadora" title="Abrir menu" onClick={() => setMenuOpen(true)}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
-      <Lcd state={state} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
+      <Lcd state={displayState} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>
       <div className="keyboard-frame" aria-hidden="true"/>
       <div className="keyboard-lower-bridge" aria-hidden="true"/>
       <div className="keyboard-panel" aria-hidden="true"/>
       <div className="portrait-footer-frame" aria-hidden="true"/>
       <Brackets/>
-      <FaceKeys activate={activate} heldKeys={heldKeys} menu={openMenu}/>
+      <FaceKeys activate={activate} beginKey={beginKey} finishKey={finishKey} cancelPreview={cancelPreview} heldKeys={heldKeys} menu={openMenu}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
-      {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} history={history} sessions={sessions} prefs={prefs} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
+      {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} prefs={prefs} onDisplaySettings={settings=>setState(current=>({...current,...settings}))} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
         onBoard={openHistory} onClearHistory={()=>dispatch({type:'clear-history'})}
         onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
@@ -449,11 +462,10 @@ export function App() {
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>}
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}
       <input ref={backupInput} type="file" accept="application/json,.json" hidden aria-label="Arquivo de backup" onChange={importBackup}/>
-      {historyOpen&&<HistoryBoard onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} revealStart={historyReveal.current} history={history} sessions={sessions} onClose={()=>setHistoryOpen(false)}/>}
+      {historyOpen&&<HistoryBoard state={state} onEditMemory={(index,value)=>setState(editMemory(state,index,value))} onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} revealStart={historyReveal.current} history={history} sessions={sessions} onClose={()=>setHistoryOpen(false)}/>}
       {notice && <button className="notice" onClick={() => setNotice('')}>{notice}</button>}
     </section>
-    {modalItem&&historyModal.kind==='note'&&<HistoryNoteEditor key={modalItem.id} item={modalItem} onSave={saveHistoryNote} onClose={()=>setHistoryModal(null)}/>}
-    {modalItem&&historyModal.kind==='share'&&<HistoryShareDialog key={modalItem.id} item={modalItem} onClose={()=>setHistoryModal(null)}/>}
+    {modalItem&&historyModal.kind==='note'&&<HistoryNoteEditor key={modalItem.id} item={presentHistoryItem(modalItem,state.decimalComma)} onSave={saveHistoryNote} onClose={()=>setHistoryModal(null)}/>}
     <div ref={pullPreview} className="pull-preview" aria-hidden="true"><strong>Memória</strong><span/></div>
   </main>;
 }

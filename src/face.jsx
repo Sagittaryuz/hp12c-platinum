@@ -1,4 +1,4 @@
-import React, {memo, useRef, useEffect} from 'react';
+import React, {memo, useRef, useLayoutEffect} from 'react';
 import { KEY_DEFINITIONS } from '@sagittaryuz/hp12c-core';
 
 // Coordinates measured from the supplied landscape and portrait references.
@@ -61,18 +61,18 @@ export function Legend({value}) {
     default:return value;
   }
 }
-export const FaceKeys = memo(function FaceKeys({activate, heldKeys, menu}) {
+export const FaceKeys = memo(function FaceKeys({activate,beginKey,finishKey,cancelPreview, heldKeys, menu}) {
   const pointers=useRef(new Map());
-  useEffect(()=>{let width=window.innerWidth,height=window.innerHeight;const resize=()=>{if(width!==window.innerWidth||height!==window.innerHeight){width=window.innerWidth;height=window.innerHeight;cancel()}};const cancelOther=e=>{for(const [id,p]of pointers.current)if(id!==e.pointerId)p.cancelled=true};const cancel=()=>{pointers.current.clear();heldKeys.current.clear()};window.addEventListener('pointerdown',cancelOther,true);window.addEventListener('blur',cancel);window.addEventListener('pagehide',cancel);window.addEventListener('resize',resize);const hidden=()=>{if(document.hidden)cancel()};document.addEventListener('visibilitychange',hidden);return()=>{cancel();window.removeEventListener('pointerdown',cancelOther,true);window.removeEventListener('blur',cancel);window.removeEventListener('pagehide',cancel);window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',hidden)}},[heldKeys]);
-  const cancelKey=e=>{pointers.current.delete(e.pointerId);heldKeys.current.clear()};
+  useLayoutEffect(()=>{let width=window.innerWidth,height=window.innerHeight;const resize=()=>{if(width!==window.innerWidth||height!==window.innerHeight){width=window.innerWidth;height=window.innerHeight;cancel()}};const cancelOther=e=>{for(const [id,p]of pointers.current)if(id!==e.pointerId){p.cancelled=true;cancelPreview()}};const cancel=()=>{pointers.current.clear();heldKeys.current.clear();cancelPreview()};window.addEventListener('pointerdown',cancelOther,true);window.addEventListener('blur',cancel);window.addEventListener('pagehide',cancel);window.addEventListener('resize',resize);const hidden=()=>{if(document.hidden)cancel()};document.addEventListener('visibilitychange',hidden);return()=>{cancel();window.removeEventListener('pointerdown',cancelOther,true);window.removeEventListener('blur',cancel);window.removeEventListener('pagehide',cancel);window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',hidden)}},[heldKeys,cancelPreview]);
+  const cancelKey=e=>{pointers.current.delete(e.pointerId);heldKeys.current.clear();cancelPreview()};
   const keys = [...KEY_DEFINITIONS.filter(key => key.id !== 'on'),{id:'menu',label:'MENU',f:'',g:'',row:3,col:0}];
   return <div className="keys" role="group" aria-label="Teclas da calculadora">
     {keys.map(key => {
       const f = key.printF === false ? '' : (labelsF[key.id] ?? key.f);
       return <button key={key.id} className={`key key-${key.id} ${key.tone || ''}`} style={keyPosition(key)}
-        onPointerDown={event=>{if(event.button!==0||event.isPrimary===false)return;pointers.current.set(event.pointerId,{key:key.id,x:event.clientX,y:event.clientY,cancelled:false});heldKeys.current.add(key.id);try{event.currentTarget.setPointerCapture(event.pointerId)}catch{}}}
-        onPointerMove={event=>{const p=pointers.current.get(event.pointerId);if(p&&Math.hypot(event.clientX-p.x,event.clientY-p.y)>8)p.cancelled=true}}
-        onPointerUp={event=>{const p=pointers.current.get(event.pointerId);cancelKey(event);if(!p||p.cancelled||p.key!==key.id||Math.hypot(event.clientX-p.x,event.clientY-p.y)>8)return;const r=event.currentTarget.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)return;key.id==='menu'?menu():activate(key.id)}}
+        onPointerDown={event=>{if(event.button!==0||event.isPrimary===false)return;pointers.current.set(event.pointerId,{key:key.id,x:event.clientX,y:event.clientY,r:event.currentTarget.getBoundingClientRect(),cancelled:false});heldKeys.current.add(key.id);if(key.id!=='menu')beginKey(key.id);try{event.currentTarget.setPointerCapture(event.pointerId)}catch{}}}
+        onPointerMove={event=>{const p=pointers.current.get(event.pointerId);if(p&&(Math.hypot(event.clientX-p.x,event.clientY-p.y)>8||event.clientX<p.r.left||event.clientX>p.r.right||event.clientY<p.r.top||event.clientY>p.r.bottom)&&!p.cancelled){p.cancelled=true;cancelPreview()}}}
+        onPointerUp={event=>{const p=pointers.current.get(event.pointerId);pointers.current.delete(event.pointerId);heldKeys.current.clear();if(!p||p.cancelled||p.key!==key.id||Math.hypot(event.clientX-p.x,event.clientY-p.y)>8){cancelPreview();return}const r=event.currentTarget.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom){cancelPreview();return}key.id==='menu'?menu():finishKey(key.id)}}
         onPointerCancel={cancelKey} onLostPointerCapture={cancelKey}
         onClick={event=>{if(event.detail!==0)return;key.id==='menu'?menu():activate(key.id)}}
         aria-label={key.id === 'menu' ? 'MENU' : `${key.label}; f: ${key.f || '—'}; g: ${key.g || '—'}`}
@@ -94,4 +94,3 @@ export function Brackets() {
     <div className="bracket prefix"><span>PREFIX</span></div>
   </div>;
 }
-

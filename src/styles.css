@@ -558,3 +558,21 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .hp-history-session-header{display:flex;align-items:center;gap:10px;padding:12px 8px}
 .hp-history-session-header time{font:700 14px/1.4 Arial}
 .history-share-pages figure{margin:12px 0}.history-share-pages figcaption{font:14px Arial;margin:4px 0}
+/* Both retractable surfaces share the existing HP header's solid paint. */
+:root{--panel-surface:#090909}
+.history-board,.pull-preview{background:var(--panel-surface)!important;filter:none!important;backdrop-filter:none!important;text-shadow:none}
+.history-board-heading{padding-top:max(12px,env(safe-area-inset-top,0px))}
+.history-board-heading h1,.pull-preview strong{text-shadow:none}
+.history-board-lines{font-family:Arial,Helvetica,sans-serif}
+.history-copy-control{position:relative;flex:0 0 auto;font:14px Arial;min-height:44px}
+.history-copy-control button,.memory-registers button,.memory-registers input{min-height:44px;color:#f2f4e9;background:#232323;border:1px solid #555;border-radius:6px;padding:8px 10px;font:16px Arial;touch-action:manipulation}
+.history-copied{position:absolute;right:0;top:100%;color:#9ee9b1;white-space:nowrap;animation:history-copy-confirm 1.6s ease both;pointer-events:none}
+.history-copy-control [role=alert]{display:block;max-width:120px;color:#ffbcb4;font-size:12px}
+@keyframes history-copy-confirm{0%{opacity:0;transform:translateY(3px)}15%,75%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.history-copied{animation:none}}
+.memory-registers{padding:8px 0 20px;border-bottom:1px solid #555;margin-bottom:12px;font:16px Arial;text-align:left}
+.memory-registers h2{font-size:20px;margin:0 0 8px}.memory-registers p{font-size:13px;line-height:1.4;color:#bbb}
+.memory-register-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.memory-register-grid button{display:flex;flex-direction:column;align-items:flex-start;gap:4px;overflow-wrap:anywhere;min-width:0;font-size:14px}
+.memory-registers form{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}.memory-registers label{width:100%}.memory-registers input{display:block;width:100%;user-select:text}.memory-registers [role=alert]{color:#ffbcb4}
+:root[data-panel-open] .ios-pwa-blur-sentinel,:root[data-panel-open] .status-bar-color{background:#090909!important;background-image:none!important;filter:none!important}

@@ -258,8 +258,8 @@ describe('Estatística — condições especiais do apêndice D',()=>{
 
 import { displayDefaults, initializeDefaults, DEFAULT_RATE_PROGRAM } from '../src/defaults';
 describe('padrões solicitados para a aplicação',()=>{
-  it('usa sete casas após ENTER e mostra só os dígitos durante a entrada',()=>{
-    let s=initializeDefaults(start(),true);
+  it('preserva sete casas escolhidas após ENTER e mostra a entrada crua',()=>{
+    let s=initializeDefaults({...start(),decimals:7,decimalComma:true},true);
     expect(formatDisplay(s)).toBe('0,0000000');
     s=displayDefaults(keys(s,'2'));expect(formatDisplay(s)).toBe('2');
     s=displayDefaults(keys(s,'decimal'));expect(formatDisplay(s)).toBe('2,');
@@ -269,7 +269,7 @@ describe('padrões solicitados para a aplicação',()=>{
     s=displayDefaults(keys(s,'plus'));expect(formatDisplay(s)).toBe('5,5000000');
   });
   it.each(Array.from({length:10},(_,i)=>i))('f + %i escolhe FIX e não altera o número interno',decimals=>{
-    let s=initializeDefaults(start(),true);
+    let s=initializeDefaults({...start(),decimals:7,decimalComma:true},true);
     s=number(s,'1.23456789');const x=s.x;
     s=displayDefaults(pressKey(s,'f'));expect(formatDisplay(s)).toBe('1,23456789');
     s=displayDefaults(pressKey(s,String(decimals)));
@@ -280,16 +280,16 @@ describe('padrões solicitados para a aplicação',()=>{
     s=initializeDefaults(restoreState(JSON.parse(JSON.stringify(s))),false,false);expect(s.decimals).toBe(decimals);
   });
   it('f + decimal seleciona SCI; entrada continua crua e FIX restaura o formato',()=>{
-    let s=initializeDefaults(start(),true);s=displayDefaults(keys(number(s,'123'),'f','decimal'));
+    let s=initializeDefaults({...start(),decimals:7,decimalComma:true},true);s=displayDefaults(keys(number(s,'123'),'f','decimal'));
     expect(s.fixed).toBe(false);expect(formatDisplay(s)).toBe('1,230000 02');
     s=displayDefaults(keys(s,'4','decimal','5'));expect(formatDisplay(s)).toBe('4,5');
     s=displayDefaults(keys(s,'enter'));expect(formatDisplay(s)).toBe('4,500000 00');
     s=initializeDefaults(restoreState(JSON.parse(JSON.stringify(s))),false,false);expect(s.fixed).toBe(false);
     s=displayDefaults(keys(s,'f','2'));expect(formatDisplay(s)).toBe('4,50');
-    s=displayDefaults(pressAction(s,'toggleSeparator'));expect(s.decimalComma).toBe(true);
+    s=displayDefaults(pressAction(s,'toggleSeparator'));expect(s.decimalComma).toBe(false);
   });
   it('programa do vídeo converte 12% anual para mensal e pode repetir',()=>{
-    let s=initializeDefaults(start(),true);
+    let s=initializeDefaults({...start(),decimals:7,decimalComma:true},true);
     s=input(s,'12','i');s=input(s,'12','n');s=number(s,'1');s=displayDefaults(pressKey(s,'rs'));
     expect(s.error).toBeNull();expect(s.x).toBeCloseTo((Math.pow(1.12,1/12)-1)*100,6);
     expect(s.pc).toBe(0);expect(s.program).toEqual(DEFAULT_RATE_PROGRAM);
@@ -303,12 +303,12 @@ describe('padrões solicitados para a aplicação',()=>{
     expect(migrated.x).toBe(42);expect(migrated.program).toEqual(DEFAULT_RATE_PROGRAM);
     const custom={...migrated,program:['3','multiply','runStop'],decimals:2,decimalComma:false};
     const reopened=initializeDefaults(restoreState(JSON.parse(JSON.stringify(custom))),false);
-    expect(reopened.program).toEqual(custom.program);expect(reopened.decimals).toBe(2);expect(reopened.decimalComma).toBe(true);
+    expect(reopened.program).toEqual(custom.program);expect(reopened.decimals).toBe(2);expect(reopened.decimalComma).toBe(false);
   });
-  it('a migração do visor de doze para sete casas não reinstala nem apaga o programa',()=>{
+  it('atualização preserva doze casas legadas e não reinstala nem apaga o programa',()=>{
     const old={...start(),x:42,decimals:12,program:['3','multiply','runStop'],registers:Array(20).fill(19)};
     const migrated=initializeDefaults(old,false,true);
-    expect(migrated.x).toBe(42);expect(migrated.decimals).toBe(7);expect(migrated.program).toEqual(old.program);expect(migrated.registers).toEqual(old.registers);
+    expect(migrated.x).toBe(42);expect(migrated.decimals).toBe(12);expect(migrated.program).toEqual(old.program);expect(migrated.registers).toEqual(old.registers);
     const resetProgram=initializeDefaults({...migrated,decimals:4},true,false);expect(resetProgram.program).toEqual(DEFAULT_RATE_PROGRAM);expect(resetProgram.decimals).toBe(4);
   });
 });
@@ -332,13 +332,13 @@ describe('extensões SIN, COS e TAN',()=>{
   s=keys(s,'f','rs','rs');expect(s.error).toBeNull();expect(s.x).toBeCloseTo(Math.tan(Math.cos(.5*Math.PI/180)*Math.PI/180),8);
  });
  it('exibe os resultados no formato fixo solicitado',()=>{
-  const s=displayDefaults(keys(number(initializeDefaults(start(),true),'30'),'sin'));expect(formatDisplay(s)).toBe('0,5000000');
+  const s=displayDefaults(keys(number(initializeDefaults({...start(),decimals:7,decimalComma:true},true),'30'),'sin'));expect(formatDisplay(s)).toBe('0,5000000');
  });
 });
 
 describe('atalhos f/g e entrada — regressões da aplicação',()=>{
  const appKeys=(s:CalculatorState,...ids:string[])=>ids.reduce((state,id)=>displayDefaults(pressKey(state,id)),s);
- const appStart=()=>initializeDefaults(start(),true);
+ const appStart=()=>initializeDefaults({...start(),decimals:7,decimalComma:true},true);
  it('CHS e apagar preservam a vírgula e os zeros digitados',()=>{
   let s=appKeys(appStart(),'1','2','decimal','3','0','chs');expect(formatDisplay(s)).toBe('-12,30');
   s=appKeys(s,'g','divide');expect(formatDisplay(s)).toBe('-12,3');
@@ -370,4 +370,12 @@ describe('atalhos f/g e entrada — regressões da aplicação',()=>{
  it('FIX antigo de doze casas também não completa a entrada antes de ENTER',()=>{
   let s={...start(),decimals:12,decimalComma:true};s=appKeys(s,'2','decimal','5','0');expect(formatDisplay(s)).toBe('2,50');s=appKeys(s,'enter');expect(formatDisplay(s)).toBe('2,500000000000');
  });
+});
+
+
+it.each([false,true])('formato escolhido permanece em reaberturas e ações com separador %s',decimalComma=>{
+ const original={...INITIAL_STATE,x:1.23456789,decimals:4,decimalComma,program:['3','multiply'],registers:Array(20).fill(12.3456789)};
+ const reopened=initializeDefaults(restoreState(JSON.parse(JSON.stringify(original))),false,true);
+ expect(reopened.decimals).toBe(4);expect(reopened.decimalComma).toBe(decimalComma);expect(reopened.registers).toEqual(original.registers);expect(reopened.program).toEqual(original.program);
+ const entered=displayDefaults(pressKey(reopened,'1'));expect(entered.decimals).toBe(4);expect(entered.decimalComma).toBe(decimalComma);expect(original.x).toBe(1.23456789);
 });
