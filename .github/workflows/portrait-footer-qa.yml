@@ -1,0 +1,38 @@
+name: Portrait footer QA
+on:
+  push:
+    branches: [fix/portrait-bottom-20px]
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: 4e450048d97df07a9c8d36f5ecd97988ed417c71
+          path: .qa-baseline
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm ci
+        working-directory: .qa-baseline
+      - run: npm run build
+        working-directory: .qa-baseline
+      - run: npm install --no-save --package-lock=false playwright
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Compare rendered layout and calculator behavior
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/hp-candidate.log 2>&1 &
+          (cd .qa-baseline && npm run preview -- --host 127.0.0.1 --port 4174) > /tmp/hp-baseline.log 2>&1 &
+          node qa/portrait-bottom/verify.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portrait-footer-qa
+          path: qa/portrait-bottom/output/

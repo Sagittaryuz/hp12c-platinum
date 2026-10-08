@@ -590,7 +590,7 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .model-name>*{transform:scaleX(var(--desktop-title-scale,1));transform-origin:left center;white-space:nowrap}
  .brand{left:var(--desktop-brand-left);right:auto;top:var(--desktop-brand-top);width:var(--desktop-brand-size);height:var(--desktop-brand-size);translate:none}
 }
-@media(orientation:portrait){.calculator{--footer-plastic:2px;--footer-label-bottom:10px}}
+@media(orientation:portrait){.calculator{--footer-plastic:10px;--footer-label-bottom:10px}}
 
 /* Fill portrait viewports and reclaim the lower rail without changing side rails. */
 @media(orientation:portrait){
@@ -598,7 +598,7 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .model-name{left:12px}.brand{right:12px}
  .lcd{left:16px;width:calc(100cqw - 32px)}
  .lcd::before{width:calc(100cqw - 16px)}
- .portrait-footer-frame::before{bottom:2px}
+ .portrait-footer-frame::before{bottom:10px}
  .joined-frame .maker-strip{bottom:2px;height:16px}
  .joined-frame .maker-name{font-size:13.4px;line-height:1;height:16px}
 }
