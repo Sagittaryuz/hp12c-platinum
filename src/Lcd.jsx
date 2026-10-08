@@ -73,7 +73,7 @@ export function Lcd({state,display,disabled=false}){
   },[]);
   // Discrete key events redraw before paint; resizing uses the same measured buffer.
   useLayoutEffect(()=>{drawRef.current?.()},[display,state.powered,state.undoState,state.mode,state.shift,state.tvm.begin,state.dateFormat,state.compoundOdd,state.programMode,state.algOperators]);
-  return <><div ref={transfer.ref} className="lcd" role="button" tabIndex={disabled?-1:0} aria-disabled={disabled} aria-label={`Copiar e compartilhar valor do visor: ${display}`} aria-describedby="lcd-transfer-help">
+  return <><div ref={transfer.ref} className="lcd" role="button" tabIndex={disabled?-1:0} aria-disabled={disabled} aria-label={`Copiar valor do visor: ${display}`} aria-describedby="lcd-transfer-help">
     <output className="lcd-readable" aria-live="polite">{display}</output>
     <canvas ref={canvasRef} className="lcd-face" aria-hidden="true"/>
   </div><DisplayTransferFeedback {...transfer}/></>;

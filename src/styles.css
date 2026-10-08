@@ -584,7 +584,9 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .history-board-close .hp-icon{width:22px;height:22px}
 .history-board-close:focus-visible{outline:2px solid #68bdff;outline-offset:2px}
 @media(orientation:landscape){
- .model-name{left:var(--desktop-title-left);top:var(--desktop-title-top);font-size:var(--desktop-title-size,4.8cqh);translate:none}
+ .lcd{left:calc((100cqw - var(--reference-width)*.4873)/2)}
+ .model-name{left:var(--desktop-title-left);top:var(--desktop-title-top);height:var(--desktop-brand-size);width:var(--desktop-title-width);font-size:var(--desktop-title-size,4.8cqh);translate:none}
+ .model-name>*{transform:scaleX(var(--desktop-title-scale,1));transform-origin:left center;white-space:nowrap}
  .brand{left:var(--desktop-brand-left);right:auto;top:var(--desktop-brand-top);width:var(--desktop-brand-size);height:var(--desktop-brand-size);translate:none}
 }
-@media(orientation:portrait){.calculator{--footer-plastic:10px}}
+@media(orientation:portrait){.calculator{--footer-plastic:2px;--footer-label-bottom:10px}}

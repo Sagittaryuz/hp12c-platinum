@@ -18,7 +18,7 @@ function harness(){
  const fire=(type,props={},target=type.startsWith('pointer')?el:win)=>{const e=new Event(type,{cancelable:true});const {target:ignored,...values}=props;Object.assign(e,{pointerId:1,button:0,isPrimary:true,clientX:20,clientY:20,...values});Object.defineProperty(e,'target',{value:props.target||el});target.dispatchEvent(e);return e};
  return {win,doc,el,calls,cleanup,fire,advance:t=>time=t};
 }
-test('one click shares immediately; holding adds no separate action',()=>{for(const time of [100,500,15000]){const h=harness();h.fire('pointerdown');h.advance(time);assert.deepEqual(h.calls,[]);h.fire('pointerup');assert.deepEqual(h.calls,[]);h.fire('click',{detail:1,pointerType:'touch'},h.el);assert.deepEqual(h.calls,[true]);h.cleanup()}});
+test('one click only copies; holding adds no separate action',()=>{for(const time of [100,500,15000]){const h=harness();h.fire('pointerdown');h.advance(time);assert.deepEqual(h.calls,[]);h.fire('pointerup');assert.deepEqual(h.calls,[]);h.fire('click',{detail:1,pointerType:'touch'},h.el);assert.deepEqual(h.calls,[false]);h.cleanup()}});
 for(const scenario of ['drag','exit','cancel','blur','hide','pagehide','multitouch'])test('cancel '+scenario,()=>{
  const h=harness();h.fire('pointerdown');h.advance(600);
  if(scenario==='drag')h.fire('pointermove',{clientX:35});
@@ -32,7 +32,7 @@ for(const scenario of ['drag','exit','cancel','blur','hide','pagehide','multitou
  h.fire('pointerup');h.fire('click',{detail:1},h.el);assert.deepEqual(h.calls,[]);h.cleanup();
 });
 test('release movement is checked without move event',()=>{const h=harness();h.fire('pointerdown');h.fire('pointerup',{clientX:45});assert.deepEqual(h.calls,[]);h.cleanup()});
-test('accessible click, keyboard copy/share and repeated key ignored',()=>{const h=harness();h.fire('click',{detail:0},h.el);h.fire('keydown',{key:'Enter'},h.el);h.fire('keydown',{key:' ',shiftKey:true},h.el);h.fire('keydown',{key:'Enter',repeat:true},h.el);assert.deepEqual(h.calls,[true,true,true]);h.cleanup()});
+test('accessible click, keyboard copy/share and repeated key ignored',()=>{const h=harness();h.fire('click',{detail:0},h.el);h.fire('keydown',{key:'Enter'},h.el);h.fire('keydown',{key:' ',shiftKey:true},h.el);h.fire('keydown',{key:'Enter',repeat:true},h.el);assert.deepEqual(h.calls,[false,false,false]);h.cleanup()});
 test('cleanup removes activation handlers',()=>{const h=harness();h.cleanup();h.fire('pointerdown');h.fire('pointerup');h.fire('click',{detail:0},h.el);assert.deepEqual(h.calls,[])});
 test('legacy copy only writes, cleans up and restores focus and selection',()=>{
  const log=[],field={setAttribute(){},style:{},focus(){log.push('focusTemp')},select(){log.push('select')},remove(){log.push('remove')}};
@@ -40,4 +40,4 @@ test('legacy copy only writes, cleans up and restores focus and selection',()=>{
  assert.equal(legacyCopy('9,00',doc),true);assert.deepEqual(log,['focusTemp','select','remove','restoreFocus','clearSelection','restoreRange']);
 });
 test('missing copy APIs gives manual fallback result',async()=>{const doc={createElement:()=>({style:{},setAttribute(){},focus(){},select(){},remove(){}}),body:{append(){}}};assert.equal((await transferDisplay('Error',false,{nav:{},doc})).copied,false)});
-test('viewport real cancela cópia/hold; resize espúrio mantém tap',()=>{const h=harness();h.fire('pointerdown');h.fire('resize');h.fire('pointerup');h.fire('click',{detail:1},h.el);assert.deepEqual(h.calls,[true]);h.fire('pointerdown');h.advance(650);h.win.innerHeight=400;h.fire('resize');h.fire('pointerup');h.fire('click',{detail:1},h.el);assert.deepEqual(h.calls,[true]);h.cleanup()});
+test('viewport real cancela cópia/hold; resize espúrio mantém tap',()=>{const h=harness();h.fire('pointerdown');h.fire('resize');h.fire('pointerup');h.fire('click',{detail:1},h.el);assert.deepEqual(h.calls,[false]);h.fire('pointerdown');h.advance(650);h.win.innerHeight=400;h.fire('resize');h.fire('pointerup');h.fire('click',{detail:1},h.el);assert.deepEqual(h.calls,[false]);h.cleanup()});

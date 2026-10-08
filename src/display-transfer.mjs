@@ -25,7 +25,7 @@ export function legacyCopy(text,doc) {
   catch { return false; }
   finally {field.remove();focused?.focus?.({preventScroll:true});if(selection){selection.removeAllRanges();ranges.forEach(r=>selection.addRange(r));}if(caret)focused.setSelectionRange?.(...caret);}
 }
-// A single click opens sharing. Pointer guards only cancel drags; duration is irrelevant.
+// A single click copies the displayed number. Pointer guards only cancel drags; duration is irrelevant.
 export function bindDisplayGestures(el,activate,{win=window,doc=document,slop=8}={}) {
  let gesture=null,blocked=false;
  const inside=e=>{const r=el.getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom};
@@ -33,8 +33,8 @@ export function bindDisplayGestures(el,activate,{win=window,doc=document,slop=8}
  const down=e=>{if(e.button!==0||e.isPrimary===false){reset();return}blocked=false;gesture={id:e.pointerId,x:e.clientX,y:e.clientY};try{el.setPointerCapture(e.pointerId)}catch{}};
  const move=e=>{if(gesture?.id===e.pointerId&&(Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)>slop||!inside(e)))reset()};
  const up=e=>{if(gesture?.id!==e.pointerId)return;move(e);gesture=null};
- const click=e=>{e.preventDefault();e.stopPropagation();if(blocked&&(e.detail!==0||e.pointerType))return;activate(true)};
- const key=e=>{if(e.key==='Escape'){reset();return}if(['Enter',' '].includes(e.key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();e.stopPropagation();if(!e.repeat)activate(true)}};
+ const click=e=>{e.preventDefault();e.stopPropagation();if(blocked&&(e.detail!==0||e.pointerType))return;activate(false)};
+ const key=e=>{if(e.key==='Escape'){reset();return}if(['Enter',' '].includes(e.key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();e.stopPropagation();if(!e.repeat)activate(false)}};
  let width=win.innerWidth,height=win.innerHeight;
  const resized=()=>{if(width!==win.innerWidth||height!==win.innerHeight){width=win.innerWidth;height=win.innerHeight;reset()}};
  const hidden=()=>{if(doc.hidden)reset()};
