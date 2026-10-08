@@ -61,7 +61,7 @@ export function Legend({value}) {
     default:return value;
   }
 }
-export const FaceKeys = memo(function FaceKeys({activate,beginKey,finishKey,cancelPreview, heldKeys, menu}) {
+export const FaceKeys = memo(function FaceKeys({mode,activate,beginKey,finishKey,cancelPreview, heldKeys, menu}) {
   const pointers=useRef(new Map());
   const touchSlop=12;
   useLayoutEffect(()=>{let width=window.innerWidth,height=window.innerHeight;const resize=()=>{if(width!==window.innerWidth||height!==window.innerHeight){width=window.innerWidth;height=window.innerHeight;cancel()}};const cancelOther=e=>{for(const [id,p]of pointers.current)if(id!==e.pointerId){p.cancelled=true;cancelPreview()}};const cancel=()=>{pointers.current.clear();heldKeys.current.clear();cancelPreview()};window.addEventListener('pointerdown',cancelOther,true);window.addEventListener('blur',cancel);window.addEventListener('pagehide',cancel);window.addEventListener('resize',resize);const hidden=()=>{if(document.hidden)cancel()};document.addEventListener('visibilitychange',hidden);return()=>{cancel();window.removeEventListener('pointerdown',cancelOther,true);window.removeEventListener('blur',cancel);window.removeEventListener('pagehide',cancel);window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',hidden)}},[heldKeys,cancelPreview]);
@@ -77,11 +77,11 @@ export const FaceKeys = memo(function FaceKeys({activate,beginKey,finishKey,canc
         onPointerUp={event=>{const p=pointers.current.get(event.pointerId);pointers.current.delete(event.pointerId);heldKeys.current.clear();if(!p||p.cancelled||p.key!==key.id||Math.hypot(event.clientX-p.x,event.clientY-p.y)>=touchSlop||!contains(p.r,event.clientX,event.clientY,8)){cancelPreview();return}key.id==='menu'?menu():finishKey(key.id)}}
         onPointerCancel={cancelKey} onLostPointerCapture={cancelKey}
         onClick={event=>{if(event.detail!==0)return;key.id==='menu'?menu():activate(key.id)}}
-        aria-label={key.id === 'menu' ? 'MENU' : `${key.label}; f: ${key.f || '—'}; g: ${key.g || '—'}`}
+        aria-label={key.id === 'menu' ? 'MENU' : `${key.id==='enter'&&mode==='ALG'?'=':key.label}; f: ${key.f || '—'}; g: ${key.g || '—'}`}
         title={key.id === 'menu' ? 'Menu da calculadora' : `${key.label} · atalho ${key.shortcut}`}>
         {f && <span className="legend-f">{f}</span>}
         {key.id==='swap' && <span className="legend-f legend-f-portrait">FIN</span>}
-        <span className="key-shell"><span className="key-cap">{key.id === 'menu' ? <><span className="menu-label">MENU</span><svg className="menu-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M3 8h34M3 20h34M3 32h34"/></svg></> : key.id === 'enter' ? <span className="enter-letters">{[...'ENTER'].map((letter,i)=><span key={i}>{letter}</span>)}</span> : <Legend value={key.label}/>}</span>
+        <span className="key-shell"><span className="key-cap">{key.id === 'menu' ? <><span className="menu-label">MENU</span><svg className="menu-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M3 8h34M3 20h34M3 32h34"/></svg></> : key.id === 'enter' ? <span className="enter-letters">{[...(mode==='ALG'?'=':'ENTER')].map((letter,i)=><span key={i}>{letter}</span>)}</span> : <Legend value={key.label}/>}</span>
           {key.g && <span className="legend-g"><Legend value={key.g}/></span>}
         </span>
       </button>;

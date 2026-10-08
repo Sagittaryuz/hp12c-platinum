@@ -169,7 +169,13 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
       case 'off':s.powered=false;return s;
       case 'chs':if(s.entering&&s.input.includes('e')){s.input=s.input.includes('e-')?s.input.replace('e-','e'):s.input.replace('e','e-');s.x=precision(Number(s.input));}else if(s.entering){s.input=s.input.startsWith('-')?s.input.slice(1):'-'+s.input;s.x=precision(Number(s.input));}else result(s,-s.x,undefined,false);return s;
       case 'eex':if(!s.entering){if(s.x===0)s.x=1;s.input=String(s.x);s.entering=true;}if(!s.input.includes('e'))s.input+='e0';s.financialInputReady=true;return s;
-      case 'backspace':if(s.entering){s.input=s.input.slice(0,-1);if(s.input.endsWith('e')||s.input.endsWith('e-'))s.input=s.input.split('e')[0];if(!s.input||s.input==='-')s.input='0';s.x=precision(Number(s.input));}else{s.x=0;s.input='0';s.lift=false;}return s;
+      case 'backspace':{
+        if(!s.entering){s.input=String(s.x);s.entering=true;s.lift=false;}
+        s.input=s.input.slice(0,-1);
+        if(/e[+-]?$/.test(s.input))s.input=s.input.split('e')[0];
+        if(!s.input||s.input==='-')s.input='0';
+        s.x=precision(Number(s.input));return s;
+      }
       case 'enter':case 'equals':if(s.mode==='ALG'){algEquals(s);}else{lift(s);s.entering=false;s.lift=false;}return s;
       case 'plus':case 'minus':case 'multiply':case 'divide':case 'pow':{const op=({plus:'+',minus:'-',multiply:'*',divide:'/',pow:'^'} as Record<string,string>)[action];if(s.mode==='ALG')algPush(s,op);else binary(s,op);return finish(s);}
       case 'parenOpen':if(s.mode==='ALG'){if(s.algOperators.filter(op=>op==='(').length>=13)throw new Error('Error 4');s.pendingOp=null;s.algOperators.push('(');s.entering=false;s.lift=false;}return s;

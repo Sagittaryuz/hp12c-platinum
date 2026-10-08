@@ -51,9 +51,9 @@ function useJoinedFrame() {
       const min=Math.min(...ink.map(r=>r.top)),max=Math.max(...ink.map(r=>r.bottom));
       const base=body.bottom-maker.bottom;
       const rise=portrait?20:0;
-      calculator.style.setProperty('--joined-base',portrait?'20px':'45px');
+      calculator.style.setProperty('--joined-base',portrait?'20px':'2px');
       // Portrait maker rails: 10 CSS px; landscape uses its existing height.
-      calculator.style.setProperty('--joined-label-height',(portrait?10:maker.height)+'px');
+      calculator.style.setProperty('--joined-label-height',(portrait?10:2)+'px');
       calculator.style.setProperty('--maker-cutout-width',(maker.width+(portrait?20:0))+'px');
       const shift=Math.min(50,Math.max(0,(maker.top-panel.top)*.22));
       calculator.style.setProperty('--joined-top',(panel.top-body.top+shift)+'px');
@@ -201,7 +201,7 @@ function useJoinedFrame() {
         calculator.dataset.narrowKeyAdjustment=String(narrow);
         // Check each key footprint against the actual rounded black surface.
         // Retain the prior envelope only to cap the extra extent at10px.
-        const innerBottom=frameRect.bottom-stroke;
+        const innerBottom=frameRect.bottom-2;
         const cornerLimit=(el,radius=innerRadius)=>{
           const centreY=innerBottom-radius;
           const rect=el.getBoundingClientRect();let limit=innerBottom;
@@ -351,24 +351,24 @@ export function App() {
   }, [state.paused, state.program.length, state.displayLabel]);
   useLayoutEffect(() => {
     const handle = event => {
-      if(event.defaultPrevented||event.target?.closest?.('input,textarea,select,.lcd,.lcd-transfer-dialog,[contenteditable="true"]'))return;
+      if(event.defaultPrevented||event.target?.closest?.('input,textarea,select,.lcd-transfer-dialog,[contenteditable="true"]'))return;
       if (menuOpen || historyOpen || diagnosticsOpen) {
         if(event.key==='Backspace')event.preventDefault();
         if(event.key==='Escape'){setMenuOpen(false);setHistoryOpen(false);setDiagnosticsOpen(false)}
         return;
       }
       if (event.ctrlKey || event.metaKey || event.altKey) return;
-      if (event.target?.tagName === 'BUTTON' && [' ', 'Enter'].includes(event.key)) return;
-      if (event.key === 'Backspace' || event.key === '=') {
-        event.preventDefault(); dispatch({type:'action',physical:true,action:event.key==='='?'equals':'backspace',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
+      if (event.target?.closest?.('.lcd') && event.key !== 'Enter' && event.key !== 'Escape' && event.key !== 'Backspace') return;
+      if (['Backspace', '=', 'Escape', 'Enter'].includes(event.key)) {
+        event.preventDefault(); event.stopPropagation(); dispatch({type:'action',physical:true,action:({'=':'equals',Enter:'enter',Escape:'clx',Backspace:'backspace'})[event.key],eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
       }
       const shortcut = event.code === 'Space' ? 'Enter' : event.key === ',' ? '.' : event.key;
       const key = KEY_DEFINITIONS.find(key => key.shortcut.toUpperCase() === shortcut.toUpperCase());
       if (!key || event.key === 'Tab') return;
       event.preventDefault(); activate(key.id);
     };
-    window.addEventListener('keydown', handle);
-    return () => window.removeEventListener('keydown', handle);
+    window.addEventListener('keydown', handle, true);
+    return () => window.removeEventListener('keydown', handle, true);
   }, [menuOpen, historyOpen, diagnosticsOpen, activate]);
   useEffect(() => {
     if (state.displayLabel !== 'MANTISSA' || !state.displayOverride) return;
@@ -428,7 +428,7 @@ export function App() {
       <div className="keyboard-panel" aria-hidden="true"/>
       <div className="portrait-footer-frame" aria-hidden="true"/>
       <Brackets/>
-      <FaceKeys activate={activate} beginKey={beginKey} finishKey={finishKey} cancelPreview={cancelPreview} heldKeys={heldKeys} menu={openMenu}/>
+      <FaceKeys mode={state.mode} activate={activate} beginKey={beginKey} finishKey={finishKey} cancelPreview={cancelPreview} heldKeys={heldKeys} menu={openMenu}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>
       {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} prefs={prefs} onDisplaySettings={settings=>setState(current=>({...current,...settings}))} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}

@@ -384,3 +384,8 @@ it.each([false,true])('formato escolhido permanece em reaberturas e ações com 
  expect(reopened.decimals).toBe(4);expect(reopened.decimalComma).toBe(decimalComma);expect(reopened.registers).toEqual(original.registers);expect(reopened.program).toEqual(original.program);
  const entered=displayDefaults(pressKey(reopened,'1'));expect(entered.decimals).toBe(4);expect(entered.decimalComma).toBe(decimalComma);expect(original.x).toBe(1.23456789);
 });
+
+it('backspace removes one digit from input and calculated results',()=>{
+ let s=number(start(),'1234');s=pressAction(s,'backspace');expect(s.x).toBe(123);s=pressAction(s,'backspace');expect(s.x).toBe(12);
+ s=keys(start(),'1','2','3','enter','4','plus');expect(s.x).toBe(127);s=pressAction(s,'backspace');expect(s.x).toBe(12);expect(s.entering).toBe(true);s=pressAction(s,'backspace');expect(s.x).toBe(1);s=pressAction(s,'backspace');expect(s.x).toBe(0);
+});
