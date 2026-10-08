@@ -1,0 +1,4656 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "before": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568
+      },
+      "lcd": {
+        "x": 16,
+        "y": 43.936187744140625,
+        "width": 288,
+        "height": 51.203125,
+        "bottom": 95.13931274414062
+      },
+      "model": {
+        "x": 16,
+        "y": 10.997374534606934,
+        "width": 36.171875,
+        "height": 20.625,
+        "bottom": 31.622374534606934
+      },
+      "brand": {
+        "x": 255.375,
+        "y": 10.997374534606934,
+        "width": 48.625,
+        "height": 20.671875,
+        "bottom": 31.669249534606934
+      },
+      "maker": {
+        "x": 83.078125,
+        "y": 550,
+        "width": 153.84375,
+        "height": 16,
+        "bottom": 566
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-n ",
+          "x": 70.46875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-i ",
+          "x": 117.953125,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 165.4375,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 212.921875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 260.40625,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 70.46875,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 117.953125,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 165.4375,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 212.921875,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 260.40625,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 70.46875,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 117.953125,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 165.4375,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 212.921875,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 260.40625,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 70.46875,
+          "y": 385.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 117.953125,
+          "y": 385.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 165.4375,
+          "y": 385.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 212.921875,
+          "y": 385.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 260.40625,
+          "y": 385.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 70.46875,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 117.953125,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 165.4375,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 212.921875,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 260.40625,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 70.46875,
+          "y": 447.03125,
+          "width": 36.59375,
+          "height": 92.953125
+        },
+        {
+          "id": "key key-1 ",
+          "x": 117.953125,
+          "y": 447.03125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 165.4375,
+          "y": 447.03125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 212.921875,
+          "y": 447.03125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 260.40625,
+          "y": 447.03125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 508.46875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 447.03125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 385.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 117.953125,
+          "y": 508.46875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 165.4375,
+          "y": 508.46875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 212.921875,
+          "y": 508.46875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 260.40625,
+          "y": 508.46875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 117.40625,
+        "width": 300,
+        "height": 448.59375,
+        "bottom": 566
+      },
+      "frameDisplay": "block",
+      "plastic": "2px",
+      "metal": "2px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "after": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568
+      },
+      "lcd": {
+        "x": 16,
+        "y": 43.936187744140625,
+        "width": 288,
+        "height": 51.203125,
+        "bottom": 95.13931274414062
+      },
+      "model": {
+        "x": 16,
+        "y": 10.997374534606934,
+        "width": 36.171875,
+        "height": 20.625,
+        "bottom": 31.622374534606934
+      },
+      "brand": {
+        "x": 255.375,
+        "y": 10.997374534606934,
+        "width": 48.625,
+        "height": 20.671875,
+        "bottom": 31.669249534606934
+      },
+      "maker": {
+        "x": 83.078125,
+        "y": 550,
+        "width": 153.84375,
+        "height": 16,
+        "bottom": 566
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 260.234375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-n ",
+          "x": 70.46875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-i ",
+          "x": 117.953125,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 165.4375,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 212.921875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 260.40625,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 70.46875,
+          "y": 320.421875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 117.953125,
+          "y": 320.421875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 165.4375,
+          "y": 320.421875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 212.921875,
+          "y": 320.421875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 260.40625,
+          "y": 320.421875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 70.46875,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 117.953125,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 165.4375,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 212.921875,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 260.40625,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 70.46875,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 117.953125,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 165.4375,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 212.921875,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 260.40625,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 70.46875,
+          "y": 260.234375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 117.953125,
+          "y": 260.234375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 165.4375,
+          "y": 260.234375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 212.921875,
+          "y": 260.234375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 260.40625,
+          "y": 260.234375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 70.46875,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 91.703125
+        },
+        {
+          "id": "key key-1 ",
+          "x": 117.953125,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 165.4375,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 212.921875,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 260.40625,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 320.421875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 117.953125,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 165.4375,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 212.921875,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 260.40625,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 117.40625,
+        "width": 300,
+        "height": 440.59375,
+        "bottom": 558
+      },
+      "frameDisplay": "block",
+      "plastic": "10px",
+      "metal": "10px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "checks": [
+      {
+        "label": "viewport/no overflow",
+        "passed": true
+      },
+      {
+        "label": "preserve lcd",
+        "passed": true
+      },
+      {
+        "label": "preserve model",
+        "passed": true
+      },
+      {
+        "label": "preserve brand",
+        "passed": true
+      },
+      {
+        "label": "preserve maker",
+        "passed": true
+      },
+      {
+        "label": "preserve key sizes and horizontal positions",
+        "passed": true
+      },
+      {
+        "label": "first row anchored; bounded lower clearance",
+        "passed": true
+      },
+      {
+        "label": "uniform row spacing and aligned ENTER",
+        "passed": true
+      },
+      {
+        "label": "preserve left",
+        "passed": true
+      },
+      {
+        "label": "preserve right",
+        "passed": true
+      },
+      {
+        "label": "preserve innerLeft",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRight",
+        "passed": true
+      },
+      {
+        "label": "preserve outerRadius",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRadius",
+        "passed": true
+      },
+      {
+        "label": "lower crosspiece total20px",
+        "passed": true
+      },
+      {
+        "label": "RPN2+3",
+        "passed": true
+      },
+      {
+        "label": "no runtime errors",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 393,
+      "height": 852
+    },
+    "before": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 852,
+        "bottom": 852
+      },
+      "lcd": {
+        "x": 16,
+        "y": 62.12693786621094,
+        "width": 361,
+        "height": 65.046875,
+        "bottom": 127.17381286621094
+      },
+      "model": {
+        "x": 16,
+        "y": 10.988249778747559,
+        "width": 67.90625,
+        "height": 38.359375,
+        "bottom": 49.34762477874756
+      },
+      "brand": {
+        "x": 316.6875,
+        "y": 10.988249778747559,
+        "width": 60.3125,
+        "height": 37.484375,
+        "bottom": 48.47262477874756
+      },
+      "maker": {
+        "x": 118.5625,
+        "y": 834,
+        "width": 155.875,
+        "height": 16,
+        "bottom": 850
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-n ",
+          "x": 83.40625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-i ",
+          "x": 143.8125,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 204.21875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 264.625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 325.046875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 83.40625,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 143.8125,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 204.21875,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 264.625,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 325.046875,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 83.40625,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 143.8125,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 204.21875,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 264.625,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 325.046875,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 83.40625,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 143.8125,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 204.21875,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 264.625,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 325.046875,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 83.40625,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 143.8125,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 204.21875,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 264.625,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 325.046875,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 83.40625,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 150.84375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 143.8125,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 204.21875,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 264.625,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 325.046875,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 143.8125,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 204.21875,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 264.625,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 325.046875,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 150.828125,
+        "width": 373,
+        "height": 699.171875,
+        "bottom": 850
+      },
+      "frameDisplay": "block",
+      "plastic": "2px",
+      "metal": "2px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "after": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 852,
+        "bottom": 852
+      },
+      "lcd": {
+        "x": 16,
+        "y": 62.12693786621094,
+        "width": 361,
+        "height": 65.046875,
+        "bottom": 127.17381286621094
+      },
+      "model": {
+        "x": 16,
+        "y": 10.988249778747559,
+        "width": 67.90625,
+        "height": 38.359375,
+        "bottom": 49.34762477874756
+      },
+      "brand": {
+        "x": 316.6875,
+        "y": 10.988249778747559,
+        "width": 60.3125,
+        "height": 37.484375,
+        "bottom": 48.47262477874756
+      },
+      "maker": {
+        "x": 118.5625,
+        "y": 834,
+        "width": 155.875,
+        "height": 16,
+        "bottom": 850
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-n ",
+          "x": 83.40625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-i ",
+          "x": 143.8125,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 204.21875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 264.625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 325.046875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 83.40625,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 143.8125,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 204.21875,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 264.625,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 325.046875,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 83.40625,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 143.8125,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 204.21875,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 264.625,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 325.046875,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 83.40625,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 143.8125,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 204.21875,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 264.625,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 325.046875,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 83.40625,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 143.8125,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 204.21875,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 264.625,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 325.046875,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 83.40625,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 149.84375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 143.8125,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 204.21875,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 264.625,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 325.046875,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 143.8125,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 204.21875,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 264.625,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 325.046875,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 150.828125,
+        "width": 373,
+        "height": 691.171875,
+        "bottom": 842
+      },
+      "frameDisplay": "block",
+      "plastic": "10px",
+      "metal": "10px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "checks": [
+      {
+        "label": "viewport/no overflow",
+        "passed": true
+      },
+      {
+        "label": "preserve lcd",
+        "passed": true
+      },
+      {
+        "label": "preserve model",
+        "passed": true
+      },
+      {
+        "label": "preserve brand",
+        "passed": true
+      },
+      {
+        "label": "preserve maker",
+        "passed": true
+      },
+      {
+        "label": "preserve key sizes and horizontal positions",
+        "passed": true
+      },
+      {
+        "label": "first row anchored; bounded lower clearance",
+        "passed": true
+      },
+      {
+        "label": "uniform row spacing and aligned ENTER",
+        "passed": true
+      },
+      {
+        "label": "preserve left",
+        "passed": true
+      },
+      {
+        "label": "preserve right",
+        "passed": true
+      },
+      {
+        "label": "preserve innerLeft",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRight",
+        "passed": true
+      },
+      {
+        "label": "preserve outerRadius",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRadius",
+        "passed": true
+      },
+      {
+        "label": "lower crosspiece total20px",
+        "passed": true
+      },
+      {
+        "label": "RPN2+3",
+        "passed": true
+      },
+      {
+        "label": "no runtime errors",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "viewport": {
+      "width": 852,
+      "height": 393
+    },
+    "before": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 852,
+        "height": 393,
+        "bottom": 393
+      },
+      "lcd": {
+        "x": 223.28125,
+        "y": 17,
+        "width": 405.421875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "model": {
+        "x": 49.8125,
+        "y": 17,
+        "width": 149.46875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "brand": {
+        "x": 743.78125,
+        "y": 17,
+        "width": 58.390625,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "maker": {
+        "x": 363.109375,
+        "y": 361,
+        "width": 125.78125,
+        "height": 16,
+        "bottom": 377
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 49.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-cos ",
+          "x": 49.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-tan ",
+          "x": 49.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-n ",
+          "x": 119.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-i ",
+          "x": 189.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pv ",
+          "x": 259.4375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 329.3125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-fv ",
+          "x": 399.1875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-chs ",
+          "x": 469.0625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-7 ",
+          "x": 538.9375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-8 ",
+          "x": 608.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-9 ",
+          "x": 678.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-divide ",
+          "x": 748.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pow ",
+          "x": 119.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 189.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 259.4375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 329.3125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pct ",
+          "x": 399.1875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-eex ",
+          "x": 469.0625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-4 ",
+          "x": 538.9375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-5 ",
+          "x": 608.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-6 ",
+          "x": 678.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 748.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rs ",
+          "x": 119.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sst ",
+          "x": 189.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-roll ",
+          "x": 259.4375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-swap ",
+          "x": 329.3125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-clx ",
+          "x": 399.1875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-enter ",
+          "x": 469.0625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 90.9375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 538.9375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-2 ",
+          "x": 608.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-3 ",
+          "x": 678.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-minus ",
+          "x": 748.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 189.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 259.4375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 329.3125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 399.1875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-0 ",
+          "x": 538.9375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 608.8125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 678.6875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-plus ",
+          "x": 748.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-menu ",
+          "x": 49.8125,
+          "y": 309.640625,
+          "width": 123.484375,
+          "height": 33.25
+        }
+      ],
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0
+      },
+      "frameDisplay": "none",
+      "plastic": "auto",
+      "metal": "auto",
+      "left": "auto",
+      "right": "auto",
+      "innerLeft": "auto",
+      "innerRight": "auto",
+      "outerRadius": "0px",
+      "innerRadius": "0px",
+      "overflow": false
+    },
+    "after": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 852,
+        "height": 393,
+        "bottom": 393
+      },
+      "lcd": {
+        "x": 223.28125,
+        "y": 17,
+        "width": 405.421875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "model": {
+        "x": 49.8125,
+        "y": 17,
+        "width": 149.46875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "brand": {
+        "x": 743.78125,
+        "y": 17,
+        "width": 58.390625,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "maker": {
+        "x": 363.109375,
+        "y": 361,
+        "width": 125.78125,
+        "height": 16,
+        "bottom": 377
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 49.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-cos ",
+          "x": 49.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-tan ",
+          "x": 49.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-n ",
+          "x": 119.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-i ",
+          "x": 189.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pv ",
+          "x": 259.4375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 329.3125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-fv ",
+          "x": 399.1875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-chs ",
+          "x": 469.0625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-7 ",
+          "x": 538.9375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-8 ",
+          "x": 608.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-9 ",
+          "x": 678.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-divide ",
+          "x": 748.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pow ",
+          "x": 119.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 189.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 259.4375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 329.3125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pct ",
+          "x": 399.1875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-eex ",
+          "x": 469.0625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-4 ",
+          "x": 538.9375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-5 ",
+          "x": 608.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-6 ",
+          "x": 678.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 748.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rs ",
+          "x": 119.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sst ",
+          "x": 189.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-roll ",
+          "x": 259.4375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-swap ",
+          "x": 329.3125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-clx ",
+          "x": 399.1875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-enter ",
+          "x": 469.0625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 90.9375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 538.9375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-2 ",
+          "x": 608.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-3 ",
+          "x": 678.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-minus ",
+          "x": 748.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 189.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 259.4375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 329.3125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 399.1875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-0 ",
+          "x": 538.9375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 608.8125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 678.6875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-plus ",
+          "x": 748.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-menu ",
+          "x": 49.8125,
+          "y": 309.640625,
+          "width": 123.484375,
+          "height": 33.25
+        }
+      ],
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0
+      },
+      "frameDisplay": "none",
+      "plastic": "auto",
+      "metal": "auto",
+      "left": "auto",
+      "right": "auto",
+      "innerLeft": "auto",
+      "innerRight": "auto",
+      "outerRadius": "0px",
+      "innerRadius": "0px",
+      "overflow": false
+    },
+    "checks": [
+      {
+        "label": "viewport/no overflow",
+        "passed": true
+      },
+      {
+        "label": "preserve lcd",
+        "passed": true
+      },
+      {
+        "label": "preserve model",
+        "passed": true
+      },
+      {
+        "label": "preserve brand",
+        "passed": true
+      },
+      {
+        "label": "preserve maker",
+        "passed": true
+      },
+      {
+        "label": "preserve key sizes and horizontal positions",
+        "passed": true
+      },
+      {
+        "label": "landscape keys identical",
+        "passed": true
+      },
+      {
+        "label": "preserve left",
+        "passed": true
+      },
+      {
+        "label": "preserve right",
+        "passed": true
+      },
+      {
+        "label": "preserve innerLeft",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRight",
+        "passed": true
+      },
+      {
+        "label": "preserve outerRadius",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRadius",
+        "passed": true
+      },
+      {
+        "label": "landscape pixels identical",
+        "passed": true
+      },
+      {
+        "label": "RPN2+3",
+        "passed": true
+      },
+      {
+        "label": "no runtime errors",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "before": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568
+      },
+      "lcd": {
+        "x": 16,
+        "y": 43.936187744140625,
+        "width": 288,
+        "height": 51.203125,
+        "bottom": 95.13931274414062
+      },
+      "model": {
+        "x": 16,
+        "y": 10.997374534606934,
+        "width": 36.171875,
+        "height": 20.625,
+        "bottom": 31.622374534606934
+      },
+      "brand": {
+        "x": 255.375,
+        "y": 10.997374534606934,
+        "width": 48.625,
+        "height": 20.671875,
+        "bottom": 31.669249534606934
+      },
+      "maker": {
+        "x": 83.078125,
+        "y": 550,
+        "width": 153.84375,
+        "height": 16,
+        "bottom": 566
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-n ",
+          "x": 70.46875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-i ",
+          "x": 117.953125,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 165.4375,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 212.921875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 260.40625,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 70.46875,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 117.953125,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 165.4375,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 212.921875,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 260.40625,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 70.46875,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 117.953125,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 165.4375,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 212.921875,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 260.40625,
+          "y": 201.296875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 70.46875,
+          "y": 385.609375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 117.953125,
+          "y": 385.609375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 165.4375,
+          "y": 385.609375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 212.921875,
+          "y": 385.609375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 260.40625,
+          "y": 385.609375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 70.46875,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 117.953125,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 165.4375,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 212.921875,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 260.40625,
+          "y": 262.734375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 70.46875,
+          "y": 447.046875,
+          "width": 36.59375,
+          "height": 92.953125
+        },
+        {
+          "id": "key key-1 ",
+          "x": 117.953125,
+          "y": 447.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 165.4375,
+          "y": 447.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 212.921875,
+          "y": 447.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 260.40625,
+          "y": 447.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 508.484375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 447.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 385.609375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 324.171875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 117.953125,
+          "y": 508.484375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 165.4375,
+          "y": 508.484375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 212.921875,
+          "y": 508.484375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 260.40625,
+          "y": 508.484375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 117.40625,
+        "width": 300,
+        "height": 448.59375,
+        "bottom": 566
+      },
+      "frameDisplay": "block",
+      "plastic": "2px",
+      "metal": "2px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "after": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568
+      },
+      "lcd": {
+        "x": 16,
+        "y": 43.936187744140625,
+        "width": 288,
+        "height": 51.203125,
+        "bottom": 95.13931274414062
+      },
+      "model": {
+        "x": 16,
+        "y": 10.997374534606934,
+        "width": 36.171875,
+        "height": 20.625,
+        "bottom": 31.622374534606934
+      },
+      "brand": {
+        "x": 255.375,
+        "y": 10.997374534606934,
+        "width": 48.625,
+        "height": 20.671875,
+        "bottom": 31.669249534606934
+      },
+      "maker": {
+        "x": 83.078125,
+        "y": 550,
+        "width": 153.84375,
+        "height": 16,
+        "bottom": 566
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 260.21875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-n ",
+          "x": 70.46875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-i ",
+          "x": 117.953125,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 165.4375,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 212.921875,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 260.40625,
+          "y": 139.859375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 70.46875,
+          "y": 320.40625,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 117.953125,
+          "y": 320.40625,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 165.4375,
+          "y": 320.40625,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 212.921875,
+          "y": 320.40625,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 260.40625,
+          "y": 320.40625,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 70.46875,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 117.953125,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 165.4375,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 212.921875,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 260.40625,
+          "y": 200.046875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 70.46875,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 117.953125,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 165.4375,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 212.921875,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 260.40625,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 70.46875,
+          "y": 260.21875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 117.953125,
+          "y": 260.21875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 165.4375,
+          "y": 260.21875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 212.921875,
+          "y": 260.21875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 260.40625,
+          "y": 260.21875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 70.46875,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 91.703125
+        },
+        {
+          "id": "key key-1 ",
+          "x": 117.953125,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 165.4375,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 212.921875,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 260.40625,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 440.78125,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 380.59375,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 320.40625,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 117.953125,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 165.4375,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 212.921875,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 260.40625,
+          "y": 500.96875,
+          "width": 36.59375,
+          "height": 31.515625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 117.40625,
+        "width": 300,
+        "height": 440.59375,
+        "bottom": 558
+      },
+      "frameDisplay": "block",
+      "plastic": "10px",
+      "metal": "10px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "checks": [
+      {
+        "label": "viewport/no overflow",
+        "passed": true
+      },
+      {
+        "label": "preserve lcd",
+        "passed": true
+      },
+      {
+        "label": "preserve model",
+        "passed": true
+      },
+      {
+        "label": "preserve brand",
+        "passed": true
+      },
+      {
+        "label": "preserve maker",
+        "passed": true
+      },
+      {
+        "label": "preserve key sizes and horizontal positions",
+        "passed": true
+      },
+      {
+        "label": "first row anchored; bounded lower clearance",
+        "passed": true
+      },
+      {
+        "label": "uniform row spacing and aligned ENTER",
+        "passed": true
+      },
+      {
+        "label": "preserve left",
+        "passed": true
+      },
+      {
+        "label": "preserve right",
+        "passed": true
+      },
+      {
+        "label": "preserve innerLeft",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRight",
+        "passed": true
+      },
+      {
+        "label": "preserve outerRadius",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRadius",
+        "passed": true
+      },
+      {
+        "label": "lower crosspiece total20px",
+        "passed": true
+      },
+      {
+        "label": "RPN2+3",
+        "passed": true
+      },
+      {
+        "label": "no runtime errors",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 393,
+      "height": 852
+    },
+    "before": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 852,
+        "bottom": 852
+      },
+      "lcd": {
+        "x": 16,
+        "y": 62.12693786621094,
+        "width": 361,
+        "height": 65.046875,
+        "bottom": 127.17381286621094
+      },
+      "model": {
+        "x": 16,
+        "y": 10.988249778747559,
+        "width": 67.90625,
+        "height": 38.328125,
+        "bottom": 49.31637477874756
+      },
+      "brand": {
+        "x": 316.6875,
+        "y": 10.988249778747559,
+        "width": 60.3125,
+        "height": 37.484375,
+        "bottom": 48.47262477874756
+      },
+      "maker": {
+        "x": 118.5625,
+        "y": 834,
+        "width": 155.875,
+        "height": 16,
+        "bottom": 850
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-n ",
+          "x": 83.40625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-i ",
+          "x": 143.8125,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 204.21875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 264.625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 325.046875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 83.40625,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 143.8125,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 204.21875,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 264.625,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 325.046875,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 83.40625,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 143.8125,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 204.21875,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 264.625,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 325.046875,
+          "y": 280.234375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 83.40625,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 143.8125,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 204.21875,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 264.625,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 325.046875,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 83.40625,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 143.8125,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 204.21875,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 264.625,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 325.046875,
+          "y": 378.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 83.40625,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 150.84375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 143.8125,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 204.21875,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 264.625,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 325.046875,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 673.140625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 574.921875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 476.6875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 143.8125,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 204.21875,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 264.625,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 325.046875,
+          "y": 771.375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 150.828125,
+        "width": 373,
+        "height": 699.171875,
+        "bottom": 850
+      },
+      "frameDisplay": "block",
+      "plastic": "2px",
+      "metal": "2px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "after": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 852,
+        "bottom": 852
+      },
+      "lcd": {
+        "x": 16,
+        "y": 62.12693786621094,
+        "width": 361,
+        "height": 65.046875,
+        "bottom": 127.17381286621094
+      },
+      "model": {
+        "x": 16,
+        "y": 10.988249778747559,
+        "width": 67.90625,
+        "height": 38.328125,
+        "bottom": 49.31637477874756
+      },
+      "brand": {
+        "x": 316.6875,
+        "y": 10.988249778747559,
+        "width": 60.3125,
+        "height": 37.484375,
+        "bottom": 48.47262477874756
+      },
+      "maker": {
+        "x": 118.5625,
+        "y": 834,
+        "width": 155.875,
+        "height": 16,
+        "bottom": 850
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 23,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-cos ",
+          "x": 23,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-tan ",
+          "x": 23,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-n ",
+          "x": 83.40625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-i ",
+          "x": 143.8125,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pv ",
+          "x": 204.21875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 264.625,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-fv ",
+          "x": 325.046875,
+          "y": 182.03125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-chs ",
+          "x": 83.40625,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-7 ",
+          "x": 143.8125,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-8 ",
+          "x": 204.21875,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-9 ",
+          "x": 264.625,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-divide ",
+          "x": 325.046875,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pow ",
+          "x": 83.40625,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 143.8125,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 204.21875,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 264.625,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-pct ",
+          "x": 325.046875,
+          "y": 279.25,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-eex ",
+          "x": 83.40625,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-4 ",
+          "x": 143.8125,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-5 ",
+          "x": 204.21875,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-6 ",
+          "x": 264.625,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 325.046875,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rs ",
+          "x": 83.40625,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sst ",
+          "x": 143.8125,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-roll ",
+          "x": 204.21875,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-swap ",
+          "x": 264.625,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-clx ",
+          "x": 325.046875,
+          "y": 376.46875,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-enter ",
+          "x": 83.40625,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 149.84375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 143.8125,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-2 ",
+          "x": 204.21875,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-3 ",
+          "x": 264.625,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-minus ",
+          "x": 325.046875,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 23,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 23,
+          "y": 668.15625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 23,
+          "y": 570.9375,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 23,
+          "y": 473.703125,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-0 ",
+          "x": 143.8125,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 204.21875,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 264.625,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-plus ",
+          "x": 325.046875,
+          "y": 765.390625,
+          "width": 44.953125,
+          "height": 52.625
+        },
+        {
+          "id": "key key-menu ",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "frame": {
+        "x": 10,
+        "y": 150.828125,
+        "width": 373,
+        "height": 691.171875,
+        "bottom": 842
+      },
+      "frameDisplay": "block",
+      "plastic": "10px",
+      "metal": "10px",
+      "left": "10px",
+      "right": "10px",
+      "innerLeft": "5px",
+      "innerRight": "5px",
+      "outerRadius": "40px",
+      "innerRadius": "30px",
+      "overflow": false
+    },
+    "checks": [
+      {
+        "label": "viewport/no overflow",
+        "passed": true
+      },
+      {
+        "label": "preserve lcd",
+        "passed": true
+      },
+      {
+        "label": "preserve model",
+        "passed": true
+      },
+      {
+        "label": "preserve brand",
+        "passed": true
+      },
+      {
+        "label": "preserve maker",
+        "passed": true
+      },
+      {
+        "label": "preserve key sizes and horizontal positions",
+        "passed": true
+      },
+      {
+        "label": "first row anchored; bounded lower clearance",
+        "passed": true
+      },
+      {
+        "label": "uniform row spacing and aligned ENTER",
+        "passed": true
+      },
+      {
+        "label": "preserve left",
+        "passed": true
+      },
+      {
+        "label": "preserve right",
+        "passed": true
+      },
+      {
+        "label": "preserve innerLeft",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRight",
+        "passed": true
+      },
+      {
+        "label": "preserve outerRadius",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRadius",
+        "passed": true
+      },
+      {
+        "label": "lower crosspiece total20px",
+        "passed": true
+      },
+      {
+        "label": "RPN2+3",
+        "passed": true
+      },
+      {
+        "label": "no runtime errors",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "viewport": {
+      "width": 852,
+      "height": 393
+    },
+    "before": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 852,
+        "height": 393,
+        "bottom": 393
+      },
+      "lcd": {
+        "x": 223.28125,
+        "y": 17,
+        "width": 405.421875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "model": {
+        "x": 49.8125,
+        "y": 17,
+        "width": 149.46875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "brand": {
+        "x": 743.78125,
+        "y": 17,
+        "width": 58.390625,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "maker": {
+        "x": 363.109375,
+        "y": 361,
+        "width": 125.78125,
+        "height": 16,
+        "bottom": 377
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 49.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-cos ",
+          "x": 49.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-tan ",
+          "x": 49.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-n ",
+          "x": 119.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-i ",
+          "x": 189.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pv ",
+          "x": 259.4375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 329.3125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-fv ",
+          "x": 399.1875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-chs ",
+          "x": 469.0625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-7 ",
+          "x": 538.9375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-8 ",
+          "x": 608.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-9 ",
+          "x": 678.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-divide ",
+          "x": 748.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pow ",
+          "x": 119.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 189.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 259.4375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 329.3125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pct ",
+          "x": 399.1875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-eex ",
+          "x": 469.0625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-4 ",
+          "x": 538.9375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-5 ",
+          "x": 608.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-6 ",
+          "x": 678.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 748.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rs ",
+          "x": 119.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sst ",
+          "x": 189.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-roll ",
+          "x": 259.4375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-swap ",
+          "x": 329.3125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-clx ",
+          "x": 399.1875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-enter ",
+          "x": 469.0625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 90.9375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 538.9375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-2 ",
+          "x": 608.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-3 ",
+          "x": 678.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-minus ",
+          "x": 748.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 189.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 259.4375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 329.3125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 399.1875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-0 ",
+          "x": 538.9375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 608.8125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 678.6875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-plus ",
+          "x": 748.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-menu ",
+          "x": 49.8125,
+          "y": 309.640625,
+          "width": 123.484375,
+          "height": 33.25
+        }
+      ],
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0
+      },
+      "frameDisplay": "none",
+      "plastic": "auto",
+      "metal": "auto",
+      "left": "auto",
+      "right": "auto",
+      "innerLeft": "auto",
+      "innerRight": "auto",
+      "outerRadius": "0px",
+      "innerRadius": "0px",
+      "overflow": false
+    },
+    "after": {
+      "body": {
+        "x": 0,
+        "y": 0,
+        "width": 852,
+        "height": 393,
+        "bottom": 393
+      },
+      "lcd": {
+        "x": 223.28125,
+        "y": 17,
+        "width": 405.421875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "model": {
+        "x": 49.8125,
+        "y": 17,
+        "width": 149.46875,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "brand": {
+        "x": 743.78125,
+        "y": 17,
+        "width": 58.390625,
+        "height": 58.390625,
+        "bottom": 75.390625
+      },
+      "maker": {
+        "x": 363.109375,
+        "y": 361,
+        "width": 125.78125,
+        "height": 16,
+        "bottom": 377
+      },
+      "keys": [
+        {
+          "id": "key key-sin ",
+          "x": 49.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-cos ",
+          "x": 49.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-tan ",
+          "x": 49.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-n ",
+          "x": 119.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-i ",
+          "x": 189.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pv ",
+          "x": 259.4375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pmt ",
+          "x": 329.3125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-fv ",
+          "x": 399.1875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-chs ",
+          "x": 469.0625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-7 ",
+          "x": 538.9375,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-8 ",
+          "x": 608.8125,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-9 ",
+          "x": 678.6875,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-divide ",
+          "x": 748.5625,
+          "y": 136.578125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pow ",
+          "x": 119.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-reciprocal ",
+          "x": 189.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pctT ",
+          "x": 259.4375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-deltaPct ",
+          "x": 329.3125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-pct ",
+          "x": 399.1875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-eex ",
+          "x": 469.0625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-4 ",
+          "x": 538.9375,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-5 ",
+          "x": 608.8125,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-6 ",
+          "x": 678.6875,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-multiply ",
+          "x": 748.5625,
+          "y": 194.265625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rs ",
+          "x": 119.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sst ",
+          "x": 189.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-roll ",
+          "x": 259.4375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-swap ",
+          "x": 329.3125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-clx ",
+          "x": 399.1875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-enter ",
+          "x": 469.0625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 90.9375
+        },
+        {
+          "id": "key key-1 ",
+          "x": 538.9375,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-2 ",
+          "x": 608.8125,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-3 ",
+          "x": 678.6875,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-minus ",
+          "x": 748.5625,
+          "y": 251.953125,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-f shift-f",
+          "x": 189.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-g shift-g",
+          "x": 259.4375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sto utility",
+          "x": 329.3125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-rcl utility",
+          "x": 399.1875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-0 ",
+          "x": 538.9375,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-decimal ",
+          "x": 608.8125,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-sigma ",
+          "x": 678.6875,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-plus ",
+          "x": 748.5625,
+          "y": 309.640625,
+          "width": 53.609375,
+          "height": 33.25
+        },
+        {
+          "id": "key key-menu ",
+          "x": 49.8125,
+          "y": 309.640625,
+          "width": 123.484375,
+          "height": 33.25
+        }
+      ],
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0
+      },
+      "frameDisplay": "none",
+      "plastic": "auto",
+      "metal": "auto",
+      "left": "auto",
+      "right": "auto",
+      "innerLeft": "auto",
+      "innerRight": "auto",
+      "outerRadius": "0px",
+      "innerRadius": "0px",
+      "overflow": false
+    },
+    "checks": [
+      {
+        "label": "viewport/no overflow",
+        "passed": true
+      },
+      {
+        "label": "preserve lcd",
+        "passed": true
+      },
+      {
+        "label": "preserve model",
+        "passed": true
+      },
+      {
+        "label": "preserve brand",
+        "passed": true
+      },
+      {
+        "label": "preserve maker",
+        "passed": true
+      },
+      {
+        "label": "preserve key sizes and horizontal positions",
+        "passed": true
+      },
+      {
+        "label": "landscape keys identical",
+        "passed": true
+      },
+      {
+        "label": "preserve left",
+        "passed": true
+      },
+      {
+        "label": "preserve right",
+        "passed": true
+      },
+      {
+        "label": "preserve innerLeft",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRight",
+        "passed": true
+      },
+      {
+        "label": "preserve outerRadius",
+        "passed": true
+      },
+      {
+        "label": "preserve innerRadius",
+        "passed": true
+      },
+      {
+        "label": "landscape pixels identical",
+        "passed": true
+      },
+      {
+        "label": "RPN2+3",
+        "passed": true
+      },
+      {
+        "label": "no runtime errors",
+        "passed": true
+      }
+    ]
+  }
+]
