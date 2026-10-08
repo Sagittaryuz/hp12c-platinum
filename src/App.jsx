@@ -68,12 +68,6 @@ function useJoinedFrame() {
       page.style.setProperty('--upper-metal-height',upperPlate.height+'px');
       page.style.setProperty('--upper-metal-origin-x',upperPlate.left+'px');
       page.style.setProperty('--upper-metal-tail-x',(-upperPlate.width)+'px');
-      if(!portrait){
-        const brackets=calculator.querySelector('.brackets').getBoundingClientRect();
-        const makerLabel=calculator.querySelector('.maker-name').getBoundingClientRect();
-        calculator.style.setProperty('--maker-center-shift',(brackets.left+brackets.width/2-makerLabel.left-makerLabel.width/2)+'px');
-      }
-
       const newPanel=calculator.querySelector('.keyboard-panel').getBoundingClientRect();
       const top=Math.max(min+shift-rise,newPanel.top+8),bottom=portrait?Math.min(maker.top-10-rise,newPanel.bottom-8):maker.top-10;
       const scale=Math.min(1,Math.max(.2,(bottom-top)/(max-min)));
