@@ -6,6 +6,7 @@ import {presentHistoryItem,presentHistorySession} from './history-presentation.m
 import { INITIAL_STATE, restoreState, formatDisplay, pressKey, pressAction, KEY_DEFINITIONS, resolveKeyAction } from '@sagittaryuz/hp12c-core';
 import { HpMenu } from './HpMenu';
 import {HistoryBoard} from './HistoryBoard';
+import {createDeferredPersistence} from './deferred-persistence.mjs';
 import {HISTORY_KEY,HISTORY_ACTIVITY_KEY,historyActivity,UI_SETTINGS_KEY,UI_DEFAULTS,readHistory,readUiSettings,historyEntry,appendHistory,editMemory,recallResult,resetSelected,reducePanel} from './hp-panel-state.mjs';
 import { FaceKeys, Brackets } from './face';
 import { Lcd } from './Lcd';
@@ -50,7 +51,7 @@ function useJoinedFrame() {
       const min=Math.min(...ink.map(r=>r.top)),max=Math.max(...ink.map(r=>r.bottom));
       const base=body.bottom-maker.bottom;
       const rise=portrait?20:0;
-      calculator.style.setProperty('--joined-base','45px');
+      calculator.style.setProperty('--joined-base',portrait?'20px':'45px');
       // Portrait maker rails: 10 CSS px; landscape uses its existing height.
       calculator.style.setProperty('--joined-label-height',(portrait?10:maker.height)+'px');
       calculator.style.setProperty('--maker-cutout-width',(maker.width+(portrait?20:0))+'px');
@@ -217,7 +218,7 @@ function useJoinedFrame() {
         previousAvailable=Math.min(previousAvailable,cornerLimit(enter,40)-enter.getBoundingClientRect().bottom);
         const previousSpread=previousAvailable>=30?30:Math.max(0,Math.floor(previousAvailable*64)/64);
         const desiredSpread=previousSpread+10;
-        const downwardSpread=available>=desiredSpread?desiredSpread:Math.max(0,Math.floor(available*64)/64);
+        const downwardSpread=available>=desiredSpread?desiredSpread:Math.floor(available*64)/64;
         const downwardGap=downwardSpread/(rows.length-1);
         rows.forEach((row,i)=>row.els.forEach(el=>move(el,-i*downwardGap)));
         for(const [name,row] of [['bond',1],['depreciation',1],['clear',2]])move(calculator.querySelector('.'+name),-(row-.5)*downwardGap);
@@ -259,6 +260,7 @@ function useJoinedFrame() {
         calculator.dataset.keyboardDownwardSpread='0';
         calculator.dataset.narrowKeyAdjustment='false';
       }
+      calculator.dispatchEvent(new Event('hp-keyboard-aligned'));
     };
     layout();
     let frame=0,fallback=0;
@@ -296,9 +298,10 @@ export function App() {
   const cancelPreview=useCallback(()=>{preparedKey.current=null;setPreview(null)},[]);
   const setState=useCallback(updater=>dispatch({type:'state',updater}),[]);
   const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage));
-  const latestSaved=useRef({state,history,historyActive,prefs});
-  useLayoutEffect(()=>{latestSaved.current={state,history,historyActive,prefs}},[state,history,historyActive,prefs]);
-  useEffect(()=>{const flush=()=>{try{const current=latestSaved.current;localStorage.setItem('hp12c-state',JSON.stringify(current.state));localStorage.setItem(HISTORY_KEY,JSON.stringify(current.history));localStorage.setItem(HISTORY_ACTIVITY_KEY,String(current.historyActive));localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(current.prefs))}catch{}};const hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
+  const persistence=useRef(null);
+  if(!persistence.current)persistence.current=createDeferredPersistence((key,value)=>localStorage.setItem(key,value));
+  useLayoutEffect(()=>{persistence.current.update({'hp12c-state':state,[HISTORY_KEY]:history,[HISTORY_ACTIVITY_KEY]:historyActive,[UI_SETTINGS_KEY]:prefs})},[state,history,historyActive,prefs]);
+  useEffect(()=>{const flush=()=>persistence.current.flush(),hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{flush();window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
   const audio=useRef(null),eventCounter=useRef(0),eventSession=useRef(null);
   if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -327,9 +330,6 @@ export function App() {
   const activate=useCallback(id=>{cancelPreview();feedback();dispatch(keyEvent(id))},[feedback,cancelPreview]);
   const beginKey=useCallback(id=>{const base=currentPanel.current,original=keyEvent(id),next=panelReducer(base,original);preparedKey.current={id,base,original,next};setPreview(next.state)},[]);
   const finishKey=useCallback(id=>{const prepared=preparedKey.current;cancelPreview();if(prepared?.id===id){feedback();dispatch({type:'prepared',...prepared})}},[feedback,activate,cancelPreview]);
-  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch{}},150);return()=>clearTimeout(timer)},[history]);
-  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(HISTORY_ACTIVITY_KEY,String(historyActive))}catch{}},150);return()=>clearTimeout(timer)},[historyActive]);
-  useEffect(()=>{const timer=setTimeout(()=>{try{localStorage.setItem(UI_SETTINGS_KEY,JSON.stringify(prefs))}catch{}},150);return()=>clearTimeout(timer)},[prefs]);
   useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
   useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
   useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen]);
@@ -344,10 +344,6 @@ export function App() {
       }
     } catch {}
   }, []);
-  useEffect(() => {
-    const timer = setTimeout(() => { try { localStorage.setItem('hp12c-state', JSON.stringify(state)); } catch {} }, 150);
-    return () => clearTimeout(timer);
-  }, [state]);
   useEffect(() => {
     if (!state.paused || !state.program.length || state.displayLabel === 'PROGRAMA PAUSADO') return;
     const timer = setTimeout(() => dispatch({type:'action',action:'runStop',eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}), 1000);
@@ -411,7 +407,7 @@ export function App() {
     }catch{setNotice('Não foi possível restaurar este arquivo. Os dados atuais foram mantidos.');}
   };
   const displayState=preview||state;
-  const display = formatDisplay(displayState);
+  const display = useMemo(()=>formatDisplay(displayState),[displayState]);
   const fullscreen = async () => {
     setMenuOpen(false);
     try {

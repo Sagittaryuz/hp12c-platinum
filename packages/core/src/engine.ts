@@ -245,18 +245,25 @@ export function pressKey(previous:CalculatorState,id:string):CalculatorState {
   if(id==='f'||id==='g')return pressAction(previous,id==='f'?'shiftF':'shiftG');
   const action=resolveKeyAction(id,previous.shift);const next=pressAction(previous,action);next.shift=null;return next;
 }
+const displayFormatters=new Map<string,Intl.NumberFormat>();
+function fixedDisplay(value:number,comma:boolean,digits:number):string {
+  const key=`${comma}:${digits}`;
+  let formatter=displayFormatters.get(key);
+  if(!formatter){formatter=new Intl.NumberFormat(comma?'pt-BR':'en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits,useGrouping:true});displayFormatters.set(key,formatter);}
+  return formatter.format(value);
+}
 export function formatDisplay(s:CalculatorState):string {
   if(!s.powered)return '';if(s.error)return s.error;if(s.displayOverride)return s.displayOverride;
   if(s.programMode)return `${String(s.pc).padStart(3,'0')}, ${s.pc?programCode(s.program[s.pc-1]||'goto:000'):''}`;
-  // Entry is shown verbatim; FIX applies only when entry is terminated.
-  if(s.entering)return (s.decimalComma?s.input.replace('.',','):s.input).replace('e',' E');
+  // Group only the integer part: preserve typed zeros, trailing decimal and exponent.
+  if(s.entering){const [mantissa,exponent]=s.input.split('e'),[whole,fraction]=mantissa.split('.');return whole.replace(/\B(?=(\d{3})+(?!\d))/g,s.decimalComma?'.':',')+(fraction!==undefined?(s.decimalComma?',':'.')+fraction:'')+(exponent!==undefined?' E'+exponent:'');}
   // Preserve the previous extended format for callers that explicitly use it.
   if(s.fixed && s.decimals===12) {
-    return s.x.toLocaleString(s.decimalComma?'pt-BR':'en-US',{minimumFractionDigits:12,maximumFractionDigits:12,useGrouping:true});
+    return fixedDisplay(s.x,s.decimalComma,12);
   }
   if(!s.fixed||Math.abs(s.x)>=1e10||(s.x!==0&&Math.abs(s.x)<1e-9))return scientificDisplay(s.x,s.decimalComma);
   const whole=Math.max(1,Math.floor(Math.log10(Math.abs(s.x)||1))+1),digits=Math.max(0,Math.min(s.decimals,10-whole));
-  return s.x.toLocaleString(s.decimalComma?'pt-BR':'en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits,useGrouping:true});
+  return fixedDisplay(s.x,s.decimalComma,digits);
 }
 function scientificDisplay(value:number,comma:boolean):string {const [mantissa,exponent]=(Math.abs(value)>=9.9999995e99?`${value<0?'-':''}9.999999e+99`:value.toExponential(6)).split('e');const exp=Number(exponent);return `${comma?mantissa.replace('.',','):mantissa} ${exp<0?'-':''}${String(Math.abs(exp)).padStart(2,'0')}`;}
 function programCode(action:string):string {

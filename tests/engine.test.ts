@@ -216,6 +216,11 @@ describe('Pilha financeira — manual pp. 237–238',()=>{
   });
 });
 
+it('agrupa milhares na entrada sem perder sinal, zeros, decimal ou expoente e sem alterar X',()=>{
+ for(const decimalComma of [true,false])for(const [input,comma,point]of [['1234','1.234','1,234'],['1234567.00','1.234.567,00','1,234,567.00'],['-1234.','-1.234,','-1,234.'],['1234.50e-2','1.234,50 E-2','1,234.50 E-2'],['0.000','0,000','0.000']]){
+  const s={...start(),entering:true,input,x:Number(input)};s.decimalComma=decimalComma;const x=s.x;expect(formatDisplay(s)).toBe(decimalComma?comma:point);expect(s.input).toBe(input);expect(s.x).toBe(x);
+ }
+});
 describe('Cobertura restante das funções impressas',()=>{
   it('matemática unária, LAST X e fatorial no limite',()=>{
     const cases:[string,number,number][]=[['reciprocal',4,.25],['square',3,9],['intg',-1.75,-1],['frac',-1.75,-.75],['factorial',0,1],['factorial',70,9.999999999e99]];

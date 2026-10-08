@@ -65,7 +65,7 @@ export function DisplayTransferFeedback({message,copyCycle,manual,closeManual}){
   },[copied]);
   useEffect(()=>{if(manual!==null){dialog.current.showModal();field.current.focus();field.current.select()}},[manual]);
   return <>
-    <span id="lcd-transfer-help" className="lcd-readable">Toque para copiar. Segure por meio segundo e solte para copiar e compartilhar. Teclado: Enter ou espaço copia; Shift junto compartilha.</span>
+    <span id="lcd-transfer-help" className="lcd-readable">Toque uma vez para copiar e compartilhar o valor do visor. Teclado: Enter ou espaço.</span>
     <div role="status" aria-live="polite" aria-atomic="true" className="lcd-transfer-status">
       {copied?<><span ref={success} className="lcd-copy-success">Valor copiado.</span>{message.slice(14).trim()&&<span className="lcd-transfer-notice">{message.slice(14)}</span>}</>:message&&<span className="lcd-transfer-notice">{message}</span>}
     </div>

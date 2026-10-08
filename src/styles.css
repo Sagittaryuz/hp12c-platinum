@@ -583,3 +583,8 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .history-board-close{right:max(12px,env(safe-area-inset-right,0px))}
 .history-board-close .hp-icon{width:22px;height:22px}
 .history-board-close:focus-visible{outline:2px solid #68bdff;outline-offset:2px}
+@media(orientation:landscape){
+ .model-name{left:var(--desktop-title-left);top:var(--desktop-title-top);font-size:var(--desktop-title-size,4.8cqh);translate:none}
+ .brand{left:var(--desktop-brand-left);right:auto;top:var(--desktop-brand-top);width:var(--desktop-brand-size);height:var(--desktop-brand-size);translate:none}
+}
+@media(orientation:portrait){.calculator{--footer-plastic:10px}}
