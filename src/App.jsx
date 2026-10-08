@@ -51,9 +51,10 @@ function useJoinedFrame() {
       const min=Math.min(...ink.map(r=>r.top)),max=Math.max(...ink.map(r=>r.bottom));
       const base=body.bottom-maker.bottom;
       const rise=portrait?20:0;
-      calculator.style.setProperty('--joined-base',portrait?'20px':'2px');
-      // Portrait maker rails: 10 CSS px; landscape uses its existing height.
-      calculator.style.setProperty('--joined-label-height',(portrait?10:2)+'px');
+      const landscapeMakerHeight=Math.max(16,Math.min(26,body.height*.024));
+      calculator.style.setProperty('--joined-base',portrait?'20px':landscapeMakerHeight+'px');
+      // Match the landscape lower frame and maker notch to the inscription.
+      calculator.style.setProperty('--joined-label-height',(portrait?10:landscapeMakerHeight)+'px');
       calculator.style.setProperty('--maker-cutout-width',(maker.width+(portrait?20:0))+'px');
       const shift=Math.min(50,Math.max(0,(maker.top-panel.top)*.22));
       calculator.style.setProperty('--joined-top',(panel.top-body.top+shift)+'px');
@@ -259,6 +260,10 @@ function useJoinedFrame() {
         calculator.style.removeProperty('--portrait-crossbar-top');
         calculator.dataset.keyboardDownwardSpread='0';
         calculator.dataset.narrowKeyAdjustment='false';
+        const menu=calculator.querySelector('.key-menu'),first=calculator.querySelector('.key-sin'),menuRect=menu.getBoundingClientRect(),firstRect=first.getBoundingClientRect();
+        const menuPitch=menuRect.left-firstRect.left;
+        menu.style.left=(firstRect.left-parentRects.get(menu.parentElement).left)+'px';
+        menu.style.width=(menuRect.width+menuPitch)+'px';
       }
       calculator.dispatchEvent(new Event('hp-keyboard-aligned'));
     };
