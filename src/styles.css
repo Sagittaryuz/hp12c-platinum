@@ -31,7 +31,8 @@ button{font:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipul
 .key-f .key-shell{background:#df7000}.key-g .key-shell{background:#0096df}
 .key-f .key-cap{background:#ff8000;color:#080808}.key-g .key-cap{background:#00aaff;color:#080808}
 .key:active .key-shell{transform:translateY(.18cqh);box-shadow:inset 0 .2cqh .25cqw #0008}
-.key:focus-visible,.brand:focus-visible{outline:.15cqw solid #fff}
+.key:focus-visible{outline:none}
+.brand:focus-visible{outline:.15cqw solid #fff}
 .back-icon{width:45%;height:80%;overflow:visible}
 .back-icon path{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .back-icon .back-arrow{fill:var(--blue);stroke:none}
