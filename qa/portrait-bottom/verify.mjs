@@ -20,7 +20,12 @@ for(const [name,engine]of [['chromium',chromium],['webkit',webkit]]){
   const before=await measure(baseline),after=await measure(page),checks=[];
   const check=(label,fn)=>{try{fn();checks.push({label,passed:true})}catch(e){failure=true;checks.push({label,passed:false,error:e.message})}};
   check('viewport/no overflow',()=>{assert.equal(after.body.width,viewport.width);assert.equal(after.body.height,viewport.height);assert.equal(after.overflow,false)});
-  for(const key of ['lcd','model','brand','maker','keys'])check('preserve '+key,()=>assert.deepEqual(after[key],before[key]));
+  for(const key of ['lcd','model','brand','maker'])check('preserve '+key,()=>assert.deepEqual(after[key],before[key]));
+  check('preserve key sizes and horizontal positions',()=>{assert.equal(after.keys.length,before.keys.length);after.keys.forEach((k,i)=>{const old=before.keys[i];assert.equal(k.id,old.id);assert.equal(k.x,old.x);assert.equal(k.width,old.width);if(!k.id.includes('key-enter'))assert.equal(k.height,old.height)})});
+  if(viewport.width<viewport.height){
+   check('first row anchored; bounded lower clearance',()=>{const a=after.keys.find(k=>k.id.includes('key-sin')),b=before.keys.find(k=>k.id.includes('key-sin'));assert.equal(a.y,b.y);after.keys.filter(k=>k.height>0).forEach((k,i)=>{const old=before.keys.find(v=>v.id===k.id);assert.ok(k.y<=old.y+0.05);assert.ok(k.y>=old.y-8.1)})});
+   check('uniform row spacing and aligned ENTER',()=>{const ids=['key-sin','key-cos','key-tan','key-rcl','key-sto','key-g','key-f'];const rows=ids.map(id=>after.keys.find(k=>k.id.split(' ').includes(id)));const pitch=rows[1].y-rows[0].y;for(let i=2;i<rows.length;i++)assert.ok(Math.abs(rows[i].y-rows[i-1].y-pitch)<0.04);const enter=after.keys.find(k=>k.id.split(' ').includes('key-enter'));assert.equal(enter.y,rows[5].y);assert.ok(Math.abs(enter.y+enter.height-rows[6].y-rows[6].height)<0.04)});
+  }else check('landscape keys identical',()=>assert.deepEqual(after.keys,before.keys));
   for(const key of ['left','right','innerLeft','innerRight','outerRadius','innerRadius'])check('preserve '+key,()=>assert.equal(after[key],before[key]));
   if(viewport.width<viewport.height){check('lower crosspiece total20px',()=>{assert.equal(after.plastic,'10px');assert.equal(after.metal,'10px');assert.equal(parseFloat(after.plastic)+parseFloat(after.metal),20)})}
   else{const a=await page.screenshot(),b=await baseline.screenshot();check('landscape pixels identical',()=>assert.deepEqual(a,b))}
