@@ -608,9 +608,9 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 }
 
 @media(orientation:landscape){
- .joined-frame .keyboard-frame{clip-path:none}
+ .joined-frame .keyboard-frame{bottom:0;clip-path:none}
  .joined-frame .keyboard-panel{bottom:calc(var(--joined-base) + var(--joined-label-height))}
  .joined-frame .keyboard-panel::after{content:'';position:absolute;top:100%;left:calc(50% - var(--maker-cutout-width)/2);width:var(--maker-cutout-width);height:var(--joined-label-height);background:#181818;pointer-events:none}
  .joined-frame .maker-strip{bottom:var(--joined-base);height:var(--joined-label-height)}
- .joined-frame .maker-name{top:0;height:100%;background:#181818;line-height:1}
+ .joined-frame .maker-name{top:0;height:100%;background:#181818;line-height:1;transform:translate(var(--maker-center-shift,0px),calc(0px - var(--joined-label-height)))}
 }
