@@ -13,9 +13,19 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.90.0'
+          targets: wasm32-unknown-unknown
       - run: npm ci
+      - run: npm run build:wasm
+      - run: git diff --exit-code -- packages/core/wasm
+      - run: cargo test --manifest-path rust-core/Cargo.toml --locked
+      - run: npm run test:wasm
       - run: npm run test:engine
       - run: npm run test:display
       - run: npx tsc --noEmit
       - run: npm run build
       - run: npm run test:sites
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser

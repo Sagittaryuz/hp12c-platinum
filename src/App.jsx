@@ -1,3 +1,4 @@
+import {useSurfacePull} from './useSurfacePull';
 import {HistoryNoteEditor} from './HistoryNoteEditor';
 import {setHistoryNote} from './history-notes.mjs';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer, useMemo } from 'react';
@@ -18,7 +19,7 @@ import { displayDefaults, initializeDefaults, DEFAULT_PROGRAM_VERSION, DEFAULT_D
 function useJoinedFrame() {
   useLayoutEffect(() => {
     const calculator=document.querySelector('.calculator');
-    let alive=true,lastSignature=null,fontRevision=0;
+    let alive=true,lastSignature=null,fontRevision=0,keyFontReady=document.fonts.check('16px KeyCondensed');
     const panels=[...calculator.querySelectorAll(".keyboard-panel,.keyboard-frame,.keyboard-crossbar")];
     const controls=[...calculator.querySelectorAll(".key,.bracket")];
     const layout=()=>{
@@ -272,7 +273,7 @@ function useJoinedFrame() {
     // WebKit may pause animation frames around viewport/focus transitions.
     // Keep one bounded fallback; unchanged measurements remain a no-op.
     const schedule=()=>{if(!alive||frame||fallback)return;frame=requestAnimationFrame(flush);fallback=setTimeout(flush,100)};
-    const fontChanged=()=>{fontRevision++;schedule()};
+    const fontChanged=()=>{const ready=document.fonts.check('16px KeyCondensed');if(ready===keyFontReady)return;keyFontReady=ready;fontRevision++;schedule()};
     const observer=new ResizeObserver(schedule);observer.observe(calculator);
     document.fonts.ready.then(fontChanged);
     document.fonts.addEventListener('loadingdone',fontChanged);
@@ -321,9 +322,12 @@ export function App() {
     dispatch({type:'history-note',id:historyModal.id,text});
   };
   useEffect(()=>{if(historyModal&&!modalItem)setHistoryModal(null)},[historyModal,modalItem]);
+  const calculatorSurface=useRef(null);
   const openHistory=useCallback(()=>{setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
+  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,undefined,{onStart:cancelPreview});
   const [notice, setNotice] = useState('');
+  useLayoutEffect(()=>{if(menuOpen||historyOpen||diagnosticsOpen)cancelPreview()},[menuOpen,historyOpen,diagnosticsOpen,cancelPreview]);
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
   const feedback=useCallback(()=>{
@@ -336,7 +340,7 @@ export function App() {
   const finishKey=useCallback(id=>{const prepared=preparedKey.current;cancelPreview();if(prepared?.id===id){feedback();dispatch({type:'prepared',...prepared})}},[feedback,activate,cancelPreview]);
   useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
   useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
-  useEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen]);
+  useLayoutEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen||diagnosticsOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen,diagnosticsOpen]);
   const openMenu=useCallback(()=>setMenuOpen(true),[]);
   useEffect(() => {
     try {
@@ -364,12 +368,12 @@ export function App() {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.target?.closest?.('.lcd') && event.key !== 'Enter' && event.key !== 'Escape' && event.key !== 'Backspace') return;
       if (['Backspace', '=', 'Escape', 'Enter'].includes(event.key)) {
-        event.preventDefault(); event.stopPropagation(); dispatch({type:'action',physical:true,action:({'=':'equals',Enter:'enter',Escape:'clx',Backspace:'backspace'})[event.key],eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
+        event.preventDefault(); event.stopPropagation(); if(event.repeat)return; dispatch({type:'action',physical:true,action:({'=':'equals',Enter:'enter',Escape:'clx',Backspace:'backspace'})[event.key],eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
       }
       const shortcut = event.code === 'Space' ? 'Enter' : event.key === ',' ? '.' : event.key;
       const key = KEY_DEFINITIONS.find(key => key.shortcut.toUpperCase() === shortcut.toUpperCase());
       if (!key || event.key === 'Tab') return;
-      event.preventDefault(); activate(key.id);
+      event.preventDefault(); if(event.repeat)return; activate(key.id);
     };
     window.addEventListener('keydown', handle, true);
     return () => window.removeEventListener('keydown', handle, true);
@@ -423,7 +427,7 @@ export function App() {
   return <main className="page">
     <div className="ios-pwa-blur-sentinel" aria-hidden="true"/>
     <div className="status-bar-color" aria-hidden="true"><span/><span/></div>
-    <section className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
+    <section ref={calculatorSurface} className="calculator" data-case-width-mm="129" data-case-height-mm="79" data-case-depth-mm="15" aria-label="Calculadora financeira HP 12c Platinum">
       <header className="silver-panel"><div className="model-name"><strong>HP 12c</strong><span>Platinum</span></div><button className="brand" aria-label="Abrir memória" title="Abrir memória" onClick={openHistory}><img src={`${import.meta.env.BASE_URL}assets/hp-emblem-hd.png`} alt="HP"/></button></header>
       <Lcd state={displayState} display={display} disabled={menuOpen||historyOpen||diagnosticsOpen}/>
       <div className="keyboard-crossbar" aria-hidden="true"/>

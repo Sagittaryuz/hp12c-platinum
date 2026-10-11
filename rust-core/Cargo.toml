@@ -1,0 +1,21 @@
+[package]
+name = "hp12c-wasm"
+version = "0.1.0"
+edition = "2021"
+publish = false
+[lib]
+crate-type = ["cdylib", "rlib"]
+[dependencies]
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = { version = "=1.0.145", features = ["float_roundtrip"] }
+chrono = { version = "=0.4.42", default-features = false, features = ["std"] }
+ryu = "=1.0.20"
+num-bigint = "=0.4.6"
+num-integer = "=0.1.46"
+num-traits = "=0.2.19"
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

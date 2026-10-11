@@ -1,3 +1,4 @@
+import {wasmReady,wasmEditMemory} from '../packages/core/src/wasm-bridge';
 import {setHistoryNote,sanitizeHistoryNote} from './history-notes.mjs';
 export const HISTORY_ACTIVITY_KEY='hp12c-history-activity-v1';
 export const HISTORY_KEY='hp12c-history-v1', UI_SETTINGS_KEY='hp12c-ui-settings-v1';
@@ -34,7 +35,8 @@ export function parseMemoryValue(text){
 export function editMemory(state,index,text){
  if(!Number.isInteger(index)||index<0||index>=20)throw new Error('Registrador inválido.');
  if(state.running||state.paused||state.programMode)throw new Error('Pare o programa e saia de PRGM para editar memórias.');
- const value=parseMemoryValue(text),next=structuredClone(state);next.registers[index]=value;
+ const value=parseMemoryValue(text);if(wasmReady())return wasmEditMemory(state,index,value);
+ const next=structuredClone(state);next.registers[index]=value;
  // Core STO keeps existing cash-flow slots synchronized with R0..R19.
  if(index<next.cashflows.length)next.cashflows[index]=value;
  return next;

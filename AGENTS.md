@@ -1,3 +1,5 @@
+11/10: Marcos solicita motor HP12C Platinum em Rust/Wasm e investigação de lentidão/ghost touch. Preservar PWA/layout/dados. Baseline JavaScript antes de mudanças obrigatório; comparar A original, B interface otimizada comJS, C mesmas correções comRust. Publicação em main/Pages/Vercel existentes expressamente autorizada após paridade/QA; sem credenciais/serviços pagos. Rust implementa todas as ações, JS conserva DOM/Intl/history/storage e fallback. Não alegar120Hz/iPhone físico/defeito de hardware corrigido. Release0.2.56; relatório qa/rust-wasm/README.md e baseline54663a0.
+
 # Prototype Instructions
 
 Publication now explicitly authorized by user "3- Autorizado" for the ready HP gesture/performance/black Memória top batch from eb38c39, excluding the unavailable new wallpaper. Release0.2.37 to established main/Pages/original Vercel after final validation. Preserve all local state/history/notes, shared motion/blur95; no physical120Hz claim or unreceived image substitute. This supersedes the earlier local-only deployment restriction for this exact batch.

@@ -98,6 +98,7 @@ function finish(s:CalculatorState){s.x=precision(s.x);return s;}
 function run(s:CalculatorState,oneStep=false):CalculatorState {
   s.programMode=false;s.running=true;s.paused=false;if(s.entering){s.entering=false;s.lift=true;}let budget=10000;
   while(s.pc<s.program.length&&budget-->0){ const instruction=s.program[s.pc++];
+    if(typeof instruction!=='string'){s.error='Error 4';s.running=false;break;}
     if(instruction.startsWith('goto:')){const line=Number(instruction.slice(5));if(line>Math.max(8,s.program.length)){s.error='Error 4';s.running=false;break;}if(line===0){s.pc=0;s.running=false;break;}s.pc=line-1;}
     else if(instruction.startsWith('sequence:')){for(const action of instruction.slice(9).split(',')){s=pressAction(s,action,true);if(s.error)break;}}
     else if(instruction==='testLe'){if(!(s.x<=s.y))s.pc++;}

@@ -1,0 +1,12 @@
+import {spawnSync} from 'node:child_process';
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+const command=process.env.CARGO||'cargo';
+const run=spawnSync(command,['+1.90.0','build','--manifest-path','rust-core/Cargo.toml','--locked','--release','--target','wasm32-unknown-unknown'],{stdio:'inherit'});
+if(run.status!==0)process.exit(run.status||1);
+const bytes=readFileSync('rust-core/target/wasm32-unknown-unknown/release/hp12c_wasm.wasm');
+const hash=createHash('sha256').update(bytes).digest('hex').slice(0,16);
+mkdirSync('packages/core/wasm',{recursive:true});
+writeFileSync('packages/core/wasm/hp12c.wasm',bytes);
+writeFileSync('packages/core/wasm/manifest.json',JSON.stringify({sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length,toolchain:'1.90.0'},null,2)+'\n');
+console.log(`Rust/Wasm: ${bytes.length} bytes; sha256 ${hash}`);

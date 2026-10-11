@@ -1,3 +1,4 @@
+import {useSurfacePull} from './useSurfacePull';
 import {Component,useLayoutEffect,useRef,useState,useEffect} from 'react';
 import {usePanelMotion} from './usePanelMotion';
 import {HpIcon} from './HpIcon';
@@ -32,6 +33,7 @@ class HistoryLines extends Component{
 export function HistoryBoard({state,onEditMemory,history,sessions,onClose,onHistoryAction}){
  const dialog=useRef(null),close=useRef(null),lines=useRef(null),lastFocus=useRef(document.activeElement);
  const motion=usePanelMotion(dialog,-1,onClose);
+ useSurfacePull(dialog,motion.close,true,'.history-board-lines',motion.progress,{direction:-1,freeMotion:true,onStart:motion.begin,ignoreSelector:'button,input,textarea,select'});
   const now=useLocalNow(),[copyState,setCopyState]=useState(null),copyLifetime=useRef({alive:true,busy:false,timer:null});
  useEffect(()=>{const s=copyLifetime.current;s.alive=true;return()=>{s.alive=false;clearTimeout(s.timer)}},[]);
  useHistoryActions(dialog,(kind,id)=>{if(kind!=='copy'){onHistoryAction(kind,id);return}const s=copyLifetime.current,session=sessions.find(session=>session.id===id);if(!session||s.busy)return;s.busy=true;transferDisplay(historySessionText(session,true),false).then(result=>{if(!s.alive)return;clearTimeout(s.timer);setCopyState({id,copied:result.copied,failed:!result.copied,nonce:performance.now()});s.timer=setTimeout(()=>setCopyState(null),1600)}).finally(()=>{s.busy=false})});
