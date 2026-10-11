@@ -42,7 +42,7 @@ Correção de layout reduziu passagens efetivas de30 para10 na carga: font-loadi
 
 Microbenchmark Node (1000 warmups +10000 chamadas, mesmos inputs) confirma o custo da ponte JSON: dígito JS0.003946ms/Rust0.016374ms; PMT0.004066/0.018038; IRR0.005018/0.018338; programa0.015153/0.017797. Rust inclui UTF8/JSON/clonagem/retorno; isto não é tempo isolado aritmético Rust nem medida de experiência.
 
-Assets finais de produção: JS311.97kB (gzip97.80), CSS60.64kB (gzip12.49), Wasm434.474kB (gzip168.62). Original JS309.04kB (gzip96.57), CSS idêntico. Carregamento Wasm é assíncrono e não bloqueia primeiro render/input: JS permanece funcional até a ativação. Rede lenta pode prolongar esse período e há custo adicional de download/precache. Não se promete ausência de custo em todo aparelho/rede.
+Assets finais de produção: JS311.97kB (gzip97.80), CSS60.64kB (gzip12.49), Wasm434.290kB (gzip168.65). Original JS309.04kB (gzip96.57), CSS idêntico. Carregamento Wasm é assíncrono e não bloqueia primeiro render/input: JS permanece funcional até a ativação. Rede lenta pode prolongar esse período e há custo adicional de download/precache. Não se promete ausência de custo em todo aparelho/rede.
 
 ## Fronteira e recursos reais
 
@@ -76,3 +76,5 @@ Não há iPhone físico, Safari iOS/PWA físico, diagnóstico de hardware nem120
 Dados brutos e scripts: `A-original-js.json`, `A-engine-node.json`, `ABC-instrumented.json`, `ABC-before-font-dedupe.json`, `engine-node-comparison.json`, `browser-interactions.json`. O laboratório reproduz A por `git archive54663a0`, B/C por cópias do source final, alias Vite para o core da cópia, instrumenta com `lab-instrument.py`, build B com `VITE_HP12C_ENGINE=javascript` e build C padrão; `lab-benchmark.mjs` usa portas4175–4177. Scripts temporários assumem `/tmp/hp-lab-{A,B,C}` e dependência Playwright. Baseline browser-benchmark assume preview4173.
 
 Documentação das dependências e plataforma consultada: [Rust wasm32-unknown-unknown](https://doc.rust-lang.org/rustc/platform-support/wasm32-unknown-unknown.html), [instantiateStreaming/MIME](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/instantiateStreaming_static), [num-bigint0.4.6](https://docs.rs/num-bigint/0.4.6/num_bigint/).
+
+O primeiro CI da migração encontrou divergência binária por caminhos absolutos do Cargo registry. O build passou a fixar Rust+1.90.0 e usar --remap-path-prefix para fonte e CARGO_HOME, preservando os cálculos. A comparação de desempenho usou o binário anterior de434474 bytes; a normalização altera strings de diagnóstico/tamanho para434290 bytes, sem alteração de algoritmo. O check de hash/diff zero permanece obrigatório no CI.

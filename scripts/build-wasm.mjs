@@ -1,8 +1,12 @@
 import {spawnSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+import {homedir} from 'node:os';
 const command=process.env.CARGO||'cargo';
-const run=spawnSync(command,['+1.90.0','build','--manifest-path','rust-core/Cargo.toml','--locked','--release','--target','wasm32-unknown-unknown'],{stdio:'inherit'});
+const cargoHome=process.env.CARGO_HOME||resolve(homedir(),'.cargo');
+const reproducibleFlags=[`--remap-path-prefix=${resolve('.')}=/hp12c`,`--remap-path-prefix=${resolve(cargoHome)}=/cargo`].join('\x1f');
+const run=spawnSync(command,['+1.90.0','build','--manifest-path','rust-core/Cargo.toml','--locked','--release','--target','wasm32-unknown-unknown'],{stdio:'inherit',env:{...process.env,CARGO_ENCODED_RUSTFLAGS:reproducibleFlags}});
 if(run.status!==0)process.exit(run.status||1);
 const bytes=readFileSync('rust-core/target/wasm32-unknown-unknown/release/hp12c_wasm.wasm');
 const hash=createHash('sha256').update(bytes).digest('hex').slice(0,16);
