@@ -1,3 +1,5 @@
+16/10: Marcos autoriza dois ajustes e publicação0.2.57 somente mobile retrato: subir tinta HEWLETT PACKARD4CSSpx para centralizar na barra metálica inferior10px; reduzir moldura externa doLCD em3px por lado (caixa inset11 menosoutline1 = borda pintada10px, alinhada à moldura). Apenas orientação portrait, max-width600px e pointer:coarse. Não alterar vidroLCD, teclado, desktop/paisagem, estado ou motores. Validar antes/depois, safe-area/PWA emulado e publicar main/Pages/Vercel originais apósQA. Sem alegação de iPhone físico.
+
 11/10: Marcos solicita motor HP12C Platinum em Rust/Wasm e investigação de lentidão/ghost touch. Preservar PWA/layout/dados. Baseline JavaScript antes de mudanças obrigatório; comparar A original, B interface otimizada comJS, C mesmas correções comRust. Publicação em main/Pages/Vercel existentes expressamente autorizada após paridade/QA; sem credenciais/serviços pagos. Rust implementa todas as ações, JS conserva DOM/Intl/history/storage e fallback. Não alegar120Hz/iPhone físico/defeito de hardware corrigido. Release0.2.56; relatório qa/rust-wasm/README.md e baseline54663a0.
 
 # Prototype Instructions

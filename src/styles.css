@@ -614,3 +614,11 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .joined-frame .maker-strip{bottom:var(--joined-base);height:var(--joined-label-height)}
  .joined-frame .maker-name{top:0;height:100%;background:#181818;line-height:1}
 }
+
+/* Mobile portrait: align the painted LCD outline and the maker ink to the metal. */
+@media(orientation:portrait) and (max-width:600px) and (pointer:coarse){
+ /* 11px box inset minus the existing 1px outline = 10px painted case inset. */
+ .lcd::before{width:calc(100cqw - 22px)}
+ /* Move paint only: maker measurements continue to anchor the approved key grid. */
+ .maker-lettering{translate:0 -4px}
+}
