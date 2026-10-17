@@ -226,6 +226,13 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
         if(!Number.isFinite(value))throw new Error('Error 0');
         result(s,value,`${action.toUpperCase()} ${s.angular}`);return s;
       }
+      case 'sinh':case 'cosh':case 'tanh':{
+        // Hyperbolic functions take a real argument, independent of DEG/RAD.
+        if(!Number.isFinite(s.x))throw new Error('Error 0');
+        const value=action==='sinh'?Math.sinh(s.x):action==='cosh'?Math.cosh(s.x):Math.tanh(s.x);
+        if(!Number.isFinite(value))throw new Error('Error 0');
+        result(s,value,action.toUpperCase());return s;
+      }
       case 'sqrt':result(s,Math.sqrt(s.x));return s;
       case 'ln':if(s.x<=0)throw new Error('Error 0');result(s,Math.log(s.x));return s;
       case 'exp':result(s,Math.exp(s.x));return s;

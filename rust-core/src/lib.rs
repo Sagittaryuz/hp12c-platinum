@@ -1456,6 +1456,21 @@ fn execute(s: &mut State, previous: &State, action: &str) -> CalcResult<()> {
             }
             result(s, value, &format!("{} {}", action.to_uppercase(), s.angular), true)?
         }
+        "sinh" | "cosh" | "tanh" => {
+            // Real arguments: the angular display mode does not apply.
+            if !s.x.is_finite() {
+                return err("Error 0");
+            }
+            let value = match action {
+                "sinh" => s.x.sinh(),
+                "cosh" => s.x.cosh(),
+                _ => s.x.tanh(),
+            };
+            if !value.is_finite() {
+                return err("Error 0");
+            }
+            result(s, value, &action.to_uppercase(), true)?
+        }
         "sqrt" => result(s, s.x.sqrt(), "RESULTADO", true)?,
         "ln" => {
             if s.x <= 0. {
@@ -1700,6 +1715,30 @@ mod tests {
         let invalid = press_action(s, "divide", false);
         assert_eq!(invalid.error.as_deref(), Some("Error 0"));
         assert_eq!(invalid.y, snapshot.y);
+    }
+    #[test]
+    fn hyperbolic_real_arguments_and_overflow() {
+        let initial: State = serde_json::from_slice(include_bytes!("../../tests/fixtures/initial-state.json")).unwrap();
+        for angular in ["DEG", "RAD"] {
+            for (action, expected) in [("sinh", 1.175201194), ("cosh", 1.543080635), ("tanh", 0.761594156)] {
+                let mut s = initial.clone();
+                s.angular = angular.into();
+                s.x = 1.; s.y = 7.; s.z = 8.; s.t = 9.;
+                let next = press_action(s, action, false);
+                assert_eq!(next.x, expected);
+                assert_eq!((next.y, next.z, next.t, next.lastX), (7., 8., 9., 1.));
+                assert!(next.error.is_none());
+            }
+        }
+        for x in [-1000., 1000.] {
+            let mut s = initial.clone(); s.x = x; s.lastX = 99.;
+            assert_eq!(press_action(s.clone(), "tanh", false).x, x.signum());
+            for action in ["sinh", "cosh"] {
+                let next = press_action(s.clone(), action, false);
+                assert_eq!(next.error.as_deref(), Some("Error 0"));
+                assert_eq!((next.x, next.lastX), (x, 99.));
+            }
+        }
     }
     #[test]
     fn inverse_trigonometric_values_and_domains() {

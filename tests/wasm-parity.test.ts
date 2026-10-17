@@ -10,6 +10,9 @@ const normalized=(s:unknown)=>JSON.parse(JSON.stringify(s));
 const actions=[...new Set(KEY_DEFINITIONS.flatMap(k=>[k.action,k.fAction,k.gAction]).filter(Boolean)), 'toggleSeparator','toggleAngular','undo','parenOpen','parenClose'];
 function compare(state:any,action:string){const a=jsAction(state,action),b=wasmPressAction(state,action);expect(normalized(b),action).toEqual(normalized(a));expect(formatDisplay(b)).toBe(formatDisplay(a));return b;}
 describe('Rust/Wasm parity with JavaScript reference',()=>{
+ it('hyperbolic functions agree for real inputs in both angular modes, including saturation and overflow',()=>{
+  for(const angular of ['DEG','RAD'])for(const x of [-9.999999999e99,-1000,-710,-700,-230,-20,-2,-1,-1e-12,0,1e-12,1,2,20,230,700,710,1000,9.999999999e99])for(const action of ['sinh','cosh','tanh'])compare({...structuredClone(INITIAL_STATE),angular,x,input:String(x),y:7,z:8,t:9,lastX:99},action);
+ });
  it('inverse trigonometric values, limits and domain errors agree in DEG and RAD',()=>{
   for(const angular of ['DEG','RAD'])for(const x of [-9.999999999e99,-2,-1.000000001,-1,-.9999999999,-.5,0,.5,.9999999999,1,1.000000001,2,9.999999999e99])for(const action of ['asin','acos','atan'])compare({...structuredClone(INITIAL_STATE),angular,x,input:String(x),y:7,z:8,t:9,lastX:99},action);
  });

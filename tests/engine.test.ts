@@ -334,9 +334,9 @@ describe('inversas ASIN, ACOS e ATAN na camada f',()=>{
  it('aceita valores internos próximos aos limites sem recortar o domínio',()=>{
   for(const key of ['sin','cos'])for(const x of [-.9999999999,.9999999999])expect(keys({...start(),x},'f',key).error).toBeNull();
  });
- it('mantém as funções principais e g, e identifica a alternativa impressa',()=>{
+ it('mantém as funções principais e identifica a alternativa f impressa',()=>{
   for(const [id,label,x,value] of [['sin','ASIN',30,.5],['cos','ACOS',60,.5],['tan','ATAN',45,1]] as const){
-   expect(KEY_DEFINITIONS.find(k=>k.id===id)?.f).toBe(label);expect(keys({...start(),x},id).x).toBe(value);expect(keys({...start(),x},'g',id).x).toBe(value);
+   expect(KEY_DEFINITIONS.find(k=>k.id===id)?.f).toBe(label);expect(keys({...start(),x},id).x).toBe(value);
   }
  });
  it('aplica a inversa ao operando ALG sem perder a expressão pendente',()=>{

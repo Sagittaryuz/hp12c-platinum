@@ -5,7 +5,7 @@ export const HISTORY_KEY='hp12c-history-v1', UI_SETTINGS_KEY='hp12c-ui-settings-
 export const UI_DEFAULTS=Object.freeze({suspendSeconds:0,sound:false,vibration:false,keyEntry:'press'});
 export function readUiSettings(storage){try{const s=JSON.parse(storage.getItem(UI_SETTINGS_KEY)||'null');return{suspendSeconds:[0,30,60,300].includes(s?.suspendSeconds)?s.suspendSeconds:0,sound:s?.sound===true,vibration:s?.vibration===true,keyEntry:s?.keyEntry==='release'?'release':'press'}}catch{return {...UI_DEFAULTS}}}
 export function readHistory(storage){try{const list=JSON.parse(storage.getItem(HISTORY_KEY)||'[]');return Array.isArray(list)?list.filter(e=>typeof e?.id==='string'&&typeof e.time==='string'&&typeof e.operation==='string'&&typeof e.display==='string'&&(e.kind==='separator'?Number.isFinite(Date.parse(e.time)):e.kind==='error'?e.value===null:Number.isFinite(e.value))).slice(-100).map(sanitizeHistoryNote):[]}catch{return []}}
-const results=new Set(['plus','minus','multiply','divide','pow','reciprocal','pctT','deltaPct','pct','sqrt','exp','ln','square','factorial','sin','cos','tan','asin','acos','atan','mean','stddev','weightedMean','estimateX','estimateY','amortize','interest','npv','irr','bondPrice','bondYield','deprSL','deprSOYD','deprDB','days','date','round','12x','12div','sigmaPlus','sigmaMinus','intg','frac']);
+const results=new Set(['plus','minus','multiply','divide','pow','reciprocal','pctT','deltaPct','pct','sqrt','exp','ln','square','factorial','sin','cos','tan','asin','acos','atan','sinh','cosh','tanh','mean','stddev','weightedMean','estimateX','estimateY','amortize','interest','npv','irr','bondPrice','bondYield','deprSL','deprSOYD','deprDB','days','date','round','12x','12div','sigmaPlus','sigmaMinus','intg','frac']);
 export function isHistoryOperation(before,action){
  return results.has(action)||before.mode==='ALG'&&['enter','equals'].includes(action)&&before.algOperators.length>0||['n','i','pv','pmt','fv'].includes(action)&&!before.financialInputReady;
 }
@@ -18,7 +18,7 @@ export function historyEntry(before,after,action,{id,time,display}){
  if(action==='enter'&&!algEquals)return null;
  if(before.mode==='ALG'&&symbols[action]&&(!before.algOperators.length||before.displayLabel==='ALG OP'))return null;
  const algSymbol={'+':'+','-':'−','*':'×','/':'÷','^':'^'}[before.pendingOp];
- const unary=new Set(['reciprocal','sqrt','exp','ln','square','factorial','sin','cos','tan','asin','acos','atan','intg','frac','round','12x','12div']);
+ const unary=new Set(['reciprocal','sqrt','exp','ln','square','factorial','sin','cos','tan','asin','acos','atan','sinh','cosh','tanh','intg','frac','round','12x','12div']);
  const operation=before.mode==='RPN'&&symbols[action]?`${before.y} ${symbols[action]} ${before.x}`
   :before.mode==='ALG'&&algSymbol&&(symbols[action]||algEquals)?`${before.algOperands.at(-1)} ${algSymbol} ${before.x}`
   :unary.has(action)?`${action} (${before.x})`:(after.displayLabel&&!['RESULTADO','ALG OP','PRONTO'].includes(after.displayLabel)?after.displayLabel:action);

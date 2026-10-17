@@ -2,6 +2,8 @@
 
 Aplicação React/Vite, com motor TypeScript compartilhado. Interface própria em controles HTML/CSS; texturas SVG leves, sem sobreposição de botões transparentes sobre uma fotografia completa.
 
+G+SIN/COS/TAN calcula SINH/COSH/TANH com argumento real, independente de DEG/RAD; F mantém ASIN/ACOS/ATAN. Resultados hiperbólicos finitos seguem o limite numérico da calculadora; overflow de ponto flutuante gera Error 0 sem alterar os operandos.
+
 ## Executar
 Requisitos: Node.js 22 ou superior e npm.
 ```

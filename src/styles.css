@@ -619,10 +619,18 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 
 /* Paint depth only; keep the measured frame and maker geometry unchanged. */
 .keyboard-recess-shadow{display:none}
-.joined-frame .keyboard-recess-shadow{display:block;position:absolute;z-index:1;left:10px;right:10px;top:var(--keyboard-recess-top);bottom:var(--joined-base);pointer-events:none;background:linear-gradient(180deg,#000e 0 1px,#000b 1px calc(2px + var(--recess-top-gap,0px)),#000d calc(2px + var(--recess-top-gap,0px)) calc(3px + var(--recess-top-gap,0px)),#0009 calc(3px + var(--recess-top-gap,0px)) calc(4px + var(--recess-top-gap,0px)),#0000 calc(5px + var(--recess-top-gap,0px))) top/100% calc(5px + var(--recess-top-gap,0px)) no-repeat,linear-gradient(90deg,#000f 0 1px,#000b 1px 2px,#000a 2px 4px,#000e 4px 5px,#0009 5px 6px,#0000 7px) top left/7px 100% no-repeat,linear-gradient(270deg,#000d 0 1px,#0007 1px 2px,#0008 2px 4px,#000d 4px 5px,#0008 5px 6px,#0000 7px) top right/7px 100% no-repeat}
+.joined-frame .keyboard-recess-shadow{display:block;position:absolute;z-index:1;left:10px;right:10px;top:var(--keyboard-recess-top);bottom:var(--joined-base);pointer-events:none;background:linear-gradient(180deg,#000d 0 1px,#000a 1px calc(2px + var(--recess-top-gap,0px)),#000c calc(2px + var(--recess-top-gap,0px)) calc(3px + var(--recess-top-gap,0px)),#0008 calc(3px + var(--recess-top-gap,0px)) calc(4px + var(--recess-top-gap,0px)),#0000 calc(5px + var(--recess-top-gap,0px))) top/100% calc(5px + var(--recess-top-gap,0px)) no-repeat,linear-gradient(90deg,#000e 0 1px,#000a 1px 2px,#0009 2px 4px,#000d 4px 5px,#0008 5px 6px,#0000 7px) top left/7px 100% no-repeat,linear-gradient(270deg,#000c 0 1px,#0006 1px 2px,#0007 2px 4px,#000c 4px 5px,#0007 5px 6px,#0000 7px) top right/7px 100% no-repeat}
 @media(orientation:landscape){.joined-frame .keyboard-recess-shadow{--recess-top-gap:5px}}
 .maker-lettering{text-shadow:0 0 .12cqw #000,0 .3cqh .25cqw #000}
 @media(orientation:portrait){.joined-frame .keyboard-recess-shadow{bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius)}}
+
+/* Continue the recessed contact around the lower metal arcs; retain their alloy paint.
+   The inset shadows follow the existing radius, below the panel and maker cutout. */
+.joined-frame .keyboard-frame,.joined-frame .portrait-footer-frame{box-shadow:inset 1px 0 1px #0009,inset -1px 0 1px #0006,inset 0 -1px 1px #0008}
+/* Shade only the textured base, behind every face component: a low matte plane,
+   with a narrow contact at its upper edge and no raised highlight. */
+.joined-frame::before{content:'';position:absolute;z-index:-1;left:0;right:0;bottom:0;height:var(--joined-base);background:linear-gradient(180deg,#0007,#0004 2px,#0003 5px);pointer-events:none}
+@media(orientation:portrait){.joined-frame::before{height:var(--footer-plastic)}}
 
 /* Mobile portrait: align the painted LCD outline and the maker ink to the metal. */
 @media(orientation:portrait) and (max-width:600px) and (pointer:coarse){
