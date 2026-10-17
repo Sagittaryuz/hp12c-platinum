@@ -1,6 +1,6 @@
 {
   "name": "hp12c-platinum",
-  "version": "0.2.61",
+  "version": "0.2.62",
   "private": true,
   "type": "module",
   "workspaces": [

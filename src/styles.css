@@ -1,6 +1,6 @@
 @font-face{font-family:KeyCondensed;src:url('/assets/roboto-condensed.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 *{box-sizing:border-box}
-:root{font-family:Arial,Helvetica,sans-serif;color-scheme:dark;--orange:#e06421;--blue:#00aaff;--white:#e6e6e6}
+:root{font-family:Arial,Helvetica,sans-serif;color-scheme:dark;--orange:#e14f2c;--blue:#00aaff;--white:#e6e6e6}
 html,body,#root{margin:0;width:100%;height:100%;overflow:hidden;background:#222}
 body{-webkit-user-select:none;user-select:none;overscroll-behavior:none}
 button{font:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -619,7 +619,8 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 
 /* Paint depth only; keep the measured frame and maker geometry unchanged. */
 .keyboard-recess-shadow{display:none}
-.joined-frame .keyboard-recess-shadow{display:block;position:absolute;z-index:1;left:10px;right:10px;top:var(--keyboard-recess-top);bottom:var(--joined-base);pointer-events:none;background:linear-gradient(#000b,#0000) top/100% 4px no-repeat,linear-gradient(90deg,#000b,#0000) left/4px 100% no-repeat,linear-gradient(270deg,#000b,#0000) right/4px 100% no-repeat}
+.joined-frame .keyboard-recess-shadow{display:block;position:absolute;z-index:1;left:10px;right:10px;top:var(--keyboard-recess-top);bottom:var(--joined-base);pointer-events:none;background:linear-gradient(180deg,#000e 0 1px,#000b 1px calc(2px + var(--recess-top-gap,0px)),#000d calc(2px + var(--recess-top-gap,0px)) calc(3px + var(--recess-top-gap,0px)),#0009 calc(3px + var(--recess-top-gap,0px)) calc(4px + var(--recess-top-gap,0px)),#0000 calc(5px + var(--recess-top-gap,0px))) top/100% calc(5px + var(--recess-top-gap,0px)) no-repeat,linear-gradient(90deg,#000f 0 1px,#000b 1px 2px,#000a 2px 4px,#000e 4px 5px,#0009 5px 6px,#0000 7px) top left/7px 100% no-repeat,linear-gradient(270deg,#000d 0 1px,#0007 1px 2px,#0008 2px 4px,#000d 4px 5px,#0008 5px 6px,#0000 7px) top right/7px 100% no-repeat}
+@media(orientation:landscape){.joined-frame .keyboard-recess-shadow{--recess-top-gap:5px}}
 .maker-lettering{text-shadow:0 0 .12cqw #000,0 .3cqh .25cqw #000}
 @media(orientation:portrait){.joined-frame .keyboard-recess-shadow{bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius)}}
 
