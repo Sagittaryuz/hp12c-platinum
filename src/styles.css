@@ -1,6 +1,6 @@
 @font-face{font-family:KeyCondensed;src:url('/assets/roboto-condensed.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 *{box-sizing:border-box}
-:root{font-family:Arial,Helvetica,sans-serif;color-scheme:dark;--orange:#ff8000;--blue:#00aaff;--white:#e6e6e6}
+:root{font-family:Arial,Helvetica,sans-serif;color-scheme:dark;--orange:#ff6a00;--blue:#00aaff;--white:#e6e6e6}
 html,body,#root{margin:0;width:100%;height:100%;overflow:hidden;background:#222}
 body{-webkit-user-select:none;user-select:none;overscroll-behavior:none}
 button{font:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -28,8 +28,8 @@ button{font:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipul
 .math{font:inherit}.math sup{font-size:.65em;vertical-align:super;line-height:0}.swap-sign{font-size:.8em}.radicand{border-top:.04em solid currentColor}
 .key-enter .key-cap{height:82%;font-size:3.7cqh;padding:1cqh 0;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:-.05cqh}
 .key-enter .legend-g{font-size:2.6cqh}
-.key-f .key-shell{background:#df7000}.key-g .key-shell{background:#0096df}
-.key-f .key-cap{background:var(--orange);color:#080808}.key-g .key-cap{background:#00aaff;color:#080808}
+.key-f .key-shell{background:color-mix(in srgb,var(--orange) 92%,#000);box-shadow:0 .3cqh .25cqw #000,inset 0 0 .12cqw var(--orange)}.key-g .key-shell{background:#0096df}
+.key-f .key-cap{background:var(--orange);color:#080808;box-shadow:none}.key-g .key-cap{background:#00aaff;color:#080808}
 .key:active .key-shell{transform:translateY(.18cqh);box-shadow:inset 0 .2cqh .25cqw #0008}
 .key:focus-visible{outline:none}
 .brand:focus-visible{outline:.15cqw solid #fff}
