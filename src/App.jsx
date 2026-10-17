@@ -1,4 +1,5 @@
 import {useSurfacePull} from './useSurfacePull';
+import {createKeyFeedback,bindFeedbackLifecycle} from './key-feedback.mjs';
 import {HistoryNoteEditor} from './HistoryNoteEditor';
 import {setHistoryNote} from './history-notes.mjs';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useReducer, useMemo } from 'react';
@@ -310,12 +311,13 @@ export function App() {
   const persistence=useRef(null);
   if(!persistence.current)persistence.current=createDeferredPersistence((key,value)=>localStorage.setItem(key,value));
   useLayoutEffect(()=>{persistence.current.update({'hp12c-state':state,[HISTORY_KEY]:history,[HISTORY_ACTIVITY_KEY]:historyActive,[UI_SETTINGS_KEY]:prefs})},[state,history,historyActive,prefs]);
-  useEffect(()=>{const flush=()=>persistence.current.flush(),hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return()=>{flush();window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
-  const audio=useRef(null),eventCounter=useRef(0),eventSession=useRef(null);
+  useEffect(()=>{const flush=()=>persistence.current.flush(),hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('freeze',flush);document.addEventListener('visibilitychange',hidden);return()=>{flush();window.removeEventListener('pagehide',flush);document.removeEventListener('freeze',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
+  const feedbackController=useRef(null),feedbackPrefs=useRef(prefs),eventCounter=useRef(0),eventSession=useRef(null);
+  feedbackPrefs.current=prefs;if(!feedbackController.current)feedbackController.current=createKeyFeedback();
   if(!eventSession.current)eventSession.current=globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random();
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen,setHistoryOpen]=useState(false);
-  useLayoutEffect(()=>{const meta=document.querySelector('meta[name="theme-color"]'),old=meta?.content;document.documentElement.toggleAttribute('data-panel-open',historyOpen||menuOpen);if(meta&&(historyOpen||menuOpen))meta.content='#090909';return()=>{document.documentElement.removeAttribute('data-panel-open');if(meta&&old)meta.content=old}},[historyOpen,menuOpen]);
+  useLayoutEffect(()=>{const meta=document.querySelector('meta[name="theme-color"]'),old=meta?.content;document.documentElement.toggleAttribute('data-panel-open',historyOpen||menuOpen);document.documentElement.toggleAttribute('data-memory-open',historyOpen);if(meta&&(historyOpen||menuOpen))meta.content=historyOpen?'#000000':'#090909';return()=>{document.documentElement.removeAttribute('data-panel-open');document.documentElement.removeAttribute('data-memory-open');if(meta&&old)meta.content=old}},[historyOpen,menuOpen]);
   const [historyModal,setHistoryModal]=useState(null);
   const sessions=useMemo(()=>historyOpen?historySessions(history).map(session=>presentHistorySession(session,state.decimalComma)):[],[history,historyOpen,state.decimalComma]);
   const modalItem=historyModal?history.find(row=>row.id===historyModal.id&&row.kind!=='separator'):null;
@@ -329,21 +331,19 @@ export function App() {
   const calculatorSurface=useRef(null);
   const openHistory=useCallback(()=>{setMenuOpen(false);setHistoryOpen(true)},[]);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
-  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,undefined,{onStart:cancelPreview});
+  useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,undefined,{onStart:cancelPreview,startSelector:'.lcd',axisRatio:1.2});
   const [notice, setNotice] = useState('');
   useLayoutEffect(()=>{if(menuOpen||historyOpen||diagnosticsOpen)cancelPreview()},[menuOpen,historyOpen,diagnosticsOpen,cancelPreview]);
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
-  const feedback=useCallback(()=>{
-    if(prefs.vibration&&typeof navigator.vibrate==='function')navigator.vibrate(12);
-    if(prefs.sound){try{const Context=window.AudioContext||window.webkitAudioContext;if(Context){const ctx=audio.current||(audio.current=new Context());ctx.resume().then(()=>{const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.frequency.value=880;gain.gain.setValueAtTime(.035,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.035);oscillator.connect(gain);gain.connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+.04)}).catch(()=>{})}}catch{}}
-  },[prefs.sound,prefs.vibration]);
+  const feedback=useCallback(()=>feedbackController.current.press(feedbackPrefs.current),[]);
+  useEffect(()=>bindFeedbackLifecycle(feedbackController.current,{enabled:()=>feedbackPrefs.current}),[]);
+  useEffect(()=>{if(!prefs.sound)feedbackController.current.reset()},[prefs.sound]);
   const keyEvent=id=>({type:'key',id,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});
   const activate=useCallback(id=>{cancelPreview();feedback();dispatch(keyEvent(id))},[feedback,cancelPreview]);
   const beginKey=useCallback(id=>{const base=currentPanel.current,original=keyEvent(id),next=panelReducer(base,original);preparedKey.current={id,base,original,next};setPreview(next.state)},[]);
   const finishKey=useCallback(id=>{const prepared=preparedKey.current;cancelPreview();if(prepared?.id===id){feedback();dispatch({type:'prepared',...prepared})}},[feedback,activate,cancelPreview]);
   useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
-  useEffect(()=>()=>{audio.current?.close().catch(()=>{})},[]);
   useLayoutEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen||diagnosticsOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen,diagnosticsOpen]);
   const openMenu=useCallback(()=>setMenuOpen(true),[]);
   useEffect(() => {
@@ -372,7 +372,7 @@ export function App() {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.target?.closest?.('.lcd') && event.key !== 'Enter' && event.key !== 'Escape' && event.key !== 'Backspace') return;
       if (['Backspace', '=', 'Escape', 'Enter'].includes(event.key)) {
-        event.preventDefault(); event.stopPropagation(); if(event.repeat)return; dispatch({type:'action',physical:true,action:({'=':'equals',Enter:'enter',Escape:'clx',Backspace:'backspace'})[event.key],eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
+        event.preventDefault(); event.stopPropagation(); if(event.repeat)return; feedback();dispatch({type:'action',physical:true,action:({'=':'equals',Enter:'enter',Escape:'clx',Backspace:'backspace'})[event.key],eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()}); return;
       }
       const shortcut = event.code === 'Space' ? 'Enter' : event.key === ',' ? '.' : event.key;
       const key = KEY_DEFINITIONS.find(key => key.shortcut.toUpperCase() === shortcut.toUpperCase());
@@ -390,7 +390,7 @@ export function App() {
   useEffect(()=>{
     const calculator=document.querySelector('.calculator');
     const movable=target=>target.closest?.('.menu-panel,.viewport-diagnostics,.history-board-lines,textarea');
-    const stopDrag=event=>{if(!movable(event.target)&&event.cancelable)event.preventDefault()};
+    const stopDrag=event=>{if(event.touches?.length>1)return;if(!movable(event.target)&&event.cancelable)event.preventDefault()};
     calculator.addEventListener('touchmove',stopDrag,{passive:false});
     calculator.addEventListener('contextmenu',stopDrag);
     return()=>{calculator.removeEventListener('touchmove',stopDrag);calculator.removeEventListener('contextmenu',stopDrag)};

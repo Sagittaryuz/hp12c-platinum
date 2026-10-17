@@ -1,5 +1,5 @@
 // A drag belongs only to its designated surface, never the scrollable contents.
-export function createDirectionalDrag(direction,freeMotion=false){
+export function createDirectionalDrag(direction,freeMotion=false,{axisRatio=.8}={}){
  let gesture=null;
  const cancel=()=>{gesture=null};
  const update=e=>{if(!gesture||e.pointerId!==gesture.id)return false;const dx=e.clientX-gesture.x,dy=(e.clientY-gesture.y)*direction;
@@ -9,7 +9,7 @@ export function createDirectionalDrag(direction,freeMotion=false){
  return {cancel,active:()=>gesture!==null,distance:()=>Math.max(0,gesture?.current||0),offset:()=>gesture?.current||0,
   down(e){if(gesture){cancel();return false}if(e.isPrimary===false||e.button!==0)return false;gesture={id:e.pointerId,x:e.clientX,y:e.clientY,maximum:0,current:0,velocity:0,lastMotion:0,previousTime:Number.isFinite(e.timeStamp)?e.timeStamp:0};return true},
   move:update,
-  up(e){if(!update(e))return false;const distance=(e.clientY-gesture.y)*direction;const accepted=distance>=Math.abs(e.clientX-gesture.x)*.8&&(distance>=18||(distance>=12&&gesture.velocity>=.15&&gesture.previousTime-gesture.lastMotion<=80));cancel();return accepted},
+  up(e){if(!update(e))return false;const distance=(e.clientY-gesture.y)*direction;const accepted=distance>=Math.abs(e.clientX-gesture.x)*axisRatio&&(distance>=18||(distance>=12&&gesture.velocity>=.15&&gesture.previousTime-gesture.lastMotion<=80));cancel();return accepted},
   other(e){if(gesture&&e.pointerId!==gesture.id)cancel()}
  };
 }

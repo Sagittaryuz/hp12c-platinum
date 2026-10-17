@@ -6,7 +6,7 @@ const appVersion=JSON.parse(readFileSync(new URL('./package.json',import.meta.ur
 const buildTime=new Date().toISOString();
 
 export default defineConfig({
-  base: process.env.GITHUB_PAGES === "1" ? "/hp12c-platinum/" : "./",
+  base: process.env.GITHUB_PAGES === "1" ? "/hp12c-platinum/" : process.env.TAURI_BUILD === "1" ? "./" : "/",
   define: {"import.meta.env.VITE_DESKTOP_BUILD":JSON.stringify(process.env.TAURI_BUILD === "1" ? "1" : "0"),"import.meta.env.VITE_APP_VERSION":JSON.stringify(appVersion),"import.meta.env.VITE_BUILD_TIME":JSON.stringify(buildTime)},
   build: {
     outDir: "dist/client",
@@ -30,6 +30,6 @@ export default defineConfig({
       start_url: "./", scope: "./", display: "fullscreen", display_override:["fullscreen","standalone"], background_color: "#c6c6c6", theme_color: "#c6c6c6",
       icons: [{src:"icons/hp12c-platinum-v2-192.png",sizes:"192x192",type:"image/png",purpose:"any"},{src:"icons/hp12c-platinum-v2-512.png",sizes:"512x512",type:"image/png",purpose:"any"}],
     },
-    workbox: { globIgnores:["**/legal/**"], globPatterns:["**/*.{js,css,html,wasm}","assets/*-grain*.svg","assets/hp-emblem-hd.png","assets/menu-icons/*.svg","assets/roboto-condensed.woff2","assets/cabin-sketch.woff2","assets/caveat-memory-bold.woff2","icons/hp12c-platinum-v2-{180,32}.png"], dontCacheBustURLsMatching:/^assets\/index-[A-Za-z0-9_-]+\.(?:js|css)$/, maximumFileSizeToCacheInBytes:2*1024*1024, clientsClaim:true, skipWaiting:false, cleanupOutdatedCaches:true },
+    workbox: { globIgnores:["**/legal/**","assets/brushed-aluminum.png","assets/hp12c-front.webp","assets/black-brush.svg"], globPatterns:['**/*.{js,css,html,wasm,woff,woff2,svg,png,jpg,jpeg,webp,gif,webmanifest}'], dontCacheBustURLsMatching:/^assets\/index-[A-Za-z0-9_-]+\.(?:js|css)$/, maximumFileSizeToCacheInBytes:2*1024*1024, navigateFallback:'index.html', clientsClaim:true, skipWaiting:false, cleanupOutdatedCaches:true },
   })])],
 });

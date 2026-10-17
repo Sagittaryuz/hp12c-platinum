@@ -14,5 +14,5 @@ export async function startCacheLifecycle(url){
   window.addEventListener('online',()=>check(true));window.addEventListener('pageshow',()=>check());document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check()});
   // Browsers may evict stored data/processes; this is not a keep-alive guarantee.
   return registration;
- }catch{publish('unavailable');return null}
+ }catch{publish(navigator.serviceWorker?.controller?'ready':'unavailable');return null}
 }
