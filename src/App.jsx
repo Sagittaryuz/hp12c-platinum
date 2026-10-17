@@ -265,6 +265,9 @@ function useJoinedFrame() {
         menu.style.left=(firstRect.left-parentRects.get(menu.parentElement).left)+'px';
         menu.style.width=(menuRect.width+menuPitch)+'px';
       }
+      // Move the complete key/legend set only after the existing frame layout.
+      // A new pass clears these positions first, so the rise never accumulates.
+      for(const control of visible)control.style.top=(parseFloat(control.style.top)-5)+'px';
       calculator.dispatchEvent(new Event('hp-keyboard-aligned'));
     };
     layout();

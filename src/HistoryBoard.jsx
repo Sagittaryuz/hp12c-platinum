@@ -40,7 +40,7 @@ export function HistoryBoard({state,onEditMemory,history,sessions,onClose,onHist
  useLayoutEffect(()=>{const previous=lastFocus.current;if(!dialog.current.open)dialog.current.showModal();close.current.focus({preventScroll:true});lines.current.scrollTop=0;return()=>{dialog.current?.close();queueMicrotask(()=>{const target=previous?.isConnected?previous:document.querySelector('.brand');target?.focus?.({preventScroll:true})})}},[]);
  return <dialog ref={dialog} className="history-board" aria-labelledby="history-board-title" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();motion.close()}}} onCancel={e=>{e.preventDefault();motion.close()}}>
   <span className="panel-reveal-bar" aria-hidden="true"/>
-  <header className="history-board-heading"><h1 id="history-board-title">Memória</h1><button ref={close} className="history-board-close" onClick={motion.close} aria-label="Fechar memória"><HpIcon name="x"/></button></header>
+  <header className="history-board-heading"><div className="history-board-title"><span className="history-board-version" title="Versão da calculadora">V. {import.meta.env.VITE_APP_VERSION}</span><h1 id="history-board-title">Memória</h1></div><button ref={close} className="history-board-close" onClick={motion.close} aria-label="Fechar memória"><HpIcon name="x"/></button></header>
   <HistoryLines history={history} sessions={sessions} surface={lines} now={now} state={state} onEditMemory={onEditMemory} copyState={copyState}/>
  </dialog>;
 }
