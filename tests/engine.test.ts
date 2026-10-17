@@ -318,6 +318,36 @@ describe('padrões solicitados para a aplicação',()=>{
   });
 });
 
+describe('inversas ASIN, ACOS e ATAN na camada f',()=>{
+ const cases:Array<[string,number,'DEG'|'RAD',number]>=[['sin',.5,'DEG',30],['sin',-.5,'DEG',-30],['sin',1,'DEG',90],['sin',-1,'DEG',-90],['sin',0,'DEG',0],['cos',.5,'DEG',60],['cos',1,'DEG',0],['cos',-1,'DEG',180],['cos',0,'DEG',90],['tan',1,'DEG',45],['tan',-1,'DEG',-45],['tan',0,'DEG',0],['tan',9.999999999e99,'DEG',90],['tan',-9.999999999e99,'DEG',-90],['sin',.5,'RAD',Math.PI/6],['sin',1,'RAD',Math.PI/2],['cos',-1,'RAD',Math.PI],['cos',0,'RAD',Math.PI/2],['tan',1,'RAD',Math.PI/4],['tan',-1,'RAD',-Math.PI/4]];
+ it.each(cases)('f+%s(%s) em %s preserva pilha e LAST X',(key,x,angular,expected)=>{
+  const s={...start(),x,input:String(x),angular,y:12,z:34,t:56};
+  const next=keys(s,'f',key);expect(next.x).toBeCloseTo(expected,8);expect(next.error).toBeNull();expect([next.y,next.z,next.t]).toEqual([12,34,56]);expect(next.lastX).toBe(x);expect(next.shift).toBeNull();expect(next.angular).toBe(angular);expect(s.x).toBe(x);
+ });
+ it('rejeita fora de [-1,1], preserva valores e recupera após CLx',()=>{
+  for(const key of ['sin','cos'])for(const x of [-2,-1.000000001,1.000000001,2]){
+   const s={...start(),x,input:String(x),y:7,z:8,t:9,lastX:99};const invalid=keys(s,'f',key);
+   expect(invalid.error).toBe('Error 0');expect([invalid.x,invalid.y,invalid.z,invalid.t,invalid.lastX]).toEqual([x,7,8,9,99]);expect(invalid.shift).toBeNull();
+   const recovered=keys(invalid,'clx','clx','decimal','5','f','sin');expect(recovered.error).toBeNull();expect(recovered.x).toBe(30);
+  }
+ });
+ it('aceita valores internos próximos aos limites sem recortar o domínio',()=>{
+  for(const key of ['sin','cos'])for(const x of [-.9999999999,.9999999999])expect(keys({...start(),x},'f',key).error).toBeNull();
+ });
+ it('mantém as funções principais e g, e identifica a alternativa impressa',()=>{
+  for(const [id,label,x,value] of [['sin','ASIN',30,.5],['cos','ACOS',60,.5],['tan','ATAN',45,1]] as const){
+   expect(KEY_DEFINITIONS.find(k=>k.id===id)?.f).toBe(label);expect(keys({...start(),x},id).x).toBe(value);expect(keys({...start(),x},'g',id).x).toBe(value);
+  }
+ });
+ it('aplica a inversa ao operando ALG sem perder a expressão pendente',()=>{
+  const s=keys(start(),'f','eex','2','plus','decimal','5','f','sin');expect(s.mode).toBe('ALG');expect(s.x).toBe(30);expect(s.algOperands).toEqual([2]);expect(s.pendingOp).toBe('+');expect(pressKey(s,'enter').x).toBe(32);
+ });
+ it('grava, restaura e executa a ação inversa em programas',()=>{
+  let s=keys(start(),'f','rs','decimal','5','f','sin');expect(s.program).toEqual(['decimal','5','asin']);
+  s=restoreState(JSON.parse(JSON.stringify(s)));s=keys(s,'f','rs','rs');expect(s.error).toBeNull();expect(s.x).toBe(30);
+ });
+});
+
 describe('extensões SIN, COS e TAN',()=>{
  it('calcula ângulos em graus sem modificar os demais níveis da pilha',()=>{
   let s=start();s.y=12;s.z=34;s.t=56;

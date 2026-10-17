@@ -1437,6 +1437,25 @@ fn execute(s: &mut State, previous: &State, action: &str) -> CalcResult<()> {
                 true,
             )?
         }
+        "asin" | "acos" | "atan" => {
+            if action != "atan" && (s.x < -1. || s.x > 1.) {
+                return err("Error 0");
+            }
+            let radians = match action {
+                "asin" => s.x.asin(),
+                "acos" => s.x.acos(),
+                _ => s.x.atan(),
+            };
+            let value = if s.angular == "DEG" {
+                radians * 180. / std::f64::consts::PI
+            } else {
+                radians
+            };
+            if !value.is_finite() {
+                return err("Error 0");
+            }
+            result(s, value, &format!("{} {}", action.to_uppercase(), s.angular), true)?
+        }
         "sqrt" => result(s, s.x.sqrt(), "RESULTADO", true)?,
         "ln" => {
             if s.x <= 0. {
@@ -1681,5 +1700,30 @@ mod tests {
         let invalid = press_action(s, "divide", false);
         assert_eq!(invalid.error.as_deref(), Some("Error 0"));
         assert_eq!(invalid.y, snapshot.y);
+    }
+    #[test]
+    fn inverse_trigonometric_values_and_domains() {
+        let initial: State = serde_json::from_slice(include_bytes!("../../tests/fixtures/initial-state.json")).unwrap();
+        for (action, x, expected) in [("asin", 0.5, 30.), ("acos", -1., 180.), ("atan", 1., 45.)] {
+            let mut s = initial.clone();
+            s.x = x;
+            s.y = 7.;
+            let next = press_action(s, action, false);
+            assert_eq!(next.x, expected);
+            assert_eq!(next.y, 7.);
+            assert_eq!(next.lastX, x);
+            assert!(next.error.is_none());
+        }
+        let mut s = initial.clone();
+        s.angular = "RAD".into();
+        s.x = 1.;
+        assert_eq!(press_action(s, "atan", false).x, 0.7853981634);
+        for action in ["asin", "acos"] {
+            let mut s = initial.clone();
+            s.x = 1.01;
+            let next = press_action(s, action, false);
+            assert_eq!(next.error.as_deref(), Some("Error 0"));
+            assert_eq!(next.x, 1.01);
+        }
     }
 }

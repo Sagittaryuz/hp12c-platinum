@@ -219,6 +219,13 @@ export function pressAction(previous:CalculatorState,action:string,executing=fal
         if(!Number.isFinite(value))throw new Error('Error 0');
         result(s,Math.abs(value)<1e-14?0:value,`${action.toUpperCase()} ${s.angular}`);return s;
       }
+      case 'asin':case 'acos':case 'atan':{
+        if(action!=='atan'&&(s.x < -1||s.x > 1))throw new Error('Error 0');
+        const radians=action==='asin'?Math.asin(s.x):action==='acos'?Math.acos(s.x):Math.atan(s.x);
+        const value=s.angular==='DEG'?radians*180/Math.PI:radians;
+        if(!Number.isFinite(value))throw new Error('Error 0');
+        result(s,value,`${action.toUpperCase()} ${s.angular}`);return s;
+      }
       case 'sqrt':result(s,Math.sqrt(s.x));return s;
       case 'ln':if(s.x<=0)throw new Error('Error 0');result(s,Math.log(s.x));return s;
       case 'exp':result(s,Math.exp(s.x));return s;

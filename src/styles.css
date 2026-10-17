@@ -617,6 +617,12 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
  .joined-frame .maker-name{top:0;height:100%;background:#181818;line-height:1}
 }
 
+/* Paint depth only; keep the measured frame and maker geometry unchanged. */
+.keyboard-recess-shadow{display:none}
+.joined-frame .keyboard-recess-shadow{display:block;position:absolute;z-index:1;left:10px;right:10px;top:var(--keyboard-recess-top);bottom:var(--joined-base);pointer-events:none;background:linear-gradient(#000b,#0000) top/100% 4px no-repeat,linear-gradient(90deg,#000b,#0000) left/4px 100% no-repeat,linear-gradient(270deg,#000b,#0000) right/4px 100% no-repeat}
+.maker-lettering{text-shadow:0 0 .12cqw #000,0 .3cqh .25cqw #000}
+@media(orientation:portrait){.joined-frame .keyboard-recess-shadow{bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius)}}
+
 /* Mobile portrait: align the painted LCD outline and the maker ink to the metal. */
 @media(orientation:portrait) and (max-width:600px) and (pointer:coarse){
  /* 11px box inset minus the existing 1px outline = 10px painted case inset. */

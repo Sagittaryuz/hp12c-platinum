@@ -265,6 +265,7 @@ function useJoinedFrame() {
         menu.style.left=(firstRect.left-parentRects.get(menu.parentElement).left)+'px';
         menu.style.width=(menuRect.width+menuPitch)+'px';
       }
+      calculator.style.setProperty('--keyboard-recess-top',(calculator.querySelector('.keyboard-crossbar').getBoundingClientRect().bottom-body.top)+'px');
       // Move the complete key/legend set only after the existing frame layout.
       // A new pass clears these positions first, so the rise never accumulates.
       for(const control of visible)control.style.top=(parseFloat(control.style.top)-5)+'px';
@@ -437,7 +438,8 @@ export function App() {
       <div className="keyboard-frame" aria-hidden="true"/>
       <div className="keyboard-lower-bridge" aria-hidden="true"/>
       <div className="keyboard-panel" aria-hidden="true"/>
-      <div className="portrait-footer-frame" aria-hidden="true"/>
+        <div className="portrait-footer-frame" aria-hidden="true"/>
+        <div className="keyboard-recess-shadow" aria-hidden="true"/>
       <Brackets/>
       <FaceKeys mode={state.mode} activate={activate} beginKey={beginKey} finishKey={finishKey} cancelPreview={cancelPreview} heldKeys={heldKeys} menu={openMenu}/>
       <footer className="maker-strip" aria-hidden="true"><span className="maker-name"><span className="maker-lettering">HEWLETT <span className="maker-dot"/> PACKARD</span></span></footer>

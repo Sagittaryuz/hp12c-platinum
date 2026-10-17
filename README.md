@@ -24,6 +24,8 @@ Os atalhos de formatação e entrada foram conferidos no manual oficial HP: http
 Programa inicial de taxas equivalentes: taxa → i; período de origem → n; período de destino → R/S. O programa salvo pelo usuário é preservado nas reaberturas. Use o menu para restaurar o programa inicial explicitamente.
 No iPhone, Compartilhar → Adicionar à Tela de Início permite abrir como aplicativo. Tela cheia física no iPhone ainda não foi verificada.
 
+As alternativas laranja ASIN, ACOS e ATAN são acionadas por f + SIN, f + COS e f + TAN. O resultado respeita DEG/RAD. ASIN e ACOS aceitam de -1 a 1, incluindo os limites; entradas fora desse domínio mostram Error 0. A operação preserva os demais níveis da pilha e pode ser gravada em programas.
+
 ## Design
 A Foto 1 define o corpo e o teclado: moldura prata escovada, laterais de plástico preto texturizado, LCD oliva, painel preto fosco, teclas cinza com legendas vermelhas e azuis, f laranja, g azul, faixa HEWLETT • PACKARD inferior. O retrato tem seis colunas; o horizontal adapta a ordem original para onze colunas com as novas teclas. Nenhuma tecla 15 foi acrescentada.
 Atualização de 01/10/2026: a calculadora ocupa todo o viewport disponível, acompanhando redimensionamentos e rotação. O metal alcança o topo; as bordas de plástico permanecem somente nas laterais e embaixo, com a mesma espessura reduzida. O painel central tem aro metálico fino. As teclas foram ampliadas e SIN/COS/TAN usam a mesma construção e fonte das demais. R↓ tem seta vetorial, sem emoji. O visor começa à esquerda. O cabeçalho não usa blur nem translucidez, e a configuração da barra do iOS passou a `default`.
