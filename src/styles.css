@@ -621,14 +621,14 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 .keyboard-recess-shadow{display:none}
 .joined-frame .keyboard-recess-shadow{display:block;position:absolute;z-index:1;left:10px;right:10px;top:var(--keyboard-recess-top);bottom:var(--joined-base);pointer-events:none;background:linear-gradient(180deg,#000d 0 1px,#000a 1px calc(2px + var(--recess-top-gap,0px)),#000c calc(2px + var(--recess-top-gap,0px)) calc(3px + var(--recess-top-gap,0px)),#0008 calc(3px + var(--recess-top-gap,0px)) calc(4px + var(--recess-top-gap,0px)),#0000 calc(5px + var(--recess-top-gap,0px))) top/100% calc(5px + var(--recess-top-gap,0px)) no-repeat,linear-gradient(90deg,#000e 0 1px,#000a 1px 2px,#0009 2px 4px,#000d 4px 5px,#0008 5px 6px,#0000 7px) top left/7px 100% no-repeat,linear-gradient(270deg,#000c 0 1px,#0006 1px 2px,#0007 2px 4px,#000c 4px 5px,#0007 5px 6px,#0000 7px) top right/7px 100% no-repeat}
 @media(orientation:landscape){.joined-frame .keyboard-recess-shadow{--recess-top-gap:5px}}
-.maker-lettering{text-shadow:0 0 .12cqw #000,0 .3cqh .25cqw #000}
+.maker-lettering{text-shadow:-.5px -1px 1px #000e,0 1px 2px #000b}
 @media(orientation:portrait){.joined-frame .keyboard-recess-shadow{bottom:var(--footer-plastic);border-radius:0 0 var(--footer-radius) var(--footer-radius)}}
 
-/* Keep the existing bevel and its shared contour. Ease its paint to transparent
-   over 100px, reaching the original silver exactly where the lower arcs begin. */
+/* Ease the straight bevel into a softer contact over the same lower contour.
+   The contact continues across both brackets and beneath the maker cutout. */
 @media(orientation:portrait){
  .joined-frame .keyboard-recess-shadow{--recess-blend-height:calc(var(--footer-radius) + 100px);background-size:100% calc(5px + var(--recess-top-gap,0px)),7px calc(100% - var(--recess-blend-height)),7px calc(100% - var(--recess-blend-height))}
- .joined-frame .keyboard-recess-shadow::before{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 1px 0 1px #000b,inset -1px 0 1px #0009,inset 0 -1px 1px #0008;mask-image:linear-gradient(180deg,#0000 calc(100% - var(--footer-radius) - 12px),#000 calc(100% - var(--footer-radius)));clip-path:polygon(0 0,100% 0,100% 100%,calc(50% + var(--maker-cutout-width)/2) 100%,calc(50% + var(--maker-cutout-width)/2) calc(100% - var(--footer-stroke)),calc(50% - var(--maker-cutout-width)/2) calc(100% - var(--footer-stroke)),calc(50% - var(--maker-cutout-width)/2) 100%,0 100%);pointer-events:none}
+ .joined-frame .keyboard-recess-shadow::before{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 1px 0 1.5px #000b,inset -1px 0 1.5px #0008,inset 0 -1px 1px #000b,inset 0 -3px 4px #0008;mask-image:linear-gradient(180deg,#0000 calc(100% - var(--recess-blend-height)),#000 calc(100% - var(--footer-radius)));pointer-events:none}
  .joined-frame .keyboard-recess-shadow::after{content:'';position:absolute;left:0;right:0;bottom:0;height:var(--recess-blend-height);border-radius:inherit;background:inherit;background-size:0 0,7px 100%,7px 100%;mask-image:linear-gradient(180deg,#000,#000e 20px,#000c 40px,#0008 60px,#0004 80px,#0001 92px,#0000 100px);pointer-events:none}
 }
 
@@ -654,9 +654,10 @@ html,body,#root,.page{background:#c6c6c6 url('/assets/metal-grain.svg')}
 @media(min-width:560px){.memory-register-grid{grid-template-columns:repeat(10,minmax(0,1fr))}}
 @media(orientation:landscape){.history-board-heading{min-height:54px;padding-top:max(6px,env(safe-area-inset-top));padding-bottom:6px}.history-board-heading h1{font-size:30px}.memory-register-grid button{min-height:44px}}
 
-/* Continue the recessed contact around the lower metal arcs; retain their alloy paint.
-   The inset shadows follow the existing radius, below the panel and maker cutout. */
-.joined-frame .keyboard-frame,.joined-frame .portrait-footer-frame{box-shadow:inset 1px 0 1px #0009,inset -1px 0 1px #0006,inset 0 -1px 1px #0008}
+/* The metal remains one low surface through the arcs and horizontal brackets.
+   Only the contact paint changes; the original alloy and contours stay intact. */
+.joined-frame .keyboard-frame,.joined-frame .portrait-footer-frame{box-shadow:inset 1px 0 1px #0009,inset -1px 0 1px #0006,inset 0 -2px 3px #000a}
+.maker-dot{box-shadow:-.5px -1px 1px #000e,0 1px 2px #000b}
 /* Shade only the textured base, behind every face component: a low matte plane,
    with a narrow contact at its upper edge and no raised highlight. */
 .joined-frame::before{content:'';position:absolute;z-index:-1;left:0;right:0;bottom:0;height:var(--joined-base);background:linear-gradient(180deg,#0007,#0004 2px,#0003 5px);pointer-events:none}
