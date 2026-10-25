@@ -2,6 +2,7 @@ import {build} from 'vite';
 import {readFile,writeFile,mkdir,cp,rm,readdir} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import path from 'node:path';
+delete process.env.GITHUB_PAGES;
 process.env.SCRIPTING_BUILD='1';process.env.VITE_HP12C_ENGINE='javascript';
 const version=JSON.parse(await readFile('package.json','utf8')).version;
 const root='dist/scripting/HP12C Platinum';

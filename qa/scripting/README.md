@@ -44,3 +44,9 @@ O comparativo espera a base compilada em `/tmp/hp12c-baseline/dist/client`. Arte
 
 ![Web e Scripting em retrato](compare-393x852.png)
 ![Web e Scripting em paisagem](compare-852x393.png)
+
+## Publicação
+
+Implementação `1f505596135cef7104d45ccabe8076327ecc8ebd` enviada a main; Pages publicado e Vercel produção READY em `dpl_BjbYDKCphpmTUKLdjj39nxcRSFsQ`, domínio original https://hp12c-platinum-one.vercel.app/ . O ZIP e SHA256SUMS são gerados e publicados no diretório downloads/ do GitHub Pages original pelo workflow, sem mudar a face web.
+
+Upload do ZIP para GitHub Releases negado com HTTP401 Bad credentials em uploads.github.com. Não foi repetido nem criada credencial; consulta ao ID423589556 retornou404 e a release não aparece na lista. Não existe release confirmada. A distribuição por Pages usa a publicação já autorizada e não depende de anexos Releases.
