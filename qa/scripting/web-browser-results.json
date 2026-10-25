@@ -1,0 +1,57 @@
+{
+  "environment": "Chromium/linux, trusted CDP touch on emulated viewport; blur simulated; no physical iPhone",
+  "results": [
+    {
+      "name": "Rust active, touch and compatibility click execute once",
+      "pass": true
+    },
+    {
+      "name": "keyboard auto-repeat ignored, new press accepted",
+      "pass": true
+    },
+    {
+      "name": "trusted touch drag from LCD opens memorial without calculation",
+      "pass": true
+    },
+    {
+      "name": "multitouch cancels pending key",
+      "pass": true
+    },
+    {
+      "name": "pointercancel/blur cancels pending key",
+      "pass": true
+    },
+    {
+      "name": "load failure retains functional JS and stored values",
+      "pass": true
+    },
+    {
+      "name": "installed service-worker caches Wasm and reloads offline",
+      "pass": true
+    },
+    {
+      "name": "memory editor preserves stack, program, notes and persisted settings",
+      "pass": true
+    },
+    {
+      "name": "memorial close gesture, repeat cycles and reduced motion",
+      "pass": true
+    },
+    {
+      "name": "geometry 320x568",
+      "pass": true
+    },
+    {
+      "name": "geometry 393x852",
+      "pass": true
+    },
+    {
+      "name": "geometry 852x393",
+      "pass": true
+    },
+    {
+      "name": "geometry 1280x800",
+      "pass": true
+    }
+  ]
+}

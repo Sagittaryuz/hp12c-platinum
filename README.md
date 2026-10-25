@@ -4,6 +4,10 @@ Aplicação React/Vite, com motor TypeScript compartilhado. Interface própria e
 
 G+SIN/COS/TAN calcula SINH/COSH/TANH com argumento real, independente de DEG/RAD; F mantém ASIN/ACOS/ATAN. Resultados hiperbólicos finitos seguem o limite numérico da calculadora; overflow de ponto flutuante gera Error 0 sem alterar os operandos.
 
+## Variante Scripting para iOS
+
+Pacote local, mesmo visual, motor JavaScript e vibração nativa por padrão. [Importação e backup](scripting/README.md), [QA e comparativos](qa/scripting/README.md). `npm run build:scripting` gera o ZIP em `dist/scripting` sem substituir a entrega web.
+
 ## Executar
 Requisitos: Node.js 22 ou superior e npm.
 ```

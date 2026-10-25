@@ -1,3 +1,4 @@
+import {isScripting} from './scripting-bridge.mjs';
 import {useEffect,useRef,useState} from 'react';
 import {usePanelMotion} from './usePanelMotion';
 import {useSurfacePull} from './useSurfacePull';
@@ -9,7 +10,7 @@ export function HpMenu({state,prefs,setPrefs,onDisplaySettings,onClose,onReset,o
  const [route,setRoute]=useState('menu'),[error,setError]=useState(''),[selected,setSelected]=useState({values:false,program:false,settings:false,history:false});
  const heading=useRef(null),panel=useRef(null),lastFocus=useRef(document.activeElement),[bodyAtTop,setBodyAtTop]=useState(true);
  const motion=usePanelMotion(panel,1,onClose);useSurfacePull(panel,motion.close,true,'.hp-menu-body',motion.progress,{freeMotion:true,onStart:motion.begin});
- const capabilities={sound:Boolean(window.AudioContext||window.webkitAudioContext),vibration:typeof navigator.vibrate==='function',fullscreen:typeof document.documentElement.requestFullscreen==='function'};
+ const capabilities={sound:Boolean(window.AudioContext||window.webkitAudioContext),vibration:isScripting||typeof navigator.vibrate==='function',fullscreen:typeof document.documentElement.requestFullscreen==='function'};
  const go=r=>{setError('');setRoute(r)};
  useEffect(()=>{heading.current?.focus({preventScroll:true})},[route]);
  useEffect(()=>{const initial=lastFocus.current;return()=>queueMicrotask(()=>initial?.focus?.({preventScroll:true}))},[]);

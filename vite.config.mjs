@@ -6,8 +6,8 @@ const appVersion=JSON.parse(readFileSync(new URL('./package.json',import.meta.ur
 const buildTime=new Date().toISOString();
 
 export default defineConfig({
-  base: process.env.GITHUB_PAGES === "1" ? "/hp12c-platinum/" : process.env.TAURI_BUILD === "1" ? "./" : "/",
-  define: {"import.meta.env.VITE_DESKTOP_BUILD":JSON.stringify(process.env.TAURI_BUILD === "1" ? "1" : "0"),"import.meta.env.VITE_APP_VERSION":JSON.stringify(appVersion),"import.meta.env.VITE_BUILD_TIME":JSON.stringify(buildTime)},
+  base: process.env.GITHUB_PAGES === "1" ? "/hp12c-platinum/" : (process.env.TAURI_BUILD === "1" || process.env.SCRIPTING_BUILD === "1") ? "./" : "/",
+  define: {"import.meta.env.VITE_SCRIPTING_BUILD":JSON.stringify(process.env.SCRIPTING_BUILD === "1" ? "1" : "0"),"import.meta.env.VITE_DESKTOP_BUILD":JSON.stringify(process.env.TAURI_BUILD === "1" ? "1" : "0"),"import.meta.env.VITE_APP_VERSION":JSON.stringify(appVersion),"import.meta.env.VITE_BUILD_TIME":JSON.stringify(buildTime)},
   build: {
     outDir: "dist/client",
   },
@@ -21,7 +21,7 @@ export default defineConfig({
       clientFiles: ["./src/main.jsx"],
     },
   },
-  plugins: [react(), ...(process.env.TAURI_BUILD === "1" ? [] : [VitePWA({
+  plugins: [react(), ...((process.env.TAURI_BUILD === "1" || process.env.SCRIPTING_BUILD === "1") ? [] : [VitePWA({
     registerType: "prompt", injectRegister: false,
 
     manifest: {

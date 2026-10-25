@@ -1,3 +1,4 @@
+import {calculatorStorage as localStorage,isScripting,nativeCall} from './scripting-bridge.mjs';
 import {useSurfacePull} from './useSurfacePull';
 import {createKeyFeedback,bindFeedbackLifecycle} from './key-feedback.mjs';
 import {HistoryNoteEditor} from './HistoryNoteEditor';
@@ -307,10 +308,10 @@ export function App() {
   const preparedKey=useRef(null),[preview,setPreview]=useState(null);
   const cancelPreview=useCallback(()=>{preparedKey.current=null;setPreview(null)},[]);
   const setState=useCallback(updater=>dispatch({type:'state',updater}),[]);
-  const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage));
+  const [prefs,setPrefs]=useState(()=>readUiSettings(localStorage,{...UI_DEFAULTS,vibration:isScripting}));
   const persistence=useRef(null);
   if(!persistence.current)persistence.current=createDeferredPersistence((key,value)=>localStorage.setItem(key,value));
-  useLayoutEffect(()=>{persistence.current.update({'hp12c-state':state,[HISTORY_KEY]:history,[HISTORY_ACTIVITY_KEY]:historyActive,[UI_SETTINGS_KEY]:prefs})},[state,history,historyActive,prefs]);
+  useLayoutEffect(()=>{persistence.current.update({'hp12c-state':state,[HISTORY_KEY]:history,[HISTORY_ACTIVITY_KEY]:historyActive,[UI_SETTINGS_KEY]:prefs});if(isScripting)persistence.current.flush()},[state,history,historyActive,prefs]);
   useEffect(()=>{const flush=()=>persistence.current.flush(),hidden=()=>{if(document.visibilityState==='hidden')flush()};window.addEventListener('pagehide',flush);document.addEventListener('freeze',flush);document.addEventListener('visibilitychange',hidden);return()=>{flush();window.removeEventListener('pagehide',flush);document.removeEventListener('freeze',flush);document.removeEventListener('visibilitychange',hidden)}},[]);
   const feedbackController=useRef(null),feedbackPrefs=useRef(prefs),eventCounter=useRef(0),eventSession=useRef(null);
   feedbackPrefs.current=prefs;if(!feedbackController.current)feedbackController.current=createKeyFeedback();
@@ -333,6 +334,8 @@ export function App() {
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
   useSurfacePull(calculatorSurface,openHistory,!menuOpen&&!historyOpen&&!diagnosticsOpen,undefined,undefined,{onStart:cancelPreview,startSelector:'.lcd',axisRatio:1.2});
   const [notice, setNotice] = useState('');
+  useEffect(()=>{const failed=()=>setNotice('Não foi possível salvar no Scripting. Mantenha esta sessão aberta, salve um backup e tente novamente.');window.addEventListener('hp-storage-error',failed);return()=>window.removeEventListener('hp-storage-error',failed)},[]);
+  useEffect(()=>{if(!isScripting)return;window.hp12cFlush=async()=>{persistence.current.flush();await localStorage.flush()};return()=>{delete window.hp12cFlush}},[]);
   useLayoutEffect(()=>{if(menuOpen||historyOpen||diagnosticsOpen)cancelPreview()},[menuOpen,historyOpen,diagnosticsOpen,cancelPreview]);
   const heldKeys = useRef(new Set());
   const backupInput=useRef(null);
@@ -345,7 +348,7 @@ export function App() {
   const finishKey=useCallback(id=>{const prepared=preparedKey.current;cancelPreview();if(prepared?.id===id){feedback();dispatch({type:'prepared',...prepared})}},[feedback,activate,cancelPreview]);
   useEffect(()=>{if(!prefs.suspendSeconds||menuOpen||historyOpen||!state.powered||state.running||state.paused)return;let timer;const reset=()=>{clearTimeout(timer);timer=setTimeout(()=>setState(current=>displayDefaults(pressAction(current,'off'))),prefs.suspendSeconds*1000)};reset();window.addEventListener('pointerdown',reset);window.addEventListener('keydown',reset);return()=>{clearTimeout(timer);window.removeEventListener('pointerdown',reset);window.removeEventListener('keydown',reset)}},[prefs.suspendSeconds,menuOpen,historyOpen,state.powered,state.running,state.paused,setState]);
   useLayoutEffect(()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=menuOpen||historyOpen||diagnosticsOpen;return()=>{for(const el of document.querySelectorAll('.keys,.brand'))el.inert=false}},[menuOpen,historyOpen,diagnosticsOpen]);
-  const openMenu=useCallback(()=>setMenuOpen(true),[]);
+  const openMenu=useCallback(()=>{if(isScripting)feedback();setMenuOpen(true)},[feedback]);
   useEffect(() => {
     try {
       localStorage.setItem('hp12c-default-display',DEFAULT_DISPLAY_VERSION);
@@ -395,11 +398,12 @@ export function App() {
     calculator.addEventListener('contextmenu',stopDrag);
     return()=>{calculator.removeEventListener('touchmove',stopDrag);calculator.removeEventListener('contextmenu',stopDrag)};
   },[]);
-  const saveBackup=()=>{
+  const saveBackup=async()=>{
     try{
       const backup=createBackup(localStorage,state);
       backup.entries[HISTORY_KEY]=JSON.stringify(history);backup.entries[HISTORY_ACTIVITY_KEY]=String(historyActive);
       backup.entries[UI_SETTINGS_KEY]=JSON.stringify(prefs);
+      if(isScripting){const saved=await nativeCall('hpExport',JSON.stringify(backup,null,2));setNotice(saved?'Backup salvo em Arquivos.':'Exportação cancelada.');return}
       const url=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
       const link=document.createElement('a');link.href=url;link.download='hp12c-backup-'+new Date().toISOString().slice(0,10)+'.json';
       document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
@@ -407,14 +411,16 @@ export function App() {
     }catch{setNotice('Não foi possível gerar o backup. Nenhum dado foi alterado.');}
   };
   const importBackup=async event=>{
-    const file=event.target.files?.[0];event.target.value='';if(!file)return;
     try{
-      if(file.size>1024*1024)throw new Error();
-      const backup=parseBackup(await file.text());
+      let text;
+      if(isScripting){text=await nativeCall('hpImport');if(text===null)return}
+      else {const file=event.target.files?.[0];event.target.value='';if(!file)return;if(file.size>1024*1024)throw new Error();text=await file.text()}
+      const backup=parseBackup(text);
       const restored=restoreState(backup.state);
-      restoreBackupStorage(localStorage,backup.entries);
+      if(isScripting)await localStorage.replace(backup.entries);
+      else restoreBackupStorage(localStorage,backup.entries);
       dispatch({type:'restore-history',history:readHistory(localStorage),activity:localStorage.getItem(HISTORY_ACTIVITY_KEY),state:restored});
-      setPrefs(readUiSettings(localStorage));
+      setPrefs(readUiSettings(localStorage,{...UI_DEFAULTS,vibration:isScripting}));
       setMenuOpen(false);setNotice('Backup restaurado: programas, registradores e configurações.');
     }catch{setNotice('Não foi possível restaurar este arquivo. Os dados atuais foram mantidos.');}
   };
@@ -446,8 +452,8 @@ export function App() {
       {menuOpen&&<HpMenu onHistoryAction={onHistoryAction} noteModalOpen={Boolean(historyModal)} state={state} prefs={prefs} onDisplaySettings={settings=>setState(current=>({...current,...settings}))} setPrefs={setPrefs} onClose={()=>setMenuOpen(false)}
         onRecall={value=>setState(recallResult(state,value,pressAction))} onEditMemory={(index,value)=>setState(editMemory(state,index,value))}
         onClearHistory={()=>dispatch({type:'clear-history'})}
-        onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS});}}
-        onBackup={saveBackup} onRestore={()=>backupInput.current.click()} onFullscreen={fullscreen}
+        onReset={selected=>{dispatch({type:'reset',selected,eventId:eventSession.current+'-'+(++eventCounter.current),time:new Date().toISOString()});if(selected.settings)setPrefs({...UI_DEFAULTS,vibration:isScripting});}}
+        onBackup={saveBackup} onRestore={()=>isScripting?importBackup():backupInput.current.click()} onFullscreen={fullscreen}
         onDiagnostics={()=>{setMenuOpen(false);setDiagnosticsOpen(true)}} onAngular={()=>setState(current=>displayDefaults(pressAction(current,'toggleAngular')))}
         onRestoreProgram={()=>setState(current=>initializeDefaults(current,true,false))} onPower={()=>activate('on')}/>}
       {diagnosticsOpen && <ViewportDiagnostics onClose={()=>setDiagnosticsOpen(false)}/>}

@@ -1,3 +1,4 @@
+import {isScripting,nativeCall} from './scripting-bridge.mjs';
 // Feedback is optional: failure must never prevent a calculator action.
 export function createKeyFeedback({win=globalThis.window,doc=globalThis.document,nav=globalThis.navigator,now=()=>performance.now()}={}){
  let context=null,pending=null,pendingVibration=null;
@@ -13,7 +14,8 @@ export function createKeyFeedback({win=globalThis.window,doc=globalThis.document
   press({sound=false,vibration=false}={}){
    if(doc.hidden)return;
    pendingVibration=null;
-   if(vibration)try{if(typeof nav.vibrate==='function')pendingVibration=nav.vibrate(12)===false?now():null}catch{}
+   if(vibration&&isScripting)void nativeCall('hpHaptic').catch(()=>{});
+   if(vibration&&!isScripting)try{if(typeof nav.vibrate==='function')pendingVibration=nav.vibrate(12)===false?now():null}catch{}
    if(!sound)return;
    try{if(context?.state==='closed')reset();const Context=win.AudioContext||win.webkitAudioContext;if(!Context)return;context ||= new Context();pending={time:now()};if(context.state==='running')play(context);else resume(context)}catch{reset()}
   }
