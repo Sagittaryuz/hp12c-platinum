@@ -6,7 +6,7 @@ G+SIN/COS/TAN calcula SINH/COSH/TANH com argumento real, independente de DEG/RAD
 
 ## Variante Scripting para iOS
 
-Pacote local, mesmo visual, motor JavaScript e vibração nativa por padrão. [Importação e backup](scripting/README.md), [QA e comparativos](qa/scripting/README.md). `npm run build:scripting` gera o ZIP em `dist/scripting` sem substituir a entrega web.
+Pacote local, mesmo visual, motor JavaScript e vibração nativa por padrão. [Importação e backup](scripting/README.md), [QA e comparativos](qa/scripting/README.md). `npm run build:scripting` gera o arquivo .scripting em `dist/scripting` sem substituir a entrega web.
 
 ## Executar
 Requisitos: Node.js 22 ou superior e npm.

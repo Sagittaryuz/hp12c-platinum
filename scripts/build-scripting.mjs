@@ -31,10 +31,12 @@ await writeFile(`${root}/web/index.html`,html);
 await rm(`${root}/web/models`,{recursive:true,force:true});
 for(const file of await readdir(`${root}/web/assets`))if(/\.(js|wasm)$/.test(file)||['brushed-aluminum.png','hp12c-front.webp','black-brush.svg'].includes(file))await rm(`${root}/web/assets/${file}`);
 await build({configFile:false,publicDir:false,define:{'import.meta.env.VITE_SCRIPTING_BUILD':'"1"'},build:{outDir:root,emptyOutDir:false,lib:{entry:'scripting/index.tsx',formats:['es'],fileName:()=> 'index.tsx'},rollupOptions:{external:['scripting']},minify:false}});
-await writeFile(`${root}/metadata.json`,JSON.stringify({name:'HP12C Platinum',version,icon:'function',color:'#c6c6c6',description:'HP12C local; dados privados, motor JavaScript e vibração nativa.'},null,2));
-await cp('scripting/README.md',`${root}/README.md`);
+await writeFile(`${root}/script.json`,JSON.stringify({name:'HP12C Platinum',version,icon:'function',color:'#c6c6c6',description:'HP12C local; dados privados, motor JavaScript e vibração nativa.'},null,2));
+await writeFile(`${root}/README.md`,(await readFile('scripting/README.md','utf8')).replaceAll('../qa/scripting/','https://github.com/Sagittaryuz/hp12c-platinum/blob/main/qa/scripting/'));
 await cp('COPYRIGHT.md',`${root}/COPYRIGHT.md`);
-const archive=`hp12c-platinum-scripting-${version}.zip`;
+const archive=`hp12c-platinum-scripting-${version}.scripting`;
 execFileSync('python3',['-c',`import zipfile, pathlib\nr=pathlib.Path(${JSON.stringify(root)})\nwith zipfile.ZipFile(${JSON.stringify('dist/scripting/'+archive)},'w',zipfile.ZIP_DEFLATED) as z:\n for p in sorted(r.rglob('*')):\n  if p.is_file(): z.write(p,p.relative_to(r))`]);
+execFileSync('python3',['scripts/validate-scripting-package.py',`dist/scripting/${archive}`],{stdio:'inherit'});
+if(process.argv.includes('--sync-project')){const project='scripting/HP12C Platinum';await rm(project,{recursive:true,force:true});await cp(root,project,{recursive:true});execFileSync('python3',['scripts/validate-scripting-package.py',project],{stdio:'inherit'})}
 console.log(`Scripting: dist/scripting/${archive}`);
 async function replaceAsync(input,regex,replace){const matches=[...input.matchAll(regex)];for(const match of matches.reverse())input=input.slice(0,match.index)+await replace(...match)+input.slice(match.index+match[0].length);return input}

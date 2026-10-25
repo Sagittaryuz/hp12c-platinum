@@ -1,3 +1,5 @@
+> Atualização: a importação real da 0.2.67 foi rejeitada no iPhone. O HTTP/ZIP válido registrado abaixo não comprovava importabilidade. Veja a [investigação e correção 0.2.68](import-fix.md), com script.json, extensão canônica .scripting e diretório GitHub completo.
+
 # Scripting 0.2.67 — resultado de validação
 
 Base aprovada: main `0c9253c9f07622af02d3388a10a9fe2ebba66ede`, 0.2.66. Checkout e remoto estavam iguais, limpos; sem skills em .agents/skills nem alterações concorrentes. Apenas variante de integração: nenhum CSS, geometria, textura ou motor financeiro alterado. O dist pré-existente era antigo; a comparação utilizou uma compilação isolada do commit aprovado, extraída com git archive em /tmp/hp12c-baseline.

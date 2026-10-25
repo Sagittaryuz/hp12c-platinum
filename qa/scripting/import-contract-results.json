@@ -1,0 +1,38 @@
+{
+  "newArchive": {
+    "validation": "project-contract-only",
+    "target": "dist/scripting/hp12c-platinum-scripting-0.2.68.scripting",
+    "version": "0.2.68",
+    "name": "HP12C Platinum",
+    "files": 54,
+    "iphoneImportTested": false
+  },
+  "githubProject": {
+    "validation": "project-contract-only",
+    "target": "scripting/HP12C Platinum",
+    "version": "0.2.68",
+    "name": "HP12C Platinum",
+    "files": 54,
+    "iphoneImportTested": false
+  },
+  "officialExample": {
+    "validation": "project-contract-only",
+    "target": "/tmp/official-test.scripting",
+    "version": "1.0.0",
+    "name": "test",
+    "files": 2,
+    "iphoneImportTested": false
+  },
+  "originalZip": {
+    "accepted": false,
+    "reason": "Publisher contract requires the canonical .scripting extension",
+    "note": "Local publishing rule, not proof of proprietary importer extension policy"
+  },
+  "renamedOnly": {
+    "accepted": false,
+    "reason": "Missing root script.json"
+  },
+  "localArchiveEqualsGithubProject": true,
+  "archiveSHA256": "16e91aed34d33e3bce54b8976f49c05945d86a4600f9d15692f80e42402f81c8",
+  "iphoneImportTested": false
+}

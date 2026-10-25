@@ -28,9 +28,9 @@ jobs:
       - name: Include local Scripting download
         run: |
           mkdir -p dist/client/downloads
-          cp dist/scripting/*.zip dist/client/downloads/
+          cp dist/scripting/*.scripting dist/client/downloads/
           cd dist/client/downloads
-          sha256sum *.zip > SHA256SUMS.txt
+          sha256sum *.scripting > SHA256SUMS.txt
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/client

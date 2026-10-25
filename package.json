@@ -1,6 +1,6 @@
 {
   "name": "hp12c-platinum",
-  "version": "0.2.67",
+  "version": "0.2.68",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -19,7 +19,8 @@
     "test:wasm": "node scripts/test-wasm.mjs",
     "test:browser": "node qa/rust-wasm/browser-interactions.mjs",
     "build:scripting": "node scripts/build-scripting.mjs",
-    "test:scripting": "vitest run tests/scripting.test.ts"
+    "test:scripting": "vitest run tests/scripting.test.ts",
+    "test:scripting-package": "python3 tests/scripting-package.test.py"
   },
   "dependencies": {
     "@fontsource/dseg7-classic": "^5.3.0",

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="512" viewBox="0 0 160 512">
+ <defs>
+  <filter id="coarse"><feTurbulence type="fractalNoise" baseFrequency=".012 .12" numOctaves="3" seed="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <filter id="medium"><feTurbulence type="fractalNoise" baseFrequency=".012 .35" numOctaves="3" seed="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <filter id="fine"><feTurbulence type="fractalNoise" baseFrequency=".012 .7" numOctaves="3" seed="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <linearGradient id="coarseFade" x2="0" y2="1"><stop stop-color="white" stop-opacity=".045"/><stop offset=".35" stop-color="white" stop-opacity=".05"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+  <linearGradient id="mediumFade" x2="0" y2="1"><stop stop-color="white" stop-opacity="0"/><stop offset=".45" stop-color="white" stop-opacity=".07"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+  <linearGradient id="fineFade" x2="0" y2="1"><stop stop-color="white" stop-opacity="0"/><stop offset=".25" stop-color="white" stop-opacity=".015"/><stop offset="1" stop-color="white" stop-opacity=".16"/></linearGradient>
+  <mask id="a"><rect width="160" height="512" fill="url(#coarseFade)"/></mask>
+  <mask id="b"><rect width="160" height="512" fill="url(#mediumFade)"/></mask>
+  <mask id="c"><rect width="160" height="512" fill="url(#fineFade)"/></mask>
+ </defs>
+ <rect width="160" height="512" filter="url(#coarse)" mask="url(#a)"/>
+ <rect width="160" height="512" filter="url(#medium)" mask="url(#b)"/>
+ <rect width="160" height="512" filter="url(#fine)" mask="url(#c)"/>
+</svg>
